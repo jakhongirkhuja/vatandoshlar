@@ -14,17 +14,20 @@
                         <span>Добавить</span>
                         <input type="hidden" id="main_image_input" name="main_image_input">
                         <input id="file" type="file" name="images[]" multiple
-                            accept="image/jpeg,image/jpg,image/png,image/gif,image/svg+xml">
+                            accept="image/jpeg,image/jpg,image/png,image/gif,image/svg+xml,video/mp4,video/webm,video/ogg,video/quicktime,video/x-msvideo">
                     </span>
+
                     <span class="btn btn-success fileinput-button delete_image" id="image-delete">
                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                         <span>Удалить все</span>
                     </span>
+
                     <span class="btn btn-success fileinput-button delete_image_select" id="image-delete-btn"
                         style="cursor: pointer;">
                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                         <span>Удалить выбранные</span>
                     </span>
+
                     <input name="category" type="hidden" value="structure_main">
                     <input name="post_id" type="hidden" value="1240">
                 </div>
@@ -126,8 +129,14 @@
     });
     !function () {
         var inp = document.getElementById('file');
-        var ext = ['jpg', 'jpeg', 'png', 'gif', 'svg'];
-        var mime = ['image/jpeg', 'image/png', 'image/gif', 'image/svg+xml'];
+        var ext = ['jpg', 'jpeg', 'png', 'gif', 'svg', 'mp4'];
+        var mime = [
+            'image/jpeg',
+            'image/png',
+            'image/gif',
+            'image/svg+xml',
+            'video/mp4'
+        ];
 
         function check(files) {
             if (!files || !files.length) return 1;
@@ -140,7 +149,7 @@
                 }
             }
             if (bad.length) {
-                alert('Недопустимые файлы:\n' + bad.join('\n') + '\n\nРазрешены: JPEG, JPG, PNG, GIF, SVG');
+                alert('Недопустимые файлы:\n' + bad.join('\n') + '\n\nРазрешены: jpeg, jpg, png, gif, svg, mp4, webm, ogg, mov, avi');
                 return 0;
             }
             return 1;
@@ -245,9 +254,15 @@
                 li.setAttribute('data-name', file.name);
                 li.setAttribute('data-size', file.size);
 
+                // Video yoki rasmni aniqlash
+                const isVideo = file.type.startsWith('video/');
+                const mediaElement = isVideo
+                    ? `<video src="${e.target.result}" style="width: 180px; height: 180px; object-fit: cover;" controls></video>`
+                    : `<img src="${e.target.result}" style="width: 180px; height: 180px; object-fit: cover;">`;
+
                 li.innerHTML = `
                 <a class="thumbnail fancybox tooltips" rel="group">
-                    <img src="${e.target.result}" style="width: 180px; height: 180px;">
+                    ${mediaElement}
                 </a>
                 <div class="toolbar">
                     <div class="btn-group">
@@ -278,6 +293,5 @@
         // Store all accumulated files
         fileInput.files = storedFiles.files;
     });
-
 
 </script>

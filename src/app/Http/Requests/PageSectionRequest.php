@@ -35,7 +35,7 @@ class PageSectionRequest extends FormRequest
             'parent_id' => 'nullable|exists:page_sections,id',
             'status' => 'nullable|in:on,off',
             'images' => 'nullable|array',
-            'images.*' => 'file|mimes:jpeg,jpg,png,gif,svg|max:5120',
+            'images.*' => 'file|mimes:jpeg,jpg,png,gif,svg,mp4,webm,ogg,mov,avi|max:51200', 
             'main_image_input' => 'nullable|string',
         ];
     }

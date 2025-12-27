@@ -1,69 +1,73 @@
-    <section class="news-section">
-            <div class="container">
-                <div class="section-top">
-                    <p>Yangiliklar</p>
-                    <a href="#">Barchasi</a>
+@php
+    $menuItself = menuSection(26);
+    $newsSections = menuSections(26, 4, false);
+@endphp
+
+<section class="news-section">
+    <div class="container">
+        <div class="section-top">
+            <p>Yangiliklar</p>
+            <a href="{{ route('home', ['locale' => app()->getlocale(), 'any' => $menuItself->slug]) }}">Barchasi</a>
+
+        </div>
+
+        <div class="row">
+            {{-- MAIN NEWS --}}
+            @if($newsSections->first())
+                @php
+                    $main = $newsSections->first();
+                    $mainImage = sectionImages($main, true);
+                @endphp
+
+                <div class="col-lg-6">
+                    <a href="{{ route('home', ['locale' => app()->getlocale(), 'any' => $menuItself->slug, 'inside' => $main->slug]) }}"
+                        class="news-section__item main">
+                        @if($mainImage)
+                            <img src="{{ $mainImage }}" alt="{{ sectionValue($main, 'title') }}">
+                        @endif
+
+                        <div class="news-section__item--content">
+                            <h3 class="news-section__item--content-title line-clamp-2 no-tooltip">
+                                {{ sectionValue($main, 'title') }}
+                            </h3>
+
+                            <div class="news-section__item--content-date">
+                                {{ optional($main->created_at)->format('d F Y') }}
+                            </div>
+                        </div>
+                    </a>
                 </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <a href="news-view.html" class="news-section__item main">
-                            <img src="{{ asset('front') }}/images/news-1.png" alt="">
+            @endif
+
+            {{-- SIDE NEWS --}}
+            <div class="col-lg-6">
+                <div class="news-section__wrapper">
+                    @foreach($newsSections->skip(1) as $news)
+                        @php
+                            $img = sectionImages($news, true);
+                        @endphp
+
+                        <a href="{{ route('home', ['locale' => app()->getlocale(), 'any' => $menuItself->slug, 'inside' => $news->slug]) }}"
+                            class="news-section__item">
+                            @if($img)
+                                <div class="news-section__item--img">
+                                    <img src="{{ $img }}" alt="{{ sectionValue($news, 'title') }}">
+                                </div>
+                            @endif
+
                             <div class="news-section__item--content">
-                                <h3 class="news-section__item--content-title line-clamp-2 no-tooltip">"Vatandoshlar"
-                                    jamoat
-                                    fondi tomonidan
-                                    Xorijdagi vatandoshlar
-                                    uchun yangi loyiha amalga oshirilmoqda</h3>
-                                <div class="news-section__item--content-date">10 Fevral 2025</div>
+                                <h3 class="news-section__item--content-title line-clamp-2 no-tooltip">
+                                    {{ sectionValue($news, 'title') }}
+                                </h3>
+
+                                <div class="news-section__item--content-date">
+                                    {{ optional($news->created_at)->format('d F Y') }}
+                                </div>
                             </div>
                         </a>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="news-section__wrapper">
-                            <a href="news-view.html" class="news-section__item">
-                                <div class="news-section__item--img">
-                                    <img src="{{ asset('front') }}/images/news-2.jpg" alt="">
-                                </div>
-                                <div class="news-section__item--content">
-                                    <h3 class="news-section__item--content-title line-clamp-2 no-tooltip">Xorijdagi
-                                        Vatandoshlar
-                                        uchun Anor
-                                        damolish
-                                        oromgohi ochildi
-                                    </h3>
-                                    <div class="news-section__item--content-date">12 Fevral 2025</div>
-                                </div>
-                            </a>
-                            <a href="news-view.html" class="news-section__item">
-                                <div class="news-section__item--img">
-                                    <img src="{{ asset('front') }}/images/news-3.jpg" alt="">
-                                </div>
-                                <div class="news-section__item--content">
-                                    <h3 class="news-section__item--content-title line-clamp-2 no-tooltip">Xorijdagi
-                                        Vatandoshlar
-                                        uchun Anor
-                                        damolish
-                                        oromgohi ochildi
-                                    </h3>
-                                    <div class="news-section__item--content-date">12 Fevral 2025</div>
-                                </div>
-                            </a>
-                            <a href="news-view.html" class="news-section__item">
-                                <div class="news-section__item--img">
-                                    <img src="{{ asset('front') }}/images/news-4.jpg" alt="">
-                                </div>
-                                <div class="news-section__item--content">
-                                    <h3 class="news-section__item--content-title line-clamp-2 no-tooltip">Xorijdagi
-                                        Vatandoshlar
-                                        uchun Anor
-                                        damolish
-                                        oromgohi ochildi
-                                    </h3>
-                                    <div class="news-section__item--content-date">12 Fevral 2025</div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>

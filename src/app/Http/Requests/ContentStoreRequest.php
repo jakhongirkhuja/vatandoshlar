@@ -22,15 +22,15 @@ class ContentStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-               'fields' => 'required|array',
+            'fields' => 'required|array',
             'icon' => 'nullable|string',
             'parent_id' => 'nullable|exists:menu_mains,id',
-            
+
             'show_admin' => 'nullable|in:on,off',
             'status' => 'nullable|in:on,off',
             'images' => 'nullable|array',
-            'images.*' => 'file|mimes:jpeg,jpg,png,gif,svg|max:5120',
-            'content_image_input'=>'nullable|string',
+            'images.*' => 'file|mimes:jpeg,jpg,png,gif,svg,mp4,webm,ogg,mov,avi|max:51200',
+            'content_image_input' => 'nullable|string',
         ];
     }
 }

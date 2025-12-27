@@ -115,6 +115,17 @@ if (!function_exists('menuSections')) {
     }
 
 }
+ if (!function_exists('menuSection')) {
+
+    function menuSection($menu)
+    {
+        if (is_numeric($menu)) {
+            $menu = MenuMain::find($menu);
+        }
+
+        return $menu ??  null;
+    }
+}
 
 use Illuminate\Support\Facades\DB;
 

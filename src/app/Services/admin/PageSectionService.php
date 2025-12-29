@@ -106,7 +106,7 @@ class PageSectionService
         $pagesection = PageSection::find($section_id);
         if (!$pagesection)
             abort(404);
-
+        
         try {
             $dataToSave = [
                 'slug' => isset($data['slug']) ?  $data['slug'] : '',
@@ -136,7 +136,9 @@ class PageSectionService
                 $mainImageName = isset($data['main_image_input']) ? $data['main_image_input'] : '';
 
                 $imageId = false;
+                
                 foreach ($data['images'] as $file) {
+                    // dd($file);
                     $fileOriginalName = $file->getClientOriginalName();
 
                     $filename = time() . '_' . $file->getClientOriginalName();

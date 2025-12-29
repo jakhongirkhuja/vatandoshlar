@@ -71,51 +71,59 @@ if (!function_exists('sectionImages')) {
 
 if (!function_exists('menuSections')) {
 
-    function menuSections($menu, $limit = null, $order = true)
-    {
-        if (is_bool($limit)) {
-            $order = $limit;
-            $limit = null;
-        }
-
-        if (is_numeric($menu)) {
-            $menu = MenuMain::with('children')->find($menu);
-            if (!$menu) {
-                return collect();
-            }
-        }
-
-        $sections = collect();
-        $orderDirection = $order ? 'desc' : 'asc';
-        if ($menu->children->isNotEmpty()) {
-            $query = PageSection::with(['children', 'translations', 'images'])
-                ->whereIn('menu_main_id', $menu->children->pluck('id'))
-                ->orderBy('sort_order', $orderDirection);
-
-            if (is_numeric($limit)) {
-                $query->limit($limit);
+        function menuSections($menu, $limit = null, $order = true, $onlyparents = false)
+        {
+            if (is_bool($limit)) {
+                $order = $limit;
+                $limit = null;
             }
 
-            $sections = $query->get();
-        }
-
-        if ($sections->isEmpty()) {
-            $query = PageSection::with(['children', 'translations', 'images'])
-                ->where('menu_main_id', $menu->id)
-                ->orderBy('sort_order', $orderDirection);
-
-            if (is_numeric($limit)) {
-                $query->limit($limit);
+            if (is_numeric($menu)) {
+                $menu = MenuMain::with('children')->find(id: $menu);
+                if (!$menu) {
+                    return collect();
+                }
             }
 
-            $sections = $query->get();
-        }
+            $sections = collect();
+            $orderDirection = $order ? 'desc' : 'asc';
+            if ($onlyparents) {
+                $query = PageSection::with(['children', 'translations', 'images'])
+                    ->where('menu_main_id', $menu->id)->whereNull('parent_id')
+                    ->orderBy('sort_order', $orderDirection);
+                    $sections = $query->get();
+            } else {
+                if ($menu->children->isNotEmpty()) {
+                    $query = PageSection::with(['children', 'translations', 'images'])
+                        ->whereIn('menu_main_id', $menu->children->pluck('id'))
+                        ->orderBy('sort_order', $orderDirection);
 
-        return $sections;
-    }
+                    if (is_numeric($limit)) {
+                        $query->limit($limit);
+                    }
+
+                    $sections = $query->get();
+                }
+
+                if ($sections->isEmpty()) {
+                    $query = PageSection::with(['children', 'translations', 'images'])
+                        ->where('menu_main_id', $menu->id)
+                        ->orderBy('sort_order', $orderDirection);
+
+                    if (is_numeric($limit)) {
+                        $query->limit($limit);
+                    }
+
+                    $sections = $query->get();
+                }
+            }
+
+
+            return $sections;
+        }
 
 }
- if (!function_exists('menuSection')) {
+if (!function_exists('menuSection')) {
 
     function menuSection($menu)
     {
@@ -123,7 +131,7 @@ if (!function_exists('menuSections')) {
             $menu = MenuMain::find($menu);
         }
 
-        return $menu ??  null;
+        return $menu ?? null;
     }
 }
 

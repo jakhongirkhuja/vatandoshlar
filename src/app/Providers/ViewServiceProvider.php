@@ -33,7 +33,7 @@ class ViewServiceProvider extends ServiceProvider
                 $menus = MenuMain::with('translations', 'children')->whereNull('parent_id')->where('show_admin', true)->orderBy('sort_order')->get();
                 $view->with([
                     'globalmenus' => $menus,
-                    'permissionMenus' => auth()->user()->role->menus->pluck('id')->toArray(),
+                    'permissionMenus' => auth()->user()?->role->menus->pluck('id')->toArray(),
                 ]);
             } else {
                 $menus = MenuMain::with(['childrens', 'translations'])->whereNull('parent_id')->where('status', true)->orderBy('sort_order')->get();

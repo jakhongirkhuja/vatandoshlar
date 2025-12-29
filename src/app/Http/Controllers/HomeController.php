@@ -17,7 +17,7 @@ class HomeController extends Controller
     }
 
 
-    public function index(Request $request, $locale = null, $any = null, $inside = null)
+    public function index(Request $request, $locale = null, $any = null, $inside = null, $detail = null)
     {
         $locale = app()->getLocale();
         if ($any != null) {
@@ -25,17 +25,22 @@ class HomeController extends Controller
             if (!$currentPage) {
                 abort(404);
             }
-            if ($inside) {
-
+            if ($inside && $detail) {
+                $viewPath = "front.pages." . str_replace("-", "_", $any) . ".inside.detail.index";
+            } elseif ($inside) {
                 $viewPath = "front.pages." . str_replace("-", "_", $any) . ".inside.index";
             } else {
                 $viewPath = "front.pages." . str_replace("-", "_", $any) . ".index";
             }
 
 
+
             if (view()->exists($viewPath)) {
                 $items = collect();
                 if ($inside) {
+                    if($detail) {
+                        $inside = $detail;
+                    }
                     $items = $items->merge(PageSection::with(['children', 'translations', 'images'])
                         ->where('slug', $inside)->orderBy('sort_order')
                         ->get());

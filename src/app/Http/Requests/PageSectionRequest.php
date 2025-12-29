@@ -22,6 +22,7 @@ class PageSectionRequest extends FormRequest
      */
     public function rules(): array
     {
+
         $sectionId = $this->route('section_id');
         return [
             'category_name' => 'nullable|string',
@@ -34,8 +35,21 @@ class PageSectionRequest extends FormRequest
             'fields' => 'required|array',
             'parent_id' => 'nullable|exists:page_sections,id',
             'status' => 'nullable|in:on,off',
+            // 'images' => 'nullable|array',
+            // 'images.*' => [
+            //     'file',
+            //     'max:51200', // 50 MB
+            //     function ($attribute, $value, $fail) {
+            //         $allowed = ['jpg', 'jpeg', 'png', 'gif', 'svg', 'mp4', 'webm', 'ogg', 'mov', 'avi'];
+            //         dd( $value->getClientOriginalExtension());
+            //         $ext = strtolower($value->getClientOriginalExtension());
+            //         if (!in_array($ext, $allowed)) {
+            //             $fail("The $attribute must be one of: " . implode(', ', $allowed));
+            //         }
+            //     }
+            // ],
             'images' => 'nullable|array',
-            'images.*' => 'file|mimes:jpeg,jpg,png,gif,svg,mp4,webm,ogg,mov,avi|max:51200', 
+            'images.*' => 'file|mimes:jpeg,jpg,png,gif,svg,mp4,webm,ogg,mov,avi|max:51200',
             'main_image_input' => 'nullable|string',
         ];
     }

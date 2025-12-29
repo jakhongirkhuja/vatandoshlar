@@ -17,7 +17,7 @@
             <h1 class="hero__title">
                 {{ sectionValue($heroSection, 'title') }}
             </h1>
-    
+
             <button class="hero__btn">
                 <i class="i-arrow"></i>
                 <span>Batafsil</span>

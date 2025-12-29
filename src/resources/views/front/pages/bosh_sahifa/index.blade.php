@@ -42,7 +42,7 @@
                     </div>
                     <div class="carousel carousel3 owl-carousel">
                        
-                        @foreach ($items as $k=>$item)
+                        @foreach ($items as $k=>$item)  
                             @if($k >= 1 && $k >= count($items) - 2)
                                 @continue
                             @endif

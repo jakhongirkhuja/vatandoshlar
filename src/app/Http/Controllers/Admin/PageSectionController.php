@@ -19,12 +19,14 @@ use Illuminate\Http\Request;
 
 class PageSectionController extends Controller
 {
-    public function __construct(protected  PageSectionService $service) {}
+    public function __construct(protected PageSectionService $service)
+    {
+    }
     public function updateSort(SortOrderUpdateRequest $request, $slug, $id, $section_id)
     {
         $section = PageSection::find($section_id);
         if ($section) {
-           
+
             $section->update($request->only('sort_order'));
             return back()->with('success', 'Updated');
         }
@@ -43,7 +45,7 @@ class PageSectionController extends Controller
         }
         abort(404);
     }
-    public function  createSection($slug, $id, $parent_id = null, $category_slug = null)
+    public function createSection($slug, $id, $parent_id = null, $category_slug = null)
     {
         $languages = Lang::all();
         if ($parent_id) {
@@ -55,11 +57,12 @@ class PageSectionController extends Controller
         }
         return view('admin.pages.global.section.create', compact('languages', 'settings', 'slug', 'id', 'parent_id', 'category_slug'));
     }
-    public function editSection($slug, $id, $section_id,  $parent_id = null, $category_slug = null)
+    public function editSection($slug, $id, $section_id, $parent_id = null, $category_slug = null)
     {
 
         $section = PageSection::with('translations', 'images')->find($section_id);
-        if (!$section) abort(404);
+        if (!$section)
+            abort(404);
         $languages = Lang::all();
         if ($parent_id) {
             $settings = PageSectionSetting::where('menu_main_id', $id)->where('page_section_parent_id', $parent_id)->where('category_slug', $category_slug)->orderBy('sort_order')->get();
@@ -75,7 +78,7 @@ class PageSectionController extends Controller
     }
     public function updateSection(PageSectionRequest $request, $slug, $id, $section_id, $parent_id = null)
     {
-
+    //    dd($request->validated());
         return $this->service->updateSection($slug, $id, $section_id, $parent_id, $request->validated());
     }
     public function index($slug, $id, $parent_id = null, $category_slug = null)

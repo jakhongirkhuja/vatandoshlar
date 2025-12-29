@@ -7,7 +7,7 @@
             <div class="layout-content">
                 <div class="content">
                     <div class="content__text">
-                            {!! sectionValue($items[0], 'title') !!}
+                        {!! sectionValue($items[0], 'title') !!}
                     </div>
 
                     <div class="tab-navigation international-partnership__navigation">
@@ -18,25 +18,34 @@
                             Grid ko'rinishida
                         </button>
                     </div>
-                    
                     <div class="tab-panels international-partnership__panels">
                         <div data-tab-system="1" class="tab-panel">
                             #map here
                         </div>
                         <div data-tab-system="1" class="tab-panel">
                             <div class="associations__grid">
-                                @if(isset($items[1]) && $items[1]->children)
-                                    @foreach($items[1]->children as $country)
-                                        <a href=href="{{ route('home',['locale'=>app()->getlocale(), 'any'=>request()->route('any'),'inside'=>$country->slug]) }}" class="associations__grid--item">
-                                            <div class="associations__grid--item-img">
-                                                @if($flag = sectionImages($country))
-                                                    <img src="{{ $flag[0] }}" href="{{ route('home',['locale'=>app()->getlocale(), 'any'=>request()->route('any'),'inside'=>$country->slug]) }}">
-                                                @endif
-                                            </div>
-                                            <p>{{ sectionValue($country, 'title') }}</p>
-                                        </a>
-                                    @endforeach
-                                @endif
+                                @php
+
+
+                                    $items = menuSections(23, null, true, true);
+
+                                @endphp
+                                @foreach($items as $k => $country)
+
+                                    <a href="{{ route('home', ['locale' => app()->getlocale(), 'any' => request()->route('any'), 'inside' => $country->slug]) }}"
+                                        class="associations__grid--item">
+                                        <div class="associations__grid--item-img">
+                                            @php
+                                                $mainImage = sectionImages($country, true);
+                                            @endphp
+                                            @if($mainImage)
+                                                <img src="{{ $mainImage }}" alt="{{ sectionValue($country, 'title') }}">
+                                            @endif
+                                        </div>
+                                        <p>{{ sectionValue($country, 'title') }}</p>
+                                    </a>
+
+                                @endforeach
                             </div>
                         </div>
                     </div>

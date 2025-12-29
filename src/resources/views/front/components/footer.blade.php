@@ -7,26 +7,24 @@
                     <span>“Vatandoshlar”<br>Jamoat Fondi</span>
                 </a>
                 <p class="footer__text">
-                    O'zbekiston Respublikasi Prezidenti Administratsiyasi huzuridagi ta'lim sifatini ta'minlash
-                    milliy
-                    agentligi
+                  {{staticValue('agency')}}
                 </p>
             </div>
             <div class="col">
                 <div class="footer__items">
                     <div class="footer__item">
                         <a href="tel:+998998765432" class="footer__item-value">+998 (55) 502-22-99</a>
-                        <span class="footer__item-label">Telefon raqam</span>
+                        <span class="footer__item-label">{{staticValue('phone')}}</span>
                     </div>
                     <div class="footer__item">
                         <a href="mailto:info@vatandoshlar.uz" class="footer__item-value">
                             info@vatandoshlarfondi.uz</a>
-                        <span class="footer__item-label">Elektron pochta</span>
+                        <span class="footer__item-label">{{staticValue('email')}}</span>
                     </div>
                     <div class="footer__item">
                         <span class="footer__item-value">100100, Toshkent sh., Yakkasaroy tumani, Bobur ko'chasi,
                             30-uy.</span>
-                        <span class="footer__item-label">Manzil</span>
+                        <span class="footer__item-label">{{staticValue('address')}}</span>
                     </div>
                 </div>
             </div>

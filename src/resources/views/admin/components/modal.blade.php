@@ -37,10 +37,24 @@
                         @if(isset($menu))
                             @foreach($menu->images as $image)
                                 <li class="thumb {{ $image->main ? 'main' : '' }}" data-id="{{ $image->id }}">
-                                    <a href="{{ asset('storage/' . $image->image) }}" class="thumbnail fancybox tooltips"
-                                        rel="group">
-                                        <img src="{{ asset('storage/' . $image->image) }}" style="width: 180px; height: 180px;">
-                                    </a>
+                                    @php
+                                               $fileExtension = pathinfo($image->image, PATHINFO_EXTENSION);
+                                               $videoExtensions = ['mp4', 'webm', 'ogg', 'mov', 'avi', 'mkv'];
+                                               $isVideo = in_array(strtolower($fileExtension), $videoExtensions);
+                                        @endphp
+                                  @if($isVideo)
+                                        <a href="{{ asset('storage/' . $image->image) }}" class="thumbnail fancybox tooltips" rel="group">
+                                              <video style="width: 180px; height: 180px; object-fit: cover;" controls>
+                                                    <source src="{{ asset('storage/' . $image->image) }}" type="video/{{ $fileExtension }}">
+                                                    Your browser does not support the video tag.
+                                             </video>
+                                                </a>
+                                                        @else
+                                                         <a href="{{ asset('storage/' . $image->image) }}" class="thumbnail fancybox tooltips" rel="group">
+                                                            <img src="{{ asset('storage/' . $image->image) }}" 
+                                                                    style="width: 180px; height: 180px; object-fit: cover;">
+                                                                     </a>
+                                                                @endif
                                     <div class="toolbar">
                                         <div class="btn-group">
                                             <a class="btn btn-mini move ui-sortable-handle center" href="#" title="Перемещать">

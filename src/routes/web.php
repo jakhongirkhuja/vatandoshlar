@@ -12,6 +12,6 @@ Route::get('reload-captcha',[AuthController::class,'captch'])->name('reload.capt
 
 Route::middleware([SetLocale::class])->group(function () {
 
-    Route::get('{locale?}/{any?}/{inside?}', [HomeController::class, 'index'])->name('home');
+    Route::get('{locale?}/{any?}/{inside?}/{detail?}/', [HomeController::class, 'index'])->name('home');
 
 });

@@ -115,13 +115,17 @@
                                                                     value="textarea" {{ $f->type=='textarea'?'selected':'' }}>
                                                                     Textarea
                                                                 </option>
+                                                                  <option
+                                                                    value="textarea-editor" {{ $f->type=='textarea-editor'?'selected':'' }}>
+                                                                    Textarea Editor
+                                                                </option>
                                                                 <option
                                                                     value="select" {{ $f->type=='select'?'selected':'' }}>
                                                                     Select-Option
                                                                 </option>
                                                                 <option
                                                                     value="relation" {{ $f->type=='relation'?'selected':'' }}>
-                                                                    Select-Option
+                                                                    Relation
                                                                 </option>
 
                                                             </select>

@@ -32,6 +32,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
             Route::get('create', [MenuMainController::class, 'create'])->name('create');
             Route::get('edit/{id}', [MenuMainController::class, 'edit'])->name('edit');
             Route::post('update-sort/{id}', [MenuMainController::class, 'updateSort'])->name('update-sort');
+            Route::post('update-sort', [MenuMainController::class, 'updateSortMenu'])->name('update-sort-menu');
             Route::post('store', [MenuMainController::class, 'store'])->name('store');
             Route::put('update/{id}', [MenuMainController::class, 'update'])->name('update');
             Route::get('settings', [MenuMainSettingsController::class, 'index'])->name('settings');

@@ -68,10 +68,10 @@
                                                     <div class="form-group">
 
                                                         <label>{{ $setting->label }} ({{ $language->code }})</label>
-                                                        @if($setting->type=='textarea')
-                                                            <textarea class="form-control moxiecut" 
-                                                                      name="fields[{{ $language->code }}][{{ $setting->key }}]">{{ $value }}</textarea>
-                                                        @else
+                                                       @if($setting->type=='textarea' || $setting->type=='textarea-editor')
+                                        <textarea class="form-control {{$setting->type=='textarea-editor'? 'summernote' : ''}}"
+                                            name="fields[{{ $language->code }}][{{ $setting->key }}]">{{ $value }}</textarea>
+                                        @else
                                                             @php $type = $setting->type=='text'? 'text' : 'number' @endphp
                                                             <input
                                                                 type="{{$type}}"
@@ -98,10 +98,11 @@
                                         @endphp
                                         <div class="form-group">
                                             <label>{{ $setting->label }}</label>
-                                            @if($setting->type=='textarea')
-                                                <textarea class="form-control moxiecut"
-                                                          name="fields[{{ $setting->key }}]">{{ $value2 }}</textarea>
-                                            @else
+                                                                          @if($setting->type=='textarea' || $setting->type=='textarea-editor')
+                                <textarea class="form-control {{$setting->type=='textarea-editor'? 'summernote' : ''}}"
+                                    name="fields[{{ $setting->key }}]">{{ $value2 }}</textarea>
+                                           @else
+
                                                 @php $type = $setting->type=='text'? 'text' : 'number' @endphp
                                                 <input
                                                     type="{{$type}}"

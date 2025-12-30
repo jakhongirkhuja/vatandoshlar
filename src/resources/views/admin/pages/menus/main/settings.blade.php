@@ -85,9 +85,13 @@
                                                             Text
                                                         </option>
                                                         <option value="number" {{ $f->type=='number'?'selected':'' }}>Integer</option>
-                                                        <option
+                                                         <option
                                                             value="textarea" {{ $f->type=='textarea'?'selected':'' }}>
                                                             Textarea
+                                                        </option>
+                                                        <option
+                                                            value="textarea-editor" {{ $f->type=='textarea-editor'?'selected':'' }}>
+                                                            Textarea Editor
                                                         </option>
                                                         <option
                                                             value="select" {{ $f->type=='select'?'selected':'' }}>

@@ -7,11 +7,12 @@ use App\Models\MenuMain;
 use Illuminate\Http\Request;
 use App\Models\MenuMainSetting;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MainMenuImageUpdateRequest;
+use App\Http\Requests\SortMenuRequest;
 use App\Services\admin\MenuMainService;
 use App\Http\Requests\MenuMainStoreRequest;
 use App\Http\Requests\MenuMainUpdateRequest;
 use App\Http\Requests\SortOrderUpdateRequest;
+use App\Http\Requests\MainMenuImageUpdateRequest;
 
 class MenuMainController extends Controller
 {
@@ -46,6 +47,16 @@ class MenuMainController extends Controller
         $menus = MenuMain::findOrFail($id);
         $menus->update($request->only('sort_order'));
         return back()->with('success', 'Updated');
+    }
+     public function updateSortMenu(SortMenuRequest $request)
+    {
+        $data = $request->validated();
+        foreach ($data['order'] as $item) {
+            MenuMain::where('id', $item['id'])->update([
+                'sort_order' => $item['sort_order'],
+            ]);
+        }
+        return response()->json($data);
     }
     public function imageDelete(MainMenuImageUpdateRequest $request)
     {

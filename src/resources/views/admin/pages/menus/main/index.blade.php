@@ -232,7 +232,7 @@
         console.log('UPDATED:', order);
 
 
-        fetch(`{{route('admin.menu_main.update-sort',$menu->id)}}`, {
+        fetch(`{{route('admin.menu_main.update-sort-menu',)}}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

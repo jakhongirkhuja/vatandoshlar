@@ -20,6 +20,7 @@
                 <option value="text">Text</option>
                 <option value="number">Integer</option>
                 <option value="textarea">Textarea</option>
+                 <option value="textarea-editor">Textarea Editor</option>
                 <option value="select">Select-Option</option>
                 <option value="relation">relation</option>
             </select>

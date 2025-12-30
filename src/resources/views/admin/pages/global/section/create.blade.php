@@ -82,9 +82,9 @@
                                     <div class="form-group">
 
                                         <label>{{ $setting->label }} ({{ $language->code }})</label>
-                                        @if($setting->type=='textarea')
-                                        <textarea class="form-control moxiecut {{$setting->key=='title'? 'title' : ''}}"
-                                            name="fields[{{ $language->code }}][{{ $setting->key }}]">{{ $value }}</textarea>
+                                         @if($setting->type=='textarea' || $setting->type=='textarea-editor')
+                                        <textarea class="form-control {{$setting->type=='textarea-editor'? 'summernote' : ''}}"
+                                        name="fields[{{ $language->code }}][{{ $setting->key }}]">{{ $value }}</textarea>
                                         @else
                                         @php $type = $setting->type=='text'? 'text' : 'number' @endphp
                                         <input
@@ -121,10 +121,10 @@
                             @endphp
                             <div class="form-group">
                                 <label>{{ $setting->label }}</label>
-                                @if($setting->type=='textarea')
-                                <textarea class="form-control moxiecut {{$setting->key=='title'? 'title' : ''}}"
+                                 @if($setting->type=='textarea' || $setting->type=='textarea-editor')
+                                <textarea class="form-control {{$setting->type=='textarea-editor'? 'summernote' : ''}}"
                                     name="fields[{{ $setting->key }}]">{{ $value2 }}</textarea>
-                                @else
+                                   @else
                                 @php $type = $setting->type=='text'? 'text' : 'number' @endphp
                                 <input
                                     type="{{$type}}"

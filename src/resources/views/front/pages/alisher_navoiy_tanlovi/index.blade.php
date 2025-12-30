@@ -3,7 +3,7 @@
 @section('body')
     @include('front.components.breadcrumbs')
     @php
-        $sections = menuSections(30,2);
+        $sections = menuSections(30, 2);
     @endphp
 
     <div class="layout">
@@ -58,32 +58,31 @@
                         </div>
                     @endforeach
                 </div>
-
-                <!-- @if($sections)
+                @if($sections)
                     <div class="projects-forum">
                         <div class="section-top">
                             <p class="associations-detail__gallery--title">{{ staticValue('forum') }}</p>
+                        </div>
+                        @foreach ($sections as $section)
+
+                            <div class="carousel carousel3center owl-carousel">
+                                @php
+                                    $mainImage = sectionImages($section);
+                                @endphp
+
+                                @if($mainImage)
+                                    @foreach ($mainImage as $src)
+                                        <a href="{{ $src }}" class="carousel__item video-card">
+                                            <div class="carousel__item--img">
+                                                <img src="{{ $src }}" alt="">
+                                            </div>
+                                        </a>
+                                    @endforeach
+                                @endif
                             </div>
-                            @foreach ($sections as $section)
-
-                                <div class="carousel carousel3center owl-carousel">
-                                    @php
-                                        $mainImage = sectionImages($section);
-                                    @endphp
-
-                                    @if($mainImage)
-                                        @foreach ($mainImage as $src)
-                                            <a href="{{ $src }}" class="carousel__item video-card">
-                                                <div class="carousel__item--img">
-                                                    <img src="{{ $src }}" alt="">
-                                                </div>
-                                            </a>
-                                        @endforeach
-                                    @endif
-                                </div>
                         @endforeach
                     </div>
-                @endif -->
+                @endif
 
             </div>
 

@@ -98,29 +98,49 @@
     <script src="{{asset('assets/admin')}}/app-assets/js/scripts/pages/app-user.js"></script>
 
 
-    <script src="{{asset('assets/admin')}}/tinymce/all.min.js"></script>
-    <script src="{{asset('assets/admin')}}/tinymce/tinymce.js"></script>
-
+    <link href="{{asset('assets/admin/summernote/summernote.min.css')}}" rel="stylesheet">
+    <script src="{{asset('assets/admin/summernote/summernote-bs4.min.js')}}"></script>
+    <script src="{{asset('assets/admin/summernote/summernote-image-attributes.js')}}"></script>
     <script>
-        var upload_file = 'image';
-        var moxiecutUrl = "{{route('admin.file-manager')}}";
-        tinymce.PluginManager.load('moxiecut', "{{asset('assets/admin')}}/tinymce/plugins/moxiecut/plugin.min.js");
-        tinymce.init({
-            selector: ".moxiecut",
-            language: 'ru',
-            theme: "modern",
-            plugins: [
-                "advlist autolink lists link image charmap print preview anchor",
-                "searchreplace visualblocks code fullscreen",
-                "insertdatetime media table contextmenu paste moxiecut",
-                "textcolor colorpicker"
-            ],
-            toolbar: "undo redo | styleselect | bold italic fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link insertfile image media | forecolor backcolor",
-            autosave_ask_before_unload: false,
+        $('.summernote').summernote({
+            callbacks: {
+                onInit: function () {
+                    $('.note-toolbar').removeClass('card-header');
+                }
+            },
             height: 500,
-            relative_urls: false,
-            valid_elements: "*[*]",
-            entity_encoding: 'raw',
+            minHeight: null,
+            maxHeight: null,
+            focus: true,
+            popover: {
+                image: [
+                    ['image', ['resizeFull', 'resizeHalf', 'resizeQuarter', 'resizeNone']],
+                    ['float', ['floatLeft', 'floatRight', 'floatNone']],
+                    ['remove', ['removeMedia']],
+                    ['custom', ['imageAttributes']],
+                ],
+            },
+            imageAttributes: {
+                icon: '<i class="note-icon-pencil"/>',
+                removeEmpty: false,
+                manageAspectRatio: true
+            },
+
+            toolbar: [
+
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear', 'italic', 'strikethrough', 'superscript', 'subscript']],
+                ['fontname', ['fontname']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph', 'height']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video', 'hr']],
+                ['view', ['fullscreen', 'codeview', 'help']],
+                ['history', ['undo', 'redo']]
+            ],
+            fontsize: ['8', '9', '10', '11', '12', '14', '18', '24', '36'],
+            fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Merriweather'],
         });
     </script>
     <!-- END: Page JS-->

@@ -9,65 +9,58 @@ NOTE:
 ------
 PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
-.tippy-popper {
+.tippy-popper{
     display: none;
 }
-
 .action-col {
-    width: 120px;
-    /* adjust as needed */
+    width: 120px; /* adjust as needed */
     white-space: nowrap;
 }
 
 /* First columns take remaining space and shrink if needed */
-table th,
-table td {
+table th, table td {
     white-space: nowrap;
 }
-
-.fx {
+.fx{
     display: flex;
 
 }
-
-.fx.align-items-center {
+.fx.align-items-center{
     align-items: center;
 }
-
-.size_small {
+.size_small{
     width: 16px;
     height: auto;
 }
-
-.sort_submit {
+.sort_submit{
     gap: 5px;
 }
-
-.sort_submit button {
+.sort_submit input{
+    width: 50px;
+    text-align: center;
+}
+.sort_submit button{
     padding: 0;
     width: 70px;
 }
-
-.sort_submit button i {
+.sort_submit button i{
     padding: 10px;
     font-size: 14px;
 }
-
-.modal.show .modal-dialog {
+.modal.show .modal-dialog{
     height: 100vh;
 }
 
 
-.modal.show .modal-dialog {}
-
-.modal .modal-content {
+.note-editor .modal.show .modal-dialog {
+    height: auto;
+}
+.modal .modal-content{
     height: 90vh;
 }
-
-.modal .modal-content.small {
+.modal .modal-content.small{
     height: initial;
 }
-
 .modal.show .modal-dialog .media-block {
     /* height: 100%;
     overflow-y: auto;*/
@@ -195,8 +188,7 @@ table td {
     margin-right: auto;
     margin-left: auto;
 }
-
-.center {
+.center{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -252,9 +244,8 @@ table td {
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
 }
-
-.reload {
-    width: 40px;
+.reload{
+       width: 40px;
     display: inline-flex;
     text-align: center;
     background: #4a51dd;
@@ -263,14 +254,90 @@ table td {
     justify-content: center;
     align-items: center;
     color: #fff;
-    text-decoration: none;
+    text-decoration: none;  
 }
-
-.captcha {
+.captcha{
     text-align: center;
     margin-bottom: 1rem;
 }
 
-.dataTable * {
+
+.menu {
+    padding: 20px 0 20px 20px;
+    position: relative;
+    width: 100%;
+    
+}
+.menu * {
+  transition: 0.3s all ease;
+  user-select: none;
+  list-style: none;
+}
+.menu__left{
+    display: flex;
+    align-items: center;
+}
+.menu__item.active > .menu__bottom {
+  display: flex;
+  border-left-color: black;
+  border-bottom-color: black;
+  margin-bottom: 4px;
+}
+.menu__top {
+  background: #f2f2f2;
+    padding: 16px 0 16px 16px;
+    border-radius: 3px;
+    margin-bottom: 4px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.menu__top .menu__actions{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.menu__top:hover {
+  background: #dcdcdc;
+}
+.menu__bottom {
+  flex-direction: column;
+  margin-top: 0;
+  border: 1px solid transparent;
+  border-top: none;
+  border-right: none;
+  overflow: hidden;
+}
+.menu__bottom > li:not(:has(.menu__item)) {
+  background: #f2f2f2;
+  border-radius: 3px;
+  gap: 0px;
+  margin-bottom: 4px;
+}
+.menu__bottom > li:not(:has(.menu__item)):hover {
+  background: #dcdcdc;
+}
+.menu__bottom li {
+  list-style-type: none;
+  padding: 0;
+  line-height: 20px;
+  font-size: 16px;
+  gap: 4px;
+}
+.menu__toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    margin-right: 6px;
+    font-weight: bold;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    cursor: pointer;
     user-select: none;
+}
+
+.menu__item.active > .menu__top .menu__toggle {
+    content: "−";
 }

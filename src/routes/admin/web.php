@@ -7,12 +7,13 @@ use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\FileManagerController;
 use App\Http\Controllers\Admin\ContentController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\SupportController;
 use App\Http\Controllers\Admin\MenuMainController;
 use App\Http\Controllers\Admin\Auth\AuthController;
 use App\Http\Controllers\Admin\SocialLinkController;
+use App\Http\Controllers\Admin\FileManagerController;
 use App\Http\Controllers\Admin\PageSectionController;
 use App\Http\Controllers\Admin\ContentSettingController;
 use App\Http\Controllers\Admin\MenuMainSettingsController;
@@ -22,6 +23,9 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::any('file-manager', [FileManagerController::class, 'handleRequest'])->name('admin.file-manager');
 
     Route::middleware('admin')->group(function () {
+        Route::get('supports', [SupportController::class, 'index'])->name('admin.supports');
+        Route::get('supports/{id}', [SupportController::class, 'show'])->name('admin.supports.show');
+        Route::delete('supports/{id}', [SupportController::class, 'delete'])->name('admin.supports.delete');
         Route::get('menu', [MenuController::class, 'index'])->name('admin.menu');
         Route::get('settings', [SettingController::class, 'settings'])->name('admin.settings');
         Route::post('settings/create', [SettingController::class, 'settingscreate'])->name('admin.settings.create');

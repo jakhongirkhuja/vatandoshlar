@@ -1,3 +1,7 @@
+@php
+$items = menuSections(36,1);
+@endphp
+
 <section class="about-section">
     <div class="container">
         <ul class="about-section__left">
@@ -28,15 +32,13 @@
                 <h2><span>Vatandoshlar</span> Jamoat Fondi</h2>
             </div>
             <div class="about-section__middle--content">
-                <p class="about-section__middle--content-text">"Vatandoshlar" jamoat fondi — bu xorijdagi
-                    o‘zbekistonlik
-                    vatandoshlar bilan aloqalarni
-                    mustahkamlash, ularning huquq va manfaatlarini qo‘llab-quvvatlash, shuningdek, ularni
-                    O‘zbekiston
-                    taraqqiyotiga jalb etish maqsadida tashkil etilgan notijorat tashkilotdir.
+                <p class="about-section__middle--content-text">{{sectionValue($items[0],'title')}}
                 </p>
+               
                 <div class="about-section__middle--content-video">
-                    <video class="hero-video" src="{{ asset('front') }}/images/hero-video.mp4" autoplay muted></video>
+                    @if($heroVideo)
+                    <video class="hero-video" src="{{$heroVideo}}" autoplay muted></video>
+                    @endif
                 </div>
             </div>
         </div>

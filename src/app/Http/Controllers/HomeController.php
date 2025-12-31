@@ -25,6 +25,10 @@ class HomeController extends Controller
             if (!$currentPage) {
                 abort(404);
             }
+            if ($currentPage->slug == 'contacts' || $currentPage->id == 44) {
+                $breadcrumbs = $this->createBreadCrumb($currentPage);
+                return view('front.pages.contacts.index', compact('breadcrumbs', 'currentPage'));
+            }
             if ($inside && $detail) {
                 $viewPath = "front.pages." . str_replace("-", "_", $any) . ".inside.detail.index";
             } elseif ($inside) {
@@ -38,7 +42,7 @@ class HomeController extends Controller
             if (view()->exists($viewPath)) {
                 $items = collect();
                 if ($inside) {
-                    if($detail) {
+                    if ($detail) {
                         $inside = $detail;
                     }
                     $items = $items->merge(PageSection::with(['children', 'translations', 'images'])

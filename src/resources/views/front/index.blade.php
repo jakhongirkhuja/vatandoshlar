@@ -1,17 +1,17 @@
 @extends('front.layouts.layout')
 @section('body')
-
+@php
+    $heroSection = menuSections(35, 1)->first();
+    $heroVideo = null;
+    if($heroSection){
+    $heroVideo = sectionImages($heroSection, true);
+    }
+            
+             
+    
+@endphp
     @include('front.home.hero')
-    <section class="hero">
-        <div class="hero__bg">
-            <video class="hero__video" width="100%" height="100%" muted loop autoplay
-                src="{{ asset('front') }}/images/hero-video.mp4" type="video/mp4"></video>
-        </div>
-        <div class="hero__content container">
-            <h1 class="hero__title">Biz barcha vatandoshlarni birlashtirib ularga kerakli mativatsiya</h1>
-            <button class="hero__btn"><i class="i-arrow"></i><span>Batafsil</span></button>
-        </div>
-    </section>
+   
     <div class="layout-index">
         @include('front.home.about')
         @include('front.home.news')

@@ -1,15 +1,11 @@
-@php
-    $heroSection = menuSections(35, 1, false);
-@endphp
-
-@if($heroSection)
+    @if ($heroSection)
     <section class="hero">
         <div class="hero__bg">
-            @php 
-            $heroImage = sectionImages($heroSection, true);
-             @endphp
-            @if($heroImage)
-                <img src="{{ $heroImage }}" alt="">
+           
+            @if($heroVideo)
+            
+                 <video class="hero__video" width="100%" height="100%" muted loop autoplay src="{{$heroVideo}}"
+                type="video/mp4"></video>
             @endif
         </div>
 
@@ -24,4 +20,4 @@
             </button>
         </div>
     </section>
-@endif
+ @endif

@@ -5,7 +5,7 @@
         </div>
 
         <div class="stats__grid">
-            @foreach(menuSections(3, 4, true) as $stat) 
+            @foreach(menuSections(3, 6, false) as $stat) 
                 <div class="stats__grid--item">
                     <div class="stats__grid--item-img">
                         <img src="{{ sectionValue($stat, 'image') ? Storage::url(sectionValue($stat, 'image')) : asset('front/images/stats-img-1.svg') }}"

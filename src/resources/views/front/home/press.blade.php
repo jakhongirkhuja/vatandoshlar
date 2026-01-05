@@ -74,29 +74,29 @@
         <section class="press">
             <div class="container">
                 <div class="section-top">
-                    <p>Gazetalar</p>
-                    <a href="#">Barchasi</a>
+                    <p>{{staticValue('newspapers')}}</p>
+                    @php
+                    $newsp = menuSection(46);
+                    $newspapers = menuSections(46,3,false)
+                    @endphp
+                    <a href="{{route('home',['locale' => app()->getLocale(),'any' => $newsp->slug])}}">{{staticValue('all')}}</a>
                 </div>
                 <div class="press__wrapper">
                     <div class="press__left">
                         <div class="press__left--img">
                             <img src="{{ asset('front') }}/images/press-main.jpg" width="330" alt="">
                         </div>
+                        
                         <img src="{{ asset('front') }}/images/press-pattern.svg" alt="">
                     </div>
                     <div class="press__right">
-                        <a href="#" class="press__right--item">
-                            <p>Yangi O’zbekiston tili va Adabiyoti fani o’qituvchilari</p>
+                        @foreach ($newspapers as $newspaper)
+                        <a href="{{route('home',['locale' =>  app()->getLocale(),'any' => $newsp->slug,'inside' => $newspaper->slug])}}" class="press__right--item">
+                            <p>{{sectionValue($newspaper,'title')}}</p>
                             <span>Batafsil <i class="i-link"></i></span>
                         </a>
-                        <a href="#" class="press__right--item">
-                            <p>Yangi O’zbekiston tili va Adabiyoti fani o’qituvchilari</p>
-                            <span>Batafsil <i class="i-link"></i></span>
-                        </a>
-                        <a href="#" class="press__right--item">
-                            <p>Yangi O’zbekiston tili va Adabiyoti fani o’qituvchilari</p>
-                            <span>Batafsil <i class="i-link"></i></span>
-                        </a>
+                        @endforeach
+                        
                     </div>
                 </div>
         </section>

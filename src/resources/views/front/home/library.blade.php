@@ -7,12 +7,11 @@
                     <img src="{{ asset('front') }}/images/library-logo-2.png" alt="">
                     <img src="{{ asset('front') }}/images/library-logo-3.png" alt="">
                 </div>
-                <h4 class="library__section--title"><span>“Mutolaa”</span> - eng sara audio
-                    va elektron kitoblar!</h4>
+                <h4 class="library__section--title"><span>“Mutolaa”</span> {{ staticValue('mutoola') }}</h4>
                 <p class="library__section--text">
-                    O‘zbek tilidagi eng yirik mobil kutubxonani hoziroq yuklab oling!
+                  {{ staticValue('download') }}
                 </p>
-                <a class="button library__section--link" href="https://mutolaa.uz">Mutolaa saytiga otish</a>
+                <a class="button library__section--link" href="https://mutolaa.uz">{{staticValue('site')}}</a>
             </div>
             <div class="library__section--right">
                 <div class="carousel library-carousel1">

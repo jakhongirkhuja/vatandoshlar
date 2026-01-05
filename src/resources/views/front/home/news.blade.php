@@ -6,8 +6,8 @@
 <section class="news-section">
     <div class="container">
         <div class="section-top">
-            <p>Yangiliklar</p>
-            <a href="{{ route('home', ['locale' => app()->getlocale(), 'any' => $menuItself->slug]) }}">Barchasi</a>
+            <p>{{staticValue('news')}}</p>
+            <a href="{{ route('home', ['locale' => app()->getlocale(), 'any' => $menuItself->slug]) }}">{{staticValue('all')}}</a>
 
         </div>
 

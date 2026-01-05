@@ -91,6 +91,9 @@ if (!function_exists('menuSections')) {
                 $query = PageSection::with(['children', 'translations', 'images'])
                     ->where('menu_main_id', $menu->id)->whereNull('parent_id')
                     ->orderBy('sort_order', $orderDirection);
+                      if (is_numeric($limit)) {
+                        $query->limit($limit);
+                    }
                     $sections = $query->get();
             } else {
                 if ($menu->children->isNotEmpty()) {

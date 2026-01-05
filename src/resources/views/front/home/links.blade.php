@@ -1,8 +1,8 @@
 <section class="links">
     <div class="container">
         <div class="section-top">
-            <p>Podkastlarimizga havolalar</p>
-            <a href="#">Barchasi</a>
+            <p>{{ staticValue('knowledge') }}</p>
+            <a href="#">{{staticValue('all')}}</a>
         </div>
     </div>
     <div class="links__carousel owl-carousel">

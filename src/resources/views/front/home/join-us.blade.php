@@ -15,9 +15,9 @@
             </div>
         </div>
         <div class="join-us__content">
-            <h2>Vatandoshlar safida bo‘ling</h2>
-            <p>“Vatandoshlar” Jamoat Fondiga qo‘shilish uchun murojaat yuboring</p>
-            <a class="join-us__content--btn" href="#">Murojaat yuborish</a>
+            <h2>{{staticValue('vatandosh')}}</h2>
+            <p>{{staticValue('vatandosh1')}}</p>
+            <a class="join-us__content--btn" href="#">{{staticValue('button1')}}</a>
 
         </div>
         <div class="join-us__img join-us__img--right">

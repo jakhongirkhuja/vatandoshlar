@@ -13,8 +13,7 @@
                 
                     $projects = $items->first();
                     $projectVideo = sectionImages($projects, true);
-                    $categories = $items->slice(1, 3);
-                    dd($items);
+                    $categories = menuSections(38,3,true,true);
                 @endphp
 
                 @if($projects)
@@ -44,10 +43,10 @@
                 @endif
 
                 <div class="projects-categories">
-                    @foreach($categories as $item)
+                    @foreach($categories as $category)
                         <div class="projects-categories__item">
                             @php
-                                $image = sectionImages($item, true);
+                                $image = sectionImages($category, true);
                             @endphp
 
                             @if($image)
@@ -55,7 +54,7 @@
                             @endif
 
                             <p class="line-clamp-1">
-                                {{ sectionValue($item, 'title') }}
+                                {{ sectionValue($category, 'title') }}
                             </p>
                         </div>
                     @endforeach

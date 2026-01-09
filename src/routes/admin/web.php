@@ -23,7 +23,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::any('file-manager', [FileManagerController::class, 'handleRequest'])->name('admin.file-manager');
 
     Route::middleware('admin')->group(function () {
-        Route::get('supports', [SupportController::class, 'index'])->name('admin.supports');
+        Route::get('supports/index/{type}', [SupportController::class, 'index'])->name('admin.supports');
         Route::get('supports/{id}', [SupportController::class, 'show'])->name('admin.supports.show');
         Route::delete('supports/{id}', [SupportController::class, 'delete'])->name('admin.supports.delete');
         Route::get('menu', [MenuController::class, 'index'])->name('admin.menu');
@@ -78,7 +78,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         });
     });
     Route::resource('social_links', SocialLinkController::class);
-    Route::prefix('content-main')->name('admin.content.')->group(function () {
+    Route::prefix('content/{category}')->name('admin.content.')->group(function () {
         Route::get('', [ContentController::class, 'index'])->name('index');
         Route::get('create', [ContentController::class, 'create'])->name('create');
         Route::get('edit/{id}', [ContentController::class, 'edit'])->name('edit');
@@ -91,4 +91,6 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::delete('delete/{id}', [ContentController::class, 'delete'])->name('delete');
     });
     Route::post('image-delete', [MenuMainController::class, 'imageDelete'])->name('admin.menu_main.imageDelete');
+    Route::post('image-create/{id?}', [PageSectionController::class, 'addImage'])->name('createImage');
+
 });

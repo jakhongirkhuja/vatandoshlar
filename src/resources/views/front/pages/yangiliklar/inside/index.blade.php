@@ -25,7 +25,7 @@
                                 <div class="swiper-wrapper">
 
                                     @php
-                                        $images = sectionImages($item, false);
+                                        $images = sectionImages($item);
                                     @endphp
 
                                     @if(!empty($images))
@@ -71,7 +71,7 @@
                                             {{ $item->created_at->toDateString()  }}
                                         </a>
                                         <a href="#">
-                                            <i class="i-eye"></i>{{ rand(1, 500) }}
+                                            <i class="i-eye"></i>{{ $item->views()->count() }}
                                         </a>
                                     </div>
 

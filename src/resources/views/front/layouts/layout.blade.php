@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="{{ asset('front/') }}/assets/icomoon/style.css">
     <link rel="stylesheet" href="{{ asset('front/') }}/css/main.min.css">
     <script src="{{ asset('front/') }}/assets/libs/aos/main.min.js"></script>
+    <link rel="stylesheet" href="{{ asset('front/') }}/assets/fancy-box/fancybox.css">
+    <script src="{{ asset('front/') }}/assets/fancy-box/fancybox.umd.js"></script>
 
     <title>“Vatandoshlar”Jamoat Fondi</title>
 </head>

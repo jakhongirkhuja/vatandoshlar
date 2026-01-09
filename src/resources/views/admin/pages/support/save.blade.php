@@ -7,6 +7,7 @@
             <div class="contacts-page">
                 <div class="contacts-page__data">
                     <h2 class="contacts-page__data--title">Biz bilan bog'lanish uchun ariza shakli</h2>
+<script src="{{ asset('front/') }}/assets/js/imask.js"></script>
 
                     <form class="contacts-page__data--form">
                         <div class="contacts-page__data--form-group">
@@ -93,11 +94,39 @@
                     width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
+            <div class="modal fade" id="supportResponseModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content small">
+                        <div class="modal-header bg-danger text-white">
+                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <p class="mb-0">Ваша заявка принята.</p>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                Отмена
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <script>
                 const input = document.querySelector('#phone');
                 IMask(input, {
                     mask: '+998 00-000-00-00',
                     lazy: false
+                });
+            </script>
+            <script>
+                $(document).on('click', '.btn-delete', function (e) {
+                    e.preventDefault();
+                    $('#supportResponseModal').modal('show');
+
                 });
             </script>
             @include('front.components.sidebar')

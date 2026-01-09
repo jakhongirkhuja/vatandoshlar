@@ -16,7 +16,7 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Главная</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="{{route('admin.content.index')}}">Контент</a>
+                                    <li class="breadcrumb-item"><a href="{{route('admin.content.index',['category' => request()->route('category')])}}">Контент</a>
                                     </li>
                                     <li class="breadcrumb-item"><a href="#" onclick="history.go(-1)"> Назад</a>
                                     </li>
@@ -46,7 +46,7 @@
                                 </ul>
                                 <div class="container">
 
-                                    <form action="{{ route('admin.content.settings.create') }}" method="post">
+                                    <form action="{{ route('admin.content.settings.create',['category' => request()->route('category')]) }}" method="post">
                                         @csrf
 
 

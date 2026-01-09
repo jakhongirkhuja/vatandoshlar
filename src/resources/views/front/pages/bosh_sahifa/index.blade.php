@@ -8,7 +8,7 @@
             <div class="layout-content">
                 <div class="content">
 
-                   
+
                     @php
                         $middleItem = $items->slice(-2, 1)->first();
                     @endphp
@@ -36,13 +36,13 @@
                         </div>
                     @endif
 
-                  
+
                     <div class="content__title primary">
                         {{ sectionValue($items[0], 'title') }}
                     </div>
                     <div class="carousel carousel3 owl-carousel">
-                       
-                        @foreach ($items as $k=>$item)  
+
+                        @foreach ($items as $k => $item)
                             @if($k >= 1 && $k >= count($items) - 2)
                                 @continue
                             @endif
@@ -52,7 +52,8 @@
 
                             @if($mainImage)
                                 @foreach ($mainImage as $src)
-                                    <a href="{{ sectionValue($item, 'url') }}" class="carousel__item video-card">
+                                    <a href="{{ sectionValue($item, 'url') }}" data-fancybox
+                                        class="carousel__item video-card">
                                         <div class="carousel__item--img">
                                             <img src="{{ $src }}" alt="">
                                         </div>
@@ -74,6 +75,11 @@
 
                         @endforeach
                     </div>
+                    <script>
+                        Fancybox.bind("[data-fancybox]", {
+                         thumbs: false
+                        });
+                    </script>
                     @php
                         $lastItem = $items->last();
                     @endphp

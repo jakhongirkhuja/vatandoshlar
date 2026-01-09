@@ -15,12 +15,19 @@ class ContentController extends Controller
 {
      public function __construct(protected ContentService $service) {}
 
-    public function index()
+    public function index($category = null)
     {
+        $query = Content::with('translations')->orderBy('sort_order');
 
-        return view('admin.pages.content.index', [
-            'contents' => Content::with('translations')->orderby('sort_order')->get()
-        ]);
+    if ($category == 'list') {
+        $query->where('category', $category);
+    } elseif($category == 'job') {
+
+        $query->whereNull('category');
+    }
+    return view('admin.pages.content.index', [
+        'contents' => $query->get()
+    ]);
     }
     public function create()
     {
@@ -49,20 +56,20 @@ class ContentController extends Controller
     {
         return $this->service->ContentStore($request->validated());
     }
-    public function update(ContentUpdateRequest $request, $id)
+    public function update($category,ContentUpdateRequest $request, $id)
     {
 
         $content = Content::findorfail($id);
         //        dd($request->validated());
-        return $this->service->ContentUpdate($request->validated(), $content);
+        return $this->service->ContentUpdate($category,$request->validated(), $content);
     }
     public function settings()
     {
 
         return view('admin.pages.content.settings');
     }
-    public function delete($id){
+    public function delete($category,$id){
 
-        return $this->service->destroy($id);
+        return $this->service->destroy($category,$id);
     }
 }

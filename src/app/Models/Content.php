@@ -16,6 +16,7 @@ class Content extends Model
         'icon',
         'status',
         'parent_id',
+        'category'
     ];
      public function translations()
     {

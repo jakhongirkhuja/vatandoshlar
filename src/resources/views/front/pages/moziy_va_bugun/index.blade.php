@@ -12,7 +12,7 @@
                         {{ sectionValue($item, 'description') }}
                     </div>
                     <div class="content__grid gtc-3">
-                            <a class="content__grid--item video-card" href="{{sectionValue($item,'url')}}">
+                            <a class="content__grid--item video-card" data-fancybox="gallery" href="{{sectionValue($item,'url')}}">
                                 <div class="content__grid--item-img">
                                     @php
                                         $mainImage = sectionImages($item, true);
@@ -31,6 +31,11 @@
                     </div>
                 </div>
             </div>
+               <script>
+        Fancybox.bind("[data-fancybox]", {
+           thumbs: false
+        });
+    </script>
             @include('front.components.sidebar')
         </div>
     </div>

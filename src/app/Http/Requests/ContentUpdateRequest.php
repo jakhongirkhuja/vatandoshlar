@@ -22,7 +22,7 @@ class ContentUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-    $contentId = $this->route('id');
+        $contentId = $this->route('id');
 
         return [
             'fields' => 'required|array',
@@ -34,13 +34,13 @@ class ContentUpdateRequest extends FormRequest
             ],
             'icon' => 'nullable|string',
             'parent_id' => 'nullable|exists:contents,id',
-
+            'category' => 'required|string',
             'show_admin' => 'nullable|in:on,off',
             'status' => 'nullable|in:on,off',
-//            'images'=>'required',
+            //            'images'=>'required',
             'images' => 'nullable|array',
-             'images.*' => 'file|mimes:jpeg,jpg,png,gif,svg,mp4,webm,ogg,mov,avi|max:51200',
-            'main_image_input'=>'nullable|string',
+            'images.*' => 'file|mimes:jpeg,jpg,png,gif,svg,mp4,webm,ogg,mov,avi|max:51200',
+            'main_image_input' => 'nullable|string',
         ];
-}
+    }
 }

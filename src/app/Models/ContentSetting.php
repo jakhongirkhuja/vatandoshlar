@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ContentSetting extends Model
 {
      protected $fillable = [
-        'content_id','key','label','type','required','is_translatable','options','sort_order','relation'
+        'content_id','key','label','type','required','is_translatable','options','sort_order','relation','category'
     ];
 
 

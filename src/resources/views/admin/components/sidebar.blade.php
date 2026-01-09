@@ -47,9 +47,15 @@
             <li class=" nav-item "><a href="#"><i class="feather icon-settings"></i><span class="menu-title"
                         data-i18n="User">Настройки</span></a>
                 <ul class="menu-content">
-                    <li class="{{is_current_route('admin.content.index') ? 'active' : ''}}"><a
-                            href="{{route('admin.content.index')}}"><i class="feather icon-circle"></i><span
+                    <li class="{{ is_current_route('admin.content.index', ['category' => 'list']) ? 'active' : '' }}">
+<a
+                            href="{{route('admin.content.index', ['category' => 'list'])}}"><i class="feather icon-circle"></i><span
                                 class="menu-item" data-i18n="List">Список</span></a>
+                    </li>
+                      <li class="{{ is_current_route('admin.content.index', ['category' => 'job']) ? 'active' : '' }}">
+<a
+                            href="{{route('admin.content.index', ['category' => 'job'])}}"><i class="feather icon-circle"></i><span
+                                class="menu-item" data-i18n="List">Приложения</span></a>
                     </li>
                     <li class="{{is_current_route('social_links.index') ? 'active' : ''}}"><a
                             href="{{route('social_links.index')}}"><i class="feather icon-circle"></i><span
@@ -69,15 +75,24 @@
                 ])
 
             @endforeach
-    <liclass=" navigation-header"><span>Формы</span>
+    <li class=" navigation-header"><span>Формы</span>
             </li>
       
-    <li class="nav-item {{is_current_route('admin.supports') ? 'active' : ''}}">
-                <a href="{{route('admin.supports')}}"><i class="feather icon-mail "></i>
+    <li class="nav-item {{is_current_route('admin.supports', ['type' => 'form']) ? 'active' : ''}}">
+                <a href="{{route('admin.supports', ['type' => 'form'])}}"><i class="feather icon-mail "></i>
                         <span  class="menu-item" data-i18n="View">Enquire</span>
                     </a>
             </li>
-
+            <li class="nav-item {{is_current_route('admin.supports', ['type' => 'application']) ? 'active' : ''}}">
+                <a href="{{route('admin.supports', ['type' => 'application'])}}"><i class="feather icon-mail "></i>
+                        <span  class="menu-item" data-i18n="View">Applications</span>
+                    </a>
+            </li>
+             <li class="nav-item {{is_current_route('admin.supports', ['type' => 'participation']) ? 'active' : ''}}">
+                <a href="{{route('admin.supports', ['type' => 'participation'])}}"><i class="feather icon-mail "></i>
+                        <span  class="menu-item" data-i18n="View">Participations</span>
+                    </a>
+            </li>
         </ul>
     </div>
 </div>

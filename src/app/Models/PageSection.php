@@ -69,4 +69,22 @@ class PageSection extends Model
         }
         return $result;
     }
+    public function views()
+    {
+        return $this->morphMany(ViewCount::class, 'viewable');
+    }
+    public function addView($request)
+    {
+        $ip = $request->ip();
+        $userAgent = $request->userAgent();
+        if ($ip && $userAgent) {
+            return $this->views()->firstOrCreate(
+                [
+                    'ip_address' => $ip,
+                    'user_agent' => $userAgent,
+                ]
+            );
+        }
+        return null;
+    }
 }

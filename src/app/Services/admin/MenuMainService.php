@@ -201,7 +201,7 @@ class MenuMainService
                 }
 
             }
-            return back()->with('success', 'Menu Updated successfully.');
+            return redirect()->route('admin.menu_main.index')->with('success','Обновление прошло успешно!');
         } catch (\Exception $exception) {
             return back()->withErrors(['error' => $exception->getMessage()]);
         }

@@ -22,7 +22,7 @@ class PageSectionService
         try {
             $category = isset($data['category_name']) ? $data['category_name'] : null;
             $dataToSave = [
-                'slug' => isset($data['slug']) ?  $data['slug'] : '',
+                'slug' => isset($data['slug']) ? $data['slug'] : '',
                 'menu_main_id' => $id,
                 'parent_id' => $parent_id ?? null,
                 'status' => isset($data['status']) && $data['status'] == 'on' ? true : false,
@@ -106,10 +106,10 @@ class PageSectionService
         $pagesection = PageSection::find($section_id);
         if (!$pagesection)
             abort(404);
-        
+
         try {
             $dataToSave = [
-                'slug' => isset($data['slug']) ?  $data['slug'] : '',
+                'slug' => isset($data['slug']) ? $data['slug'] : '',
                 //                'menu_main_id' => $id,
                 //                'parent_id' => $data['parent_id'] ?? null,
                 'status' => isset($data['status']) && $data['status'] == 'on' ? true : false,
@@ -132,58 +132,77 @@ class PageSectionService
                 $metaTranslation->data = json_encode($nonTranslatableFields);
                 $metaTranslation->save();
             }
-            if (isset($data['images'])) {
-                $mainImageName = isset($data['main_image_input']) ? $data['main_image_input'] : '';
+            return redirect()->route('admin.pages.section.index', [
+                'slug' => $slug,
+                'id' => $id,
+                'parent_id' => $parent_id
+            ])->with('success', 'Обновление прошло успешно!');
 
-                $imageId = false;
-                
-                foreach ($data['images'] as $file) {
-                    // dd($file);
-                    $fileOriginalName = $file->getClientOriginalName();
-
-                    $filename = time() . '_' . $file->getClientOriginalName();
-                    $path = $file->storeAs('page_section_images', $filename, 'public');
-                    $menuImage = new PageSectionImage();
-                    $menuImage->page_section_id = $pagesection->id;
-                    $menuImage->image = $path;
-                    $menuImage->type = $file->getClientMimeType();
-                    $menuImage->size = $file->getSize();
-                    $menuImage->main = ($fileOriginalName === $mainImageName);
-                    $menuImage->status = true;
-                    $menuImage->save();
-                    if ($fileOriginalName === $mainImageName) {
-                        $imageId = $menuImage->id;
-                    }
-                }
-                if ($imageId) {
-                    PageSectionImage::where('page_section_id', $pagesection->id)
-                        ->where('main', true)
-                        ->update(['main' => false]);
-                    $menuImage = PageSectionImage::find($imageId);
-                    if ($menuImage) {
-                        $menuImage->update(['main' => true]);
-                    }
-                }
-            } else {
-                $mainImageId = isset($data['main_image_input']) ? (int) $data['main_image_input'] : false;
-
-                if ($mainImageId) {
-
-                    PageSectionImage::where('page_section_id', $pagesection->id)
-                        ->where('main', true)
-                        ->update(['main' => false]);
-                    $menuImage = PageSectionImage::find($mainImageId);
-                    if ($menuImage) {
-                        $menuImage->update(['main' => true]);
-                    }
-                }
-            }
-            return back()->with('success', 'Page Section updated successfully.');
         } catch (\Exception $exception) {
             return back()->withErrors(['error' => $exception->getMessage()]);
         }
     }
+    public function addImage($id, array $data)
+    {
+        $pagesection = PageSection::find($id);
+        if (!$pagesection) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Page section not found'
+            ], 404);
+        }
+        if (isset($data['images'])) {
+            $mainImageName = isset($data['main_image_input']) ? $data['main_image_input'] : '';
 
+            $imageId = false;
+
+            foreach ($data['files'] as $file) {
+                // dd($file);
+                $fileOriginalName = $file->getClientOriginalName();
+
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $path = $file->storeAs('page_section_images', $filename, 'public');
+                $menuImage = new PageSectionImage();
+                $menuImage->page_section_id = $pagesection->id;
+                $menuImage->image = $path;
+                $menuImage->type = $file->getClientMimeType();
+                $menuImage->size = $file->getSize();
+                $menuImage->main = ($fileOriginalName === $mainImageName);
+                $menuImage->status = true;
+                $menuImage->save();
+                if ($fileOriginalName === $mainImageName) {
+                    $imageId = $menuImage->id;
+                }
+            }
+            if ($imageId) {
+                PageSectionImage::where('page_section_id', $pagesection->id)
+                    ->where('main', true)
+                    ->update(['main' => false]);
+                $menuImage = PageSectionImage::find($imageId);
+                if ($menuImage) {
+                    $menuImage->update(['main' => true]);
+                }
+            }
+        } else {
+            $mainImageId = isset($data['main_image_input']) ? (int) $data['main_image_input'] : false;
+
+            if ($mainImageId) {
+
+                PageSectionImage::where('page_section_id', $pagesection->id)
+                    ->where('main', true)
+                    ->update(['main' => false]);
+                $menuImage = PageSectionImage::find($mainImageId);
+                if ($menuImage) {
+                    $menuImage->update(['main' => true]);
+                }
+            }
+        }
+        return response()->json([
+            'success' => true,
+            'message' => 'Images added successfully',
+            'data' => $menuImage ?? null,
+        ]);
+    }
     public function storeSettings($id, $slug, $parent_id, $category_slug, array $data)
     {
 

@@ -10,17 +10,8 @@ CREATE TABLE "public"."cache" (
 WITH (oids = false);
 
 INSERT INTO "cache" ("key", "value", "expiration") VALUES
-('laravel-cache-settings',	'TzoxODoiQXBwXE1vZGVsc1xTZXR0aW5nIjozMzp7czoxMzoiACoAY29ubmVjdGlvbiI7czo1OiJwZ3NxbCI7czo4OiIAKgB0YWJsZSI7czo4OiJzZXR0aW5ncyI7czoxMzoiACoAcHJpbWFyeUtleSI7czoyOiJpZCI7czoxMDoiACoAa2V5VHlwZSI7czozOiJpbnQiO3M6MTI6ImluY3JlbWVudGluZyI7YjoxO3M6NzoiACoAd2l0aCI7YTowOnt9czoxMjoiACoAd2l0aENvdW50IjthOjA6e31zOjE5OiJwcmV2ZW50c0xhenlMb2FkaW5nIjtiOjA7czoxMDoiACoAcGVyUGFnZSI7aToxNTtzOjY6ImV4aXN0cyI7YjoxO3M6MTg6Indhc1JlY2VudGx5Q3JlYXRlZCI7YjowO3M6Mjg6IgAqAGVzY2FwZVdoZW5DYXN0aW5nVG9TdHJpbmciO2I6MDtzOjEzOiIAKgBhdHRyaWJ1dGVzIjthOjEwOntzOjI6ImlkIjtpOjE7czo1OiJ0aXRsZSI7czozMjoieyJydSI6ICJQcm9FbmQiLCAidXoiOiAiUHJvRW5kIn0iO3M6MTY6Im1ldGFfZGVzY3JpcHRpb24iO3M6MzI6InsicnUiOiAiUHJvRW5kIiwgInV6IjogIlByb0VuZCJ9IjtzOjEzOiJtZXRhX2tleXdvcmRzIjtzOjQ4OiJ7InJ1IjogIlByb0VuZCwgUHJvRW5kIiwgInV6IjogIlByb0VuZCwgUHJvRW5kIn0iO3M6NToiZW1haWwiO047czo2OiJzdGF0dXMiO2I6MTtzOjEyOiJtYWluX3BhZ2VfaWQiO047czo5OiJhZG1pbl9pcHMiO047czoxMDoiY3JlYXRlZF9hdCI7czoxOToiMjAyNS0xMi0yMCAxNToyMjo1MiI7czoxMDoidXBkYXRlZF9hdCI7czoxOToiMjAyNS0xMi0yMCAxNToyMzoyNyI7fXM6MTE6IgAqAG9yaWdpbmFsIjthOjEwOntzOjI6ImlkIjtpOjE7czo1OiJ0aXRsZSI7czozMjoieyJydSI6ICJQcm9FbmQiLCAidXoiOiAiUHJvRW5kIn0iO3M6MTY6Im1ldGFfZGVzY3JpcHRpb24iO3M6MzI6InsicnUiOiAiUHJvRW5kIiwgInV6IjogIlByb0VuZCJ9IjtzOjEzOiJtZXRhX2tleXdvcmRzIjtzOjQ4OiJ7InJ1IjogIlByb0VuZCwgUHJvRW5kIiwgInV6IjogIlByb0VuZCwgUHJvRW5kIn0iO3M6NToiZW1haWwiO047czo2OiJzdGF0dXMiO2I6MTtzOjEyOiJtYWluX3BhZ2VfaWQiO047czo5OiJhZG1pbl9pcHMiO047czoxMDoiY3JlYXRlZF9hdCI7czoxOToiMjAyNS0xMi0yMCAxNToyMjo1MiI7czoxMDoidXBkYXRlZF9hdCI7czoxOToiMjAyNS0xMi0yMCAxNToyMzoyNyI7fXM6MTA6IgAqAGNoYW5nZXMiO2E6MDp7fXM6MTE6IgAqAHByZXZpb3VzIjthOjA6e31zOjg6IgAqAGNhc3RzIjthOjQ6e3M6NToidGl0bGUiO3M6NToiYXJyYXkiO3M6MTY6Im1ldGFfZGVzY3JpcHRpb24iO3M6NToiYXJyYXkiO3M6MTM6Im1ldGFfa2V5d29yZHMiO3M6NToiYXJyYXkiO3M6Njoic3RhdHVzIjtzOjc6ImJvb2xlYW4iO31zOjE3OiIAKgBjbGFzc0Nhc3RDYWNoZSI7YTowOnt9czoyMToiACoAYXR0cmlidXRlQ2FzdENhY2hlIjthOjA6e31zOjEzOiIAKgBkYXRlRm9ybWF0IjtOO3M6MTA6IgAqAGFwcGVuZHMiO2E6MDp7fXM6MTk6IgAqAGRpc3BhdGNoZXNFdmVudHMiO2E6MDp7fXM6MTQ6IgAqAG9ic2VydmFibGVzIjthOjA6e31zOjEyOiIAKgByZWxhdGlvbnMiO2E6MDp7fXM6MTA6IgAqAHRvdWNoZXMiO2E6MDp7fXM6Mjc6IgAqAHJlbGF0aW9uQXV0b2xvYWRDYWxsYmFjayI7TjtzOjI2OiIAKgByZWxhdGlvbkF1dG9sb2FkQ29udGV4dCI7TjtzOjEwOiJ0aW1lc3RhbXBzIjtiOjE7czoxMzoidXNlc1VuaXF1ZUlkcyI7YjowO3M6OToiACoAaGlkZGVuIjthOjA6e31zOjEwOiIAKgB2aXNpYmxlIjthOjA6e31zOjExOiIAKgBmaWxsYWJsZSI7YTo3OntpOjA7czo1OiJ0aXRsZSI7aToxO3M6MTY6Im1ldGFfZGVzY3JpcHRpb24iO2k6MjtzOjEzOiJtZXRhX2tleXdvcmRzIjtpOjM7czo1OiJlbWFpbCI7aTo0O3M6Njoic3RhdHVzIjtpOjU7czoxMjoibWFpbl9wYWdlX2lkIjtpOjY7czo5OiJhZG1pbl9pcHMiO31zOjEwOiIAKgBndWFyZGVkIjthOjE6e2k6MDtzOjE6IioiO319',	2081823752),
-('laravel-cache-captcha_b58eb11829d10af8f4b266424807803a',	'a:4:{i:0;s:1:"x";i:1;s:1:"j";i:2;s:1:"u";i:3;s:1:"s";}',	1766468292),
-('laravel-cache-captcha_5e5fa457c62d41520008acefe9201fb8',	'a:4:{i:0;s:1:"b";i:1;s:1:"l";i:2;s:1:"y";i:3;s:1:"f";}',	1766648696),
-('laravel-cache-captcha_7bebf2a23f38e605981ad356d1393207',	'a:4:{i:0;s:1:"1";i:1;s:1:"y";i:2;s:1:"p";i:3;s:1:"p";}',	1766648704),
-('laravel-cache-captcha_7a5d05406d025ca43b9e0d7e848eea4f',	'a:4:{i:0;s:1:"b";i:1;s:1:"x";i:2;s:1:"3";i:3;s:1:"l";}',	1766648713),
-('laravel-cache-captcha_08b3be21a42bd49f3bfe2ac5176609a4',	'a:4:{i:0;s:1:"b";i:1;s:1:"g";i:2;s:1:"e";i:3;s:1:"6";}',	1766667644),
-('laravel-cache-captcha_d6b4b9233944c37d26af96741772afa2',	'a:4:{i:0;s:1:"j";i:1;s:1:"m";i:2;s:1:"b";i:3;s:1:"g";}',	1766667672),
-('laravel-cache-captcha_0413d16d1cf924a991e55860798dfa8f',	'a:4:{i:0;s:1:"y";i:1;s:1:"c";i:2;s:1:"t";i:3;s:1:"t";}',	1766667683),
-('laravel-cache-captcha_d28bd08650a62e31027b69becd7f6049',	'a:4:{i:0;s:1:"d";i:1;s:1:"5";i:2;s:1:"d";i:3;s:1:"6";}',	1766667713),
-('laravel-cache-captcha_18711efaa24a3f6ec8b2045b197c2190',	'a:4:{i:0;s:1:"m";i:1;s:1:"k";i:2;s:1:"e";i:3;s:1:"s";}',	1766862139),
-('laravel-cache-captcha_e0d837b543bbfbd2f93f487297b368ea',	'a:4:{i:0;s:1:"v";i:1;s:1:"g";i:2;s:1:"i";i:3;s:1:"0";}',	1767136419);
+('laravel-cache-settings',	'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',	2083232814),
+('laravel-cache-captcha_ed1265b34b485a4943e591f4119f6522',	'a:4:{i:0;s:1:"d";i:1;s:1:"9";i:2;s:1:"j";i:3;s:1:"d";}',	1767896570);
 
 DROP TABLE IF EXISTS "cache_locks";
 CREATE TABLE "public"."cache_locks" (
@@ -47,6 +38,7 @@ CREATE TABLE "public"."content_images" (
     "status" boolean DEFAULT true NOT NULL,
     "created_at" timestamp(0),
     "updated_at" timestamp(0),
+    "category" text,
     CONSTRAINT "content_images_pkey" PRIMARY KEY ("id")
 )
 WITH (oids = false);
@@ -71,15 +63,16 @@ CREATE TABLE "public"."content_settings" (
     "status" boolean DEFAULT true NOT NULL,
     "created_at" timestamp(0),
     "updated_at" timestamp(0),
+    "category" text,
     CONSTRAINT "content_settings_pkey" PRIMARY KEY ("id")
 )
 WITH (oids = false);
 
 CREATE INDEX content_settings_key_is_translatable_status_sort_order_index ON public.content_settings USING btree (key, is_translatable, status, sort_order);
 
-INSERT INTO "content_settings" ("id", "key", "label", "type", "required", "is_translatable", "options", "sort_order", "relation", "status", "created_at", "updated_at") VALUES
-(1,	'title',	'Title',	'text',	'1',	'1',	NULL,	1,	NULL,	'1',	NULL,	NULL),
-(2,	'key',	'Key',	'text',	'1',	'0',	NULL,	1,	NULL,	'1',	NULL,	NULL);
+INSERT INTO "content_settings" ("id", "key", "label", "type", "required", "is_translatable", "options", "sort_order", "relation", "status", "created_at", "updated_at", "category") VALUES
+(1,	'title',	'Title',	'text',	'1',	'1',	NULL,	1,	NULL,	'1',	NULL,	'2026-01-08 12:17:12',	'list'),
+(2,	'key',	'Key',	'text',	'1',	'0',	NULL,	1,	NULL,	'1',	NULL,	'2026-01-08 12:17:12',	'list');
 
 DROP TABLE IF EXISTS "content_translations";
 DROP SEQUENCE IF EXISTS content_translations_id_seq;
@@ -92,109 +85,126 @@ CREATE TABLE "public"."content_translations" (
     "data" jsonb,
     "created_at" timestamp(0),
     "updated_at" timestamp(0),
+    "category" text,
     CONSTRAINT "content_translations_pkey" PRIMARY KEY ("id")
 )
 WITH (oids = false);
 
 CREATE INDEX content_translations_locale_index ON public.content_translations USING btree (locale);
 
-INSERT INTO "content_translations" ("id", "content_id", "locale", "data", "created_at", "updated_at") VALUES
-(1,	1,	'uz',	'{"title": "Yangiliklar"}',	'2025-12-29 11:28:37',	'2025-12-29 11:28:37'),
-(2,	1,	'ru',	'{"title": "Новости"}',	'2025-12-29 11:28:37',	'2025-12-29 11:28:37'),
-(3,	1,	'en',	'{"title": "News"}',	'2025-12-29 11:28:37',	'2025-12-29 11:28:37'),
-(4,	1,	NULL,	'{"key": "news"}',	'2025-12-29 11:28:37',	'2025-12-29 11:28:37'),
-(5,	2,	'uz',	'{"title": "Telefon raqam"}',	'2025-12-29 11:34:12',	'2025-12-29 11:34:12'),
-(6,	2,	'ru',	'{"title": "Номер телефона"}',	'2025-12-29 11:34:12',	'2025-12-29 11:34:12'),
-(7,	2,	'en',	'{"title": "Phone number"}',	'2025-12-29 11:34:12',	'2025-12-29 11:34:12'),
-(8,	2,	NULL,	'{"key": "phone"}',	'2025-12-29 11:34:12',	'2025-12-29 11:34:12'),
-(9,	3,	'uz',	'{"title": "Elektron pochta"}',	'2025-12-29 11:34:55',	'2025-12-29 11:34:55'),
-(10,	3,	'ru',	'{"title": "Электрон поста"}',	'2025-12-29 11:34:55',	'2025-12-29 11:34:55'),
-(11,	3,	'en',	'{"title": "Email"}',	'2025-12-29 11:34:55',	'2025-12-29 11:34:55'),
-(12,	3,	NULL,	'{"key": "email"}',	'2025-12-29 11:34:55',	'2025-12-29 11:34:55'),
-(17,	5,	'uz',	'{"title": "O''zbekiston Respublikasi Prezidenti Administratsiyasi huzuridagi ta''lim sifatini ta''minlash milliy agentligi"}',	'2025-12-29 11:37:26',	'2025-12-29 11:37:26'),
-(18,	5,	'ru',	'{"title": "Национальное агентство по обеспечению качества образования при Администрации Президента Республики Узбекистан"}',	'2025-12-29 11:37:26',	'2025-12-29 11:37:26'),
-(19,	5,	'en',	'{"title": "National Agency for Quality Assurance in Education under the Administration of the President of the Republic of Uzbekistan"}',	'2025-12-29 11:37:26',	'2025-12-29 11:37:26'),
-(20,	5,	NULL,	'{"key": "agency"}',	'2025-12-29 11:37:26',	'2025-12-29 11:37:26'),
-(13,	4,	'uz',	'{"title": "Manzil"}',	'2025-12-29 11:36:08',	'2025-12-29 11:45:16'),
-(14,	4,	'ru',	'{"title": "Адрес"}',	'2025-12-29 11:36:08',	'2025-12-29 11:45:16'),
-(15,	4,	'en',	'{"title": "Address"}',	'2025-12-29 11:36:08',	'2025-12-29 11:45:16'),
-(16,	4,	NULL,	'{"key": "address"}',	'2025-12-29 11:36:08',	'2025-12-29 11:45:16'),
-(21,	6,	'uz',	'{"title": "Forum va seminarlardan video"}',	'2025-12-29 13:28:11',	'2025-12-29 13:28:11'),
-(22,	6,	'ru',	'{"title": null}',	'2025-12-29 13:28:11',	'2025-12-29 13:28:11'),
-(23,	6,	'en',	'{"title": null}',	'2025-12-29 13:28:11',	'2025-12-29 13:28:11'),
-(24,	6,	NULL,	'{"key": "forum"}',	'2025-12-29 13:28:11',	'2025-12-29 13:28:11'),
-(25,	7,	'uz',	'{"title": "Loyihalarimiz"}',	'2026-01-05 06:08:08',	'2026-01-05 06:08:08'),
-(26,	7,	'ru',	'{"title": "Наши проекты"}',	'2026-01-05 06:08:08',	'2026-01-05 06:08:08'),
-(27,	7,	'en',	'{"title": "Projects"}',	'2026-01-05 06:08:08',	'2026-01-05 06:08:08'),
-(28,	7,	NULL,	'{"key": "projects"}',	'2026-01-05 06:08:08',	'2026-01-05 06:08:08'),
-(29,	8,	'uz',	'{"title": "Gazetalar"}',	'2026-01-05 06:08:54',	'2026-01-05 06:08:54'),
-(30,	8,	'ru',	'{"title": "Газеты"}',	'2026-01-05 06:08:54',	'2026-01-05 06:08:54'),
-(31,	8,	'en',	'{"title": "Newspapers"}',	'2026-01-05 06:08:54',	'2026-01-05 06:08:54'),
-(32,	8,	NULL,	'{"key": "newspapers"}',	'2026-01-05 06:08:54',	'2026-01-05 06:08:54'),
-(33,	9,	'uz',	'{"title": "Volontyorlarimiz"}',	'2026-01-05 06:09:45',	'2026-01-05 06:09:45'),
-(34,	9,	'ru',	'{"title": "Наши волонтеры"}',	'2026-01-05 06:09:45',	'2026-01-05 06:09:45'),
-(35,	9,	'en',	'{"title": "Our volunteers"}',	'2026-01-05 06:09:45',	'2026-01-05 06:09:45'),
-(36,	9,	NULL,	'{"key": "volunteers"}',	'2026-01-05 06:09:45',	'2026-01-05 06:09:45'),
-(37,	10,	'uz',	'{"title": "Ilmni rivojlantirish"}',	'2026-01-05 06:10:28',	'2026-01-05 06:10:28'),
-(38,	10,	'ru',	'{"title": "Fanning rivojlanishi"}',	'2026-01-05 06:10:28',	'2026-01-05 06:10:28'),
-(39,	10,	'en',	'{"title": "The development of science"}',	'2026-01-05 06:10:28',	'2026-01-05 06:10:28'),
-(40,	10,	NULL,	'{"key": "konwledge"}',	'2026-01-05 06:10:28',	'2026-01-05 06:10:28'),
-(41,	11,	'uz',	'{"title": "Podkastlarimizga havolalar"}',	'2026-01-05 06:11:20',	'2026-01-05 06:11:20'),
-(42,	11,	'ru',	'{"title": "Ссылки на наши подкасты"}',	'2026-01-05 06:11:20',	'2026-01-05 06:11:20'),
-(43,	11,	'en',	'{"title": "Links to our podcasts"}',	'2026-01-05 06:11:20',	'2026-01-05 06:11:20'),
-(44,	11,	NULL,	'{"key": "podcasts"}',	'2026-01-05 06:11:20',	'2026-01-05 06:11:20'),
-(45,	12,	'uz',	'{"title": "- eng sara audio va elektron kitoblar!"}',	'2026-01-05 06:12:41',	'2026-01-05 06:12:41'),
-(46,	12,	'ru',	'{"title": "— Лучшие аудиокниги и электронные книги!"}',	'2026-01-05 06:12:41',	'2026-01-05 06:12:41'),
-(47,	12,	'en',	'{"title": "— The best audiobooks and e-books!"}',	'2026-01-05 06:12:41',	'2026-01-05 06:12:41'),
-(48,	12,	NULL,	'{"key": "mutoola"}',	'2026-01-05 06:12:41',	'2026-01-05 06:12:41'),
-(49,	13,	'uz',	'{"title": "O‘zbek tilidagi eng katta mobil kutubxonani hozir yuklab oling!"}',	'2026-01-05 06:13:52',	'2026-01-05 06:13:52'),
-(50,	13,	'ru',	'{"title": "Скачайте крупнейшую мобильную библиотеку на узбекском языке прямо сейчас!"}',	'2026-01-05 06:13:52',	'2026-01-05 06:13:52'),
-(51,	13,	'en',	'{"title": "Download the largest mobile library in the Uzbek language now!"}',	'2026-01-05 06:13:52',	'2026-01-05 06:13:52'),
-(52,	13,	NULL,	'{"key": "download"}',	'2026-01-05 06:13:52',	'2026-01-05 06:13:52'),
-(53,	14,	'uz',	'{"title": "Mutolaa saytiga otish"}',	'2026-01-05 06:15:07',	'2026-01-05 06:15:07'),
-(54,	14,	'ru',	'{"title": "Перейдите на сайт для чтения"}',	'2026-01-05 06:15:07',	'2026-01-05 06:15:07'),
-(55,	14,	'en',	'{"title": "Go to the reading site"}',	'2026-01-05 06:15:07',	'2026-01-05 06:15:07'),
-(56,	14,	NULL,	'{"key": "site"}',	'2026-01-05 06:15:07',	'2026-01-05 06:15:07'),
-(57,	15,	'uz',	'{"title": "Elektron murojaat yuborish platformasi"}',	'2026-01-05 06:16:32',	'2026-01-05 06:16:32'),
-(58,	15,	'ru',	'{"title": "Электронная платформа для подачи заявок"}',	'2026-01-05 06:16:32',	'2026-01-05 06:16:32'),
-(59,	15,	'en',	'{"title": "Electronic application submission platform"}',	'2026-01-05 06:16:32',	'2026-01-05 06:16:32'),
-(60,	15,	NULL,	'{"key": "application"}',	'2026-01-05 06:16:32',	'2026-01-05 06:16:32'),
-(61,	16,	'uz',	'{"title": "Biz barcha sizni qiynayotga muammoga yo’l topaolamiz. Bizga murojat qiling"}',	'2026-01-05 06:17:30',	'2026-01-05 06:17:30'),
-(62,	16,	'ru',	'{"title": "Мы можем помочь вам с любой проблемой. Свяжитесь с нами."}',	'2026-01-05 06:17:30',	'2026-01-05 06:17:30'),
-(63,	16,	'en',	'{"title": "We can help you with any problem. Contact us."}',	'2026-01-05 06:17:30',	'2026-01-05 06:17:30'),
-(64,	16,	NULL,	'{"key": "callus"}',	'2026-01-05 06:17:30',	'2026-01-05 06:17:30'),
-(65,	17,	'uz',	'{"title": "Murojaat yuborish"}',	'2026-01-05 06:18:28',	'2026-01-05 06:18:28'),
-(66,	17,	'ru',	'{"title": "Отправить запрос"}',	'2026-01-05 06:18:28',	'2026-01-05 06:18:28'),
-(67,	17,	'en',	'{"title": "Send a request"}',	'2026-01-05 06:18:28',	'2026-01-05 06:18:28'),
-(68,	17,	NULL,	'{"key": "button1"}',	'2026-01-05 06:18:28',	'2026-01-05 06:18:28'),
-(69,	18,	'uz',	'{"title": "Video qo''llanma"}',	'2026-01-05 06:19:15',	'2026-01-05 06:19:15'),
-(70,	18,	'ru',	'{"title": "Видеоинструкция"}',	'2026-01-05 06:19:15',	'2026-01-05 06:19:15'),
-(71,	18,	'en',	'{"title": "Video instructions"}',	'2026-01-05 06:19:15',	'2026-01-05 06:19:15'),
-(72,	18,	NULL,	'{"key": "button2"}',	'2026-01-05 06:19:15',	'2026-01-05 06:19:15'),
-(73,	19,	'uz',	'{"title": "Vatandoshlar safida bo‘ling"}',	'2026-01-05 06:20:38',	'2026-01-05 06:20:38'),
-(74,	19,	'ru',	'{"title": "Будьте среди своих соотечественников."}',	'2026-01-05 06:20:38',	'2026-01-05 06:20:38'),
-(75,	19,	'en',	'{"title": "Be among your compatriots"}',	'2026-01-05 06:20:38',	'2026-01-05 06:20:38'),
-(76,	19,	NULL,	'{"key": "vatandosh"}',	'2026-01-05 06:20:38',	'2026-01-05 06:20:38'),
-(77,	20,	'uz',	'{"title": "“Vatandoshlar” jamoat fondiga a’zo bo‘lish uchun ariza bering"}',	'2026-01-05 06:21:27',	'2026-01-05 06:21:27'),
-(78,	20,	'ru',	'{"title": "Подайте заявку на членство в общественном фонде «Ватандошлар»."}',	'2026-01-05 06:21:27',	'2026-01-05 06:21:27'),
-(79,	20,	'en',	'{"title": "Apply to join the \"Vatandoshlar\" Public Foundation"}',	'2026-01-05 06:21:27',	'2026-01-05 06:21:27'),
-(80,	20,	NULL,	'{"key": "vatandosh1"}',	'2026-01-05 06:21:27',	'2026-01-05 06:21:27'),
-(81,	21,	'uz',	'{"title": "Siz yuklab olish yoki havola orqali o’tishingiz mumkin"}',	'2026-01-05 06:43:23',	'2026-01-05 06:43:23'),
-(82,	21,	'ru',	'{"title": "Вы можете скачать файл или перейти по ссылке."}',	'2026-01-05 06:43:23',	'2026-01-05 06:43:23'),
-(83,	21,	'en',	'{"title": "You can download the yoki files by following the link."}',	'2026-01-05 06:43:23',	'2026-01-05 06:43:23'),
-(84,	21,	NULL,	'{"key": "the link"}',	'2026-01-05 06:43:23',	'2026-01-05 06:43:23'),
-(85,	22,	'uz',	'{"title": "O’zbek tilini o’rganish platformasiga marxamat"}',	'2026-01-05 06:54:59',	'2026-01-05 06:54:59'),
-(86,	22,	'ru',	'{"title": "Добро пожаловать на платформу для изучения узбекского языка!"}',	'2026-01-05 06:54:59',	'2026-01-05 06:54:59'),
-(87,	22,	'en',	'{"title": "Welcome to the Uzbek language learning platform!"}',	'2026-01-05 06:54:59',	'2026-01-05 06:54:59'),
-(88,	22,	NULL,	'{"key": "uzbek"}',	'2026-01-05 06:54:59',	'2026-01-05 06:54:59'),
-(89,	23,	'uz',	'{"title": "Platformaga o’tish"}',	'2026-01-05 06:57:49',	'2026-01-05 06:57:49'),
-(90,	23,	'ru',	'{"title": "Перейдите на платформу"}',	'2026-01-05 06:57:49',	'2026-01-05 06:57:49'),
-(91,	23,	'en',	'{"title": "Go to the platform"}',	'2026-01-05 06:57:49',	'2026-01-05 06:57:49'),
-(92,	23,	NULL,	'{"key": "keyboard"}',	'2026-01-05 06:57:49',	'2026-01-05 06:57:49'),
-(93,	24,	'uz',	'{"title": "Barchasi"}',	'2026-01-05 06:58:49',	'2026-01-05 06:58:49'),
-(94,	24,	'ru',	'{"title": "Все"}',	'2026-01-05 06:58:49',	'2026-01-05 06:58:49'),
-(95,	24,	'en',	'{"title": "All"}',	'2026-01-05 06:58:49',	'2026-01-05 06:58:49'),
-(96,	24,	NULL,	'{"key": "all"}',	'2026-01-05 06:58:49',	'2026-01-05 06:58:49');
+INSERT INTO "content_translations" ("id", "content_id", "locale", "data", "created_at", "updated_at", "category") VALUES
+(109,	28,	'uz',	'{"title": "To''liq ismingiz:"}',	'2026-01-08 14:33:53',	'2026-01-08 14:33:53',	NULL),
+(110,	28,	'ru',	'{"title": "Ваше полное имя:"}',	'2026-01-08 14:33:53',	'2026-01-08 14:33:53',	NULL),
+(111,	28,	'en',	'{"title": "Your full name:"}',	'2026-01-08 14:33:53',	'2026-01-08 14:33:53',	NULL),
+(112,	28,	NULL,	'{"key": "fullname"}',	'2026-01-08 14:33:53',	'2026-01-08 14:33:53',	NULL),
+(113,	29,	'uz',	'{"title": "Mahalliy"}',	'2026-01-09 01:55:40',	'2026-01-09 01:55:40',	NULL),
+(114,	29,	'ru',	'{"title": null}',	'2026-01-09 01:55:40',	'2026-01-09 01:55:40',	NULL),
+(115,	29,	'en',	'{"title": null}',	'2026-01-09 01:55:40',	'2026-01-09 01:55:40',	NULL),
+(116,	29,	NULL,	'{"key": "home"}',	'2026-01-09 01:55:40',	'2026-01-09 01:55:40',	NULL),
+(1,	1,	'uz',	'{"title": "Yangiliklar"}',	'2025-12-29 11:28:37',	'2026-01-08 12:17:27',	'list'),
+(129,	33,	'uz',	'{"title": "gol"}',	'2026-01-09 03:53:26',	'2026-01-09 04:25:18',	NULL),
+(130,	33,	'ru',	'{"title": null}',	'2026-01-09 03:53:26',	'2026-01-09 04:25:18',	NULL),
+(131,	33,	'en',	'{"title": null}',	'2026-01-09 03:53:26',	'2026-01-09 04:25:18',	NULL),
+(132,	33,	NULL,	'{"key": "futbol"}',	'2026-01-09 03:53:26',	'2026-01-09 04:25:18',	NULL),
+(2,	1,	'ru',	'{"title": "Новости"}',	'2025-12-29 11:28:37',	'2026-01-08 12:17:27',	'list'),
+(3,	1,	'en',	'{"title": "News"}',	'2025-12-29 11:28:37',	'2026-01-08 12:17:27',	'list'),
+(4,	1,	NULL,	'{"key": "news"}',	'2025-12-29 11:28:37',	'2026-01-08 12:17:27',	'list'),
+(5,	2,	'uz',	'{"title": "Telefon raqam"}',	'2025-12-29 11:34:12',	'2026-01-08 12:17:27',	'list'),
+(6,	2,	'ru',	'{"title": "Номер телефона"}',	'2025-12-29 11:34:12',	'2026-01-08 12:17:27',	'list'),
+(7,	2,	'en',	'{"title": "Phone number"}',	'2025-12-29 11:34:12',	'2026-01-08 12:17:27',	'list'),
+(8,	2,	NULL,	'{"key": "phone"}',	'2025-12-29 11:34:12',	'2026-01-08 12:17:27',	'list'),
+(9,	3,	'uz',	'{"title": "Elektron pochta"}',	'2025-12-29 11:34:55',	'2026-01-08 12:17:27',	'list'),
+(10,	3,	'ru',	'{"title": "Электрон поста"}',	'2025-12-29 11:34:55',	'2026-01-08 12:17:27',	'list'),
+(11,	3,	'en',	'{"title": "Email"}',	'2025-12-29 11:34:55',	'2026-01-08 12:17:27',	'list'),
+(12,	3,	NULL,	'{"key": "email"}',	'2025-12-29 11:34:55',	'2026-01-08 12:17:27',	'list'),
+(17,	5,	'uz',	'{"title": "O''zbekiston Respublikasi Prezidenti Administratsiyasi huzuridagi ta''lim sifatini ta''minlash milliy agentligi"}',	'2025-12-29 11:37:26',	'2026-01-08 12:17:27',	'list'),
+(18,	5,	'ru',	'{"title": "Национальное агентство по обеспечению качества образования при Администрации Президента Республики Узбекистан"}',	'2025-12-29 11:37:26',	'2026-01-08 12:17:27',	'list'),
+(19,	5,	'en',	'{"title": "National Agency for Quality Assurance in Education under the Administration of the President of the Republic of Uzbekistan"}',	'2025-12-29 11:37:26',	'2026-01-08 12:17:27',	'list'),
+(20,	5,	NULL,	'{"key": "agency"}',	'2025-12-29 11:37:26',	'2026-01-08 12:17:27',	'list'),
+(13,	4,	'uz',	'{"title": "Manzil"}',	'2025-12-29 11:36:08',	'2026-01-08 12:17:27',	'list'),
+(14,	4,	'ru',	'{"title": "Адрес"}',	'2025-12-29 11:36:08',	'2026-01-08 12:17:27',	'list'),
+(15,	4,	'en',	'{"title": "Address"}',	'2025-12-29 11:36:08',	'2026-01-08 12:17:27',	'list'),
+(16,	4,	NULL,	'{"key": "address"}',	'2025-12-29 11:36:08',	'2026-01-08 12:17:27',	'list'),
+(21,	6,	'uz',	'{"title": "Forum va seminarlardan video"}',	'2025-12-29 13:28:11',	'2026-01-08 12:17:27',	'list'),
+(22,	6,	'ru',	'{"title": null}',	'2025-12-29 13:28:11',	'2026-01-08 12:17:27',	'list'),
+(23,	6,	'en',	'{"title": null}',	'2025-12-29 13:28:11',	'2026-01-08 12:17:27',	'list'),
+(24,	6,	NULL,	'{"key": "forum"}',	'2025-12-29 13:28:11',	'2026-01-08 12:17:27',	'list'),
+(25,	7,	'uz',	'{"title": "Loyihalarimiz"}',	'2026-01-05 06:08:08',	'2026-01-08 12:17:27',	'list'),
+(26,	7,	'ru',	'{"title": "Наши проекты"}',	'2026-01-05 06:08:08',	'2026-01-08 12:17:27',	'list'),
+(27,	7,	'en',	'{"title": "Projects"}',	'2026-01-05 06:08:08',	'2026-01-08 12:17:27',	'list'),
+(28,	7,	NULL,	'{"key": "projects"}',	'2026-01-05 06:08:08',	'2026-01-08 12:17:27',	'list'),
+(29,	8,	'uz',	'{"title": "Gazetalar"}',	'2026-01-05 06:08:54',	'2026-01-08 12:17:27',	'list'),
+(30,	8,	'ru',	'{"title": "Газеты"}',	'2026-01-05 06:08:54',	'2026-01-08 12:17:27',	'list'),
+(31,	8,	'en',	'{"title": "Newspapers"}',	'2026-01-05 06:08:54',	'2026-01-08 12:17:27',	'list'),
+(32,	8,	NULL,	'{"key": "newspapers"}',	'2026-01-05 06:08:54',	'2026-01-08 12:17:27',	'list'),
+(33,	9,	'uz',	'{"title": "Volontyorlarimiz"}',	'2026-01-05 06:09:45',	'2026-01-08 12:17:27',	'list'),
+(34,	9,	'ru',	'{"title": "Наши волонтеры"}',	'2026-01-05 06:09:45',	'2026-01-08 12:17:27',	'list'),
+(35,	9,	'en',	'{"title": "Our volunteers"}',	'2026-01-05 06:09:45',	'2026-01-08 12:17:27',	'list'),
+(36,	9,	NULL,	'{"key": "volunteers"}',	'2026-01-05 06:09:45',	'2026-01-08 12:17:27',	'list'),
+(37,	10,	'uz',	'{"title": "Ilmni rivojlantirish"}',	'2026-01-05 06:10:28',	'2026-01-08 12:17:27',	'list'),
+(38,	10,	'ru',	'{"title": "Fanning rivojlanishi"}',	'2026-01-05 06:10:28',	'2026-01-08 12:17:27',	'list'),
+(39,	10,	'en',	'{"title": "The development of science"}',	'2026-01-05 06:10:28',	'2026-01-08 12:17:27',	'list'),
+(40,	10,	NULL,	'{"key": "konwledge"}',	'2026-01-05 06:10:28',	'2026-01-08 12:17:27',	'list'),
+(41,	11,	'uz',	'{"title": "Podkastlarimizga havolalar"}',	'2026-01-05 06:11:20',	'2026-01-08 12:17:27',	'list'),
+(42,	11,	'ru',	'{"title": "Ссылки на наши подкасты"}',	'2026-01-05 06:11:20',	'2026-01-08 12:17:27',	'list'),
+(43,	11,	'en',	'{"title": "Links to our podcasts"}',	'2026-01-05 06:11:20',	'2026-01-08 12:17:27',	'list'),
+(44,	11,	NULL,	'{"key": "podcasts"}',	'2026-01-05 06:11:20',	'2026-01-08 12:17:27',	'list'),
+(45,	12,	'uz',	'{"title": "- eng sara audio va elektron kitoblar!"}',	'2026-01-05 06:12:41',	'2026-01-08 12:17:27',	'list'),
+(46,	12,	'ru',	'{"title": "— Лучшие аудиокниги и электронные книги!"}',	'2026-01-05 06:12:41',	'2026-01-08 12:17:27',	'list'),
+(47,	12,	'en',	'{"title": "— The best audiobooks and e-books!"}',	'2026-01-05 06:12:41',	'2026-01-08 12:17:27',	'list'),
+(48,	12,	NULL,	'{"key": "mutoola"}',	'2026-01-05 06:12:41',	'2026-01-08 12:17:27',	'list'),
+(49,	13,	'uz',	'{"title": "O‘zbek tilidagi eng katta mobil kutubxonani hozir yuklab oling!"}',	'2026-01-05 06:13:52',	'2026-01-08 12:17:27',	'list'),
+(50,	13,	'ru',	'{"title": "Скачайте крупнейшую мобильную библиотеку на узбекском языке прямо сейчас!"}',	'2026-01-05 06:13:52',	'2026-01-08 12:17:27',	'list'),
+(51,	13,	'en',	'{"title": "Download the largest mobile library in the Uzbek language now!"}',	'2026-01-05 06:13:52',	'2026-01-08 12:17:27',	'list'),
+(52,	13,	NULL,	'{"key": "download"}',	'2026-01-05 06:13:52',	'2026-01-08 12:17:27',	'list'),
+(53,	14,	'uz',	'{"title": "Mutolaa saytiga otish"}',	'2026-01-05 06:15:07',	'2026-01-08 12:17:27',	'list'),
+(54,	14,	'ru',	'{"title": "Перейдите на сайт для чтения"}',	'2026-01-05 06:15:07',	'2026-01-08 12:17:27',	'list'),
+(55,	14,	'en',	'{"title": "Go to the reading site"}',	'2026-01-05 06:15:07',	'2026-01-08 12:17:27',	'list'),
+(56,	14,	NULL,	'{"key": "site"}',	'2026-01-05 06:15:07',	'2026-01-08 12:17:27',	'list'),
+(57,	15,	'uz',	'{"title": "Elektron murojaat yuborish platformasi"}',	'2026-01-05 06:16:32',	'2026-01-08 12:17:27',	'list'),
+(58,	15,	'ru',	'{"title": "Электронная платформа для подачи заявок"}',	'2026-01-05 06:16:32',	'2026-01-08 12:17:27',	'list'),
+(59,	15,	'en',	'{"title": "Electronic application submission platform"}',	'2026-01-05 06:16:32',	'2026-01-08 12:17:27',	'list'),
+(60,	15,	NULL,	'{"key": "application"}',	'2026-01-05 06:16:32',	'2026-01-08 12:17:27',	'list'),
+(61,	16,	'uz',	'{"title": "Biz barcha sizni qiynayotga muammoga yo’l topaolamiz. Bizga murojat qiling"}',	'2026-01-05 06:17:30',	'2026-01-08 12:17:27',	'list'),
+(62,	16,	'ru',	'{"title": "Мы можем помочь вам с любой проблемой. Свяжитесь с нами."}',	'2026-01-05 06:17:30',	'2026-01-08 12:17:27',	'list'),
+(63,	16,	'en',	'{"title": "We can help you with any problem. Contact us."}',	'2026-01-05 06:17:30',	'2026-01-08 12:17:27',	'list'),
+(64,	16,	NULL,	'{"key": "callus"}',	'2026-01-05 06:17:30',	'2026-01-08 12:17:27',	'list'),
+(65,	17,	'uz',	'{"title": "Murojaat yuborish"}',	'2026-01-05 06:18:28',	'2026-01-08 12:17:27',	'list'),
+(66,	17,	'ru',	'{"title": "Отправить запрос"}',	'2026-01-05 06:18:28',	'2026-01-08 12:17:27',	'list'),
+(67,	17,	'en',	'{"title": "Send a request"}',	'2026-01-05 06:18:28',	'2026-01-08 12:17:27',	'list'),
+(68,	17,	NULL,	'{"key": "button1"}',	'2026-01-05 06:18:28',	'2026-01-08 12:17:27',	'list'),
+(69,	18,	'uz',	'{"title": "Video qo''llanma"}',	'2026-01-05 06:19:15',	'2026-01-08 12:17:27',	'list'),
+(70,	18,	'ru',	'{"title": "Видеоинструкция"}',	'2026-01-05 06:19:15',	'2026-01-08 12:17:27',	'list'),
+(71,	18,	'en',	'{"title": "Video instructions"}',	'2026-01-05 06:19:15',	'2026-01-08 12:17:27',	'list'),
+(72,	18,	NULL,	'{"key": "button2"}',	'2026-01-05 06:19:15',	'2026-01-08 12:17:27',	'list'),
+(73,	19,	'uz',	'{"title": "Vatandoshlar safida bo‘ling"}',	'2026-01-05 06:20:38',	'2026-01-08 12:17:27',	'list'),
+(74,	19,	'ru',	'{"title": "Будьте среди своих соотечественников."}',	'2026-01-05 06:20:38',	'2026-01-08 12:17:27',	'list'),
+(75,	19,	'en',	'{"title": "Be among your compatriots"}',	'2026-01-05 06:20:38',	'2026-01-08 12:17:27',	'list'),
+(76,	19,	NULL,	'{"key": "vatandosh"}',	'2026-01-05 06:20:38',	'2026-01-08 12:17:27',	'list'),
+(77,	20,	'uz',	'{"title": "“Vatandoshlar” jamoat fondiga a’zo bo‘lish uchun ariza bering"}',	'2026-01-05 06:21:27',	'2026-01-08 12:17:27',	'list'),
+(78,	20,	'ru',	'{"title": "Подайте заявку на членство в общественном фонде «Ватандошлар»."}',	'2026-01-05 06:21:27',	'2026-01-08 12:17:27',	'list'),
+(79,	20,	'en',	'{"title": "Apply to join the \"Vatandoshlar\" Public Foundation"}',	'2026-01-05 06:21:27',	'2026-01-08 12:17:27',	'list'),
+(80,	20,	NULL,	'{"key": "vatandosh1"}',	'2026-01-05 06:21:27',	'2026-01-08 12:17:27',	'list'),
+(81,	21,	'uz',	'{"title": "Siz yuklab olish yoki havola orqali o’tishingiz mumkin"}',	'2026-01-05 06:43:23',	'2026-01-08 12:17:27',	'list'),
+(82,	21,	'ru',	'{"title": "Вы можете скачать файл или перейти по ссылке."}',	'2026-01-05 06:43:23',	'2026-01-08 12:17:27',	'list'),
+(83,	21,	'en',	'{"title": "You can download the yoki files by following the link."}',	'2026-01-05 06:43:23',	'2026-01-08 12:17:27',	'list'),
+(84,	21,	NULL,	'{"key": "the link"}',	'2026-01-05 06:43:23',	'2026-01-08 12:17:27',	'list'),
+(85,	22,	'uz',	'{"title": "O’zbek tilini o’rganish platformasiga marxamat"}',	'2026-01-05 06:54:59',	'2026-01-08 12:17:27',	'list'),
+(86,	22,	'ru',	'{"title": "Добро пожаловать на платформу для изучения узбекского языка!"}',	'2026-01-05 06:54:59',	'2026-01-08 12:17:27',	'list'),
+(87,	22,	'en',	'{"title": "Welcome to the Uzbek language learning platform!"}',	'2026-01-05 06:54:59',	'2026-01-08 12:17:27',	'list'),
+(88,	22,	NULL,	'{"key": "uzbek"}',	'2026-01-05 06:54:59',	'2026-01-08 12:17:27',	'list'),
+(89,	23,	'uz',	'{"title": "Platformaga o’tish"}',	'2026-01-05 06:57:49',	'2026-01-08 12:17:27',	'list'),
+(90,	23,	'ru',	'{"title": "Перейдите на платформу"}',	'2026-01-05 06:57:49',	'2026-01-08 12:17:27',	'list'),
+(91,	23,	'en',	'{"title": "Go to the platform"}',	'2026-01-05 06:57:49',	'2026-01-08 12:17:27',	'list'),
+(92,	23,	NULL,	'{"key": "keyboard"}',	'2026-01-05 06:57:49',	'2026-01-08 12:17:27',	'list'),
+(93,	24,	'uz',	'{"title": "Barchasi"}',	'2026-01-05 06:58:49',	'2026-01-08 12:17:27',	'list'),
+(94,	24,	'ru',	'{"title": "Все"}',	'2026-01-05 06:58:49',	'2026-01-08 12:17:27',	'list'),
+(95,	24,	'en',	'{"title": "All"}',	'2026-01-05 06:58:49',	'2026-01-08 12:17:27',	'list'),
+(96,	24,	NULL,	'{"key": "all"}',	'2026-01-05 06:58:49',	'2026-01-08 12:17:27',	'list'),
+(105,	27,	'uz',	'{"title": "Oshpazimiz"}',	'2026-01-08 14:16:27',	'2026-01-09 00:53:09',	NULL),
+(106,	27,	'ru',	'{"title": "Povar"}',	'2026-01-08 14:16:27',	'2026-01-09 00:53:09',	NULL),
+(107,	27,	'en',	'{"title": "Chief"}',	'2026-01-08 14:16:27',	'2026-01-09 00:53:09',	NULL),
+(108,	27,	NULL,	'{"key": "chief"}',	'2026-01-08 14:16:27',	'2026-01-09 00:53:09',	NULL);
 
 DROP TABLE IF EXISTS "contents";
 DROP SEQUENCE IF EXISTS contents_id_seq;
@@ -213,6 +223,7 @@ CREATE TABLE "public"."contents" (
     "parent_id" bigint,
     "created_at" timestamp(0),
     "updated_at" timestamp(0),
+    "category" text,
     CONSTRAINT "contents_pkey" PRIMARY KEY ("id"),
     CONSTRAINT "contents_type_check" CHECK (((type)::text = ANY ((ARRAY['category'::character varying, 'page'::character varying, 'url'::character varying, 'section'::character varying])::text[])))
 )
@@ -220,31 +231,35 @@ WITH (oids = false);
 
 CREATE INDEX contents_type_slug_status_sort_order_index ON public.contents USING btree (type, slug, status, sort_order);
 
-INSERT INTO "contents" ("id", "type", "slug", "url", "test", "show_admin", "sort_order", "icon", "status", "parent_id", "created_at", "updated_at") VALUES
-(1,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2025-12-29 11:28:37',	'2025-12-29 11:28:37'),
-(2,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2025-12-29 11:34:12',	'2025-12-29 11:34:12'),
-(3,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2025-12-29 11:34:55',	'2025-12-29 11:34:55'),
-(4,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2025-12-29 11:36:08',	'2025-12-29 11:36:08'),
-(5,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2025-12-29 11:37:26',	'2025-12-29 11:37:26'),
-(6,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2025-12-29 13:28:11',	'2025-12-29 13:28:11'),
-(7,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:08:08',	'2026-01-05 06:08:08'),
-(8,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:08:54',	'2026-01-05 06:08:54'),
-(9,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:09:45',	'2026-01-05 06:09:45'),
-(10,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:10:28',	'2026-01-05 06:10:28'),
-(11,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:11:20',	'2026-01-05 06:11:20'),
-(12,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:12:41',	'2026-01-05 06:12:41'),
-(13,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:13:52',	'2026-01-05 06:13:52'),
-(14,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:15:07',	'2026-01-05 06:15:07'),
-(15,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:16:32',	'2026-01-05 06:16:32'),
-(16,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:17:30',	'2026-01-05 06:17:30'),
-(17,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:18:28',	'2026-01-05 06:18:28'),
-(18,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:19:15',	'2026-01-05 06:19:15'),
-(19,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:20:38',	'2026-01-05 06:20:38'),
-(20,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:21:27',	'2026-01-05 06:21:27'),
-(21,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:43:23',	'2026-01-05 06:43:23'),
-(22,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:54:59',	'2026-01-05 06:54:59'),
-(23,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:57:49',	'2026-01-05 06:57:49'),
-(24,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:58:49',	'2026-01-05 06:58:49');
+INSERT INTO "contents" ("id", "type", "slug", "url", "test", "show_admin", "sort_order", "icon", "status", "parent_id", "created_at", "updated_at", "category") VALUES
+(1,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2025-12-29 11:28:37',	'2026-01-08 12:16:36',	'list'),
+(2,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2025-12-29 11:34:12',	'2026-01-08 12:16:36',	'list'),
+(3,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2025-12-29 11:34:55',	'2026-01-08 12:16:36',	'list'),
+(4,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2025-12-29 11:36:08',	'2026-01-08 12:16:36',	'list'),
+(5,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2025-12-29 11:37:26',	'2026-01-08 12:16:36',	'list'),
+(6,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2025-12-29 13:28:11',	'2026-01-08 12:16:36',	'list'),
+(7,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:08:08',	'2026-01-08 12:16:36',	'list'),
+(8,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:08:54',	'2026-01-08 12:16:36',	'list'),
+(9,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:09:45',	'2026-01-08 12:16:36',	'list'),
+(10,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:10:28',	'2026-01-08 12:16:36',	'list'),
+(11,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:11:20',	'2026-01-08 12:16:36',	'list'),
+(12,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:12:41',	'2026-01-08 12:16:36',	'list'),
+(13,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:13:52',	'2026-01-08 12:16:36',	'list'),
+(14,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:15:07',	'2026-01-08 12:16:36',	'list'),
+(15,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:16:32',	'2026-01-08 12:16:36',	'list'),
+(16,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:17:30',	'2026-01-08 12:16:36',	'list'),
+(17,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:18:28',	'2026-01-08 12:16:36',	'list'),
+(18,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:19:15',	'2026-01-08 12:16:36',	'list'),
+(19,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:20:38',	'2026-01-08 12:16:36',	'list'),
+(20,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:21:27',	'2026-01-08 12:16:36',	'list'),
+(21,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:43:23',	'2026-01-08 12:16:36',	'list'),
+(22,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:54:59',	'2026-01-08 12:16:36',	'list'),
+(23,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:57:49',	'2026-01-08 12:16:36',	'list'),
+(24,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:58:49',	'2026-01-08 12:16:36',	'list'),
+(27,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-08 14:16:27',	'2026-01-08 14:16:27',	NULL),
+(28,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-08 14:33:53',	'2026-01-08 14:33:53',	NULL),
+(29,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-09 01:55:40',	'2026-01-09 01:55:40',	NULL),
+(33,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-09 03:53:25',	'2026-01-09 03:53:25',	NULL);
 
 DROP TABLE IF EXISTS "failed_jobs";
 DROP SEQUENCE IF EXISTS failed_jobs_id_seq;
@@ -263,6 +278,23 @@ CREATE TABLE "public"."failed_jobs" (
 WITH (oids = false);
 
 CREATE UNIQUE INDEX failed_jobs_uuid_unique ON public.failed_jobs USING btree (uuid);
+
+
+DROP TABLE IF EXISTS "form_images";
+DROP SEQUENCE IF EXISTS form_images_id_seq;
+CREATE SEQUENCE form_images_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1;
+
+CREATE TABLE "public"."form_images" (
+    "id" bigint DEFAULT nextval('form_images_id_seq') NOT NULL,
+    "support_id" bigint,
+    "type" character varying(255),
+    "size" bigint,
+    "image" text,
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    CONSTRAINT "form_images_pkey" PRIMARY KEY ("id")
+)
+WITH (oids = false);
 
 
 DROP TABLE IF EXISTS "job_batches";
@@ -444,9 +476,8 @@ INSERT INTO "menu_main_translations" ("id", "menu_main_id", "locale", "data", "c
 (78,	35,	'uz',	'{"title": "Video", "description": null}',	'2025-12-27 18:31:23',	'2025-12-27 18:31:23'),
 (68,	8,	'en',	'{"title": null, "description": null}',	'2025-12-26 05:32:09',	'2025-12-26 06:45:53'),
 (65,	31,	'uz',	'{"title": "Form", "description": null}',	'2025-12-25 13:31:05',	'2025-12-26 11:05:40'),
-(9,	5,	'uz',	'{"title": "Ozbekiston", "description": null}',	'2025-12-23 04:51:35',	'2025-12-25 12:15:37'),
-(10,	5,	'ru',	'{"title": null, "description": null}',	'2025-12-23 04:51:35',	'2025-12-25 12:15:37'),
-(55,	5,	'en',	'{"title": null, "description": null}',	'2025-12-25 12:13:52',	'2025-12-25 12:15:37'),
+(55,	5,	'en',	'{"info": null, "title": null, "description": null}',	'2025-12-25 12:13:52',	'2026-01-05 12:30:28'),
+(9,	5,	'uz',	'{"info": null, "title": "Ozbekiston", "description": null}',	'2025-12-23 04:51:35',	'2026-01-05 12:30:28'),
 (66,	31,	'ru',	'{"title": null, "description": null}',	'2025-12-25 13:31:05',	'2025-12-26 11:05:40'),
 (67,	31,	'en',	'{"title": null, "description": null}',	'2025-12-25 13:31:05',	'2025-12-26 11:05:40'),
 (69,	32,	'uz',	'{"title": "Forms", "description": null}',	'2025-12-26 13:13:22',	'2025-12-26 13:13:22'),
@@ -464,6 +495,7 @@ INSERT INTO "menu_main_translations" ("id", "menu_main_id", "locale", "data", "c
 (87,	38,	'uz',	'{"title": "Barcha Loyihalar", "description": null}',	'2025-12-29 11:47:01',	'2025-12-29 11:47:16'),
 (88,	38,	'ru',	'{"title": null, "description": null}',	'2025-12-29 11:47:01',	'2025-12-29 11:47:16'),
 (89,	38,	'en',	'{"title": null, "description": null}',	'2025-12-29 11:47:01',	'2025-12-29 11:47:16'),
+(10,	5,	'ru',	'{"info": null, "title": null, "description": null}',	'2025-12-23 04:51:35',	'2026-01-05 12:30:28'),
 (2,	1,	'ru',	'{"info": null, "title": null, "description": null}',	'2025-12-23 04:24:05',	'2025-12-30 06:13:41'),
 (1,	1,	'uz',	'{"info": "<p>hjjkhjkhkjhkjhjkl</p><p><br></p><p><iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/FzvmmnAyKH4?si=zdJtHSL8TNpSXyhn\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen=\"\"></iframe></p>", "title": "Asosiy menu", "description": null}',	'2025-12-23 04:24:05',	'2025-12-30 06:13:41'),
 (99,	1,	'en',	'{"info": null, "title": null, "description": null}',	'2025-12-30 06:13:41',	'2025-12-30 06:13:41'),
@@ -475,7 +507,10 @@ INSERT INTO "menu_main_translations" ("id", "menu_main_id", "locale", "data", "c
 (114,	46,	'en',	'{"info": null, "title": null, "description": null}',	'2026-01-05 04:54:46',	'2026-01-05 04:55:55'),
 (109,	45,	'uz',	'{"info": null, "title": "Volontorlarimiz", "description": null}',	'2026-01-05 04:54:22',	'2026-01-05 05:34:36'),
 (110,	45,	'ru',	'{"info": null, "title": null, "description": null}',	'2026-01-05 04:54:22',	'2026-01-05 05:34:36'),
-(111,	45,	'en',	'{"info": null, "title": null, "description": null}',	'2026-01-05 04:54:22',	'2026-01-05 05:34:36');
+(111,	45,	'en',	'{"info": null, "title": null, "description": null}',	'2026-01-05 04:54:22',	'2026-01-05 05:34:36'),
+(115,	47,	'uz',	'{"info": null, "title": "cc", "description": null}',	'2026-01-06 10:33:30',	'2026-01-06 10:33:30'),
+(116,	47,	'ru',	'{"info": null, "title": null, "description": null}',	'2026-01-06 10:33:30',	'2026-01-06 10:33:30'),
+(117,	47,	'en',	'{"info": null, "title": null, "description": null}',	'2026-01-06 10:33:30',	'2026-01-06 10:33:30');
 
 DROP TABLE IF EXISTS "menu_mains";
 DROP SEQUENCE IF EXISTS menu_mains_id_seq;
@@ -502,7 +537,6 @@ WITH (oids = false);
 CREATE INDEX menu_mains_type_slug_status_sort_order_index ON public.menu_mains USING btree (type, slug, status, sort_order);
 
 INSERT INTO "menu_mains" ("id", "type", "slug", "url", "test", "show_admin", "sort_order", "icon", "status", "parent_id", "created_at", "updated_at") VALUES
-(25,	'category',	'axborot-xizmatlari',	NULL,	'0',	'1',	6,	NULL,	'1',	NULL,	'2025-12-23 06:18:25',	'2026-01-05 04:54:54'),
 (2,	'section',	'vatandoshlar',	NULL,	'0',	'1',	2,	NULL,	'1',	1,	'2025-12-23 04:24:41',	'2025-12-23 04:24:41'),
 (3,	'section',	'statistika',	NULL,	'0',	'1',	3,	NULL,	'1',	1,	'2025-12-23 04:25:08',	'2025-12-23 04:25:08'),
 (4,	'section',	'jamoat-fondi',	NULL,	'0',	'1',	4,	NULL,	'1',	1,	'2025-12-23 04:25:44',	'2025-12-23 04:25:44'),
@@ -530,11 +564,13 @@ INSERT INTO "menu_mains" ("id", "type", "slug", "url", "test", "show_admin", "so
 (9,	'page',	'moziy-va-bugun',	NULL,	'0',	'1',	4,	NULL,	'1',	5,	'2025-12-23 04:55:51',	'2025-12-30 08:07:40'),
 (10,	'page',	'manzilgohlar',	NULL,	'0',	'1',	5,	NULL,	'1',	5,	'2025-12-23 04:56:55',	'2025-12-30 08:07:40'),
 (44,	'section',	'contacts',	NULL,	'0',	'1',	44,	NULL,	'1',	1,	'2025-12-30 23:27:51',	'2025-12-30 23:27:51'),
-(1,	'category',	'asosiy-menu',	NULL,	'0',	'1',	1,	NULL,	'0',	NULL,	'2025-12-23 04:24:05',	'2026-01-05 04:54:54'),
-(5,	'category',	'ozbekiston',	NULL,	'0',	'1',	2,	NULL,	'1',	NULL,	'2025-12-23 04:51:35',	'2026-01-05 04:54:54'),
-(20,	'page',	'birlashmalar',	NULL,	'0',	'1',	3,	NULL,	'1',	NULL,	'2025-12-23 05:36:31',	'2026-01-05 04:54:54'),
-(13,	'category',	'biz-haqimizda',	NULL,	'0',	'1',	4,	NULL,	'1',	NULL,	'2025-12-23 05:13:24',	'2026-01-05 04:54:54'),
-(37,	'category',	'loyihalar',	NULL,	'0',	'1',	5,	NULL,	'1',	NULL,	'2025-12-29 11:46:30',	'2026-01-05 04:54:54');
+(47,	'section',	'cc',	NULL,	'0',	'1',	47,	NULL,	'1',	1,	'2026-01-06 10:33:30',	'2026-01-06 10:33:30'),
+(1,	'category',	'asosiy-menu',	NULL,	'0',	'1',	1,	NULL,	'0',	NULL,	'2025-12-23 04:24:05',	'2026-01-09 06:31:15'),
+(13,	'category',	'biz-haqimizda',	NULL,	'0',	'1',	3,	NULL,	'1',	NULL,	'2025-12-23 05:13:24',	'2026-01-09 06:31:15'),
+(20,	'page',	'birlashmalar',	NULL,	'0',	'1',	4,	NULL,	'1',	NULL,	'2025-12-23 05:36:31',	'2026-01-09 06:31:15'),
+(37,	'category',	'loyihalar',	NULL,	'0',	'1',	5,	NULL,	'1',	NULL,	'2025-12-29 11:46:30',	'2026-01-09 06:31:15'),
+(25,	'category',	'axborot-xizmatlari',	NULL,	'0',	'1',	6,	NULL,	'1',	NULL,	'2025-12-23 06:18:25',	'2026-01-09 06:31:15'),
+(5,	'category',	'ozbekiston',	NULL,	'0',	'1',	2,	NULL,	'1',	NULL,	'2025-12-23 04:51:35',	'2026-01-09 06:31:24');
 
 DROP TABLE IF EXISTS "menus";
 DROP SEQUENCE IF EXISTS menus_id_seq;
@@ -587,7 +623,9 @@ INSERT INTO "migrations" ("id", "migration", "batch") VALUES
 (20,	'2025_12_16_174028_create_content_translations_table',	1),
 (21,	'2025_12_16_174335_create_content_settings_table',	1),
 (22,	'2025_12_16_175011_create_content_images_table',	1),
-(23,	'2025_12_30_094546_create_supports_table',	2);
+(23,	'2025_12_30_094546_create_supports_table',	2),
+(24,	'2026_01_06_075146_create_view_counts_table',	3),
+(25,	'2026_01_09_093839_create_form_images_table',	4);
 
 DROP TABLE IF EXISTS "page_section_images";
 DROP SEQUENCE IF EXISTS page_section_images_id_seq;
@@ -642,8 +680,6 @@ INSERT INTO "page_section_images" ("id", "page_section_id", "page_section_parent
 (34,	39,	NULL,	NULL,	NULL,	'page_section_images/1766652621_news-img-1.png',	NULL,	'image/png',	1264559,	'0',	'1',	'2025-12-25 08:50:21',	'2025-12-25 08:50:21'),
 (35,	40,	NULL,	NULL,	NULL,	'page_section_images/1766655727_financial-3.svg',	NULL,	'image/svg+xml',	2146,	'1',	'1',	'2025-12-25 09:42:07',	'2025-12-25 09:42:36'),
 (48,	37,	NULL,	NULL,	NULL,	'page_section_images/1766656863_logo.png',	NULL,	'image/png',	98609,	'1',	'1',	'2025-12-25 10:01:03',	'2025-12-25 10:01:03'),
-(53,	8,	NULL,	NULL,	NULL,	'page_section_images/1766657914_mail.svg',	NULL,	'image/svg+xml',	354,	'0',	'1',	'2025-12-25 10:18:34',	'2025-12-25 10:18:34'),
-(54,	8,	NULL,	NULL,	NULL,	'page_section_images/1766657914_news-img-1.png',	NULL,	'image/png',	1264559,	'0',	'1',	'2025-12-25 10:18:34',	'2025-12-25 10:18:34'),
 (64,	51,	NULL,	NULL,	NULL,	'page_section_images/1766669091_c1a4917b58c218386f15744094c20059373d611d-min.png',	NULL,	'image/png',	895781,	'0',	'1',	'2025-12-25 13:24:51',	'2025-12-25 13:24:51'),
 (65,	51,	NULL,	NULL,	NULL,	'page_section_images/1766669091_form.jpg',	NULL,	'image/jpeg',	192942,	'0',	'1',	'2025-12-25 13:24:51',	'2025-12-25 13:24:51'),
 (66,	51,	NULL,	NULL,	NULL,	'page_section_images/1766669091_oila1.jpg',	NULL,	'image/jpeg',	1739467,	'0',	'1',	'2025-12-25 13:24:51',	'2025-12-25 13:24:51'),
@@ -656,6 +692,7 @@ INSERT INTO "page_section_images" ("id", "page_section_id", "page_section_parent
 (77,	53,	NULL,	NULL,	NULL,	'page_section_images/1766741574_c1a4917b58c218386f15744094c20059373d611d-min.png',	NULL,	'image/png',	895781,	'0',	'1',	'2025-12-26 09:32:54',	'2025-12-26 09:32:54'),
 (78,	53,	NULL,	NULL,	NULL,	'page_section_images/1766741574_form.jpg',	NULL,	'image/jpeg',	192942,	'0',	'1',	'2025-12-26 09:32:54',	'2025-12-26 09:32:54'),
 (79,	53,	NULL,	NULL,	NULL,	'page_section_images/1766741574_oila1.jpg',	NULL,	'image/jpeg',	1739467,	'0',	'1',	'2025-12-26 09:32:55',	'2025-12-26 09:32:55'),
+(329,	33,	NULL,	NULL,	NULL,	'page_section_images/1767613038_Taqu.jpg',	NULL,	'image/jpeg',	62105,	'0',	'1',	'2026-01-05 11:37:18',	'2026-01-05 11:37:18'),
 (89,	60,	NULL,	NULL,	NULL,	'page_section_images/1766756303_c1a4917b58c218386f15744094c20059373d611d-min.png',	NULL,	'image/png',	895781,	'0',	'1',	'2025-12-26 13:38:23',	'2025-12-26 13:38:23'),
 (90,	60,	NULL,	NULL,	NULL,	'page_section_images/1766756303_form.jpg',	NULL,	'image/jpeg',	192942,	'0',	'1',	'2025-12-26 13:38:23',	'2025-12-26 13:38:23'),
 (91,	60,	NULL,	NULL,	NULL,	'page_section_images/1766756303_oila1.jpg',	NULL,	'image/jpeg',	1739467,	'0',	'1',	'2025-12-26 13:38:23',	'2025-12-26 13:38:23'),
@@ -798,7 +835,6 @@ INSERT INTO "page_section_images" ("id", "page_section_id", "page_section_parent
 (282,	117,	NULL,	NULL,	NULL,	'page_section_images/1767599681_news-2.jpg',	NULL,	'image/jpeg',	84421,	'1',	'1',	'2026-01-05 07:54:41',	'2026-01-05 07:54:41'),
 (283,	119,	NULL,	NULL,	NULL,	'page_section_images/1767599907_news-4.jpg',	NULL,	'image/jpeg',	89775,	'1',	'1',	'2026-01-05 07:58:27',	'2026-01-05 07:58:27'),
 (284,	118,	NULL,	NULL,	NULL,	'page_section_images/1767599926_news-3.jpg',	NULL,	'image/jpeg',	149642,	'1',	'1',	'2026-01-05 07:58:46',	'2026-01-05 07:58:46'),
-(285,	148,	NULL,	NULL,	NULL,	'page_section_images/1767599988_projects-1.png',	NULL,	'image/png',	78356,	'1',	'1',	'2026-01-05 07:59:48',	'2026-01-05 07:59:48'),
 (286,	149,	NULL,	NULL,	NULL,	'page_section_images/1767600110_projects-1.png',	NULL,	'image/png',	78356,	'1',	'1',	'2026-01-05 08:01:50',	'2026-01-05 08:01:50'),
 (287,	156,	NULL,	NULL,	NULL,	'page_section_images/1767600353_projects-1.png',	NULL,	'image/png',	78356,	'1',	'1',	'2026-01-05 08:05:53',	'2026-01-05 08:05:53'),
 (288,	157,	NULL,	NULL,	NULL,	'page_section_images/1767600378_projects-1.png',	NULL,	'image/png',	78356,	'1',	'1',	'2026-01-05 08:06:18',	'2026-01-05 08:06:18'),
@@ -888,7 +924,6 @@ INSERT INTO "page_section_settings" ("id", "menu_main_id", "page_section_parent_
 (55,	26,	NULL,	NULL,	NULL,	'title',	'Title',	'text',	'1',	'1',	NULL,	1,	NULL,	'1',	'2025-12-23 06:20:02',	'2025-12-23 06:20:02'),
 (64,	16,	NULL,	NULL,	NULL,	'description',	'Description',	'text',	'1',	'1',	NULL,	1,	NULL,	'1',	'2025-12-25 09:46:24',	'2025-12-25 09:46:24'),
 (57,	26,	NULL,	NULL,	NULL,	'url',	'Url',	'text',	'1',	'0',	NULL,	1,	NULL,	'1',	'2025-12-23 06:20:02',	'2025-12-23 06:21:05'),
-(56,	26,	NULL,	NULL,	NULL,	'description',	'Description',	'textarea',	'1',	'0',	NULL,	1,	NULL,	'1',	'2025-12-23 06:20:02',	'2025-12-23 06:21:05'),
 (58,	27,	NULL,	NULL,	NULL,	'title',	'Title',	'text',	'1',	'1',	NULL,	1,	NULL,	'1',	'2025-12-23 06:21:59',	'2025-12-23 06:21:59'),
 (18,	17,	NULL,	NULL,	NULL,	'description',	'Description',	'text',	'1',	'1',	NULL,	1,	NULL,	'1',	'2025-12-23 05:18:57',	'2025-12-25 08:28:51'),
 (19,	18,	NULL,	NULL,	NULL,	'title',	'Title',	'text',	'1',	'1',	NULL,	1,	NULL,	'1',	'2025-12-23 05:26:22',	'2025-12-25 08:30:29'),
@@ -991,7 +1026,6 @@ INSERT INTO "page_section_settings" ("id", "menu_main_id", "page_section_parent_
 (156,	41,	135,	'Bu mavsumga tegishli rasmlar',	'bu-mavsumga-tegishli-rasmlar',	'title',	'Title',	'text',	'1',	'1',	NULL,	1,	NULL,	'1',	'2025-12-29 12:42:03',	'2025-12-29 12:42:03'),
 (157,	41,	139,	'2024-rasmlar',	'2024-rasmlar',	'title',	'Title',	'text',	'1',	'1',	NULL,	1,	NULL,	'1',	'2025-12-29 12:44:58',	'2025-12-29 12:44:58'),
 (158,	42,	NULL,	NULL,	NULL,	'title',	'Title',	'textarea-editor',	'1',	'1',	NULL,	1,	NULL,	'1',	'2025-12-30 06:18:45',	'2025-12-30 06:18:45'),
-(159,	38,	NULL,	NULL,	NULL,	'title',	'title',	'text',	'1',	'1',	NULL,	1,	NULL,	'1',	'2025-12-30 15:59:51',	'2025-12-30 15:59:51'),
 (160,	38,	NULL,	NULL,	NULL,	'description',	'Description',	'text',	'1',	'1',	NULL,	1,	NULL,	'1',	'2025-12-30 15:59:51',	'2025-12-30 15:59:51'),
 (161,	38,	NULL,	NULL,	NULL,	'url',	'Url',	'text',	'1',	'0',	NULL,	1,	NULL,	'1',	'2025-12-30 15:59:51',	'2025-12-30 15:59:51'),
 (162,	38,	144,	'Yillar',	'yillar',	'title',	'Title',	'text',	'1',	'1',	NULL,	1,	NULL,	'1',	'2025-12-30 16:03:09',	'2025-12-30 16:03:09'),
@@ -1007,7 +1041,11 @@ INSERT INTO "page_section_settings" ("id", "menu_main_id", "page_section_parent_
 (172,	45,	NULL,	NULL,	NULL,	'title',	'Title',	'text',	'1',	'1',	NULL,	1,	NULL,	'1',	'2026-01-05 05:37:20',	'2026-01-05 05:37:20'),
 (173,	45,	NULL,	NULL,	NULL,	'phone',	'Phone',	'text',	'1',	'0',	NULL,	1,	NULL,	'1',	'2026-01-05 05:37:20',	'2026-01-05 05:37:20'),
 (174,	45,	NULL,	NULL,	NULL,	'email',	'Email',	'text',	'1',	'0',	NULL,	1,	NULL,	'1',	'2026-01-05 05:37:20',	'2026-01-05 05:37:20'),
-(175,	45,	NULL,	NULL,	NULL,	'age',	'Age',	'number',	'1',	'0',	NULL,	1,	NULL,	'1',	'2026-01-05 05:37:20',	'2026-01-05 05:37:20');
+(175,	45,	NULL,	NULL,	NULL,	'age',	'Age',	'number',	'1',	'0',	NULL,	1,	NULL,	'1',	'2026-01-05 05:37:20',	'2026-01-05 05:37:20'),
+(176,	47,	NULL,	NULL,	NULL,	'title',	'Title',	'text',	'1',	'1',	NULL,	1,	NULL,	'1',	'2026-01-06 10:37:26',	'2026-01-06 10:37:26'),
+(159,	38,	NULL,	NULL,	NULL,	'title',	'Title',	'text',	'1',	'1',	NULL,	1,	NULL,	'1',	'2025-12-30 15:59:51',	'2026-01-09 06:22:03'),
+(177,	38,	NULL,	NULL,	NULL,	'last_date',	'Last_date',	'datetime-local',	'1',	'0',	NULL,	1,	NULL,	'1',	'2026-01-07 11:46:02',	'2026-01-09 06:22:03'),
+(56,	26,	NULL,	NULL,	NULL,	'description',	'Description',	'textarea-editor',	'1',	'1',	NULL,	1,	NULL,	'1',	'2025-12-23 06:20:02',	'2026-01-09 11:46:18');
 
 DROP TABLE IF EXISTS "page_section_translations";
 DROP SEQUENCE IF EXISTS page_section_translations_id_seq;
@@ -1038,13 +1076,12 @@ INSERT INTO "page_section_translations" ("id", "page_section_id", "page_section_
 (14,	6,	NULL,	NULL,	NULL,	'ru',	'{"title": null}',	'2025-12-23 05:07:48',	'2025-12-23 05:07:48'),
 (15,	7,	NULL,	NULL,	NULL,	'uz',	'{"title": "Fotogalareya"}',	'2025-12-23 05:08:27',	'2025-12-23 05:08:27'),
 (16,	7,	NULL,	NULL,	NULL,	'ru',	'{"title": null}',	'2025-12-23 05:08:27',	'2025-12-23 05:08:27'),
+(18,	8,	NULL,	NULL,	NULL,	'ru',	'{"title": null, "url_title": null, "description": null}',	'2025-12-23 05:10:29',	'2026-01-05 13:18:53'),
 (26,	12,	NULL,	NULL,	NULL,	'ru',	'{"title": null, "content": null, "description": null}',	'2025-12-23 05:29:07',	'2025-12-25 08:31:46'),
 (332,	88,	NULL,	NULL,	NULL,	'uz',	'{"title": "Juventus"}',	'2025-12-28 06:22:17',	'2025-12-28 06:22:17'),
 (20,	9,	NULL,	NULL,	NULL,	'ru',	'{"url": null, "title": null, "url_title": null, "description": null}',	'2025-12-23 05:11:35',	'2025-12-26 05:28:45'),
 (94,	39,	NULL,	NULL,	NULL,	'en',	'{"url": null, "title": null, "content": null, "description": null}',	'2025-12-25 08:50:21',	'2025-12-26 07:23:47'),
 (9,	4,	NULL,	NULL,	NULL,	'uz',	'{"title": "Vatandoshlar jamoat fondi", "content": "“Xorijda istiqomat qilayotgan yurtdoshlarni birlashtirish maqsadida ''Vatandoshlar'' jamoat fondi tashkil etildi... Bu fonddan asosiy maqsad - tarixiy Vatanimiz atrofida ularni yanada jipslashtirish, ularning qalbi va ongida yurt bilan faxrlanish tuyg''usini yuksaltirish, milliy oʻzlikni saqlab qolish”", "content1": "O’zbekiston Respublikasi Prezidenti", "description": "Shavkat Miromonovich Mirziyoyev"}',	'2025-12-23 04:50:44',	'2025-12-27 19:41:11'),
-(17,	8,	NULL,	NULL,	NULL,	'uz',	'{"title": "Qadriyatlarimiz bizni birlashtiradi!", "url_title": "Eng chiroyli Namuna", "description": "Qadriyatlarimiz bizni birlashtiradi! Qadriyatlarimiz – bu bizning ildizlarimiz, qalbimizning kuchi va kelajagimizning yorqin yo‘li. Ular bizni bog‘laydi, har birimizning yuragimizni birlashtiradi va bizga chinakam muvaffaqiyatga erishish imkonini beradi. Biz bu qadriyatlar bilan faxrlanishimiz kerak, chunki ular bizni yuksaltiradi va dunyoga haqiqiy kuchimizni ko‘rsatadi. Qadriyatlarimizga sodiq qolish, ularni davom ettirish – bu nafaqat bugungi kunimiz, balki kelajagimiz uchun ham zarur. Qadriyatlarimiz – bu bizning abadiy merosimiz!"}',	'2025-12-23 05:10:29',	'2025-12-26 05:24:48'),
-(18,	8,	NULL,	NULL,	NULL,	'ru',	'{"title": null, "url_title": null, "description": null}',	'2025-12-23 05:10:29',	'2025-12-26 05:24:48'),
 (19,	9,	NULL,	NULL,	NULL,	'uz',	'{"url": "https://www.youtube.com/embed/BHACKCNDMW8?si=AtPPS9WpLIT3_TaW", "title": "Moziydan saboq, bugundan yuksalish", "url_title": "Bugungi kundagi O''zbekiston", "description": "Moziy va bugun – bu vaqtning ikki qutbi: o‘tgan zamonning ulug‘vorligi va bugunning yuksalishi. Bu yerda tariximizning buyuk sahifalari va hozirgi kunda yaratilayotgan yangi yutuqlar birlashadi. Moziy – bu bizni yuksaltirgan ildizlar, Bugun esa bizning yuksalishimiz, kuchimiz va kelajakka ishonchimizdir. Har bir qadriyat, har bir qadam, bizni kelajakka yetaklaydi. Moziyda o‘rgangan saboqlarimiz, bugunda amalga oshirgan ishlarimizga yo‘l ochadi. Moziy va Bugun – bu vaqtning qiyofasi, bizning kelajakka yo‘limiz!"}',	'2025-12-23 05:11:35',	'2025-12-26 05:28:45'),
 (10,	4,	NULL,	NULL,	NULL,	'ru',	'{"title": null, "content": null, "content1": null, "description": null}',	'2025-12-23 04:50:44',	'2025-12-27 19:41:11'),
 (305,	78,	NULL,	NULL,	NULL,	'uz',	'{"title": "Eng Sara joylar"}',	'2025-12-28 06:12:16',	'2025-12-28 06:12:16'),
@@ -1089,6 +1126,11 @@ INSERT INTO "page_section_translations" ("id", "page_section_id", "page_section_
 (42,	19,	NULL,	NULL,	NULL,	'ru',	'{"title": null}',	'2025-12-23 05:47:39',	'2025-12-23 05:47:39'),
 (43,	20,	NULL,	NULL,	NULL,	'uz',	'{"title": "Buyuk Britaniya"}',	'2025-12-23 05:48:00',	'2025-12-23 05:48:00'),
 (44,	20,	NULL,	NULL,	NULL,	'ru',	'{"title": null}',	'2025-12-23 05:48:00',	'2025-12-23 05:48:00'),
+(74,	33,	NULL,	NULL,	NULL,	'uz',	'{"title": "\"Vatandoshlar\" jamoat fondi tomonidan Xorijdagi vatandoshlar uchun yangi loyiha amalga oshirilmoqda"}',	'2025-12-23 06:21:44',	'2026-01-05 11:37:18'),
+(75,	33,	NULL,	NULL,	NULL,	'ru',	'{"title": null}',	'2025-12-23 06:21:44',	'2026-01-05 11:37:18'),
+(30,	14,	NULL,	NULL,	NULL,	'ru',	'{"title": null, "description": null}',	'2025-12-23 05:32:28',	'2026-01-07 11:43:52'),
+(31,	14,	NULL,	NULL,	NULL,	NULL,	'{"email": "sattarov@vatandoshlarfondi.uz", "phone": "+998(55) 502-22-99"}',	'2025-12-23 05:32:28',	'2026-01-07 11:43:52'),
+(29,	14,	NULL,	NULL,	NULL,	'uz',	'{"title": "Sattarov Odiljon Berdimuratovich", "description": "“Vatandoshlar” jamoat fondi Boshqaruv raisi"}',	'2025-12-23 05:32:28',	'2026-01-07 11:43:52'),
 (58,	27,	20,	'tashkilot',	'tashkilot-1',	'uz',	'{"title": "“Mahalla-USA” o‘zbek diasporal tashkiloti"}',	'2025-12-23 06:02:28',	'2025-12-23 06:02:28'),
 (59,	27,	20,	'tashkilot',	'tashkilot-1',	'ru',	'{"title": null}',	'2025-12-23 06:02:28',	'2025-12-23 06:02:28'),
 (66,	30,	20,	'tashkilot',	'tashkilot-1',	'uz',	'{"title": "“Yurtdosh” Uzbek-Amerika Assotsiatsiyasi"}',	'2025-12-23 06:06:15',	'2025-12-23 06:06:15'),
@@ -1099,13 +1141,10 @@ INSERT INTO "page_section_translations" ("id", "page_section_id", "page_section_
 (95,	40,	NULL,	NULL,	NULL,	'uz',	'{"title": "O‘zbek tili, madaniyati va an’analarini saqlab qolish va rivojlantirish"}',	'2025-12-25 09:42:07',	'2025-12-25 09:42:36'),
 (96,	40,	NULL,	NULL,	NULL,	'ru',	'{"title": null}',	'2025-12-25 09:42:07',	'2025-12-25 09:42:36'),
 (97,	40,	NULL,	NULL,	NULL,	'en',	'{"title": null}',	'2025-12-25 09:42:07',	'2025-12-25 09:42:36'),
-(30,	14,	NULL,	NULL,	NULL,	'ru',	'{"title": null, "description": null}',	'2025-12-23 05:32:28',	'2025-12-26 05:17:05'),
-(31,	14,	NULL,	NULL,	NULL,	NULL,	'{"email": "sattarov@vatandoshlarfondi.uz", "phone": "+998(55) 502-22-99"}',	'2025-12-23 05:32:28',	'2025-12-26 05:17:05'),
 (32,	15,	NULL,	NULL,	NULL,	'uz',	'{"title": "Sanayev Bolidin Elamonovich", "description": "“Vatandoshlar” jamoat fondi Boshqaruv raisi o‘rinbosari"}',	'2025-12-23 05:33:13',	'2025-12-26 05:17:23'),
 (33,	15,	NULL,	NULL,	NULL,	'ru',	'{"title": null, "description": null}',	'2025-12-23 05:33:13',	'2025-12-26 05:17:23'),
 (34,	15,	NULL,	NULL,	NULL,	NULL,	'{"email": "sanayev@vatandoshlarfondi.uz", "phone": "+998(55) 502-22-99"}',	'2025-12-23 05:33:13',	'2025-12-26 05:17:23'),
 (308,	79,	NULL,	NULL,	NULL,	'uz',	'{"title": "Korishga arziydigan joylar"}',	'2025-12-28 06:13:10',	'2025-12-28 06:13:10'),
-(29,	14,	NULL,	NULL,	NULL,	'uz',	'{"title": "Sattarov Odiljon Berdimuratovich", "description": "“Vatandoshlar” jamoat fondi Boshqaruv raisi"}',	'2025-12-23 05:32:28',	'2025-12-26 05:17:05'),
 (309,	79,	NULL,	NULL,	NULL,	'ru',	'{"title": null}',	'2025-12-28 06:13:10',	'2025-12-28 06:13:10'),
 (61,	28,	27,	'Nomi',	'nomi-2',	'ru',	'{"title": null, "description": null}',	'2025-12-23 06:03:58',	'2025-12-29 09:24:21'),
 (62,	28,	27,	'Nomi',	'nomi-2',	NULL,	'{"boss_at": "12/12/2022", "date_at": "12/20/2017"}',	'2025-12-23 06:03:58',	'2025-12-29 09:24:21'),
@@ -1114,22 +1153,20 @@ INSERT INTO "page_section_translations" ("id", "page_section_id", "page_section_
 (60,	28,	27,	'Nomi',	'nomi-2',	'uz',	'{"title": "“Mahalla-USA” o‘zbek diasporal tashkiloti", "description": "АQShdagi vatandoshlarni birlashtirish, ular oʼrtasida hamjixatlikni mustahkamlash, oʼzbek urf-odatlari, qadriyatlari va ona-tilini asrab qolish"}',	'2025-12-23 06:03:58',	'2025-12-29 09:24:21'),
 (70,	31,	30,	'Nomi',	'nomi-3',	NULL,	'{"date_at": "12/20/2018", "first_boss": "12/20/2019"}',	'2025-12-23 06:07:24',	'2025-12-29 09:27:50'),
 (65,	29,	27,	'Rahbar',	'rahbar-2',	NULL,	'{"email": "sanayev@vatandoshlarfondi.uz", "phone": "+998(55) 502-22-50"}',	'2025-12-23 06:05:38',	'2025-12-29 09:26:19'),
-(74,	33,	NULL,	NULL,	NULL,	'uz',	'{"title": "\"Vatandoshlar\" jamoat fondi tomonidan Xorijdagi vatandoshlar uchun yangi loyiha amalga oshirilmoqda"}',	'2025-12-23 06:21:44',	'2026-01-05 07:52:54'),
 (68,	31,	30,	'Nomi',	'nomi-3',	'uz',	'{"title": "“Yurtdosh” Uzbek-Amerika Assotsiatsiyasi Batafsil", "description": "new-york-university new-york-university new-york-university new-york-university"}',	'2025-12-23 06:07:24',	'2025-12-29 09:27:50'),
 (69,	31,	30,	'Nomi',	'nomi-3',	'ru',	'{"title": null, "description": null}',	'2025-12-23 06:07:24',	'2025-12-29 09:27:50'),
-(75,	33,	NULL,	NULL,	NULL,	'ru',	'{"title": null}',	'2025-12-23 06:21:44',	'2026-01-05 07:52:54'),
+(77,	34,	NULL,	NULL,	NULL,	'uz',	'{"title": "Yurtdoshlarni qollash"}',	'2025-12-23 06:22:39',	'2026-01-05 09:50:15'),
 (79,	35,	NULL,	NULL,	NULL,	'uz',	'{"description": "“Vatandoshlar” jamoat fondi 2021 yil 11 avgustda tashkil etilgan. Bizning asosiy maqsadimiz- xorijda istiqomat qilayotgan vatandoshlarni tarixiy Vatani atrofida yanada jipslashtirish, ularning qalbi va ongida yurt bilan faxrlanish tuyg‘usini yuksaltirish, milliy o‘zlikni saqlab qolish, vatandoshlar va ular tomonidan tuzilgan jamoat birlashmalarini qo‘llab-quvvatlash, turli sohalarda faoliyat yuritayotgan vatandoshlarimizning salohiyatini mamlakatimiz taraqqiyotiga samarali yo‘naltirishdir!"}',	'2025-12-25 08:29:18',	'2025-12-25 08:29:18'),
 (80,	35,	NULL,	NULL,	NULL,	'ru',	'{"description": null}',	'2025-12-25 08:29:18',	'2025-12-25 08:29:18'),
 (81,	35,	NULL,	NULL,	NULL,	'en',	'{"description": null}',	'2025-12-25 08:29:18',	'2025-12-25 08:29:18'),
 (25,	12,	NULL,	NULL,	NULL,	'uz',	'{"title": "Fondning ramzi", "content": "<p><span>\"Vatandoshlar\" jamoat fondining ramzida asosan milliy qadriyatlarimizni anglatuvchi minoralar hamda tarixiy obidalarimizning naqshlarida aks etgan ko‘k rangdan foydalanilgan. Ko‘k rang – bu tinchlik va hotirjamlik ramzi bo‘lib, u yaxshilikni, donishmandlikni, halollikni va sadoqatni bildiradi. Markazda O‘zbekiston Respublikasining 30 yilligi munosabati bilan “Yangi O‘zbekiston” bog‘ida bunyod etilgan muhtasham obida “Mustaqillik monumenti” joy olgan. Obidaning eng yuqori qismida O‘zbekiston gerbidan ham o‘rin olgan “Humo qushi” tasvirlangan. Obidaning orqa tomonida globus tasviri tushirilgan bo‘lib, bu xorijda istiqomat qilayotgan vatandoshlar bilan ishlashni nazarda tutadi. Shuningdek, ramzda ochiq kaftlar keltirilgan bo‘lib, bu Fondning ochiqlik va qabul qilishlikni, halollik va samimiylikni, vatandoshlarni “Yangi O‘zbekiston” atrofida yanada jipslashishiga, ularga doimiy ravishda g‘amxo‘rlik qilishga ham tayyor ekanligini anglatadi.</span></p>", "description": "<div class=\"content__text\">\r\n<p>\"Vatandoshlar\" jamoat fondining ramzida asosan milliy qadriyatlarimizni anglatuvchi minoralar hamda tarixiy obidalarimizning naqshlarida aks etgan ko‘k rangdan foydalanilgan. Ko‘k rang – bu tinchlik va hotirjamlik ramzi bo‘lib, u yaxshilikni, donishmandlikni, halollikni va sadoqatni bildiradi. Markazda O‘zbekiston Respublikasining 30 yilligi munosabati bilan “Yangi O‘zbekiston” bog‘ida bunyod etilgan muhtasham obida “Mustaqillik monumenti” joy olgan. Obidaning eng yuqori qismida O‘zbekiston gerbidan ham o‘rin olgan “Humo qushi” tasvirlangan. Obidaning orqa tomonida globus tasviri tushirilgan bo‘lib, bu xorijda istiqomat qilayotgan vatandoshlar bilan ishlashni nazarda tutadi. Shuningdek, ramzda ochiq kaftlar keltirilgan bo‘lib, bu Fondning ochiqlik va qabul qilishlikni, halollik va samimiylikni, vatandoshlarni “Yangi O‘zbekiston” atrofida yanada jipslashishiga, ularga doimiy ravishda g‘amxo‘rlik qilishga ham tayyor ekanligini anglatadi.</p>\r\n</div>\r\n<div class=\"about__page\">\r\n<div class=\"about__page--img\"></div>\r\n</div>"}',	'2025-12-23 05:29:07',	'2025-12-25 08:31:46'),
 (82,	12,	NULL,	NULL,	NULL,	'en',	'{"title": null, "content": null, "description": null}',	'2025-12-25 08:31:46',	'2025-12-25 08:31:46'),
+(78,	34,	NULL,	NULL,	NULL,	'ru',	'{"title": null}',	'2025-12-23 06:22:39',	'2026-01-05 09:50:15'),
 (87,	37,	NULL,	NULL,	NULL,	'ru',	'{"url": null, "title": null, "content": null, "description": null}',	'2025-12-25 08:48:11',	'2025-12-26 07:02:06'),
 (88,	37,	NULL,	NULL,	NULL,	'en',	'{"url": null, "title": null, "content": null, "description": null}',	'2025-12-25 08:48:11',	'2025-12-26 07:02:06'),
 (93,	39,	NULL,	NULL,	NULL,	'ru',	'{"url": null, "title": null, "content": null, "description": null}',	'2025-12-25 08:50:21',	'2025-12-26 07:23:47'),
 (90,	38,	NULL,	NULL,	NULL,	'ru',	'{"url": null, "title": null, "content": null, "description": null}',	'2025-12-25 08:48:32',	'2025-12-25 10:01:33'),
 (91,	38,	NULL,	NULL,	NULL,	'en',	'{"url": null, "title": null, "content": null, "description": null}',	'2025-12-25 08:48:32',	'2025-12-25 10:01:33'),
-(77,	34,	NULL,	NULL,	NULL,	'uz',	'{"title": "Yurtdoshlarni qollash"}',	'2025-12-23 06:22:39',	'2025-12-26 05:31:25'),
-(78,	34,	NULL,	NULL,	NULL,	'ru',	'{"title": null}',	'2025-12-23 06:22:39',	'2025-12-26 05:31:25'),
 (83,	36,	NULL,	NULL,	NULL,	'uz',	'{"url": null, "title": "Vatan", "content": null, "description": "“Vatandoshlar” jamoat fondi 2021 yil 11 avgustda tashkil etilgan. Bizning asosiy maqsadimiz- xorijda istiqomat qilayotgan vatandoshlarni tarixiy Vatani atrofida yanada jipslashtirish, ularning qalbi va ongida yurt bilan faxrlanish tuyg‘usini yuksaltirish, milliy o‘zlikni saqlab qolish, vatandoshlar va ular tomonidan tuzilgan jamoat birlashmalarini qo‘llab-quvvatlash, turli sohalarda faoliyat yuritayotgan vatandoshlarimizning salohiyatini mamlakatimiz taraqqiyotiga samarali yo‘naltirishdir!"}',	'2025-12-25 08:47:03',	'2025-12-26 06:30:55'),
 (84,	36,	NULL,	NULL,	NULL,	'ru',	'{"url": null, "title": null, "content": null, "description": null}',	'2025-12-25 08:47:03',	'2025-12-26 06:30:55'),
 (85,	36,	NULL,	NULL,	NULL,	'en',	'{"url": null, "title": null, "content": null, "description": null}',	'2025-12-25 08:47:03',	'2025-12-26 06:30:55'),
@@ -1156,7 +1193,6 @@ INSERT INTO "page_section_translations" ("id", "page_section_id", "page_section_
 (129,	51,	NULL,	NULL,	NULL,	'uz',	'{"title": "Fotogalareya", "description": null}',	'2025-12-25 13:24:51',	'2025-12-25 13:24:51'),
 (130,	51,	NULL,	NULL,	NULL,	'ru',	'{"title": null, "description": null}',	'2025-12-25 13:24:51',	'2025-12-25 13:24:51'),
 (131,	51,	NULL,	NULL,	NULL,	'en',	'{"title": null, "description": null}',	'2025-12-25 13:24:51',	'2025-12-25 13:24:51'),
-(119,	8,	NULL,	NULL,	NULL,	'en',	'{"title": null, "url_title": null, "description": null}',	'2025-12-25 10:18:34',	'2025-12-26 05:24:48'),
 (136,	53,	NULL,	NULL,	NULL,	'ru',	'{"title": null, "description": null}',	'2025-12-25 13:35:56',	'2025-12-26 09:33:37'),
 (137,	53,	NULL,	NULL,	NULL,	'en',	'{"title": null, "description": null}',	'2025-12-25 13:35:56',	'2025-12-26 09:33:37'),
 (238,	89,	NULL,	NULL,	NULL,	'ru',	'{"title": null, "description": null}',	'2025-12-26 14:25:11',	'2025-12-27 07:31:11'),
@@ -1175,23 +1211,23 @@ INSERT INTO "page_section_translations" ("id", "page_section_id", "page_section_
 (383,	108,	NULL,	NULL,	NULL,	'uz',	'{"title": "Futbolchi"}',	'2025-12-28 06:32:15',	'2025-12-28 06:32:15'),
 (384,	108,	NULL,	NULL,	NULL,	'ru',	'{"title": null}',	'2025-12-28 06:32:15',	'2025-12-28 06:32:15'),
 (385,	108,	NULL,	NULL,	NULL,	'en',	'{"title": null}',	'2025-12-28 06:32:15',	'2025-12-28 06:32:15'),
-(146,	14,	NULL,	NULL,	NULL,	'en',	'{"title": null, "description": null}',	'2025-12-26 05:14:06',	'2025-12-26 05:17:05'),
+(145,	34,	NULL,	NULL,	NULL,	'en',	'{"title": null}',	'2025-12-26 05:11:42',	'2026-01-05 09:50:15'),
+(150,	34,	NULL,	NULL,	NULL,	NULL,	'{"url": "https://www.youtube.com/embed/BHACKCNDMW8?si=AtPPS9WpLIT3_TaW", "url_title": "Na''munali Yurtdoshlar"}',	'2025-12-26 05:31:25',	'2026-01-05 09:50:15'),
 (147,	15,	NULL,	NULL,	NULL,	'en',	'{"title": null, "description": null}',	'2025-12-26 05:14:40',	'2025-12-26 05:17:23'),
-(148,	8,	NULL,	NULL,	NULL,	NULL,	'{"url": "https://www.youtube.com/embed/BHACKCNDMW8?si=AtPPS9WpLIT3_TaW"}',	'2025-12-26 05:24:48',	'2025-12-26 05:24:48'),
 (149,	9,	NULL,	NULL,	NULL,	'en',	'{"url": null, "title": null, "url_title": null, "description": null}',	'2025-12-26 05:28:45',	'2025-12-26 05:28:45'),
-(145,	34,	NULL,	NULL,	NULL,	'en',	'{"title": null}',	'2025-12-26 05:11:42',	'2025-12-26 05:31:25'),
-(150,	34,	NULL,	NULL,	NULL,	NULL,	'{"url": "https://www.youtube.com/embed/BHACKCNDMW8?si=AtPPS9WpLIT3_TaW", "url_title": "Na''munali Yurtdoshlar"}',	'2025-12-26 05:31:25',	'2025-12-26 05:31:25'),
 (86,	37,	NULL,	NULL,	NULL,	'uz',	'{"url": null, "title": "Fondning ramzi", "content": "\"Vatan asd asdoshlar\" jamoat fondining ramzida asosan milliy qadriyatlarimizni anglatuvchi minoralar hamda tarixiy obidalarimizning naqshlarida aks etgan ko‘k rangdan foydalanilgan. Ko‘k rang – bu tinchlik va hotirjamlik ramzi bo‘lib, u yaxshilikni, donishmandlikni, halollikni va sadoqatni bildiradi. Markazda O‘zbekiston Respublikasining 30 yilligi munosabati bilan “Yangi O‘zbekiston” bog‘ida bunyod etilgan muhtasham obida “Mustaqillik monumenti” joy olgan. Obidaning eng yuqori qismida O‘zbekiston gerbidan ham o‘rin olgan “Humo qushi” tasvirlangan. Obidaning orqa tomonida globus tasviri tushirilgan bo‘lib, bu xorijda istiqomat qilayotgan vatandoshlar bilan ishlashni nazarda tutadi. Shuningdek, ramzda ochiq kaftlar keltirilgan bo‘lib, bu Fondning ochiqlik va qabul qilishlikni, halollik va samimiylikni, vatandoshlarni “Yangi O‘zbekiston” atrofida yanada jipslashishiga, ularga doimiy ravishda g‘amxo‘rlik qilishga ham tayyor ekanligini anglatadi.", "description": "\"Vatandoshl asdasdas asds aar\" jamoat fondining ramzida asosan milliy qadriyatlarimizni anglatuvchi minoralar hamda tarixiy obidalarimizning naqshlarida aks etgan ko‘k rangdan foydalanilgan. Ko‘k rang – bu tinchlik va hotirjamlik ramzi bo‘lib, u yaxshilikni, donishmandlikni, halollikni va sadoqatni bildiradi. Markazda O‘zbekiston Respublikasining 30 yilligi munosabati bilan “Yangi O‘zbekiston” bog‘ida bunyod etilgan muhtasham obida “Mustaqillik monumenti” joy olgan. Obidaning eng yuqori qismida O‘zbekiston gerbidan ham o‘rin olgan “Humo qushi” tasvirlangan. Obidaning orqa tomonida globus tasviri tushirilgan bo‘lib, bu xorijda istiqomat qilayotgan vatandoshlar bilan ishlashni nazarda tutadi. Shuningdek, ramzda ochiq kaftlar keltirilgan bo‘lib, bu Fondning ochiqlik va qabul qilishlikni, halollik va samimiylikni, vatandoshlarni “Yangi O‘zbekiston” atrofida yanada jipslashishiga, ularga doimiy ravishda g‘amxo‘rlik qilishga ham tayyor ekanligini anglatadi."}',	'2025-12-25 08:48:11',	'2025-12-26 07:02:06'),
 (151,	56,	NULL,	NULL,	NULL,	'uz',	'{"url": "https://www.youtube.com/embed/BHACKCNDMW8?si=AtPPS9WpLIT3_TaW", "title": "Video link", "content": null, "description": null}',	'2025-12-26 06:41:10',	'2025-12-26 07:18:44'),
 (152,	56,	NULL,	NULL,	NULL,	'ru',	'{"url": null, "title": null, "content": null, "description": null}',	'2025-12-26 06:41:10',	'2025-12-26 07:18:44'),
 (153,	56,	NULL,	NULL,	NULL,	'en',	'{"url": null, "title": null, "content": null, "description": null}',	'2025-12-26 06:41:10',	'2025-12-26 07:18:44'),
 (135,	53,	NULL,	NULL,	NULL,	'uz',	'{"title": "O‘zbekiston – sirli o‘tmish va yorqin kelajak maskani!", "description": "O‘zbekiston – tarix va zamonaviylik uyg‘unligi! Bu yerda har bir qadam o‘ziga xos kashfiyot. So‘nggi yillarda mamlakat turizm, iqtisodiyot va xizmat ko‘rsatish sohalarida yangi bosqichga ko‘tarilib, sayyohlar uchun yanada qulay va qiziqarli makonga aylandi. Samarqand, Buxoro, Xiva kabi shaharlar o‘zining qadimiy ruhi bilan, Toshkent esa zamonaviy tarovati bilan mehmonlarni o‘ziga jalb qiladi. Bu yerda qadimiylik va yangilik birlashadi, mehmondo‘stlik esa har yurakni zabt etadi. O‘zbekiston – bu nafaqat sayohat, balki ilhom, kashfiyot va unutilmas taassurotlar manzili. Bu mo‘jizaviy diyorga qadam qo‘ying va yuragingizni bu yerga abadiy bog‘lang!"}',	'2025-12-25 13:35:56',	'2025-12-26 09:33:37'),
+(148,	8,	NULL,	NULL,	NULL,	NULL,	'{"url": "https://www.youtube.com/embed/BHACKCNDMW8?si=AtPPS9WpLIT3_TaW"}',	'2025-12-26 05:24:48',	'2026-01-05 13:18:53'),
 (160,	58,	NULL,	NULL,	NULL,	'uz',	'{"url_title": "Yurtdosh"}',	'2025-12-26 11:30:11',	'2025-12-29 13:34:24'),
 (154,	52,	NULL,	NULL,	NULL,	NULL,	'{"url": null}',	'2025-12-26 11:06:46',	'2025-12-26 12:18:15'),
 (163,	59,	NULL,	NULL,	NULL,	'uz',	'{"title": "Har bir manzil – yangi bir orzu!", "description": "Har bir manzil – yangi bir orzu! O‘zbekistonning eng go‘zal va sirli joylariga sayohat qilish, unutilmas xotiralar bilan qaytish uchun sizni kutmoqda! Bu yerda sizni ajoyib tabiat manzaralari, qadimiy shaharlarning tarixiy obidalari va madaniyatning eng boy meroslari kutib oladi. Har bir manzil o‘ziga xos hikoya va hissiyotlarni uyg‘otadi. Har bir manzil – bu nafaqat tabiatning go‘zalligi, balki yurtimizning yuragidan chiqib, har bir sayyohni o‘ziga jalb qiladigan sehrdir. O‘zbekistonni kashf eting, uning har bir burchagidan ilhom oling va qaytganingizda qalbingizda unutilmas xotiralar qoladi!"}',	'2025-12-26 13:16:46',	'2025-12-26 13:16:46'),
 (164,	59,	NULL,	NULL,	NULL,	'ru',	'{"title": null, "description": null}',	'2025-12-26 13:16:46',	'2025-12-26 13:16:46'),
 (165,	59,	NULL,	NULL,	NULL,	'en',	'{"title": null, "description": null}',	'2025-12-26 13:16:46',	'2025-12-26 13:16:46'),
 (166,	60,	NULL,	NULL,	NULL,	NULL,	'{"code": "UZ-QR", "path": "m144.74 21.815.321 7.095-1.848 5.366-2.96 5-2.593 5.55-.928 3.888H134.7l-1.664.183-1.297 1.296-.551 2.408.744 4.255 1.113 2.407.745 2.592-2.225.744-2.777-1.48-2.225 1.297-1.664 3.703-2.225 3.887-2.032 2.224-2.777-1.663-.367-3.704-.184-5.734-1.113-1.48v-3.17h1.481l1.112 2.592 1.664.928 2.593-.928 1.296-2.776v-3.703l.929-2.96-2.786-1.663-2.96-2.407-.552-2.224 1.664-1.848 1.664-.367 1.848.928.184-7.582 2.593-.367-.184-2.96-2.225-.55-3.512-.552-1.297.928-1.48 1.847-2.032.928 1.297-2.03 2.592-4.807 1.665-2.407-.929-2.776-1.848-2.591.552-3.51.928-3.144 3.126-5.909zM109.508.311l-.165 3.262-1.481 2.96-.184 4.438-3.512 3.143-1.848 2.96-.184 5.366-2.408 2.408-1.113 5.183-2.776 4.438-1.849 4.99-.367 4.255.184 5.551 1.112 2.591 1.848 3.327-.368 2.408-2.776 7.765.368 4.807 2.031 4.806 2.032 2.407 2.777 1.296 3.705 1.48 2.777.184 2.409 1.847 1.848.551.928-1.847 1.48-.368 2.225.184 1.664-.744 4.625-1.48 2.409-1.112 1.48.928.745 3.327-1.664 2.031-2.602 1.682.928 3.327 2.032.928 1.664 1.663 4.809.745 2.409 2.03 2.776.368 5.554.551 4.073.184 3.328-2.03 2.225 1.295 1.112.928 3.512-.744 1.848-.552 3.329 1.112 4.624-.928 4.441-1.48 6.482-2.59.551-2.409h3.145l1.112-1.663-.919-1.654 1.48-3.143 5.737-4.623 4.257-4.254 2.593-4.623.744-3.51-.928-1.296-1.48-1.296-.929-1.847 3.567-.322 19.933 14.382 2.032 6.48 5.581 5.632 5.875 7.086.266.588.589.542 2.326 2.766 5.24 6.442 15.474 19.207 1.498 1.434.506.046 5.379 9.649 14.186 3.841-25.431 47.971-1.158 14.492 6.197 11.166-11.815 6.524 19.234 26.348 12.679 17.626-10.058 4.65-2.345 1.112-.598-.175-.248-.202-4.192-6.81-1.379-2.545-7.356-8.097-2.831-1.755-3.237-1.709-8.228-1.893-2.795-.019-.57.184-1.278.708-.717.818-1.076 2.113-.469 1.719-.662.707h-1.37l-2.069-1.323-.229-1.066-.341-.799-1.857-2.087-.653-.56-.68-.267-1.986-.33-1.296-.533-5.48-4.173-7.567-6.717-1.443-1.379-3.08-3.584-4.753-4.439-.635-.284-.616-.598-.34-.422-2.832-4.954-.377-2.26-.036-2.417-.157-.533-.358-.441-4.855-1.03-3.916 1.278-1.747.772-2.455 4.806-.202-.487-.46-.552-.506-.358-2.225-.763-.744-.468-1.637-2.013-.156.037-.304-.322-.809.184-1.158-1.14-.175-.744.175-.312.515-.414 2.592-.184.322-.413-.184-.735-.469-.671-.376-.892-.203-.864-.147-2.086-1.158-1.507-.028-.616.166-.441 1.002-.533.386.175.781.092.423-.101.414-.395.23-.359.018-.588-.45-1.094-.442-.514-.91-.552-1.609-.22-.533-.221-.754-.652-.763-1.029-.625-1.25-.579-.515-1.812-.588-.956-.772-.285.506-.423 1.314-.331.321-.459.01-1.655-.506-.626-.322-.422.019-.497-.193-1.811-.037-1.444.34h-1.388l-1.232.147-6.813.092-.524-.414-.671-1.286-.598-.276-.809-.974-3.714-3.703-.037-.368.423-1.139-.101-1.131-3.135-4.089-.432-.423-1.021-.607-.368-.055-1.002.276-.882.708-.524.22-2.391-.156-.643-.202-1.453-.791-2.087-.606-.616-.294-1.591-1.379-3.852-4.227-4.422-4.916-2.832-3.584-.441-.396-.028.782-.285 1.084.092.505.818.818.037.267-.156.478-.313.202-.386-.009-.506-.285h-.579l-.469.579v.156l.634.524.24.386-.387 2.003-.285.45-.45.276-1.057-.34-2.437.46-.984.055-1.213-.588-1.113-.221-1.094-.524-1.37-.377-2.666-.551-.827.028-1.306.523-.956.552-2.142 1.783-.57.055-.377.321-.166.634.294.699 1.71 1.24 2.18 1.223.91.349 1.24.23.415.496 2.454 5.698 1.196 1.883.524.625.174.864-.036 1.112.404.368.487-.12 2.896 1.82.883.726.12.652-.469.956-.34.239-.396.018-1.94-.459-1.719.349-.175-.616.111-1.856-.102-.965-.744-2.628-.653-1.232-.818-.909-1.15-.772-4.459-1.149-.735.046-2.004 1.038-1.196.442-.174-.092-.175-.662-.846-.597-.267-.34-.248-1.103-.781-.689-.883-.166-1.315.285-.91.625-.487-.009-.248.266-.368 1.682-.267.689-.294-.119-.68-.791-.405-.101-.616.203-.202.358-.258 1.424.313.717.818.754.405.661.303.993-.018.496-.34.965.027 1.296-.22 1.02.11 1.424-.184 1.48-.166.551-.312.359-.432.147-.782-.028-1.526-.634-.404.092-.258.478-.312 1.103.643 1.102.405 1.011-.175.386-.8.11-2.813-.477-2.382.817-1.627.855-.68.166-.552-.019-1.49-.91-1.719-.34-2.105-.165-4.753.257-1.802.671-2.317 1.14-2.014 1.47-1.158 1.002-1.03 1.479-.377.8-.625 1.461-.984 3.06-.56.781-1.04 1.011-.652.395-1.26.469-1.986.588-.671.404-.79.726-.847 1.765-.285 1.875-.413 1.681.046 2.528.275 2.462-.128 2.509.515 2.178.367.91.35.459-.019.221.331.147.488.947.22 1.056.083.736-.184 1.121v2.15l.386 2.886.276.91.35.661 1.7 2.426.837.019 1.793-.552.395.368.037.478-.294.652-.368.368-.487.303-1.82.634-.773.726-.423.809-.037 1.378-.294.616-.45.496-.506.267H42.85l-1.655-.405-3.64-.312-3.816-.542-6.206-.386-3.466-.074-5.406-.625-3.209-.239-1.728.01-4.763-.432-8.66-.359L.227 34.681l1.397-.359 1.315-.579 27.71-9.051.02-.12 1.535-.266.312-.322.929-.312 12.08-3.86L85.669 7.406l6.114-2.04 2.041-.423z"}',	'2025-12-26 13:22:38',	'2025-12-27 07:02:15'),
+(146,	14,	NULL,	NULL,	NULL,	'en',	'{"title": null, "description": null}',	'2025-12-26 05:14:06',	'2026-01-07 11:43:52'),
 (311,	80,	NULL,	NULL,	NULL,	'uz',	'{"title": "Chiroyli manzilgohlar"}',	'2025-12-28 06:14:41',	'2025-12-28 06:14:41'),
 (312,	80,	NULL,	NULL,	NULL,	'ru',	'{"title": null}',	'2025-12-28 06:14:41',	'2025-12-28 06:14:41'),
 (313,	80,	NULL,	NULL,	NULL,	'en',	'{"title": null}',	'2025-12-28 06:14:41',	'2025-12-28 06:14:41'),
@@ -1310,25 +1346,27 @@ INSERT INTO "page_section_translations" ("id", "page_section_id", "page_section_
 (415,	128,	124,	'Rahbar',	'rahbar-5',	'en',	'{"title": null, "description": null}',	'2025-12-29 08:22:05',	'2025-12-29 08:56:13'),
 (416,	128,	124,	'Rahbar',	'rahbar-5',	NULL,	'{"email": "sattarov@vatandoshlarfondi.uz", "phone": "+998(55) 502-22-55"}',	'2025-12-29 08:22:05',	'2025-12-29 08:56:13'),
 (578,	172,	NULL,	NULL,	NULL,	NULL,	'{"age": null, "email": null, "phone": "M"}',	'2026-01-05 07:14:23',	'2026-01-05 08:23:45'),
+(141,	33,	NULL,	NULL,	NULL,	'en',	'{"title": null}',	'2025-12-26 04:37:40',	'2026-01-05 11:37:18'),
+(487,	148,	NULL,	NULL,	NULL,	'uz',	'{"title": "Anor Loyihasi", "description": "Anor ijtimoiy va ixtososlashgan milliy loyihaga hush kelibsiz"}',	'2025-12-30 16:43:36',	'2026-01-09 06:22:44'),
+(488,	148,	NULL,	NULL,	NULL,	'ru',	'{"title": null, "description": null}',	'2025-12-30 16:43:36',	'2026-01-09 06:22:44'),
 (428,	131,	NULL,	NULL,	NULL,	'uz',	'{"title": "Anor Tanlovi"}',	'2025-12-29 12:29:53',	'2025-12-29 13:02:43'),
-(518,	156,	NULL,	NULL,	NULL,	NULL,	'{"url": "https://www.youtube.com/watch?v=mlDyGFq2q-A"}',	'2025-12-31 01:02:51',	'2026-01-05 08:05:53'),
+(489,	148,	NULL,	NULL,	NULL,	'en',	'{"title": null, "description": null}',	'2025-12-30 16:43:36',	'2026-01-09 06:22:44'),
 (534,	161,	NULL,	NULL,	NULL,	'uz',	'{"title": "Yangi O’zbekiston tili va Adabiyoti fani o’qituvchilari", "description": "Yangsi"}',	'2026-01-05 04:59:44',	'2026-01-05 08:08:03'),
 (535,	161,	NULL,	NULL,	NULL,	'ru',	'{"title": null, "description": null}',	'2026-01-05 04:59:44',	'2026-01-05 08:08:03'),
 (536,	161,	NULL,	NULL,	NULL,	'en',	'{"title": null, "description": null}',	'2026-01-05 04:59:44',	'2026-01-05 08:08:03'),
-(141,	33,	NULL,	NULL,	NULL,	'en',	'{"title": null}',	'2025-12-26 04:37:40',	'2026-01-05 07:52:54'),
-(488,	148,	NULL,	NULL,	NULL,	'ru',	'{"title": null, "description": null}',	'2025-12-30 16:43:36',	'2026-01-05 07:59:48'),
+(516,	156,	NULL,	NULL,	NULL,	'ru',	'{"title": null, "description": null}',	'2025-12-31 01:02:51',	'2026-01-05 12:28:37'),
 (285,	119,	NULL,	NULL,	NULL,	'uz',	'{"title": "Xorijdagi Vatandoshlar  uchun Anor  damolish oromgohi ochildi"}',	'2025-12-27 17:01:20',	'2026-01-05 07:58:27'),
-(487,	148,	NULL,	NULL,	NULL,	'uz',	'{"title": "Anor Loyihasi", "description": "Anor ijtimoiy va ixtososlashgan milliy loyihaga hush kelibsiz"}',	'2025-12-30 16:43:36',	'2026-01-05 07:59:48'),
-(489,	148,	NULL,	NULL,	NULL,	'en',	'{"title": null, "description": null}',	'2025-12-30 16:43:36',	'2026-01-05 07:59:48'),
-(490,	148,	NULL,	NULL,	NULL,	NULL,	'{"url": "https://www.youtube.com/watch?v=MOsTpgKIGT4&list=RD7zEhsnoWlt0&index=2"}',	'2025-12-30 16:43:36',	'2026-01-05 07:59:48'),
-(515,	156,	NULL,	NULL,	NULL,	'uz',	'{"title": "Universitet Tanlovi", "description": "Universitetlar haritasi"}',	'2025-12-31 01:02:51',	'2026-01-05 08:05:53'),
-(516,	156,	NULL,	NULL,	NULL,	'ru',	'{"title": null, "description": null}',	'2025-12-31 01:02:51',	'2026-01-05 08:05:53'),
-(517,	156,	NULL,	NULL,	NULL,	'en',	'{"title": null, "description": null}',	'2025-12-31 01:02:51',	'2026-01-05 08:05:53'),
+(515,	156,	NULL,	NULL,	NULL,	'uz',	'{"title": "Universitet Tanlovi", "description": "Universitetlar haritasi"}',	'2025-12-31 01:02:51',	'2026-01-05 12:28:37'),
+(517,	156,	NULL,	NULL,	NULL,	'en',	'{"title": null, "description": null}',	'2025-12-31 01:02:51',	'2026-01-05 12:28:37'),
+(518,	156,	NULL,	NULL,	NULL,	NULL,	'{"url": "https://www.youtube.com/watch?v=mlDyGFq2q-A"}',	'2025-12-31 01:02:51',	'2026-01-05 12:28:37'),
+(490,	148,	NULL,	NULL,	NULL,	NULL,	'{"url": "https://www.youtube.com/watch?v=MOsTpgKIGT4&list=RD7zEhsnoWlt0&index=2", "last_date": "2026-03-25T17:30"}',	'2025-12-30 16:43:36',	'2026-01-09 06:22:44'),
 (547,	165,	NULL,	NULL,	NULL,	'uz',	'{"title": "Transfor"}',	'2026-01-05 05:39:04',	'2026-01-05 08:20:45'),
 (548,	165,	NULL,	NULL,	NULL,	'ru',	'{"title": null}',	'2026-01-05 05:39:04',	'2026-01-05 08:20:45'),
 (549,	165,	NULL,	NULL,	NULL,	'en',	'{"title": null}',	'2026-01-05 05:39:04',	'2026-01-05 08:20:45'),
 (550,	165,	NULL,	NULL,	NULL,	NULL,	'{"age": "43", "email": "sattarov@vatandoshlarfondi.uz", "phone": "+998(55) 502-22-55"}',	'2026-01-05 05:39:04',	'2026-01-05 08:20:45'),
 (186,	62,	NULL,	NULL,	NULL,	'uz',	'{"title": "Buxoro", "description": "Viloyatning eng qadimiy shahri va markazi bo‘lgan Termizda va uning atrofida zardushtiylar, nestorianlar, buddistlar kabi turli xalqlarning shaharlari va qalʼalarining xarobalari, meʼmorchilik va arxeologiya obidalari, shuningdek islom meʼmorchiligi yodgorliklari saqlanib qolgan. Termizdan uncha uzoq bo‘lmagan joyda esa, fil suyagidan yasalgan shaxmat donalari topilgan,"}',	'2025-12-26 13:44:40',	'2025-12-27 07:03:12'),
+(492,	149,	NULL,	NULL,	NULL,	'ru',	'{"title": null, "description": null}',	'2025-12-30 16:44:29',	'2026-01-09 06:23:14'),
+(493,	149,	NULL,	NULL,	NULL,	'en',	'{"title": null, "description": null}',	'2025-12-30 16:44:29',	'2026-01-09 06:23:14'),
 (193,	64,	NULL,	NULL,	NULL,	'ru',	'{"title": null, "description": null}',	'2025-12-26 13:46:34',	'2025-12-27 07:30:47'),
 (187,	62,	NULL,	NULL,	NULL,	'ru',	'{"title": null, "description": null}',	'2025-12-26 13:44:40',	'2025-12-27 07:03:12'),
 (188,	62,	NULL,	NULL,	NULL,	'en',	'{"title": null, "description": null}',	'2025-12-26 13:44:40',	'2025-12-27 07:03:12'),
@@ -1360,8 +1398,6 @@ INSERT INTO "page_section_translations" ("id", "page_section_id", "page_section_
 (430,	131,	NULL,	NULL,	NULL,	'en',	'{"title": null}',	'2025-12-29 12:29:53',	'2025-12-29 13:02:43'),
 (431,	131,	NULL,	NULL,	NULL,	NULL,	'{"url": "www.youtube.com/embed/1AHaFE9NOYo?si=IDkDf0Zvw7cyALnS"}',	'2025-12-29 12:29:53',	'2025-12-29 13:02:43'),
 (155,	57,	52,	'Url',	'url',	NULL,	'{"url": "https://www.youtube.com/embed/BHACKCNDMW8?si=AtPPS9WpLIT3_TaW"}',	'2025-12-26 11:10:22',	'2025-12-29 13:33:55'),
-(492,	149,	NULL,	NULL,	NULL,	'ru',	'{"title": null, "description": null}',	'2025-12-30 16:44:29',	'2026-01-05 08:01:50'),
-(493,	149,	NULL,	NULL,	NULL,	'en',	'{"title": null, "description": null}',	'2025-12-30 16:44:29',	'2026-01-05 08:01:50'),
 (519,	157,	NULL,	NULL,	NULL,	'uz',	'{"title": "Futbol mavzusi", "description": "Futbol haqida tushuncha"}',	'2025-12-31 01:03:31',	'2026-01-05 08:06:18'),
 (520,	157,	NULL,	NULL,	NULL,	'ru',	'{"title": null, "description": null}',	'2025-12-31 01:03:31',	'2026-01-05 08:06:18'),
 (521,	157,	NULL,	NULL,	NULL,	'en',	'{"title": null, "description": null}',	'2025-12-31 01:03:31',	'2026-01-05 08:06:18'),
@@ -1503,9 +1539,7 @@ INSERT INTO "page_section_translations" ("id", "page_section_id", "page_section_
 (276,	95,	NULL,	NULL,	NULL,	'en',	'{"title": null}',	'2025-12-27 14:24:21',	'2025-12-27 14:24:21'),
 (282,	118,	NULL,	NULL,	NULL,	'ru',	'{"title": null}',	'2025-12-27 16:59:20',	'2026-01-05 07:58:46'),
 (286,	119,	NULL,	NULL,	NULL,	'ru',	'{"title": null}',	'2025-12-27 17:01:20',	'2026-01-05 07:58:27'),
-(279,	117,	NULL,	NULL,	NULL,	'en',	'{"title": null}',	'2025-12-27 16:57:51',	'2026-01-05 07:55:19'),
 (283,	118,	NULL,	NULL,	NULL,	'en',	'{"title": null}',	'2025-12-27 16:59:20',	'2026-01-05 07:58:46'),
-(278,	117,	NULL,	NULL,	NULL,	'ru',	'{"title": null}',	'2025-12-27 16:57:51',	'2026-01-05 07:55:19'),
 (287,	119,	NULL,	NULL,	NULL,	'en',	'{"title": null}',	'2025-12-27 17:01:20',	'2026-01-05 07:58:27'),
 (292,	4,	NULL,	NULL,	NULL,	'en',	'{"title": null, "content": null, "content1": null, "description": null}',	'2025-12-27 19:41:11',	'2025-12-27 19:41:11'),
 (293,	74,	NULL,	NULL,	NULL,	'uz',	'{"title": "Qollash"}',	'2025-12-28 06:10:13',	'2025-12-28 06:10:13'),
@@ -1515,12 +1549,8 @@ INSERT INTO "page_section_translations" ("id", "page_section_id", "page_section_
 (403,	124,	19,	'tashkilot',	'tashkilot',	NULL,	'{"title": "New York University"}',	'2025-12-29 08:12:53',	'2025-12-29 08:12:53'),
 (429,	131,	NULL,	NULL,	NULL,	'ru',	'{"title": null}',	'2025-12-29 12:29:53',	'2025-12-29 13:02:43'),
 (157,	57,	NULL,	NULL,	NULL,	'uz',	'{"url_title": "Qo''llash"}',	'2025-12-26 11:29:45',	'2025-12-29 13:33:55'),
-(76,	33,	NULL,	NULL,	NULL,	NULL,	'{"url": "https://www.youtube.com/embed/BHACKCNDMW8?si=AtPPS9WpLIT3_TaW", "description": "<h4 class=\"text-2\">Bugun Tatariston Respublikasidagi “O‘zbekiston” o‘zbek milliy-madaniy avtonomiyasi faoliyati haqida ma''lumot beramiz</h4>\r\n<div class=\"text-wrapper\">\r\n<p class=\"body2\">Mi tincidunt elit, id quisque ligula ac diam, amet. Vel etiam suspendisse morbi eleifend faucibus eget vestibulum felis. Dictum quis montes, sit sit. Tellus aliquam enim urna, etiam. Mauris posuere vulputate arcu amet, vitae nisi, tellus tincidunt. At feugiat sapien varius id.</p>\r\n<p>Eget quis mi enim, leo lacinia pharetra, semper. Eget in volutpat mollis at volutpat lectus velit, sed auctor. Porttitor fames arcu quis fusce augue enim. Quis at habitant diam at. Suscipit tristique risus, at donec. In turpis vel et quam imperdiet. Ipsum molestie aliquet sodales id est ac volutpat.</p>\r\n<p>Dolor enim eu tortor urna sed duis nulla. Aliquam vestibulum, nulla odio nisl vitae. In aliquet pellentesque aenean hac vestibulum turpis mi bibendum diam. Tempor integer aliquam in vitae malesuada fringilla.</p>\r\n<p>Elit nisi in eleifend sed nisi. Pulvinar at orci, proin imperdiet commodo consectetur convallis risus. Sed condimentum enim dignissim adipiscing faucibus consequat, urna. Viverra purus et erat auctor aliquam. Risus, volutpat vulputate posuere purus sit congue convallis aliquet. Arcu id augue ut feugiat donec porttitor neque. Mauris, neque ultricies eu vestibulum, bibendum quam lorem id. Dolor lacus, eget nunc lectus in tellus, pharetra, porttitor.</p>\r\n<p>Ipsum sit mattis nulla quam nulla. Gravida id gravida ac enim mauris id. Non pellentesque congue eget consectetur turpis. Sapien, dictum molestie sem tempor. Diam elit, orci, tincidunt aenean tempus. Quis velit eget ut tortor tellus. Sed vel, congue felis elit erat nam nibh orci.</p>\r\n</div>"}',	'2025-12-23 06:21:44',	'2026-01-05 07:52:54'),
-(277,	117,	NULL,	NULL,	NULL,	'uz',	'{"title": "Xorijdagi Vatandoshlar uchun Anor damolish oromgohi ochildi"}',	'2025-12-27 16:57:51',	'2026-01-05 07:55:19'),
-(280,	117,	NULL,	NULL,	NULL,	NULL,	'{"url": "https://www.youtube.com/embed/BHACKCNDMW8?si=AtPPS9WpLIT3_TaW", "description": "<p><span>Use a graphic organizer and some writing paper to write your very own fairy tale! Start with an introduction to describe the good characters and the setting. Then, write about the problem, or what goes wrong in your story. Next, write about the solution to that problem. Finally, end your story by saying that the good </span></p>"}',	'2025-12-27 16:57:51',	'2026-01-05 07:55:19'),
+(279,	117,	NULL,	NULL,	NULL,	'en',	'{"title": "Xorijdagi Vatandoshlar uchun Anor damolish oromgohi ochildi eng", "description": "<p><span style=\"letter-spacing: 0.14px;\">news eng content</span></p>"}',	'2025-12-27 16:57:51',	'2026-01-09 11:52:36'),
 (288,	119,	NULL,	NULL,	NULL,	NULL,	'{"url": "https://www.youtube.com/embed/pDgzE2tXZEs?si=LLxCo7PYWkSD18xd", "description": "<p><span>Fairies have been showing up in stories since the middle ages. Originating as nymphs in Greek Mythology, magical creatures have shown up throughout European literature ever since. In many stories, </span></p>"}',	'2025-12-27 17:01:20',	'2026-01-05 07:58:27'),
-(491,	149,	NULL,	NULL,	NULL,	'uz',	'{"title": "Yoshlar Tanlovi", "description": "Yosh tanlovi Haritasi"}',	'2025-12-30 16:44:29',	'2026-01-05 08:01:50'),
-(494,	149,	NULL,	NULL,	NULL,	NULL,	'{"url": "www.youtube.com/embed/1AHaFE9NOYo?si=IDkDf0Zvw7cyALnS"}',	'2025-12-30 16:44:29',	'2026-01-05 08:01:50'),
 (523,	158,	NULL,	NULL,	NULL,	'uz',	'{"title": "Bank Loyihasi", "description": "Bank Loyihasi haqida"}',	'2025-12-31 01:05:11',	'2026-01-05 08:06:40'),
 (583,	2,	NULL,	NULL,	NULL,	'en',	'{"title": null}',	'2026-01-05 08:12:34',	'2026-01-05 08:12:52'),
 (584,	3,	NULL,	NULL,	NULL,	'en',	'{"title": null}',	'2026-01-05 08:15:05',	'2026-01-05 08:15:05'),
@@ -1539,7 +1569,22 @@ INSERT INTO "page_section_translations" ("id", "page_section_id", "page_section_
 (597,	177,	NULL,	NULL,	NULL,	'uz',	'{"title": "Qatnashgan vatandoshlar soni"}',	'2026-01-05 08:17:42',	'2026-01-05 08:17:42'),
 (598,	177,	NULL,	NULL,	NULL,	'ru',	'{"title": null}',	'2026-01-05 08:17:42',	'2026-01-05 08:17:42'),
 (599,	177,	NULL,	NULL,	NULL,	'en',	'{"title": null}',	'2026-01-05 08:17:42',	'2026-01-05 08:17:42'),
-(600,	177,	NULL,	NULL,	NULL,	NULL,	'{"number": "512"}',	'2026-01-05 08:17:42',	'2026-01-05 08:17:42');
+(600,	177,	NULL,	NULL,	NULL,	NULL,	'{"number": "512"}',	'2026-01-05 08:17:42',	'2026-01-05 08:17:42'),
+(76,	33,	NULL,	NULL,	NULL,	NULL,	'{"url": "https://www.youtube.com/embed/BHACKCNDMW8?si=AtPPS9WpLIT3_TaW", "description": "<h4 class=\"text-2\">Bugun Tatariston Respublikasidagi “O‘zbekiston” o‘zbek milliy-madaniy avtonomiyasi faoliyati haqida ma''lumot beramiz</h4>\r\n<div class=\"text-wrapper\">\r\n<p class=\"body2\">Mi tincidunt elit, id quisque ligula ac diam, amet. Vel etiam suspendisse morbi eleifend faucibus eget vestibulum felis. Dictum quis montes, sit sit. Tellus aliquam enim urna, etiam. Mauris posuere vulputate arcu amet, vitae nisi, tellus tincidunt. At feugiat sapien varius id.</p>\r\n<p>Eget quis mi enim, leo lacinia pharetra, semper. Eget in volutpat mollis at volutpat lectus velit, sed auctor. Porttitor fames arcu quis fusce augue enim. Quis at habitant diam at. Suscipit tristique risus, at donec. In turpis vel et quam imperdiet. Ipsum molestie aliquet sodales id est ac volutpat.</p>\r\n<p>Dolor enim eu tortor urna sed duis nulla. Aliquam vestibulum, nulla odio nisl vitae. In aliquet pellentesque aenean hac vestibulum turpis mi bibendum diam. Tempor integer aliquam in vitae malesuada fringilla.</p>\r\n<p>Elit nisi in eleifend sed nisi. Pulvinar at orci, proin imperdiet commodo consectetur convallis risus. Sed condimentum enim dignissim adipiscing faucibus consequat, urna. Viverra purus et erat auctor aliquam. Risus, volutpat vulputate posuere purus sit congue convallis aliquet. Arcu id augue ut feugiat donec porttitor neque. Mauris, neque ultricies eu vestibulum, bibendum quam lorem id. Dolor lacus, eget nunc lectus in tellus, pharetra, porttitor.</p>\r\n<p>Ipsum sit mattis nulla quam nulla. Gravida id gravida ac enim mauris id. Non pellentesque congue eget consectetur turpis. Sapien, dictum molestie sem tempor. Diam elit, orci, tincidunt aenean tempus. Quis velit eget ut tortor tellus. Sed vel, congue felis elit erat nam nibh orci.</p>\r\n</div>"}',	'2025-12-23 06:21:44',	'2026-01-05 11:37:18'),
+(601,	178,	NULL,	NULL,	NULL,	'uz',	'{"title": "Tilg"}',	'2026-01-06 10:37:53',	'2026-01-07 06:00:21'),
+(602,	178,	NULL,	NULL,	NULL,	'ru',	'{"title": "Da"}',	'2026-01-06 10:37:53',	'2026-01-07 06:00:21'),
+(17,	8,	NULL,	NULL,	NULL,	'uz',	'{"title": "Qadriyatlarimiz bizni birlashtiradi!", "url_title": "Eng chiroyli Namuna", "description": "Qadriyatlarimiz bizni birlashtiradi! Qadriyatlarimiz – bu bizning ildizlarimiz, qalbimizning kuchi va kelajagimizning yorqin yo‘li. Ular bizni bog‘laydi, har birimizning yuragimizni birlashtiradi va bizga chinakam muvaffaqiyatga erishish imkonini beradi. Biz bu qadriyatlar bilan faxrlanishimiz kerak, chunki ular bizni yuksaltiradi va dunyoga haqiqiy kuchimizni ko‘rsatadi. Qadriyatlarimizga sodiq qolish, ularni davom ettirish – bu nafaqat bugungi kunimiz, balki kelajagimiz uchun ham zarur. Qadriyatlarimiz – bu bizning abadiy merosimiz!"}',	'2025-12-23 05:10:29',	'2026-01-05 13:18:53'),
+(119,	8,	NULL,	NULL,	NULL,	'en',	'{"title": null, "url_title": null, "description": null}',	'2025-12-25 10:18:34',	'2026-01-05 13:18:53'),
+(603,	178,	NULL,	NULL,	NULL,	'en',	'{"title": null}',	'2026-01-06 10:37:53',	'2026-01-07 06:00:21'),
+(604,	179,	NULL,	NULL,	NULL,	'uz',	'{"title": null, "description": null}',	'2026-01-08 14:06:17',	'2026-01-08 14:06:17'),
+(605,	179,	NULL,	NULL,	NULL,	'ru',	'{"title": null, "description": null}',	'2026-01-08 14:06:17',	'2026-01-08 14:06:17'),
+(606,	179,	NULL,	NULL,	NULL,	'en',	'{"title": null, "description": null}',	'2026-01-08 14:06:17',	'2026-01-08 14:06:17'),
+(607,	179,	NULL,	NULL,	NULL,	NULL,	'{"email": null, "phone": null}',	'2026-01-08 14:06:17',	'2026-01-08 14:06:17'),
+(277,	117,	NULL,	NULL,	NULL,	'uz',	'{"title": "Xorijdagi Vatandoshlar uchun Anor damolish oromgohi ochildi", "description": "<p><span style=\"letter-spacing: 0.14px;\">news uz content</span></p>"}',	'2025-12-27 16:57:51',	'2026-01-09 11:52:36'),
+(491,	149,	NULL,	NULL,	NULL,	'uz',	'{"title": "Yoshlar Tanlovi", "description": "Yosh tanlovi Haritasi"}',	'2025-12-30 16:44:29',	'2026-01-09 06:23:14'),
+(494,	149,	NULL,	NULL,	NULL,	NULL,	'{"url": "www.youtube.com/embed/1AHaFE9NOYo?si=IDkDf0Zvw7cyALnS", "last_date": "2026-01-19T16:30"}',	'2025-12-30 16:44:29',	'2026-01-09 06:23:14'),
+(278,	117,	NULL,	NULL,	NULL,	'ru',	'{"title": "Xorijdagi Vatandoshlar uchun Anor damolish oromgohi ochildi RUS", "description": "<p><span style=\"letter-spacing: 0.14px;\">news ru content</span></p>"}',	'2025-12-27 16:57:51',	'2026-01-09 11:52:36'),
+(280,	117,	NULL,	NULL,	NULL,	NULL,	'{"url": "https://www.youtube.com/embed/BHACKCNDMW8?si=AtPPS9WpLIT3_TaW"}',	'2025-12-27 16:57:51',	'2026-01-09 11:52:36');
 
 DROP TABLE IF EXISTS "page_sections";
 DROP SEQUENCE IF EXISTS page_sections_id_seq;
@@ -1634,7 +1679,6 @@ INSERT INTO "page_sections" ("id", "menu_main_id", "sort_order", "status", "slug
 (93,	33,	93,	'1',	'yurtdosh',	'video',	'video-7',	66,	'2025-12-26 14:27:29',	'2025-12-27 14:23:30'),
 (94,	33,	94,	'1',	'qollsh',	'video',	'video-7',	66,	'2025-12-26 14:27:50',	'2025-12-27 14:23:56'),
 (95,	33,	95,	'1',	'qollang',	'video',	'video-7',	66,	'2025-12-26 14:28:05',	'2025-12-27 14:24:21'),
-(117,	26,	117,	'1',	'xorijdagi-vatandoshlar-uchun-anor-damolish-oromgohi-ochildi',	NULL,	NULL,	NULL,	'2025-12-27 16:57:51',	'2025-12-27 16:57:51'),
 (120,	35,	120,	'1',	'biz-barcha-vatandoshlarni-birlashtirib-ularga-kerakli-mativatsiya',	NULL,	NULL,	NULL,	'2025-12-27 19:14:10',	'2025-12-27 19:14:10'),
 (77,	33,	77,	'1',	'ajoyib-manzil',	'video',	'video-1',	61,	'2025-12-26 13:57:36',	'2025-12-28 06:11:54'),
 (78,	33,	78,	'1',	'eng-sara-joylar',	'video',	'video-1',	61,	'2025-12-26 13:57:53',	'2025-12-28 06:12:16'),
@@ -1680,13 +1724,11 @@ INSERT INTO "page_sections" ("id", "menu_main_id", "sort_order", "status", "slug
 (139,	41,	139,	'1',	'2024-yil',	NULL,	NULL,	NULL,	'2025-12-29 12:44:36',	'2025-12-29 12:44:36'),
 (131,	40,	131,	'1',	'anor-tanlovi',	NULL,	NULL,	NULL,	'2025-12-29 12:29:53',	'2025-12-29 12:47:40'),
 (143,	42,	143,	'1',	'',	NULL,	NULL,	NULL,	'2025-12-30 07:36:01',	'2025-12-30 07:36:01'),
-(148,	38,	148,	'1',	'anor-loyihasi',	NULL,	NULL,	NULL,	'2025-12-30 16:43:36',	'2025-12-30 16:43:36'),
 (149,	38,	149,	'1',	'yoshlar-tanlovi',	NULL,	NULL,	NULL,	'2025-12-30 16:44:29',	'2025-12-30 16:44:29'),
 (150,	38,	150,	'1',	'2022-mavsum',	'Yillar',	'yillar-1',	148,	'2025-12-30 16:47:11',	'2025-12-30 16:47:11'),
 (151,	38,	151,	'1',	'2023mavsum',	'Yillar',	'yillar-1',	148,	'2025-12-30 16:47:54',	'2025-12-30 16:47:54'),
 (152,	38,	152,	'1',	'2022-mavsumdagi',	'Yillar',	'yillar-2',	149,	'2025-12-30 16:54:48',	'2025-12-30 16:54:48'),
 (153,	38,	153,	'1',	'2023mavsumdagi',	'Yillar',	'yillar-2',	149,	'2025-12-30 16:58:03',	'2025-12-30 16:58:03'),
-(156,	38,	156,	'1',	'universitet-tanlovi',	NULL,	NULL,	NULL,	'2025-12-31 01:02:51',	'2025-12-31 01:02:51'),
 (157,	38,	157,	'1',	'futbol-mavzusi',	NULL,	NULL,	NULL,	'2025-12-31 01:03:31',	'2025-12-31 01:03:31'),
 (158,	38,	158,	'1',	'bank-loyihasi',	NULL,	NULL,	NULL,	'2025-12-31 01:05:11',	'2025-12-31 01:05:11'),
 (159,	38,	159,	'1',	'golaso',	NULL,	NULL,	NULL,	'2026-01-05 04:10:09',	'2026-01-05 04:10:09'),
@@ -1694,6 +1736,9 @@ INSERT INTO "page_sections" ("id", "menu_main_id", "sort_order", "status", "slug
 (119,	26,	119,	'1',	'xorijdagi-vatandoshlar-uchun-anor-damolish-oromgohi-ochildixxx',	NULL,	NULL,	NULL,	'2025-12-27 17:01:20',	'2026-01-05 07:58:03'),
 (160,	46,	160,	'1',	'yangi-o-zbekiston-tili-va-adabiyoti-fani-o-qituvchilari',	NULL,	NULL,	NULL,	'2026-01-05 04:59:13',	'2026-01-05 08:07:49'),
 (162,	46,	162,	'1',	'yangi-o-zbekiston-tili-va-adabiyoti-fani-o-qituvchilarir',	NULL,	NULL,	NULL,	'2026-01-05 05:00:18',	'2026-01-05 08:08:17'),
+(148,	38,	148,	'1',	'anor-loyihasi1',	NULL,	NULL,	NULL,	'2025-12-30 16:43:36',	'2026-01-05 12:22:41'),
+(156,	38,	156,	'1',	'universitet-tanlovi2',	NULL,	NULL,	NULL,	'2025-12-31 01:02:51',	'2026-01-05 12:28:37'),
+(117,	26,	22,	'1',	'xorijdagi-vatandoshlar-uchun-anor-damolish-oromgohi-ochildi',	NULL,	NULL,	NULL,	'2025-12-27 16:57:51',	'2026-01-06 11:19:42'),
 (165,	45,	165,	'1',	'transfor',	NULL,	NULL,	NULL,	'2026-01-05 05:39:04',	'2026-01-05 05:39:04'),
 (166,	45,	166,	'1',	'biz-barcha-vatandoshlarni-birlashtirib-ularga-kerakli-mativatsiyacc',	NULL,	NULL,	NULL,	'2026-01-05 05:39:36',	'2026-01-05 05:39:36'),
 (167,	45,	167,	'1',	'jahongir',	NULL,	NULL,	NULL,	'2026-01-05 07:09:42',	'2026-01-05 07:09:42'),
@@ -1709,7 +1754,9 @@ INSERT INTO "page_sections" ("id", "menu_main_id", "sort_order", "status", "slug
 (175,	3,	175,	'1',	'qatnashgan-vatandoshlar-soniz',	NULL,	NULL,	NULL,	'2026-01-05 08:16:14',	'2026-01-05 08:16:14'),
 (176,	3,	176,	'1',	'qatnashgan-vatandoshlar-sonidd',	NULL,	NULL,	NULL,	'2026-01-05 08:17:25',	'2026-01-05 08:17:25'),
 (177,	3,	177,	'1',	'qatnashgan-vatandoshlar-sonii',	NULL,	NULL,	NULL,	'2026-01-05 08:17:42',	'2026-01-05 08:17:42'),
-(164,	45,	164,	'1',	'tt',	NULL,	NULL,	NULL,	'2026-01-05 05:37:55',	'2026-01-05 08:20:20');
+(164,	45,	164,	'1',	'tt',	NULL,	NULL,	NULL,	'2026-01-05 05:37:55',	'2026-01-05 08:20:20'),
+(178,	47,	178,	'1',	'xx',	NULL,	NULL,	NULL,	'2026-01-06 10:37:53',	'2026-01-07 06:00:21'),
+(179,	14,	179,	'1',	'',	NULL,	NULL,	NULL,	'2026-01-08 14:06:17',	'2026-01-08 14:06:17');
 
 DROP TABLE IF EXISTS "password_reset_tokens";
 CREATE TABLE "public"."password_reset_tokens" (
@@ -1790,7 +1837,8 @@ CREATE INDEX sessions_user_id_index ON public.sessions USING btree (user_id);
 CREATE INDEX sessions_last_activity_index ON public.sessions USING btree (last_activity);
 
 INSERT INTO "sessions" ("id", "user_id", "ip_address", "user_agent", "payload", "last_activity") VALUES
-('g0kGaHREVJLnicoJGwuohXfa5CZXRExWkq6HVSME',	1,	'172.23.0.1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36',	'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiV1prVU5KZHVjOG5od2xSUFNmaGNKMHFnckhXb2ZUWTVLYzl5WnhoaCI7czo2OiJsb2NhbGUiO3M6MjoidXoiO3M6OToiX3ByZXZpb3VzIjthOjI6e3M6MzoidXJsIjtzOjY2OiJodHRwOi8vbG9jYWxob3N0OjgwNzgvYWRtaW4vcGFnZXMvdm9sb250b3JsYXJpbWl6L3NlY3Rpb24vNDUvaXRlbXMiO3M6NToicm91dGUiO3M6MjU6ImFkbWluLnBhZ2VzLnNlY3Rpb24uaW5kZXgiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=',	1767601431);
+('TyyrQjR85MuAcpvs64itzssf0trB9HlhYconBNWc',	NULL,	'172.23.0.1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0',	'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiZXRpVEthT1AzdWRFbUJCMndadDc2TEdGazUyUGFncDROUWlWQzltbCI7czo2OiJsb2NhbGUiO3M6MjoidXoiO3M6OToiX3ByZXZpb3VzIjthOjI6e3M6MzoidXJsIjtzOjM2OiJodHRwOi8vbG9jYWxob3N0OjgwNzgvdXoveWFuZ2lsaWtsYXIiO3M6NToicm91dGUiO3M6NDoiaG9tZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=',	1767959475),
+('sMzNPOpArNDNQZ35CtWegh1aw8tU5RDkvAF4w3V3',	1,	'172.23.0.1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36',	'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiNmFaUFVmS0FiS3BXZm42Nkg5YXF3NXpuSWZjRHBqU2xuMDJIbVVLZCI7czo2OiJsb2NhbGUiO3M6MjoidXoiO3M6OToiX3ByZXZpb3VzIjthOjI6e3M6MzoidXJsIjtzOjQ3OiJodHRwOi8vbG9jYWxob3N0OjgwNzgvZnJvbnQvaW1hZ2VzL2ZsYWdzL3VzLnBuZyI7czo1OiJyb3V0ZSI7czo0OiJob21lIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czoyNzoiaHR0cDovL2xvY2FsaG9zdDo4MDc4L2FkbWluIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9',	1767962820);
 
 DROP TABLE IF EXISTS "settings";
 DROP SEQUENCE IF EXISTS settings_id_seq;
@@ -1841,13 +1889,19 @@ CREATE TABLE "public"."supports" (
     "data" jsonb NOT NULL,
     "created_at" timestamp(0),
     "updated_at" timestamp(0),
+    "type" text,
     CONSTRAINT "supports_pkey" PRIMARY KEY ("id")
 )
 WITH (oids = false);
 
-INSERT INTO "supports" ("id", "data", "created_at", "updated_at") VALUES
-(1,	'{"name": "Asad", "email": "y@gmail.com", "phone": "+990555555", "description": "gol"}',	'2025-12-30 23:52:13',	'2025-12-30 23:52:13'),
-(2,	'{"name": "aLI", "email": "yam@gmail.com", "phone": "+998905975554", "description": "Eng yaxshi dastruc"}',	'2025-12-30 23:58:20',	'2025-12-30 23:58:20');
+INSERT INTO "supports" ("id", "data", "created_at", "updated_at", "type") VALUES
+(61,	'{"name": "Asad", "email": "yam@gmail.com", "phone": "+998 90-597-55-54", "description": "yZSH"}',	'2026-01-09 05:13:50',	'2026-01-09 05:13:50',	'form'),
+(63,	'{"city": "tashkent", "name": "saasfs", "email": "yam@gmail.com", "phone": "905975554", "gender": "male", "country": "uzbekistan", "position": "Junior", "telegram": null, "whatsapp": null, "birthdate": "2026-01-07", "education": "boshlangich", "instagram": null, "workplace": "ProEnd", "specialization": "orta"}',	'2026-01-09 07:15:17',	'2026-01-09 07:15:17',	'participation'),
+(64,	'{"city": "tashkent", "name": "Asad", "email": "qwerty@gmail.com", "phone": "905975554", "gender": "male", "country": "uzbekistan", "position": "Junior", "telegram": null, "whatsapp": null, "birthdate": "2026-01-09", "education": "boshlangich", "instagram": null, "workplace": "ProEnd", "specialization": "orta"}',	'2026-01-09 07:19:13',	'2026-01-09 07:19:13',	'participation'),
+(97,	'{"city": "sirdaryo", "name": "Asad", "email": "wq@gmail.com", "phone": "905975554", "gender": "female", "country": "uzbekistan", "position": "Junior", "telegram": null, "whatsapp": null, "birthdate": "2026-01-01", "education": "boshlangich", "instagram": null, "workplace": "ProEnd", "specialization": "orta"}',	'2026-01-09 10:48:01',	'2026-01-09 10:48:01',	'participation'),
+(98,	'{"city": "fergana", "name": "Asad", "email": "wq@gmail.com", "phone": "905975554", "gender": "male", "country": "uzbekistan", "position": "Junior", "telegram": null, "whatsapp": null, "birthdate": "2026-01-01", "education": "boshlangich", "instagram": null, "workplace": "ProEnd", "specialization": "orta"}',	'2026-01-09 11:15:49',	'2026-01-09 11:15:49',	'participation'),
+(99,	'{"name": "saasfs", "email": "wq@gmail.com", "phone": "+998 90-597-55-54", "description": "csdvfxsf"}',	'2026-01-09 12:08:27',	'2026-01-09 12:08:27',	'form'),
+(100,	'{"name": "cdfvd", "email": "qwerty@gmail.com", "phone": "+998 90-597-55-54", "description": "wefvregdt"}',	'2026-01-09 12:15:45',	'2026-01-09 12:15:45',	'form');
 
 DROP TABLE IF EXISTS "users";
 DROP SEQUENCE IF EXISTS users_id_seq;
@@ -1876,6 +1930,29 @@ INSERT INTO "users" ("id", "name", "username", "status", "password", "role_id", 
 (2,	'Moderator',	'moderator',	'1',	'$2y$12$6ZkAf8mM7gBLGpKS61RCku6S8hnXw3Sj5mcPzt5OTyHXM83QtD6C6',	2,	NULL,	NULL,	NULL,	NULL,	NULL),
 (3,	'Editor',	'editor',	'0',	'$2y$12$xmCOMOGc46IeFlCVSHaM5ujFkUnN5VgiPhHgNkR8VR.IEWnIKEw4S',	2,	NULL,	NULL,	NULL,	NULL,	NULL);
 
+DROP TABLE IF EXISTS "view_counts";
+DROP SEQUENCE IF EXISTS view_counts_id_seq;
+CREATE SEQUENCE view_counts_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1;
+
+CREATE TABLE "public"."view_counts" (
+    "id" bigint DEFAULT nextval('view_counts_id_seq') NOT NULL,
+    "viewable_type" character varying(255) NOT NULL,
+    "viewable_id" bigint NOT NULL,
+    "ip_address" character varying(45) NOT NULL,
+    "user_agent" text NOT NULL,
+    "created_at" timestamp(0),
+    "updated_at" timestamp(0),
+    CONSTRAINT "view_counts_pkey" PRIMARY KEY ("id")
+)
+WITH (oids = false);
+
+CREATE INDEX view_counts_viewable_type_viewable_id_index ON public.view_counts USING btree (viewable_type, viewable_id);
+
+INSERT INTO "view_counts" ("id", "viewable_type", "viewable_id", "ip_address", "user_agent", "created_at", "updated_at") VALUES
+(13,	'App\Models\PageSection',	33,	'172.23.0.1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36',	'2026-01-06 09:31:35',	'2026-01-06 09:31:35'),
+(14,	'App\Models\PageSection',	117,	'172.23.0.1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36',	'2026-01-07 16:22:48',	'2026-01-07 16:22:48'),
+(15,	'App\Models\PageSection',	117,	'172.23.0.1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36 Edg/143.0.0.0',	'2026-01-09 11:50:54',	'2026-01-09 11:50:54');
+
 ALTER TABLE ONLY "public"."content_images" ADD CONSTRAINT "content_images_content_id_foreign" FOREIGN KEY (content_id) REFERENCES contents(id) NOT DEFERRABLE;
 
 ALTER TABLE ONLY "public"."content_translations" ADD CONSTRAINT "content_translations_content_id_foreign" FOREIGN KEY (content_id) REFERENCES contents(id) ON DELETE CASCADE NOT DEFERRABLE;
@@ -1892,4 +1969,4 @@ ALTER TABLE ONLY "public"."role_menu_permissions" ADD CONSTRAINT "role_menu_perm
 ALTER TABLE ONLY "public"."role_menu_permissions" ADD CONSTRAINT "role_menu_permissions_permission_id_foreign" FOREIGN KEY (permission_id) REFERENCES permissions(id) ON DELETE CASCADE NOT DEFERRABLE;
 ALTER TABLE ONLY "public"."role_menu_permissions" ADD CONSTRAINT "role_menu_permissions_role_id_foreign" FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE NOT DEFERRABLE;
 
--- 2026-01-05 08:24:57 UTC
+-- 2026-01-09 12:59:41 UTC

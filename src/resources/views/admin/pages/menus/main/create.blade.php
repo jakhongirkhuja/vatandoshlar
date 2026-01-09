@@ -71,6 +71,10 @@
                                                        @if($setting->type=='textarea' || $setting->type=='textarea-editor')
                                         <textarea class="form-control {{$setting->type=='textarea-editor'? 'summernote' : ''}}"
                                             name="fields[{{ $language->code }}][{{ $setting->key }}]">{{ $value }}</textarea>
+                                              @elseif($setting->type == 'datetime-local') 
+                                              <input type="datetime-local"
+           class="form-control"
+           name="fields[{{ $language->code }}][{{ $setting->key }}]" value={{ $value }} >
                                         @else
                                                             @php $type = $setting->type=='text'? 'text' : 'number' @endphp
                                                             <input
@@ -101,6 +105,10 @@
                                                                           @if($setting->type=='textarea' || $setting->type=='textarea-editor')
                                 <textarea class="form-control {{$setting->type=='textarea-editor'? 'summernote' : ''}}"
                                     name="fields[{{ $setting->key }}]">{{ $value2 }}</textarea>
+                                      @elseif($setting->type == 'datetime-local') 
+                                              <input type="datetime-local"
+           class="form-control"
+           name="fields[{{ $setting->key }}]" value={{ $value }} >
                                            @else
 
                                                 @php $type = $setting->type=='text'? 'text' : 'number' @endphp

@@ -22,9 +22,10 @@ class SupportStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'type' => 'required|string|in:form,application,participation',
             'data' => 'required|array',
             'data.name' => 'required|string',
-            'data.phone' => 'required|integer',
+            'data.phone' => 'required',
             'data.email' => 'required|email',
             'data.description' => 'required|string',
         ];

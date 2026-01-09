@@ -27,7 +27,7 @@ class PageSettingsRequest extends FormRequest
             'fields.*.id' => 'nullable|integer',
             'fields.*.key' => 'required|string',
             'fields.*.label' => 'required|string',
-            'fields.*.type' => 'required|string|in:text,textarea,select,number,relation,textarea-editor', // allowed types
+            'fields.*.type' => 'required|string|in:text,textarea,select,number,relation,textarea-editor,datetime-local', // allowed types
             'fields.*.required' => 'nullable|in:on,off',
             'fields.*.is_translatable' => 'nullable|in:on,off',
             'fields.*.sort' => 'nullable|integer',

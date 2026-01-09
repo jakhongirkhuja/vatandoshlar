@@ -27,12 +27,12 @@
 
                 <div class="form-group breadcrum-right ">
 
-                    <a href="{{route('admin.content.create')}}"
+                    <a href="{{route('admin.content.create', ['category' => request()->route('category')])}}"
                         class="btn btn-primary pull-right waves-effect waves-light" type="button">
                         <i class="feather icon-plus icon-white"></i>
                         <span>Добавить</span>
                     </a>
-                    <a href="{{route('admin.content.settings')}}"
+                    <a href="{{route('admin.content.settings', ['category' => request()->route('category')])}}"
                         class="btn btn-primary pull-right waves-effect waves-light mr-2" type="button">
                         <i class="feather icon-settings  icon-white"></i>
                         <span>Настройки</span>
@@ -63,7 +63,7 @@
                                 </code>
                             </td>
                             <td class="fx align-items-center">
-                                <a href="{{ route('admin.content.edit', $content->id) }}" class="btn btn-small btn-info mr-1">
+                                <a href="{{ route('admin.content.edit', ['id' => $content->id, 'category' => request()->route('category')]) }}" class="btn btn-small btn-info mr-1">
                                     <i class="feather icon-edit icon-white"></i>
                                 </a>
                                 <div class="custom-control custom-switch custom-control-inline">
@@ -74,7 +74,7 @@
                                 </div>
                                 <a href="#" class="btn btn-small btn-danger ml-2 delete-btn"
                                     data-id="{{ $content->id }}"
-                                    data-url="{{ route('admin.content.delete', $content->id) }}">
+                                    data-url="{{ route('admin.content.delete', [$content->id, 'category' => request()->route('category')]) }}">
                                     <i class="feather icon-trash icon-white"></i>
                                 </a>
                             </td>

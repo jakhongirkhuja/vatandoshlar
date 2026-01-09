@@ -26,7 +26,7 @@ class MenuMainSettinsRequest extends FormRequest
             'fields.*.id' => 'nullable|integer',
             'fields.*.key' => 'required|string',
             'fields.*.label' => 'required|string',
-            'fields.*.type' => 'required|string|in:text,textarea,number,select,relation,textarea-editor',
+            'fields.*.type' => 'required|string|in:text,textarea,number,select,relation,textarea-editor,datetime-local',
             'fields.*.required' => 'nullable|in:on,off',
             'fields.*.is_translatable' => 'nullable|in:on,off',
             'fields.*.sort' => 'nullable|integer',

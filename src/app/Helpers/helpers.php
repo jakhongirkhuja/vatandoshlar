@@ -9,9 +9,10 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 
 if (!function_exists('is_current_route')) {
-    function is_current_route(string $routeName): bool
+    function is_current_route(string $routeName, array $params = []): bool
     {
-        return Request::url() === route($routeName);
+        return request()->routeIs($routeName)
+            && empty(array_diff_assoc($params, request()->route()->parameters()));
     }
 }
 

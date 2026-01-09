@@ -25,7 +25,7 @@ class ContentStoreRequest extends FormRequest
             'fields' => 'required|array',
             'icon' => 'nullable|string',
             'parent_id' => 'nullable|exists:menu_mains,id',
-
+            'category' => 'required|string',    
             'show_admin' => 'nullable|in:on,off',
             'status' => 'nullable|in:on,off',
             'images' => 'nullable|array',

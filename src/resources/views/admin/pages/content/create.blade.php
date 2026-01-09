@@ -15,7 +15,7 @@
                             <div class="breadcrumb-wrapper col-12">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Главная</a></li>
-                                    <li class="breadcrumb-item"><a href="{{ route('admin.content.index') }}">Контент</a>
+                                    <li class="breadcrumb-item"><a href="{{ route('admin.content.index',['category' => request()->route('category')]) }}">Контент</a>
                                     </li>
                                     <li class="breadcrumb-item"><a href="#" onclick="history.go(-1)">Назад</a></li>
                                 </ol>
@@ -32,7 +32,7 @@
                 <input type="hidden" id="deleteRoute"  value="{{request()->root()}}">
                 <section class="langs-edit">
                     <form
-                        action="{{ $isEdit ? route('admin.content.update', ['id'=>$content->id]) : route('admin.content.store') }}"
+                        action="{{ $isEdit ? route('admin.content.update', ['id'=>$content->id,'category' => request()->route('category') ]) : route('admin.content.store', ['category' => request()->route('category')]) }}"
                         method="POST" enctype="multipart/form-data">
                         @csrf
                         @if($isEdit)

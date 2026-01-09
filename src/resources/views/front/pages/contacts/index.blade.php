@@ -1,18 +1,43 @@
 @extends('front.layouts.layout')
 @section('body')
  @include('front.components.breadcrumbs')
+  <script src="{{ asset('front/') }}/assets/js/imask.js"></script>
     <div class="layout">
         <div class="container">
             <div class="contacts-page">
                 <div class="contacts-page__data">
                     <h2 class="contacts-page__data--title">Biz bilan bog'lanish uchun ariza shakli</h2>
-                    
+                  
                     {{-- Success Message --}}
-                    @if(session('success'))
-                        <div class="alert alert-success" style="padding: 15px; margin-bottom: 20px; background: #d4edda; color: #155724; border-radius: 5px;">
-                            {{ session('success') }}
+                  @if(session('success'))
+                    {{-- Modal faqat success bo'lgandagina ko'rinadi --}}
+                    <div class="modal fade"  id="supportResponseModal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                {{-- Header qismini ko'k (bg-primary) qildik --}}
+                                <div class="modal-header bg-primary text-white">
+                                    <h5 class="modal-title">Ma'lumot</h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body text-center py-4">
+                                    <h4 class="text-primary mb-2">Rahmat!</h4>
+                                    <p class="mb-0">{{ session('success') }}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Yopish</button>
+                                </div>
+                            </div>
                         </div>
-                    @endif
+                    </div>
+
+                    {{-- Success bo'lganda modalni avtomatik chiqarish uchun skript --}}
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            var myModal = new bootstrap.Modal(document.getElementById('supportResponseModal'));
+                            myModal.show();
+                        });
+                    </script>
+                @endif
 
                     {{-- Error Messages --}}
                     @if($errors->any())
@@ -27,7 +52,7 @@
 
                     <form action="{{route('support.createForm')}}" class="contacts-page__data--form" method="post">
                         @csrf
-                        
+                           <input type="hidden" name="type" value="form">
                         <div class="contacts-page__data--form-group">
                             <label>To'liq ismingiz:</label>
                             <input class="form-control" 
@@ -148,7 +173,6 @@
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
             </div>
-
             <script>
                 const input = document.querySelector('#phone');
                 IMask(input, {

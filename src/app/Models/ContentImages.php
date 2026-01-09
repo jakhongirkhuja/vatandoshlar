@@ -8,6 +8,7 @@ class ContentImages extends Model
 {
      protected $fillable =[
         'content_id',
-        'main'
+        'main',
+        'category'
     ];
 }

@@ -36,7 +36,7 @@
                     @endphp
 
                     <a href="{{route('admin.pages.section.create', $parameters)}}"
-                        class="btn btn-primary pull-right waves-effect waves-light" type="button">
+                        class="btn btn-primary pull-right waves-effect waves-light" type="button"> 
                         <i class="feather icon-plus icon-white"></i>
                         <span>Добавить</span>
                     </a>
@@ -79,7 +79,7 @@
                                 <a href="{{route('admin.pages.section.index', ['slug'=>$slug,'id'=>$menu->id, 'parent_id'=>$section->id, 'category_slug'=>$category])}}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title data-original-title="Под категорию">{{isset($child[0])? $child[0]->category: 'empty'}}</a>
 
                                 @endforeach
-                                <a href="{{route('admin.pages.section.settings.create', ['slug'=>$slug,'id'=>$menu->id, 'parent_id'=>$section->id])}}" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title data-original-title="Добавить под категорию"><i class="feather icon-plus icon-white"></i></a>
+                                <a href="{{route('admin.pages.section.settings.create', ['slug'=>$slug,'id'=>$menu->id, 'parent_id'=>$section->id])}}" class="btn btn-secondary" style="display: none;" data-toggle="tooltip" data-placement="top" title data-original-title="Добавить под категорию"><i class="feather icon-plus icon-white"></i></a>
                             </td>
                             <td>
                                {{ \Illuminate\Support\Str::limit($section->getTitle($section->translations), 40) }}

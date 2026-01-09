@@ -341,3 +341,12 @@ table th, table td {
 .menu__item.active > .menu__top .menu__toggle {
     content: "−";
 }
+  .drop-zone {
+    border: 1px dashed transparent;
+   
+}
+.drop-zone.dragover {
+    border-color: #4caf50;
+      cursor: pointer;
+    background: #f0fff4;
+}

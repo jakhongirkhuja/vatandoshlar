@@ -10,6 +10,7 @@
     <meta name="keywords" content="{{ setting('meta_keywords') }}">
     <meta name="author" content="ProEnd">
     <title>Admin - {{ setting('title') }}</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="apple-touch-icon" href="{{asset('assets/admin')}}/app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/admin')}}/app-assets/images/ico/favicon.ico">
     {{--

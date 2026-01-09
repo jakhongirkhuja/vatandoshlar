@@ -10,5 +10,6 @@ class ContentTranslation extends Model
         'content_id',
         'locale',
         'data',
+        'category'
     ];
 }

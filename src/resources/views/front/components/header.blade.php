@@ -12,12 +12,19 @@
         <div class="header__right">
 
             <button class="header__search--btn">
-                <span class="i-eye"></span>
+                <span class="i-eye" style="display: none;"></span>
             </button>
-            <button class="header__search--btn" type="button" onclick="toggleSearch()" aria-label="Search">
-                <span class="i-search" aria-hidden="true"></span>
-            </button>
-            <a class="header__link" href="#">
+        <div class="col-md-6">
+            <div class="form-group">
+                <form method="get" action="{{ route('search') }}" style="display: none;">
+                    <div class="input-group">
+                        <input class="form-control" name="search" placeholder="Search...">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+            <a class="header__link" style="display: none;" href="#">
                 Ramzlarimiz
             </a>
             @php

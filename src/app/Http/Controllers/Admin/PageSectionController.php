@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PageSectionImageRequest;
 use App\Http\Requests\PageSectionRequest;
 use App\Http\Requests\PageSettingsRequest;
 use App\Http\Requests\SortOrderUpdateRequest;
@@ -124,5 +125,9 @@ class PageSectionController extends Controller
     {
         $this->service->destroy($id);
         return back();
+    }
+    public function addImage(PageSectionImageRequest $request, $id){
+       
+          return $this->service->addImage( $id,$request->validated());
     }
 }

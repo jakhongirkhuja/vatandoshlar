@@ -7,7 +7,7 @@
                     <span>“Vatandoshlar”<br>Jamoat Fondi</span>
                 </a>
                 <p class="footer__text">
-                  {{staticValue('agency')}}
+                    {{staticValue('agency')}}
                 </p>
             </div>
             <div class="col">
@@ -48,7 +48,6 @@
     </div>
 </footer>
 <script src="{{ asset('front/') }}/assets/libs/jquery.min.js"></script>
-<script src="{{ asset('front/') }}/assets/js/imask.js"></script>
 <script src="{{ asset('front/') }}/assets/libs/bootstrap/bootstrap.bundle.min.js"></script>
 <script src="{{ asset('front/') }}/assets/libs/owl-carousel/owl.carousel.min.js"></script>
 <script src="{{ asset('front/') }}/assets/js/main.js"></script>

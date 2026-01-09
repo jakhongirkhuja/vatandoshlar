@@ -1,7 +1,7 @@
 @extends('front.layouts.layout')
 
 @section('body')
-    @include('front.components.breadcrumb')
+    @include('front.components.breadcrumbs')
     @php
         $sections = menuSections(30, 2);
     @endphp
@@ -14,6 +14,7 @@
                     $projects = $items->first();
                     $projectVideo = sectionImages($projects, true);
                     $categories = menuSections(38,3,true,true);
+                  
                 @endphp
 
                 @if($projects)
@@ -28,10 +29,11 @@
                             <h1 class="projects-hero__title">
                                 {{ sectionValue($projects, 'title') }}
                             </h1>
+                            {{ sectionValue($projects,'timer') }}
 
                             <div class="projects-hero__wrapper">
                                 <a href="{{sectionValue($projects,'url')}}" class="button projects-hero__wrapper--btn">Tanlov shartlari</a>
-                                <a href="#" class="button projects-hero__wrapper--btn">Ishtirok etish</a>
+                                <a href="{{route('participation')}}" class="button projects-hero__wrapper--btn">Ishtirok etish</a>
                             </div>
 
                             <a href="#" class="projects-hero__btn">
@@ -39,6 +41,8 @@
                                 <span>Video ko’rish</span>
                             </a>
                         </div>
+                          
+
                     </div>
                 @endif
 

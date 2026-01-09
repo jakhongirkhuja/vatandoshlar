@@ -50,6 +50,7 @@ class ContentService
                 'type' => $data['type'] ?? 'category',
                 'icon' => $data['icon'] ?? null,
                 'parent_id' => $data['parent_id'] ?? null,
+                'category' => (isset($data['category']) && $data['category'] === 'list') ? 'list' : null,
                 'status' => isset($data['status']) && $data['status'] == 'on' ? true : false,
                 'slug' => $data['slug'] ?? null,
                 'url' => $data['url'] ?? null,
@@ -92,18 +93,21 @@ class ContentService
                 }
             }
 
-            return redirect()->route('admin.content.index')->with('success', 'Content created successfully.');
+            return redirect()->route('admin.content.index', [
+                'category' => $data['category']
+            ])->with('success', 'Content created successfully.');
         } catch (\Exception $exception) {
             return back()->withErrors(['error' => $exception->getMessage()]);
         }
     }
-    public function ContentUpdate(array $data, $content)
+    public function ContentUpdate($category, array $data, $content)
     {
         try {
             $dataToUpdate = [
                 'type' => $data['type'] ?? 'category',
                 'icon' => $data['icon'] ?? null,
                 'parent_id' => $data['parent_id'] ?? null,
+                'category' => (isset($data['category']) && $data['category'] === 'list') ? 'list' : null,
                 'status' => isset($data['status']) && $data['status'] === 'on' ? true : false,
                 'slug' => $data['slug'] ?? $content->slug,
                 'url' => $data['url'] ?? $content->url,
@@ -162,12 +166,14 @@ class ContentService
                 }
 
             }
-            return back()->with('success', 'Content Updated successfully.');
+            return redirect()->route('admin.content.index', [
+                'category' => $data['category']
+            ])->with('success', 'Content created successfully.');
         } catch (\Exception $exception) {
             return back()->withErrors(['error' => $exception->getMessage()]);
         }
     }
-    public function destroy($id)
+    public function destroy($category, $id)
     {
         $contents = Content::with('translations')->find($id);
         try {

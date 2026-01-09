@@ -119,6 +119,10 @@
                                                                     value="textarea-editor" {{ $f->type=='textarea-editor'?'selected':'' }}>
                                                                     Textarea Editor
                                                                 </option>
+                                                                 <option
+                                                                    value="datetime-local" {{ $f->type=='datetime-local'?'selected':'' }}>
+                                                                    Date-time
+                                                                </option>
                                                                 <option
                                                                     value="select" {{ $f->type=='select'?'selected':'' }}>
                                                                     Select-Option

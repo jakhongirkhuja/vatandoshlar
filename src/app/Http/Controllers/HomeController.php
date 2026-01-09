@@ -19,6 +19,7 @@ class HomeController extends Controller
 
     public function index(Request $request, $locale = null, $any = null, $inside = null, $detail = null)
     {
+        // dd($request->ip(),$request->header('user-agent'));
         $locale = app()->getLocale();
         if ($any != null) {
             $currentPage = MenuMain::with(['parent', 'childrens', 'translations', 'images'])->where('slug', $any)->first();
@@ -32,6 +33,10 @@ class HomeController extends Controller
             if ($inside && $detail) {
                 $viewPath = "front.pages." . str_replace("-", "_", $any) . ".inside.detail.index";
             } elseif ($inside) {
+                if ($any === 'yangiliklar') {
+                    $newsItem = PageSection::where('slug', $inside)->firstOrFail();
+                    $newsItem->addView(request());
+                }
                 $viewPath = "front.pages." . str_replace("-", "_", $any) . ".inside.index";
             } else {
                 $viewPath = "front.pages." . str_replace("-", "_", $any) . ".index";
@@ -51,7 +56,13 @@ class HomeController extends Controller
                     if (!$items) {
                         abort(404);
                     }
+                   
                 } else {
+                    if($any =='yangiliklar'){
+                        $items = PageSection::with(['children', 'translations', 'images'])
+                                ->where('menu_main_id', $currentPage->id)->orderBy('sort_order')
+                                ->paginate();
+                    }
                     foreach ($currentPage->children as $sections) {
                         $items = $items->merge(
                             PageSection::with(['children', 'translations', 'images'])

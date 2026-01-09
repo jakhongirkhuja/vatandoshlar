@@ -1,6 +1,7 @@
 @extends('front.layouts.layout')
 
 @section('body')
+<link rel="stylesheet" href="{{ asset('front/location/jqvmap.css') }}">
     @include('front.components.breadcrumbs')
     <div class="layout">
         <div class="container">
@@ -20,7 +21,7 @@
                     </div>
                     <div class="tab-panels international-partnership__panels">
                         <div data-tab-system="1" class="tab-panel">
-                            #map here
+                            <div id="vmap"></div>
                         </div>
                         <div data-tab-system="1" class="tab-panel">
                             <div class="associations__grid">
@@ -54,4 +55,32 @@
             @include('front.components.sidebar')
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('front/location/jquery.vmap.min.js') }}"></script>
+     <script src="{{ asset('front/location/jquery.vmap.uzb.js') }}"></script>
+    <script>
+        window.APP_LOCALE = '{{  app()->getLocale() ?? "uz" }}';
+    </script>
+    @include('front.components.location')
+   
+
+    <script>
+        $(document).ready(function() {
+            // Xaritani ishga tushirish
+            if($('#vmap').length > 0) {
+                $('#vmap').vectorMap({
+                    map: 'uzb_fr',
+                    backgroundColor: '#ffffff',
+                    color: '#3b7cad',
+                    hoverOpacity: 0.7,
+                    selectedColor: '#666666',
+                    enableZoom: true,
+                    showTooltip: true,
+                    onRegionClick: function(element, code, region) {
+                        console.log('Siz bosgan viloyat: ' + region);
+                    }
+                });
+            }
+        });
+    </script>
 @endsection

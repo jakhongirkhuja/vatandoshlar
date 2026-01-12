@@ -17,17 +17,10 @@ class ContentController extends Controller
 
     public function index($category = null)
     {
-        $query = Content::with('translations')->orderBy('sort_order');
-
-    if ($category == 'list') {
-        $query->where('category', $category);
-    } elseif($category == 'job') {
-
-        $query->whereNull('category');
-    }
-    return view('admin.pages.content.index', [
-        'contents' => $query->get()
-    ]);
+        $content = Content::with('translations')->where('category', $category)->orderBy('sort_order')->get();
+        return view('admin.pages.content.index', [
+            'contents' => $content
+        ]);
     }
     public function create()
     {
@@ -54,6 +47,7 @@ class ContentController extends Controller
     }
     public function store(ContentStoreRequest $request)
     {
+
         return $this->service->ContentStore($request->validated());
     }
     public function update($category,ContentUpdateRequest $request, $id)

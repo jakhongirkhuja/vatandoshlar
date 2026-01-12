@@ -143,7 +143,7 @@
                                                                 <option value="{{ $page->id }}"
                                                                     {{$page->id == $settings?->main_page_id ? 'selected' : '' }}
                                                                 >
-                                                                    {{ $page->slug }}
+                                                                    {{  $page->getTitle($page->translations, app()->getLocale())  }}
                                                                 </option>
                                                             @empty
 
@@ -152,6 +152,41 @@
                                                         </select>
                                                     </div>
                                                 </div>
+                                                <div class="col-md-12 mb-1">
+                                                    <div class="form-group">
+                                                        <label>Поиск по</label>
+                                                        <select name="search_ids[]"  id="search_ids" multiple="multiple"  class="form-control select2">
+                                                            <option >Выбрать</option>
+
+                                                            @foreach($pages as $menu)
+                                                                <option value="{{ $menu->id }}"
+                                                                    {{ in_array($menu->id, $settings->search_ids ?? []) ? 'selected' : '' }}>
+                                                                    {{  $menu->getTitle($menu->translations, app()->getLocale())  }}
+                                                                </option>
+                                                            @endforeach
+
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 mb-1">
+                                                    <div class="form-group">
+                                                        <label>Вкл сортировок</label>
+                                                        <select name="sorting_ids[]"  id="sorting_ids" multiple="multiple"  class="form-control select2">
+                                                            <option >Выбрать</option>
+
+                                                            @foreach($pages as $menu)
+                                                                <option value="{{ $menu->id }}"
+                                                                    {{ in_array($menu->id, $settings->sorting_ids ?? []) ? 'selected' : '' }}>
+                                                                    {{  $menu->getTitle($menu->translations, app()->getLocale())  }}
+                                                                </option>
+                                                            @endforeach
+
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+
                                                 <!-- Admin Panel IP Binding -->
                                                 <div class="col-md-12 mb-2">
                                                     <label class="form-label">

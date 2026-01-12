@@ -9,6 +9,7 @@
     <link rel="icon" href="{{ asset('front/') }}/images/logo.png">
     <link rel="stylesheet" href="{{ asset('front/') }}/assets/libs/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('front/') }}/assets/libs/aos/main.min.css">
+    <link rel="stylesheet" href="{{ asset('front/assets/bvi/css/bvi.css') }}">
     <link rel="stylesheet" href="{{ asset('front/') }}/assets/libs/owl-carousel/owl.carousel.min.css">
     <link rel="stylesheet" href="{{ asset('front/') }}/assets/libs/owl-carousel/owl.theme.default.min.css">
     <link rel="stylesheet" href="{{ asset('front/') }}/assets/fonts/stylesheet.css">
@@ -17,16 +18,18 @@
     <script src="{{ asset('front/') }}/assets/libs/aos/main.min.js"></script>
     <link rel="stylesheet" href="{{ asset('front/') }}/assets/fancy-box/fancybox.css">
     <script src="{{ asset('front/') }}/assets/fancy-box/fancybox.umd.js"></script>
-
+    <script src="{{ asset('front/') }}/assets/libs/jquery.min.js"></script>
     <title>“Vatandoshlar”Jamoat Fondi</title>
 </head>
 
-
-<body class="{{ is_current_route('home') ? 'index' : '' }}">
+@php
+    $segments = request()->segments();
+@endphp
+<body class="{{ count($segments)<=1 ? 'index' : '' }} " >
 
     @include('front.components.header')
     @yield('body')
-    @if(!is_current_route('home'))
+    @if(count($segments)>1)
         <div class="layout">
             <div class="container">
                 <div class="layout-content">
@@ -39,13 +42,12 @@
         </div>
     @endif
 
-    @if(is_current_route('home'))
+    @if(count($segments)<=1)
 
         <script>
             document.addEventListener('DOMContentLoaded', () => {
                 const header = document.querySelector('.header');
                 if (!header) return;
-
                 function onScroll() {
                     header.classList.toggle('light', window.scrollY <= 30);
                 }

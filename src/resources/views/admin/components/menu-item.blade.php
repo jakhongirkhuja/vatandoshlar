@@ -32,7 +32,7 @@ $route = '#';
 $defaultIcon = 'corner-down-right';
 }
 @endphp
-
+@if($menu->show_admin)
 <li class="nav-item {{ $menu->children->isNotEmpty() ? 'has-sub' : '' }}
     {{ (int) request()->route('id') === (int) $menu->id ? 'active' : '' }}">
 
@@ -61,3 +61,4 @@ $defaultIcon = 'corner-down-right';
     </ul>
     @endif
 </li>
+@endif

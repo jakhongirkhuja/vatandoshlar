@@ -47,12 +47,22 @@
         </div>
     </div>
 </footer>
-<script src="{{ asset('front/') }}/assets/libs/jquery.min.js"></script>
+
 <script src="{{ asset('front/') }}/assets/libs/bootstrap/bootstrap.bundle.min.js"></script>
 <script src="{{ asset('front/') }}/assets/libs/owl-carousel/owl.carousel.min.js"></script>
 <script src="{{ asset('front/') }}/assets/js/main.js"></script>
+<script src="{{ asset('front/assets/bvi/js/bvi.js') }}"></script>
 
 <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        new isvek.Bvi({
+            target: '.bvi-open',
+            fontSize: 14,
+            panelFixed: false,
+            panelHide: true,
+        })
+    });
     $(function () {
         $('.links__carousel').owlCarousel({
             loop: true,

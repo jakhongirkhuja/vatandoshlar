@@ -34,6 +34,7 @@
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/app-assets/vendors/css/forms/select/select2.min.css">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/app-assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/app-assets/css/bootstrap-extended.css">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/app-assets/css/colors.css">
@@ -102,6 +103,8 @@
     <link href="{{asset('assets/admin/summernote/summernote.min.css')}}" rel="stylesheet">
     <script src="{{asset('assets/admin/summernote/summernote-bs4.min.js')}}"></script>
     <script src="{{asset('assets/admin/summernote/summernote-image-attributes.js')}}"></script>
+    <script src="{{asset('assets/admin')}}/app-assets/vendors/js/forms/select/select2.full.min.js"></script>
+    <script src="{{asset('assets/admin')}}/app-assets/js/scripts/forms/select/form-select2.js"></script>
     <script>
         $('.summernote').summernote({
             callbacks: {

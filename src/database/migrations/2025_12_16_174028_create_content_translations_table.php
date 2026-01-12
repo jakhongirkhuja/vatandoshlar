@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->foreignId('content_id')->constrained('contents')->onDelete('cascade');
             $table->string('locale', 3)->nullable();
             $table->jsonb('data')->nullable();
+            $table->text('category')->nullable();
             $table->timestamps();
             $table->index(['locale']);
         });

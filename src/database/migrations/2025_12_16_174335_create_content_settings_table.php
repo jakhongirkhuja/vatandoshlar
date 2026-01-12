@@ -21,6 +21,7 @@ return new class extends Migration {
             $table->integer('sort_order')->default(0);
             $table->text('relation')->nullable();
             $table->boolean('status')->default(true);
+            $table->text('category')->nullable();
             $table->timestamps();
             $table->index(['key', 'is_translatable', 'status', 'sort_order']);
         });

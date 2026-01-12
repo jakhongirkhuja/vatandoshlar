@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\MenuMain;
+use App\Models\OrderSetting;
 use App\Models\PageSection;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,9 @@ class HomeController extends Controller
                 return view('front.pages.contacts.index', compact('breadcrumbs', 'currentPage'));
             }
             if ($inside && $detail) {
+
                 $viewPath = "front.pages." . str_replace("-", "_", $any) . ".inside.detail.index";
+
             } elseif ($inside) {
                 if ($any === 'yangiliklar') {
                     $newsItem = PageSection::where('slug', $inside)->firstOrFail();
@@ -39,7 +42,9 @@ class HomeController extends Controller
                 }
                 $viewPath = "front.pages." . str_replace("-", "_", $any) . ".inside.index";
             } else {
+
                 $viewPath = "front.pages." . str_replace("-", "_", $any) . ".index";
+
             }
 
 
@@ -48,20 +53,54 @@ class HomeController extends Controller
                 $items = collect();
                 if ($inside) {
                     if ($detail) {
+
                         $inside = $detail;
                     }
                     $items = $items->merge(PageSection::with(['children', 'translations', 'images'])
                         ->where('slug', $inside)->orderBy('sort_order')
                         ->get());
-                    if (!$items) {
+
+                    if (count($items)==0 && $inside!='ariza-topshirish') {
                         abort(404);
                     }
-                   
+
                 } else {
+                    $orderSettings = OrderSetting::where('menu_main_id',$currentPage->id)->first();
+
                     if($any =='yangiliklar'){
-                        $items = PageSection::with(['children', 'translations', 'images'])
-                                ->where('menu_main_id', $currentPage->id)->orderBy('sort_order')
-                                ->paginate();
+                        $query = PageSection::with(['children', 'translations', 'images'])
+                            ->where('menu_main_id', $currentPage->id);
+
+                        if($orderSettings){
+                            switch ($orderSettings->order) {
+                                case 'sort_order_desc':
+                                    $query->orderBy('sort_order', 'desc');
+                                    break;
+                                case 'created_at_asc':
+                                    $query->orderBy('created_at', 'asc');
+                                    break;
+                                case 'created_at_desc':
+                                    $query->orderBy('created_at', 'desc');
+                                    break;
+                                case 'time_asc':
+                                    $query->orderBy('publish_at', 'asc');
+                                    break;
+                                case 'time_desc':
+                                    $query->orderBy('publish_at', 'desc');
+                                    break;
+                                case 'random':
+                                    $query->inRandomOrder();
+                                    break;
+                                default:
+                                    $query->orderBy('sort_order', 'asc');
+                                    break;
+                            }
+                        }else{
+                            $query->orderBy('sort_order', 'asc');
+                        }
+
+                        $items = $query->paginate();
+
                     }
                     foreach ($currentPage->children as $sections) {
                         $items = $items->merge(
@@ -80,7 +119,7 @@ class HomeController extends Controller
                 }
                 $breadcrumbs = $this->createBreadCrumb($currentPage);
 
-                if ($items->isEmpty()) {
+                if ($items->isEmpty() && $currentPage->id!=49) {
 
                     $viewPath = "front.static.index";
                 }

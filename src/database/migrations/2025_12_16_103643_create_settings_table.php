@@ -20,6 +20,8 @@ return new class extends Migration
             $table->boolean('status')->default(false);
             $table->unsignedBigInteger('main_page_id')->nullable();
             $table->string('admin_ips')->nullable();
+            $table->json('search_ids')->nullable();
+            $table->json('sorting_ids')->nullable();
             $table->timestamps();
         });
     }

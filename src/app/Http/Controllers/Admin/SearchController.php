@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SearchRequest;
@@ -14,7 +15,8 @@ class SearchController extends Controller
         $data = $request->validated();
         $search = $data['search'];
         $locale = app()->getLocale();
-        $ids = [26, 46, 38];
+
+        $ids =  Setting::value('search_ids');
 
         $results = PageSection::whereIn('menu_main_id', $ids)
             ->whereHas('translations', function ($query) use ($locale, $search) {

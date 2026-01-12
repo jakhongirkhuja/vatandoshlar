@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('supports', function (Blueprint $table) {
             $table->id();
             $table->jsonb('data');
+            $table->text('type')->nullable();
             $table->timestamps();
         });
     }

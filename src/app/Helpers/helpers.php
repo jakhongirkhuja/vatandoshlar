@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Content;
 use App\Models\MenuMain;
 use App\Models\PageSection;
 use Illuminate\Support\Facades\Request;
@@ -139,6 +140,15 @@ if (!function_exists('menuSection')) {
     }
 }
 
+
+if (!function_exists('contentSection')) {
+
+    function contentSection($category)
+    {
+        $content = Content::where('category',$category)->get();
+        return $content ?? null;
+    }
+}
 use Illuminate\Support\Facades\DB;
 
 

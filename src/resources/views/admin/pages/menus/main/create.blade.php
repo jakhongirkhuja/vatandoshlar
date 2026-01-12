@@ -71,7 +71,7 @@
                                                        @if($setting->type=='textarea' || $setting->type=='textarea-editor')
                                         <textarea class="form-control {{$setting->type=='textarea-editor'? 'summernote' : ''}}"
                                             name="fields[{{ $language->code }}][{{ $setting->key }}]">{{ $value }}</textarea>
-                                              @elseif($setting->type == 'datetime-local') 
+                                              @elseif($setting->type == 'datetime-local')
                                               <input type="datetime-local"
            class="form-control"
            name="fields[{{ $language->code }}][{{ $setting->key }}]" value={{ $value }} >
@@ -105,7 +105,7 @@
                                                                           @if($setting->type=='textarea' || $setting->type=='textarea-editor')
                                 <textarea class="form-control {{$setting->type=='textarea-editor'? 'summernote' : ''}}"
                                     name="fields[{{ $setting->key }}]">{{ $value2 }}</textarea>
-                                      @elseif($setting->type == 'datetime-local') 
+                                      @elseif($setting->type == 'datetime-local')
                                               <input type="datetime-local"
            class="form-control"
            name="fields[{{ $setting->key }}]" value={{ $value }} >
@@ -144,7 +144,7 @@
                                                 @foreach($menus as $parent)
                                                     <option
                                                         value="{{ $parent->id }}" {{ old('parent_id', $menu->parent_id ?? '') == $parent->id ? 'selected' : '' }}>
-                                                        {{ $parent->slug }}
+                                                        {{ sectionValue($parent, 'title') }}
                                                     </option>
 
                                                 @endforeach
@@ -258,13 +258,13 @@
     </div>
 
 
-    @section('script')
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const firstInput = document.querySelector('.tab-content input');
 
             const slugInput = document.querySelector('#menu-slug input');
             if (firstInput && slugInput) {
+
                 firstInput.addEventListener('input', function () {
                     let value = firstInput.value;
                     value = value.replace(/\s+/g, '-');
@@ -316,5 +316,6 @@
             toggleFields();
         });
     </script>
-    @endsection
 @endsection
+
+

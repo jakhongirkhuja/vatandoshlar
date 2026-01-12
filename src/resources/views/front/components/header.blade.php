@@ -1,6 +1,6 @@
 <header class="header" role="banner">
     <div class="container">
-        <a href="{{route('home')}}" class="logo light" aria-label="Home">
+        <a href="{{route('home')}}" class="logo" aria-label="Home">
             <img src="{{ asset('front/') }}/images/logo.png" alt="Logo" class="header__brand-img" />
             <span>“Vatandoshlar”<br>Jamoat Fondi</span>
         </a>
@@ -11,12 +11,12 @@
         </div>
         <div class="header__right">
 
-            <button class="header__search--btn">
-                <span class="i-eye" style="display: none;"></span>
+            <button class="header__search--btn bvi-open"  title="Visibility">
+                <span class="i-eye" ></span>
             </button>
         <div class="col-md-6">
             <div class="form-group">
-                <form method="get" action="{{ route('search') }}" style="display: none;">
+                <form method="get" action="{{ route('search') }}" >
                     <div class="input-group">
                         <input class="form-control" name="search" placeholder="Search...">
                         <button type="submit" class="btn btn-primary">Search</button>

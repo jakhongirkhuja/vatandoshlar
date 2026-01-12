@@ -13,7 +13,8 @@ class PageSection extends Model
         'parent_id',
         'category',
         'slug',
-        'category_slug'
+        'category_slug',
+        'publish_at',
     ];
     protected static function boot()
     {

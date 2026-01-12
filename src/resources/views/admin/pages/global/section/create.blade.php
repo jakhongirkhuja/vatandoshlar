@@ -85,7 +85,7 @@
                                          @if($setting->type=='textarea' || $setting->type=='textarea-editor')
                                         <textarea class="form-control {{$setting->type=='textarea-editor'? 'summernote' : ''}}"
                                         name="fields[{{ $language->code }}][{{ $setting->key }}]">{{ $value }}</textarea>
-                                          @elseif($setting->type == 'datetime-local') 
+                                          @elseif($setting->type == 'datetime-local')
                                               <input type="datetime-local"
            class="form-control"
            name="fields[{{ $language->code }}][{{ $setting->key }}]"  value="2025-06-01T13:30">
@@ -128,7 +128,7 @@
                                  @if($setting->type=='textarea' || $setting->type=='textarea-editor')
                                 <textarea class="form-control {{$setting->type=='textarea-editor'? 'summernote' : ''}}"
                                     name="fields[{{ $setting->key }}]">{{ $value2 }}</textarea>
-                                     @elseif($setting->type == 'datetime-local') 
+                                     @elseif($setting->type == 'datetime-local')
                                               <input type="datetime-local"
            class="form-control"
            name="fields[{{ $setting->key }}]"  value="2025-06-01T13:30" >
@@ -182,6 +182,17 @@
                                 <div class="col-12 mb-1">
 
                                     <a href="#myModal" role="button" class="btn btn-info waves-effect waves-light" data-toggle="modal"><i class="feather icon-image"></i> Фото</a>
+                                </div>
+
+
+                                <div class="col-12 mb-1">
+                                    <label for="">Время создания</label>
+                                    <input
+                                        type="datetime-local"
+                                        class="form-control "
+                                        name="publish_at"
+                                        placeholder="Время создания"
+                                        value="{{ old('publish_at', $section->publish_at ?? now()) }}">
                                 </div>
                                 <div class="col-12 mb-1">
                                     <label for="">Slug</label>

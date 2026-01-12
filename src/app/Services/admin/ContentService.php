@@ -50,7 +50,7 @@ class ContentService
                 'type' => $data['type'] ?? 'category',
                 'icon' => $data['icon'] ?? null,
                 'parent_id' => $data['parent_id'] ?? null,
-                'category' => (isset($data['category']) && $data['category'] === 'list') ? 'list' : null,
+                'category' => $data['category'],
                 'status' => isset($data['status']) && $data['status'] == 'on' ? true : false,
                 'slug' => $data['slug'] ?? null,
                 'url' => $data['url'] ?? null,

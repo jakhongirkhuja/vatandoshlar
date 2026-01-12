@@ -51,6 +51,7 @@ class PageSectionRequest extends FormRequest
             'images' => 'nullable|array',
             'images.*' => 'file|mimes:jpeg,jpg,png,gif,svg,mp4,webm,ogg,mov,avi|max:51200',
             'main_image_input' => 'nullable|string',
+            'publish_at'=> 'nullable|date',
         ];
     }
 }

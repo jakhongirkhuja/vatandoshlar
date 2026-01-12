@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->bigInteger('size')->nullable();
             $table->boolean('main')->default(false);
             $table->boolean('status')->default(true);
+            $table->text('category')->nullable();
             $table->timestamps();
             $table->index(['main']);
         });

@@ -1,14 +1,13 @@
-@extends('front.layouts.layout')
-@section('body')
+<?php $__env->startSection('body'); ?>
 
-<script src="{{ asset('front/') }}/assets/js/imask.js"></script>
+<script src="<?php echo e(asset('front/')); ?>/assets/js/imask.js"></script>
 </div>
     <div class="projects__apply-wrapper content">
         <h2 class="title">Ishtirok etish uchun ariza yuborish</h2>
-        @include('admin.components.error')
+        <?php echo $__env->make('admin.components.error', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
-        <form class="apply-form" action="{{ route('participation.create') }}" method="post">
-            @csrf
+        <form class="apply-form" action="<?php echo e(route('participation.create')); ?>" method="post">
+            <?php echo csrf_field(); ?>
             <input type="hidden" name="type" value="participation">
             <div class="form-row form-row--name-date">
                 <div class="form-field">
@@ -55,13 +54,13 @@
                                 <input type="text" placeholder="Search">
                             </div>
                             <ul>
-                                <li data-code="+7" data-flag="{{ asset('front') }}/images/flags/us.png">
-                                    <img src="{{ asset('front') }}/images/flags/us.png">
+                                <li data-code="+7" data-flag="<?php echo e(asset('front')); ?>/images/flags/us.png">
+                                    <img src="<?php echo e(asset('front')); ?>/images/flags/us.png">
                                     <span>USA</span>
                                     <small>+7</small>
                                 </li>
-                                <li data-code="+998" data-flag="{{ asset('front') }}/images/flags/uz.png">
-                                    <img src="{{ asset('front') }}/images/flags/uz.png">
+                                <li data-code="+998" data-flag="<?php echo e(asset('front')); ?>/images/flags/uz.png">
+                                    <img src="<?php echo e(asset('front')); ?>/images/flags/uz.png">
                                     <span>Uzbekistan</span>
                                     <small>+998</small>
                                 </li>
@@ -211,7 +210,7 @@
                 <div class="upload-area" id="upload-area">
                     <div class="upload-area__text" id="upload-text">
                         <span class="upload-area__title">
-                            <img src="{{ asset('front') }}/images/upload.svg" alt="Upload icon">
+                            <img src="<?php echo e(asset('front')); ?>/images/upload.svg" alt="Upload icon">
                             Upload or drag file
                         </span>
                         <p class="upload-area__description">Video, rasm, hujjat, PDF, docx, excel va boshqalar</p>
@@ -224,7 +223,7 @@
 
             <div class="form-actions">
                 <button type="submit" class="submit-btn">
-                    <img src="{{ asset('front') }}/images/send.svg" alt="Send icon">
+                    <img src="<?php echo e(asset('front')); ?>/images/send.svg" alt="Send icon">
                     <span>Yuborish</span>
                 </button>
             </div>
@@ -448,4 +447,6 @@
         elements.uploadArea.addEventListener('drop', handleDrop);
     })();
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('front.layouts.layout', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /var/www/html/resources/views/front/pages/participation/index.blade.php ENDPATH**/ ?>

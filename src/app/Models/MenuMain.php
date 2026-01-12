@@ -35,7 +35,7 @@ class MenuMain extends Model
             ->with([
                 'translations',
                 'childrens' => function ($q) {
-                    $q->where('type', '!=', 'section')->orderby('sort_order');
+                    $q->where('type', '!=', 'section')->where('status',true)->orderby('sort_order');
                 }
             ])
             ->where('type', '!=', 'section')->orderBy('sort_order');

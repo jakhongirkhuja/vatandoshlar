@@ -10,11 +10,11 @@
         <div class="container">
             <div class="layout-content">
                 @php
-                
+
                     $projects = $items->first();
                     $projectVideo = sectionImages($projects, true);
                     $categories = menuSections(38,3,true,true);
-                  
+
                 @endphp
 
                 @if($projects)
@@ -29,11 +29,11 @@
                             <h1 class="projects-hero__title">
                                 {{ sectionValue($projects, 'title') }}
                             </h1>
-                            {{ sectionValue($projects,'timer') }}
+                            {{ sectionValue($projects,'last_date') }}
 
                             <div class="projects-hero__wrapper">
                                 <a href="{{sectionValue($projects,'url')}}" class="button projects-hero__wrapper--btn">Tanlov shartlari</a>
-                                <a href="{{route('participation')}}" class="button projects-hero__wrapper--btn">Ishtirok etish</a>
+                                <a href="{{ route('home',['locale'=>app()->getlocale(), 'any'=>request()->route('any'),'inside'=>$projects->slug,'detail'=>'ariza-topshirish']) }}" class="button projects-hero__wrapper--btn">Ishtirok etish</a>
                             </div>
 
                             <a href="#" class="projects-hero__btn">
@@ -41,7 +41,7 @@
                                 <span>Video ko’rish</span>
                             </a>
                         </div>
-                          
+
 
                     </div>
                 @endif

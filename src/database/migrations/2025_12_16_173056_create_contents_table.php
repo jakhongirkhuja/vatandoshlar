@@ -21,6 +21,7 @@ return new class extends Migration {
             $table->string('icon')->nullable();
             $table->boolean('status')->default(true);
             $table->foreignId('parent_id')->nullable()->constrained('contents');
+            $table->text('category')->nullable();
             $table->timestamps();
             $table->index(['type', 'slug', 'status', 'sort_order']);
         });

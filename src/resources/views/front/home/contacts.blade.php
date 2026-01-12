@@ -77,7 +77,7 @@
                         <h5>Elektron murojaat yuborish platformasi</h5>
                         <p>Biz barcha sizni qiynayotga muammoga yo’l topaolamiz. Bizga murojat qiling</p>
                         <div class="contacts__right--wrapper">
-                            <a class="button" href="{{route('support.createApp')}}">Murojaat yuborish</a>
+                            <a class="button"  href="{{ route('home',['locale'=>app()->getlocale(), 'any'=>'murojat-qilish']) }}">Murojaat yuborish</a>
                             <a class="link" href="#"><i class="i-play"></i><span>Video qo’llanma</span></a>
                         </div>
                     </div>

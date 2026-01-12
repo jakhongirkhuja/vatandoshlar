@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('category')->nullable();
             $table->text('category_slug')->nullable();
             $table->unsignedBigInteger('parent_id')->nullable();
+            $table->timestamp('publish_at')->nullable();
             $table->timestamps();
             $table->index(['status', 'sort_order', 'menu_main_id', 'category', 'category_slug', 'parent_id']);
         });

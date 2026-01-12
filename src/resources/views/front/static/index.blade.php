@@ -6,7 +6,7 @@
     <section id="portfolio-details" class="portfolio-details section">
 
         <div class="container section-title" data-aos="fade-up">
-            <h2>Static</h2>
+            <h2>Static PAGE</h2>
             <p>sdsd</p>
         </div>
 

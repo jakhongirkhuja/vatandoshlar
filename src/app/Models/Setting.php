@@ -14,10 +14,14 @@ class Setting extends Model
         'status',
         'main_page_id',
         'admin_ips',
+        'search_ids',
+        'sorting_ids'
     ];
 
     protected $casts = [
         'title'            => 'array',
+        'search_ids'            => 'array',
+        'sorting_ids'            => 'array',
         'meta_description' => 'array',
         'meta_keywords'    => 'array',
         'status'           => 'boolean',

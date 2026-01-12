@@ -22,7 +22,7 @@ class ApplicationFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type' => 'required|string|in:form,application|participation',
+            'type' => 'required|string|in:form,application,participation',
             'data' => 'required|array',
             'data.name' => 'required|string',
             'data.birthdate' => 'required|string',

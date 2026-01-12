@@ -36,7 +36,7 @@
                     @endphp
 
                     <a href="{{route('admin.pages.section.create', $parameters)}}"
-                        class="btn btn-primary pull-right waves-effect waves-light" type="button"> 
+                        class="btn btn-primary pull-right waves-effect waves-light" type="button">
                         <i class="feather icon-plus icon-white"></i>
                         <span>Добавить</span>
                     </a>
@@ -51,8 +51,9 @@
         <div class="content-body">
             @include('admin.components.error')
             <div class="row" id="table-hover-animation">
-                <div class="col-7"></div>
-                <div class="col-5">
+                <div class="col-5"></div>
+
+                <div class="col-7">
                     @include('admin.components.perPage')
                 </div>
                 <table class="table data-list-view dataTable">

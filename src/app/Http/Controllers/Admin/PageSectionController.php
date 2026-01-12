@@ -10,9 +10,11 @@ use App\Http\Requests\SortOrderUpdateRequest;
 use App\Models\Lang;
 use App\Models\MenuMain;
 use App\Models\MenuMainSetting;
+use App\Models\OrderSetting;
 use App\Models\Page;
 use App\Models\PageSection;
 use App\Models\PageSectionSetting;
+use App\Models\Setting;
 use App\Services\admin\MenuMainService;
 use App\Services\admin\PageSectionService;
 use Illuminate\Database\Eloquent\Builder;
@@ -87,16 +89,57 @@ class PageSectionController extends Controller
         $menu = MenuMain::findorfail($id);
 
         $perPage = request()->get('per_page', 20);
+        $settings = Setting::value('sorting_ids');
+
         $categoryName = PageSection::select('category')->where('category_slug', $category_slug)->first();
         if ($parent_id) {
 
             $sections = PageSection::with('children')->where('menu_main_id', $id)->where('parent_id', $parent_id)->where('category_slug', $category_slug)->orderby('sort_order')->paginate($perPage)->withQueryString();
         } else {
+            $sorting = request()->get('sorting', 'sort_order_asc');
+            $sort_trigger = request()->get('sort_trigger');
+            $query  =PageSection::with('translations','children')->where('menu_main_id', $id)->whereNull('parent_id');
+            switch ($sorting) {
+                case 'sort_order_desc':
+                    $query->orderBy('sort_order', 'desc');
+                    break;
 
-            $sections = PageSection::with('children')->where('menu_main_id', $id)->whereNull('parent_id')->orderby('sort_order')->paginate($perPage)->withQueryString();
+                case 'created_at_asc':
+                    $query->orderBy('created_at');
+                    break;
+
+                case 'created_at_desc':
+                    $query->orderBy('created_at', 'desc');
+                    break;
+
+                case 'time_asc':
+                    $query->orderBy('publish_at');
+                    break;
+
+                case 'time_desc':
+                    $query->orderBy('publish_at','desc');
+                    break;
+
+                case 'random':
+                    $query->inRandomOrder();
+                    break;
+
+                default:
+
+                    $query->orderBy('sort_order', 'asc');
+                    break;
+            }
+            if($sort_trigger){
+                OrderSetting::updateOrCreate(
+                    ['menu_main_id' => $id],
+                    ['order' => $sorting]
+                );
+            }
+            $sections = $query->paginate($perPage)->withQueryString();
+//            $sections = PageSection::with('children')->where('menu_main_id', $id)->whereNull('parent_id')->orderby('sort_order')->paginate($perPage)->withQueryString();
         }
 
-        return view('admin.pages.global.section.index', compact('slug', 'id', 'menu', 'sections', 'parent_id', 'category_slug', 'categoryName'));
+        return view('admin.pages.global.section.index', compact('slug', 'id', 'menu', 'sections', 'parent_id', 'category_slug', 'categoryName','settings'));
     }
 
     public function create($slug, $id, $parent_id = null, $category_slug = null)
@@ -127,7 +170,7 @@ class PageSectionController extends Controller
         return back();
     }
     public function addImage(PageSectionImageRequest $request, $id){
-       
+
           return $this->service->addImage( $id,$request->validated());
     }
 }

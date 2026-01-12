@@ -27,9 +27,14 @@ class SettingStoreRequest extends FormRequest
             'email'                     => ['nullable', 'email'],
             'status'                    => ['nullable', 'boolean'],
 
-            'main_page_id'              => ['required', 'numeric','exists:menu_mains,id'],
+            'main_page_id' => ['required','integer','exists:menu_mains,id'],
 
             'admin_ips'                 => ['nullable', 'string'],
+            'search_ids'             => ['nullable', 'array'],
+            'search_ids.*'           =>  ['required','integer','exists:menu_mains,id'],
+            'sorting_ids'             => ['nullable', 'array'],
+            'sorting_ids.*'           =>  ['required','integer','exists:menu_mains,id'],
+
         ];
     }
 

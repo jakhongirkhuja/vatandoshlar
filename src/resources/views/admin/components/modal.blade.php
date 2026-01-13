@@ -264,7 +264,19 @@
     }();
 </script>
 <script>
-    const routeCreateImage = "<?php echo e(route('createImage', ['id' => (request()->route('section_id') ?? '')])); ?>";
+
+    @php
+    if(isset($globaltype)){
+         if($globaltype=='menu' || $globaltype=='content'){
+            $id = request()->route('id');
+        }elseif($globaltype=='section'){
+             $id = request()->route('section_id');
+        }
+    }else{
+        $id = null;
+    }
+    @endphp
+    const routeCreateImage = "<?php echo e(route('createImage', ['id' => $id])); ?>";
 </script>
 <script>
     const fileInput = document.getElementById('file');
@@ -274,6 +286,7 @@
     let storedFiles = new DataTransfer();
     let imageToDelete = null; // modal uchun
     let deleteImageId = null;
+
     function attachThumbEvents(li) {
         li.querySelector('.ajax_set_main')?.addEventListener('click', function (e) {
             e.preventDefault();
@@ -287,6 +300,7 @@
             mainInput.value = li.dataset.name || li.dataset.id;
         });
     }
+
     function attachDeleteEvent(li) {
         li.querySelector('.btn-delete')?.addEventListener('click', function (e) {
             e.preventDefault();
@@ -294,6 +308,7 @@
             $('#deleteImageModal').modal('show');
         });
     }
+
     document.addEventListener('click', function (e) {
         if (e.target.id === 'confirmImageDelete') {
 
@@ -333,7 +348,7 @@
 
 
     // new update function
-    function imageDropFiles(takefiles){
+    function imageDropFiles(takefiles) {
         const formData = new FormData();
         console.log(takefiles);
         takefiles.forEach(file => {
@@ -372,11 +387,18 @@
             reader.readAsDataURL(file);
         });
         formData.append('_token', document.querySelector('meta[name="csrf-token"]').content);
+
+        let newslug = document.querySelector('#slug').value;
+        formData.append('slug', newslug);
         <?php
 
-        if (request()->route('section_id')){
+        if ($id){
 
             ?>
+
+
+
+
         fetch(routeCreateImage, {
             method: 'POST',
             body: formData
@@ -416,6 +438,7 @@
 
         ?>
     }
+
     filepart.addEventListener('change', function (event) {
         imageDropFiles([...event.target.files])
     });

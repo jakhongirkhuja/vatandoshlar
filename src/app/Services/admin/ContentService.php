@@ -135,37 +135,50 @@ class ContentService
                 $metaTranslation->data = json_encode($nonTranslatableFields);
                 $metaTranslation->save();
             }
-            if (isset($data['images'])) {
-                $mainImageName = isset($data['main_image_input']) ? $data['main_image_input'] : '';
-                foreach ($data['images'] as $file) {
-                    $fileOriginalName = $file->getClientOriginalName();
-                    $filename = time() . '_' . $file->getClientOriginalName();
-                    $path = $file->storeAs('menu_images', $filename, 'public');
-                    $contentImage = new ContentImages();
-                    $contentImage->content_id = $content->id;
-                    $contentImage->image = $path;
-                    $contentImage->type = $file->getClientMimeType();
-                    $contentImage->size = $file->getSize();
-                    $contentImage->main = ($fileOriginalName === $mainImageName);
-                    $contentImage->status = true;
-                    $contentImage->save();
+            $mainImageId = isset($data['main_image_input']) ? (int) $data['main_image_input'] : false;
+
+            if ($mainImageId) {
+
+                ContentImages::where('content_id', $content->id)
+                    ->where('main', true)
+                    ->update(['main' => false]);
+                $contentImage = ContentImages::find($mainImageId);
+                if ($contentImage) {
+
+                    $contentImage->update(['main' => true]);
                 }
-            } else {
-                $mainImageId = isset($data['main_image_input']) ? (int) $data['main_image_input'] : false;
-
-                if ($mainImageId) {
-
-                    ContentImages::where('content_id', $content->id)
-                        ->where('main', true)
-                        ->update(['main' => false]);
-                    $contentImage = ContentImages::find($mainImageId);
-                    if ($contentImage) {
-
-                        $contentImage->update(['main' => true]);
-                    }
-                }
-
             }
+//            if (isset($data['images'])) {
+//                $mainImageName = isset($data['main_image_input']) ? $data['main_image_input'] : '';
+//                foreach ($data['images'] as $file) {
+//                    $fileOriginalName = $file->getClientOriginalName();
+//                    $filename = time() . '_' . $file->getClientOriginalName();
+//                    $path = $file->storeAs('menu_images', $filename, 'public');
+//                    $contentImage = new ContentImages();
+//                    $contentImage->content_id = $content->id;
+//                    $contentImage->image = $path;
+//                    $contentImage->type = $file->getClientMimeType();
+//                    $contentImage->size = $file->getSize();
+//                    $contentImage->main = ($fileOriginalName === $mainImageName);
+//                    $contentImage->status = true;
+//                    $contentImage->save();
+//                }
+//            } else {
+//                $mainImageId = isset($data['main_image_input']) ? (int) $data['main_image_input'] : false;
+//
+//                if ($mainImageId) {
+//
+//                    ContentImages::where('content_id', $content->id)
+//                        ->where('main', true)
+//                        ->update(['main' => false]);
+//                    $contentImage = ContentImages::find($mainImageId);
+//                    if ($contentImage) {
+//
+//                        $contentImage->update(['main' => true]);
+//                    }
+//                }
+//
+//            }
             return redirect()->route('admin.content.index', [
                 'category' => $data['category']
             ])->with('success', 'Content created successfully.');

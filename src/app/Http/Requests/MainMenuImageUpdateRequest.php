@@ -22,7 +22,7 @@ class MainMenuImageUpdateRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'slug' => 'required',
+            'slug' => 'required|in:menu,section,content',
             'img' => 'required|array|min:1',
         ];
 

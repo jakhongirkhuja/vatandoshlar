@@ -30,17 +30,17 @@ class MenuMainController extends Controller
         $languages = Lang::all();
         $menus = MenuMain::where('type', '!=', 'section')->get();
         $settings = MenuMainSetting::orderby('sort_order')->where('type', '!=', 'section')->get();
-
-        return view('admin.pages.menus.main.create', compact('languages', 'settings', 'menus'));
+        $globaltype= 'menu';
+        return view('admin.pages.menus.main.create', compact('languages', 'settings', 'menus','globaltype'));
     }
     public function edit($id)
     {
         $languages = Lang::all();
         $menus = MenuMain::where('id', '!=', $id)->where('type', '!=', 'section')->get();
         $menu = MenuMain::with('translations', 'images')->findOrFail($id);
-
+        $globaltype= 'menu';
         $settings = MenuMainSetting::orderby('sort_order')->get();
-        return view('admin.pages.menus.main.create', compact('languages', 'settings', 'menus', 'menu'));
+        return view('admin.pages.menus.main.create', compact('languages', 'settings', 'menus', 'menu','globaltype'));
     }
     public function updateSort(SortOrderUpdateRequest $request, $id)
     {
@@ -68,7 +68,7 @@ class MenuMainController extends Controller
     }
     public function update(MenuMainUpdateRequest $request, $id)
     {
-    
+
         $menu = MenuMain::findorfail($id);
         //        dd($request->validated());
         return $this->service->mainMenuUpdate($request->validated(), $menu);
@@ -79,7 +79,7 @@ class MenuMainController extends Controller
         return view('admin.pages.menus.main.settings');
     }
     public function delete($id){
-        
+
         return $this->service->destroy($id);
     }
 }

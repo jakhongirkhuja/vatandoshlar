@@ -2,6 +2,8 @@
 
 namespace App\Services\admin;
 
+use App\Models\Content;
+use App\Models\ContentImages;
 use App\Models\MenuMain;
 use App\Models\MenuMainImages;
 use App\Models\MenuMainTranslation;
@@ -142,8 +144,65 @@ class PageSectionService
             return back()->withErrors(['error' => $exception->getMessage()]);
         }
     }
-    public function addImage($id, array $data)
-    {
+    private function addToMenu($id,$data){
+        $responseImageId = [];
+        $menumain = MenuMain::find($id);
+        if (!$menumain) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Page section not found'
+            ], 404);
+        }
+
+        if (isset($data['files'])) {
+            $mainImageName = isset($data['main_image_input']) ? $data['main_image_input'] : '';
+
+            $imageId = false;
+
+            foreach ($data['files'] as $file) {
+                $fileOriginalName = $file->getClientOriginalName();
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $path = $file->storeAs('menu_images', $filename, 'public');
+                $menuImage = new MenuMainImages();
+                $menuImage->menu_main_id = $menumain->id;
+                $menuImage->image = $path;
+                $menuImage->type = $file->getClientMimeType();
+                $menuImage->size = $file->getSize();
+                $menuImage->main = ($fileOriginalName === $mainImageName);
+                $menuImage->status = true;
+                $menuImage->save();
+                if ($fileOriginalName === $mainImageName) {
+                    $imageId = $menuImage->id;
+                }
+                $responseImageId[] = $menuImage->id;
+            }
+            if ($imageId) {
+                MenuMainImages::where('menu_main_id', $menumain->id)
+                    ->where('main', true)
+                    ->update(['main' => false]);
+                $menuImage = MenuMainImages::find($imageId);
+                if ($menuImage) {
+                    $menuImage->update(['main' => true]);
+                }
+            }
+        } else {
+            $mainImageId = isset($data['main_image_input']) ? (int) $data['main_image_input'] : false;
+
+            if ($mainImageId) {
+
+                MenuMainImages::where('menu_main_id', $menumain->id)
+                    ->where('main', true)
+                    ->update(['main' => false]);
+                $menuImage = MenuMainImages::find($mainImageId);
+                if ($menuImage) {
+                    $menuImage->update(['main' => true]);
+                }
+            }
+        }
+        return $responseImageId;
+    }
+    private function addToSection($id,$data){
+        $responseImageId = [];
         $pagesection = PageSection::find($id);
         if (!$pagesection) {
             return response()->json([
@@ -151,7 +210,7 @@ class PageSectionService
                 'message' => 'Page section not found'
             ], 404);
         }
-        $responseImageId = [];
+
         if (isset($data['files'])) {
             $mainImageName = isset($data['main_image_input']) ? $data['main_image_input'] : '';
 
@@ -197,6 +256,71 @@ class PageSectionService
                 }
             }
         }
+        return $responseImageId;
+    }
+    private function addToContent($id,$data){
+
+        $responseImageId = [];
+        $content = Content::find($id);
+        if (!$content) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Page section not found'
+            ], 404);
+        }
+
+        if (isset($data['files'])) {
+
+
+            $imageId = false;
+            $contentImageName = isset($data['main_image_input']) ? $data['main_image_input'] : '';
+            foreach ($data['files'] as $file) {
+                $fileOriginalName = $file->getClientOriginalName();
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $path = $file->storeAs('contents', $filename, 'public');
+                $conten = new ContentImages();
+                $conten->content_id = $content->id;
+                $conten->image = $path;
+                $conten->type = $file->getClientMimeType();
+                $conten->size = $file->getSize();
+                $conten->main = ($fileOriginalName === $contentImageName);
+                $conten->status = true;
+                $conten->save();
+
+                $responseImageId[] = $conten->id;
+            }
+        } else {
+            $mainImageId = isset($data['main_image_input']) ? (int) $data['main_image_input'] : false;
+
+            if ($mainImageId) {
+
+                ContentImages::where('menu_main_id', $content->id)
+                    ->where('main', true)
+                    ->update(['main' => false]);
+                $menuImage = ContentImages::find($mainImageId);
+                if ($menuImage) {
+                    $menuImage->update(['main' => true]);
+                }
+            }
+        }
+        return $responseImageId;
+    }
+    public function addImage($id, array $data)
+    {
+        $responseImageId = [];
+        $slug=  $data['slug'];
+        switch ($slug) {
+            case 'menu':
+                $responseImageId= $this->addToMenu($id,$data);
+                break;
+            case 'section':
+                $responseImageId= $this->addToSection($id,$data);
+                break;
+            case 'content':
+                $responseImageId=  $this->addToContent($id,$data);
+                break;
+        }
+
         return response()->json([
             'success' => true,
             'message' => 'Images added successfully',

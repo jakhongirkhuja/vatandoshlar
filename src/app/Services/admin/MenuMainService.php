@@ -90,6 +90,18 @@ class MenuMainService
                     'data' => json_encode($nonTranslatableFields),
                 ]);
             }
+            $mainImageId = isset($data['main_image_input']) ? (int) $data['main_image_input'] : false;
+
+            if ($mainImageId) {
+
+                MenuMainImages::where('menu_main_id', $menu->id)
+                    ->where('main', true)
+                    ->update(['main' => false]);
+                $menuImage = MenuMainImages::find($mainImageId);
+                if ($menuImage) {
+                    $menuImage->update(['main' => true]);
+                }
+            }
             if (isset($data['images'])) {
                 $mainImageName = isset($data['main_image_input']) ? $data['main_image_input'] : '';
                 foreach ($data['images'] as $file) {
@@ -138,7 +150,7 @@ class MenuMainService
     }
     public function mainMenuUpdate(array $data, $menu)
     {
-        
+
         try {
             $dataToUpdate = [
                 'type' => $data['type'] ?? 'category',
@@ -171,36 +183,48 @@ class MenuMainService
                 $metaTranslation->data = json_encode($nonTranslatableFields);
                 $metaTranslation->save();
             }
-            if (isset($data['images'])) {
-                $mainImageName = isset($data['main_image_input']) ? $data['main_image_input'] : '';
-                foreach ($data['images'] as $file) {
-                    $fileOriginalName = $file->getClientOriginalName();
-                    $filename = time() . '_' . $file->getClientOriginalName();
-                    $path = $file->storeAs('menu_images', $filename, 'public');
-                    $menuImage = new MenuMainImages();
-                    $menuImage->menu_main_id = $menu->id;
-                    $menuImage->image = $path;
-                    $menuImage->type = $file->getClientMimeType();
-                    $menuImage->size = $file->getSize();
-                    $menuImage->main = ($fileOriginalName === $mainImageName);
-                    $menuImage->status = true;
-                    $menuImage->save();
+            $mainImageId = isset($data['main_image_input']) ? (int) $data['main_image_input'] : false;
+
+            if ($mainImageId) {
+
+                MenuMainImages::where('menu_main_id', $menu->id)
+                    ->where('main', true)
+                    ->update(['main' => false]);
+                $menuImage = MenuMainImages::find($mainImageId);
+                if ($menuImage) {
+                    $menuImage->update(['main' => true]);
                 }
-            } else {
-                $mainImageId = isset($data['main_image_input']) ? (int) $data['main_image_input'] : false;
-
-                if ($mainImageId) {
-
-                    MenuMainImages::where('menu_main_id', $menu->id)
-                        ->where('main', true)
-                        ->update(['main' => false]);
-                    $menuImage = MenuMainImages::find($mainImageId);
-                    if ($menuImage) {
-                        $menuImage->update(['main' => true]);
-                    }
-                }
-
             }
+//            if (isset($data['images'])) {
+//                $mainImageName = isset($data['main_image_input']) ? $data['main_image_input'] : '';
+//                foreach ($data['images'] as $file) {
+//                    $fileOriginalName = $file->getClientOriginalName();
+//                    $filename = time() . '_' . $file->getClientOriginalName();
+//                    $path = $file->storeAs('menu_images', $filename, 'public');
+//                    $menuImage = new MenuMainImages();
+//                    $menuImage->menu_main_id = $menu->id;
+//                    $menuImage->image = $path;
+//                    $menuImage->type = $file->getClientMimeType();
+//                    $menuImage->size = $file->getSize();
+//                    $menuImage->main = ($fileOriginalName === $mainImageName);
+//                    $menuImage->status = true;
+//                    $menuImage->save();
+//                }
+//            } else {
+//                $mainImageId = isset($data['main_image_input']) ? (int) $data['main_image_input'] : false;
+//
+//                if ($mainImageId) {
+//
+//                    MenuMainImages::where('menu_main_id', $menu->id)
+//                        ->where('main', true)
+//                        ->update(['main' => false]);
+//                    $menuImage = MenuMainImages::find($mainImageId);
+//                    if ($menuImage) {
+//                        $menuImage->update(['main' => true]);
+//                    }
+//                }
+//
+//            }
             return redirect()->route('admin.menu_main.index')->with('success','Обновление прошло успешно!');
         } catch (\Exception $exception) {
             return back()->withErrors(['error' => $exception->getMessage()]);

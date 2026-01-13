@@ -22,6 +22,7 @@ class PageSectionImageRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'slug' => 'required|in:menu,section,content',
             'files' => 'required|array',
             'files.*' => 'file|mimes:jpeg,jpg,png,gif,svg,mp4,webm,ogg,mov,avi|max:51200',
 

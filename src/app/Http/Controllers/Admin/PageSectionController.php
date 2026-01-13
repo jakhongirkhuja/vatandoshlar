@@ -58,7 +58,8 @@ class PageSectionController extends Controller
 
             $settings = PageSectionSetting::where('menu_main_id', $id)->whereNull('page_section_parent_id')->orderBy('sort_order')->get();
         }
-        return view('admin.pages.global.section.create', compact('languages', 'settings', 'slug', 'id', 'parent_id', 'category_slug'));
+        $globaltype= 'section';
+        return view('admin.pages.global.section.create', compact('languages', 'settings', 'slug', 'id', 'parent_id', 'category_slug','globaltype'));
     }
     public function editSection($slug, $id, $section_id, $parent_id = null, $category_slug = null)
     {
@@ -72,7 +73,8 @@ class PageSectionController extends Controller
         } else {
             $settings = PageSectionSetting::where('menu_main_id', $id)->whereNull('page_section_parent_id')->orderBy('sort_order')->get();
         }
-        return view('admin.pages.global.section.create', compact('languages', 'settings', 'slug', 'id', 'section', 'parent_id', 'category_slug'));
+        $globaltype= 'section';
+        return view('admin.pages.global.section.create', compact('languages', 'settings', 'slug', 'id', 'section', 'parent_id', 'category_slug','globaltype'));
     }
     public function storeSection(PageSectionRequest $request, $slug, $id, $parent_id = null, $category_slug = null)
     {

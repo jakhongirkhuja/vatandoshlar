@@ -27,17 +27,20 @@ class ContentController extends Controller
         $languages = Lang::all();
         $contents = Content::where('type', '!=', 'section')->get();
         $settings = ContentSetting::orderby('sort_order')->where('type', '!=', 'section')->get();
-
-        return view('admin.pages.content.create', compact('languages', 'settings', 'contents'));
+        $globaltype= 'content';
+        return view('admin.pages.content.create', compact('languages', 'settings', 'contents','globaltype'));
     }
-    public function edit($id)
+    public function edit($category, $id)
     {
         $languages = Lang::all();
-        $contents = Content::where('id', '!=', $id)->where('type', '!=', 'section')->get();
-        $content = Content::with('translations', 'images')->findOrFail($id);
 
+        $content = Content::with('translations', 'images')->where('category',$category)->find($id);
+        if(!$content){
+            return redirect()->route('admin.content.index',['category'=>$category])->withErrors(['message'=>'Content not found']);
+        }
         $settings = ContentSetting::orderby('sort_order')->get();
-        return view('admin.pages.content.create', compact('languages', 'settings', 'contents', 'content'));
+        $globaltype= 'content';
+        return view('admin.pages.content.create', compact('languages', 'settings',  'content','globaltype'));
     }
     public function updateSort(SortOrderUpdateRequest $request, $id)
     {

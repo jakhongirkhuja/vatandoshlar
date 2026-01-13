@@ -4,6 +4,7 @@ namespace App\Services\admin;
 
 use Illuminate\Support\Facades\Http;
 use App\Models\Support;
+use Illuminate\Support\Facades\Log;
 
 class TelegramService
 {
@@ -37,6 +38,46 @@ class TelegramService
         foreach ($supports as $support) {
             $message = self::formatSupportMessage($support);
             self::sendMessage($chatId, $botToken, $message);
+        }
+    }
+    public static function sendPhoto($chatId, $token, $photo)
+    {
+        Http::post("https://api.telegram.org/bot{$token}/sendPhoto", [
+            'chat_id' => $chatId,
+            'photo'   => $photo,
+        ]);
+    }
+    public static function sendAnyFile($chatId, $token, $relativePath)
+    {
+        $fullPath = storage_path('app/public/' . ltrim($relativePath, '/'));
+
+        if (!file_exists($fullPath)) {
+            Log::error('Telegram file not found', [
+                'relative' => $relativePath,
+                'full' => $fullPath,
+            ]);
+            return;
+        }
+
+        $ext = strtolower(pathinfo($fullPath, PATHINFO_EXTENSION));
+        $imageExt = ['jpg', 'jpeg', 'png', 'webp'];
+
+        if (in_array($ext, $imageExt)) {
+            Http::attach(
+                'photo',
+                fopen($fullPath, 'r'),
+                basename($fullPath)
+            )->post("https://api.telegram.org/bot{$token}/sendPhoto", [
+                'chat_id' => $chatId,
+            ]);
+        } else {
+            Http::attach(
+                'document',
+                fopen($fullPath, 'r'),
+                basename($fullPath)
+            )->post("https://api.telegram.org/bot{$token}/sendDocument", [
+                'chat_id' => $chatId,
+            ]);
         }
     }
 }

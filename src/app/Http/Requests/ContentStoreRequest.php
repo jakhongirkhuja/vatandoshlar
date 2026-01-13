@@ -25,12 +25,12 @@ class ContentStoreRequest extends FormRequest
             'fields' => 'required|array',
             'icon' => 'nullable|string',
             'parent_id' => 'nullable|exists:menu_mains,id',
-            'category' => 'required|string',    
+            'category' => 'required|string',
             'show_admin' => 'nullable|in:on,off',
             'status' => 'nullable|in:on,off',
             'images' => 'nullable|array',
             'images.*' => 'file|mimes:jpeg,jpg,png,gif,svg,mp4,webm,ogg,mov,avi|max:51200',
-            'content_image_input' => 'nullable|string',
+            'main_image_input' => 'nullable|string',
         ];
     }
 }

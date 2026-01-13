@@ -8,8 +8,10 @@ use App\Http\Requests\ParticipationRequest;
 use App\Http\Requests\SupportStoreRequest;
 use App\Models\Content;
 use App\Models\FormImage;
+use App\Models\Setting;
 use App\Models\Support;
 use App\Services\admin\SupportService;
+use App\Services\admin\TelegramService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -48,7 +50,7 @@ class SupportController extends Controller
     public function create(ApplicationFormRequest $applicationFormRequest)
     {
         Support::create($applicationFormRequest->validated());
-        return redirect()->back()->with('success', 'Ваша заявка принята.');
+        return redirect()->back()->with('success', 'Ваша заявка принята');
     }
 
     public function show($id)

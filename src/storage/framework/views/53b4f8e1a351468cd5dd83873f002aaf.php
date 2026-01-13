@@ -355,6 +355,12 @@
             formData.append('files[]', file);
             const li = document.createElement('li');
             li.className = 'thumb uploading';
+            <?php
+                if(!$id){
+
+                  ?>  li.dataset.name = file.name;  <?php
+                }
+            ?>
 
             const reader = new FileReader();
             reader.onload = function (e) {
@@ -383,6 +389,8 @@
             `;
 
                 media.appendChild(li);
+                attachThumbEvents(li);
+                attachDeleteEvent(li);
             };
             reader.readAsDataURL(file);
         });

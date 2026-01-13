@@ -134,6 +134,21 @@ class PageSectionService
                 $metaTranslation->data = json_encode($nonTranslatableFields);
                 $metaTranslation->save();
             }
+            $mainImageName = isset($data['main_image_input']) ? $data['main_image_input'] : '';
+
+            if($mainImageName){
+                PageSectionImage::where('page_section_id', $section_id)
+                    ->where('main', true)
+                    ->update(['main' => false]);
+                $image = PageSectionImage::find((int)$mainImageName);
+
+                if($image){
+                    $image->update(['main'=>true]);
+                }
+
+            }
+
+
             return redirect()->route('admin.pages.section.index', [
                 'slug' => $slug,
                 'id' => $id,
@@ -460,7 +475,7 @@ class PageSectionService
     {
         $pageSection = PageSection::with('children', 'images')->find($id);
         try {
-            $pageSection->delete();
+
             PageSectionTranslation::where('page_section_id', $id)->delete();
             $images = $pageSection->images;
             foreach ($images as $image) {
@@ -470,7 +485,7 @@ class PageSectionService
                 $image->delete();
                 $this->childSection($id);
             }
-
+            $pageSection->delete();
             return back()->with('success', 'Menu delete successfully.');
         } catch (\Throwable $th) {
             Log::error($th->getMessage());

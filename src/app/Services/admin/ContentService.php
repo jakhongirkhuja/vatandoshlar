@@ -190,14 +190,14 @@ class ContentService
     {
         $contents = Content::with('translations')->find($id);
         try {
-            $contents->delete();
+
             Content::where('parent_id', $id)->update(['status' => false, 'parent_id' => null]);
             $images = ContentImages::where('content_id', $id)->get();
             foreach ($images as $image) {
                 Storage::disk('public')->delete($image->image);
                 $image->delete();
             }
-
+            $contents->delete();
             return back()->with('success', 'Content delete successfully.');
         } catch (\Throwable $th) {
             Log::error($th->getMessage());

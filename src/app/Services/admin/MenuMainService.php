@@ -234,14 +234,14 @@ class MenuMainService
     {
         $menus = MenuMain::with('translations')->find($id);
         try {
-            $menus->delete();
+
             MenuMain::where('parent_id', $id)->update(['status' => false, 'parent_id' => null]);
             $images = MenuMainImages::where('menu_main_id', $id)->get();
             foreach ($images as $image) {
                 Storage::disk('public')->delete($image->image);
                 $image->delete();
             }
-
+            $menus->delete();
             return back()->with('success', 'Menu delete successfully.');
         } catch (\Throwable $th) {
             Log::error($th->getMessage());

@@ -14,13 +14,13 @@
                         <input type="hidden" name="type" value="participation">
                         <div class="form-row form-row--name-date">
                             <div class="form-field">
-                                <label for="fullname">Iltimos F.I.SH.ni to'liq kiriting:</label>
+                                <label for="fullname"><?php echo e(staticValue('fullname')); ?></label>
                                 <input type="text" id="fullname" name="data[name]" class="form-control"
-                                       placeholder="Kiriting"
+                                       placeholder="<?php echo e(staticValue('info-add')); ?>"
                                        required>
                             </div>
                             <div class="form-field">
-                                <label for="birthdate">Tug'ilgan sana:</label>
+                                <label for="birthdate"><?php echo e(staticValue('birthdate')); ?></label>
                                 <input type="date" id="birthdate" placeholder="DD-MM-YYYY" name="data[birthdate]"
                                        class="form-control"
                                        required>
@@ -29,12 +29,12 @@
 
                         <div class="form-row form-row--three">
                             <div class="form-field form-field--select">
-                                <label for="gender">Jinsi:</label>
+                                <label for="gender"><?php echo e(staticValue('gender')); ?></label>
                                 <div class="select-wrapper">
                                     <select id="gender" name="data[gender]" class="form-control" required>
-                                        <option value="" disabled selected>Tanlang</option>
-                                        <option value="male">Erkak</option>
-                                        <option value="female">Ayol</option>
+                                        <option value="" disabled selected><?php echo e(staticValue('choose')); ?></option>
+                                        <option value="male"><?php echo e(staticValue('erkak')); ?></option>
+                                        <option value="female"><?php echo e(staticValue('ayol')); ?></option>
                                     </select>
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
                                        required>
                             </div>
                             <div class="form-field">
-                                <label for="phone">Telefon raqamingiz:</label>
+                                <label for="phone"><?php echo e(staticValue('number')); ?></label>
                                 <div class="phone-dropdown">
                                     <button type="button" class="phone-toggle">
                                         <img src="https://greenuniversity.uz/assets/public/apply/flags/uz.png"
@@ -150,7 +150,7 @@
 
                         <div class="form-row form-row--two">
                             <div class="form-field form-field--select">
-                                <label for="country">Istiqomat qilayotgan davlatingiz:</label>
+                                <label for="country"><?php echo e(staticValue('owncity')); ?></label>
                                 <div class="select-wrapper">
                                     <select id="country" name="data[country]" class="form-control" required>
                                         <option value="" disabled selected>Tanlang</option>
@@ -159,10 +159,10 @@
                                 </div>
                             </div>
                             <div class="form-field form-field--select">
-                                <label for="city">Shahar/tuman:</label>
+                                <label for="city"><?php echo e(staticValue('city')); ?></label>
                                 <div class="select-wrapper">
                                     <select id="city" name="data[city]" class="form-control" required>
-                                        <option value="" disabled selected>Tanlang</option>
+                                        <option value="" disabled selected><?php echo e(staticValue('choose')); ?></option>
                                         <option value="tashkent">Toshkent</option>
                                         <option value="fergana">Fargona</option>
                                         <option value="sirdaryo">Sirdaryo</option>
@@ -174,29 +174,29 @@
 
                         <div class="form-row form-row--two">
                             <div class="form-field">
-                                <label for="workplace">Ish joyi:</label>
+                                <label for="workplace"><?php echo e(staticValue('workplace:')); ?></label>
                                 <input type="text" id="workplace" name="data[workplace]" class="form-control"
-                                       placeholder="Kiriting"
+                                       placeholder="<?php echo e(staticValue('info-add')); ?>"
                                        required>
                             </div>
                             <div class="form-field">
-                                <label for="position">Lavozimi:</label>
+                                <label for="position"><?php echo e(staticValue('position')); ?></label>
                                 <input type="text" id="position" name="data[position]" class="form-control"
-                                       placeholder="Kiriting"
+                                       placeholder="<?php echo e(staticValue('info-add')); ?>"
                                        required>
                             </div>
                         </div>
 
                         <div class="form-row form-row--two">
                             <div class="form-field">
-                                <label for="education">Ma'lumoti:</label>
+                                <label for="education"><?php echo e(staticValue('information')); ?></label>
                                 <input type="text" id="education" name="data[education]" class="form-control"
-                                       placeholder="Kiriting">
+                                       placeholder="<?php echo e(staticValue('info-add')); ?>">
                             </div>
                             <div class="form-field">
-                                <label for="specialization">Mutaxassisligi:</label>
+                                <label for="specialization"><?php echo e(staticValue('select_spec')); ?>label>
                                 <input type="text" id="specialization" name="data[specialization]" class="form-control"
-                                       placeholder="Kiriting">
+                                       placeholder="<?php echo e(staticValue('info-add')); ?>">
                             </div>
                         </div>
 
@@ -204,30 +204,30 @@
                             <div class="form-field">
                                 <label for="telegram">Telegram:</label>
                                 <input type="text" id="telegram" name="data[telegram]" class="form-control"
-                                       placeholder="Kiriting">
+                                       placeholder="<?php echo e(staticValue('info-add')); ?>">
                             </div>
                             <div class="form-field">
                                 <label for="instagram">Instagram:</label>
                                 <input type="text" id="instagram" name="data[instagram]" class="form-control"
-                                       placeholder="Kiriting">
+                                       placeholder="<?php echo e(staticValue('info-add')); ?>">
                             </div>
                             <div class="form-field">
                                 <label for="whatsapp">WhatsApp:</label>
                                 <input type="text" id="whatsapp" name="data[whatsapp]" class="form-control"
-                                       placeholder="Kiriting">
+                                       placeholder="<?php echo e(staticValue('info-add')); ?>">
                             </div>
                         </div>
 
                         <div class="form-field form-field--upload">
-                            <label for="file-input">Fayl:</label>
+                            <label for="file-input"><?php echo e(staticValue('file')); ?></label>
                             <div class="upload-area" id="upload-area">
                                 <div class="upload-area__text" id="upload-text">
                                     <span class="upload-area__title">
                                         <img src="<?php echo e(asset('front')); ?>/images/upload.svg" alt="Upload icon">
-                                        Upload or drag file
+                                        <?php echo e(staticValue('upload')); ?>
+
                                     </span>
-                                    <p class="upload-area__description">Video, rasm, hujjat, PDF, docx, excel va
-                                        boshqalar</p>
+                                    <p class="upload-area__description"> <?php echo e(staticValue('video')); ?></p>
                                 </div>
                                 <div class="file-list" id="file-list"></div>
                             </div>
@@ -238,7 +238,7 @@
                         <div class="form-actions">
                             <button type="submit" class="submit-btn">
                                 <img src="<?php echo e(asset('front')); ?>/images/send.svg" alt="Send icon">
-                                <span>Yuborish</span>
+                                <span><?php echo e(staticValue('request')); ?></span>
                             </button>
                         </div>
                     </form>

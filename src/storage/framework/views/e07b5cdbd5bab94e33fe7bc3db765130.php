@@ -13,13 +13,13 @@
                         <?php echo csrf_field(); ?>
                         <div class="form-row form-row--name-date">
                             <div class="form-field">
-                                <label for="fullname">Iltimos F.I.SH.ni to'liq kiriting:</label>
-                                <input type="text" id="fullname" name="data[name]" class="form-control" placeholder="Kiriting"
+                                <label for="fullname"><?php echo e(staticValue('pleasure')); ?></label>
+                                <input type="text" id="fullname" name="data[name]" class="form-control" placeholder="<?php echo e(staticValue('info-add')); ?>"
                                        required>
                             </div>
 
                             <div class="form-field">
-                                <label for="birthdate">Tug'ilgan sana:</label>
+                                <label for="birthdate"><?php echo e(staticValue('birthdate')); ?></label>
                                 <input type="date" id="birthdate" name="data[birthdate]" class="form-control" required>
                             </div>
                         </div>
@@ -28,9 +28,9 @@
 
                         ?>
                         <div class="form-field">
-                            <label for="specialization">Mutaxassisligi:</label>
+                            <label for="specialization"><?php echo e(staticValue('Specialization:')); ?></label>
                             <select name="data[job]" id="specialization" class="form-control" required>
-                                <option value="">Mutaxassislikni tanlang</option>
+                                <option value=""><?php echo e(staticValue('select_spec')); ?></option>
                                 <?php $__currentLoopData = $jobs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $job): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <option value="<?php echo e($job->id); ?>">
                                         <?php echo e(sectionValue($job,'title')); ?>
@@ -41,23 +41,23 @@
                         </div>
 
                         <div class="form-field">
-                            <label for="address">Yashash manzili:</label>
+                            <label for="address"><?php echo e(staticValue('turar-joy')); ?></label>
                             <input type="text" id="address" name="data[address]" class="form-control"
-                                   placeholder="Manzilni kiriting" required>
+                                   placeholder="<?php echo e(staticValue('the_address')); ?>" required>
                         </div>
 
                         <div class="form-field">
-                            <label for="extra_info">Email, telefon yoki boshqa bog‘lanish ma’lumoti:</label>
+                            <label for="extra_info"><?php echo e(staticValue('add-info')); ?></label>
                             <input type="text" id="extra_info" name="data[extra_info]" class="form-control"
-                                   placeholder="Bog‘lanish ma’lumoti" required>
+                                   placeholder="<?php echo e(staticValue('contact-info')); ?>" required>
                         </div>
                         <div class="form-field">
-                            <label for="description">Takliflar:</label>
-                            <input type="text" id="description" name="data[description]" class="form-control" placeholder="Kiriting"
+                            <label for="description"><?php echo e(staticValue('taklif')); ?></label>
+                            <input type="text" id="description" name="data[description]" class="form-control" placeholder="<?php echo e(staticValue('info-add')); ?>"
                                    required>
                         </div>
 
-                        <button type="submit">Yuborish</button>
+                        <button type="submit"><?php echo e(staticValue('request')); ?></button>
                     </form>
                 </div>
             </div>
@@ -69,16 +69,16 @@
                     <div class="modal-content">
                         
                         <div class="modal-header bg-primary text-white">
-                            <h5 class="modal-title">Ma'lumot</h5>
+                            <h5 class="modal-title"><?php echo e(staticValue('info')); ?></h5>
                             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                         </div>
                         <div class="modal-body text-center py-4">
-                            <h4 class="text-primary mb-2">Rahmat!</h4>
+                            <h4 class="text-primary mb-2"><?php echo e(staticValue('thanks')); ?></h4>
                             <p class="mb-0"><?php echo e(session('success')); ?></p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Yopish</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><?php echo e(staticValue('close')); ?></button>
                         </div>
                     </div>
                 </div>

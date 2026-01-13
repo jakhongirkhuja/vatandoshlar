@@ -74,11 +74,11 @@
             <div class="container">
                 <div class="contacts__wrapper">
                     <div class="contacts__right">
-                        <h5>Elektron murojaat yuborish platformasi</h5>
-                        <p>Biz barcha sizni qiynayotga muammoga yo’l topaolamiz. Bizga murojat qiling</p>
+                        <h5><?php echo e(staticValue('platform')); ?></h5>
+                        <p><?php echo e(staticValue('join-us')); ?></p>
                         <div class="contacts__right--wrapper">
-                            <a class="button"  href="<?php echo e(route('home',['locale'=>app()->getlocale(), 'any'=>'murojat-qilish'])); ?>">Murojaat yuborish</a>
-                            <a class="link" href="#"><i class="i-play"></i><span>Video qo’llanma</span></a>
+                            <a class="button"  href="<?php echo e(route('home',['locale'=>app()->getlocale(), 'any'=>'murojat-qilish'])); ?>"><?php echo e(staticValue('button1')); ?></a>
+                            <a class="link" href="#"><i class="i-play"></i><span><?php echo e(staticValue('video_l')); ?></span></a>
                         </div>
                     </div>
                     <div class="contacts__left">

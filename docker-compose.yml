@@ -5,7 +5,7 @@ services:
   site:
     image: nginx:stable-alpine
     ports:
-      - "8078:80"
+      - "8079:80"
     volumes:
       - ./src:/var/www/html
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
@@ -51,12 +51,12 @@ services:
   db:
     image: postgres:16
     ports:
-      - "5435:5432"
+      - "5430:5432"
     environment:
       POSTGRES_USER: user1
       POSTGRES_PASSWORD: changeme
       POSTGRES_DB: userdb
-    networks:
+    networks: 
       - laravel    
       
   admin:
@@ -65,6 +65,6 @@ services:
     depends_on: 
       - db
     ports:
-      - 8310:8080
+      - 8311:8080
     networks:
       - laravel

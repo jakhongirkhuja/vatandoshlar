@@ -1,7 +1,7 @@
 <section class="stats">
     <div class="container">
         <div class="section-top">
-            <p><?php echo e('Statistika'); ?></p>
+            <p><?php echo e(staticValue('statisctic')); ?> </p>
         </div>
 
         <div class="stats__grid">

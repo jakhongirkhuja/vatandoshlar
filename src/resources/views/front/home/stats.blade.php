@@ -1,7 +1,7 @@
 <section class="stats">
     <div class="container">
         <div class="section-top">
-            <p>{{ 'Statistika' }}</p>
+            <p>{{staticValue('statisctic')}} </p>
         </div>
 
         <div class="stats__grid">

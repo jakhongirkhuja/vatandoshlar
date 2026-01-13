@@ -5,7 +5,7 @@
         <div class="container">
             <div class="contacts-page">
                 <div class="contacts-page__data">
-                    <h2 class="contacts-page__data--title">Biz bilan bog'lanish uchun ariza shakli</h2>
+                    <h2 class="contacts-page__data--title"><?php echo e(staticValue('contactmessage')); ?></h2>
                   
                     
                   <?php if(session('success')): ?>
@@ -15,15 +15,15 @@
                             <div class="modal-content">
                                 
                                 <div class="modal-header bg-primary text-white">
-                                    <h5 class="modal-title">Ma'lumot</h5>
+                                    <h5 class="modal-title"><?php echo e(staticValue('info')); ?></h5>
                                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body text-center py-4">
-                                    <h4 class="text-primary mb-2">Rahmat!</h4>
+                                    <h4 class="text-primary mb-2"><?php echo e(staticValue('thanks')); ?></h4>
                                     <p class="mb-0"><?php echo e(session('success')); ?></p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Yopish</button>
+                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><?php echo e(staticValue('close')); ?></button>
                                 </div>
                             </div>
                         </div>
@@ -53,10 +53,10 @@
                         <?php echo csrf_field(); ?>
                            <input type="hidden" name="type" value="form">
                         <div class="contacts-page__data--form-group">
-                            <label>To'liq ismingiz:</label>
+                            <label><?php echo e(staticValue('fullname')); ?></label>
                             <input class="form-control" 
                                    type="text" 
-                                   placeholder="Kiriting" 
+                                   placeholder="<?php echo e(staticValue('info-add')); ?>" 
                                    name="data[name]" 
                                    required />
                             <?php $__errorArgs = ['data.name'];
@@ -73,7 +73,7 @@ unset($__errorArgs, $__bag); ?>
 
                         <div class="contacts-page__data--form-row">
                             <div class="contacts-page__data--form-group">
-                                <label>Telefon raqamingiz:</label>
+                                <label><?php echo e(staticValue('number')); ?></label>
                                 <input id="phone" 
                                        class="form-control" 
                                        type="text" 
@@ -92,7 +92,7 @@ unset($__errorArgs, $__bag); ?>
                             </div>
 
                             <div class="contacts-page__data--form-group">
-                                <label>Elektron manzil:</label>
+                                <label><?php echo e(staticValue('email')); ?></label>
                                 <input class="form-control" 
                                        type="email" 
                                        placeholder="example@gmail.com"
@@ -112,7 +112,7 @@ unset($__errorArgs, $__bag); ?>
                         </div>
 
                         <div class="contacts-page__data--form-group">
-                            <label>Xabar matni:</label>
+                            <label><?php echo e(staticValue('message')); ?></label>
                             <textarea class="form-control" 
                                       placeholder="Kiriting" 
                                       name="data[description]" 
@@ -131,13 +131,14 @@ unset($__errorArgs, $__bag); ?>
 
                         <button type="submit" class="btn-submit">
                             <img src="<?php echo e(asset('front/images/send.svg')); ?>" alt="Send">
-                            Yuborish
+                            <?php echo e(staticValue('request')); ?>
+
                         </button>
                     </form>
                 </div>
                 
                 <div class="contacts-page__contact">
-                    <h2 class="contacts-page__data--title">Kontakt ma'lumotlari</h2>
+                    <h2 class="contacts-page__data--title"><?php echo e(staticValue('contacts')); ?></h2>
                     <div class="contacts-page__contact--info">
                         <a href="tel:+998712345678" class="contacts-page__contact--info-item">
                             <div class="contacts-page__contact--info-item-img">
@@ -146,7 +147,7 @@ unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
                             <div class="contacts-page__contact--info-item-numbers">
-                                <p>Telefon raqam:</p>
+                                <p><?php echo e(staticValue('phone')); ?></p>
                                 <span>+998 71 234 56 78</span>
                             </div>
                         </a>
@@ -158,7 +159,7 @@ unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
                             <div class="contacts-page__contact--info-item-numbers">
-                                <p>Elektron manzil:</p>
+                                <p><?php echo e(staticValue('email')); ?></p>
                                 <span>info@example.com</span>
                             </div>
                         </a>
@@ -170,8 +171,8 @@ unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
                             <div class="contacts-page__contact--info-item-numbers">
-                                <p>Ish vaqti:</p>
-                                <span>Dushanba-Juma: 09:00 – 18:00</span>
+                                <p><?php echo e(staticValue('work-time')); ?></p>
+                                <span><?php echo e(staticValue('work-days')); ?> 09:00 – 18:00</span>
                             </div>
                         </div>
                         
@@ -182,9 +183,8 @@ unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
                             <div class="contacts-page__contact--info-item-numbers">
-                                <p>Manzil:</p>
-                                <span>O'zbekiston, Toshkent shahri, Yakkasaroy tumani,
-                                    Bobur ko'chasi, 45-uy</span>
+                                <p><?php echo e(staticValue('address')); ?></p>
+                                <span><?php echo e(staticValue('adres')); ?></span>
                             </div>
                         </div>
                     </div>

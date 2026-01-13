@@ -1,6 +1,7 @@
 -- Adminer 5.4.1 PostgreSQL 16.11 dump
 
 
+
 DROP TABLE IF EXISTS "cache";
 CREATE TABLE "public"."cache" (
     "key" character varying(255) NOT NULL,
@@ -10,6 +11,7 @@ CREATE TABLE "public"."cache" (
 )
 WITH (oids = false);
 
+TRUNCATE "cache";
 INSERT INTO "cache" ("key", "value", "expiration") VALUES
 ('laravel-cache-settings',	'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',	2083562547),
 ('laravel-cache-captcha_420a2d86f10e4556b66e17585b05d254',	'a:4:{i:0;s:1:"p";i:1;s:1:"t";i:2;s:1:"z";i:3;s:1:"b";}',	1768214415),
@@ -24,10 +26,11 @@ CREATE TABLE "public"."cache_locks" (
 )
 WITH (oids = false);
 
+TRUNCATE "cache_locks";
 
 DROP TABLE IF EXISTS "content_images";
 DROP SEQUENCE IF EXISTS content_images_id_seq;
-CREATE SEQUENCE content_images_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 11 CACHE 1;
+CREATE SEQUENCE content_images_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 13 CACHE 1;
 
 CREATE TABLE "public"."content_images" (
     "id" bigint DEFAULT nextval('content_images_id_seq') NOT NULL,
@@ -47,6 +50,7 @@ WITH (oids = false);
 
 CREATE INDEX content_images_main_index ON public.content_images USING btree (main);
 
+TRUNCATE "content_images";
 INSERT INTO "content_images" ("id", "content_id", "image", "compressed", "type", "size", "main", "status", "created_at", "updated_at", "category") VALUES
 (2,	1,	'contents/1768287415_Frame 1321315991 (9).png',	NULL,	'image/png',	1385,	'0',	'1',	'2026-01-13 06:56:55',	'2026-01-13 06:56:55',	NULL),
 (4,	1,	'contents/1768287415_Frame 1321315991 (7).png',	NULL,	'image/png',	1387,	'0',	'1',	'2026-01-13 06:56:55',	'2026-01-13 06:57:38',	NULL),
@@ -81,13 +85,14 @@ WITH (oids = false);
 
 CREATE INDEX content_settings_key_is_translatable_status_sort_order_index ON public.content_settings USING btree (key, is_translatable, status, sort_order);
 
+TRUNCATE "content_settings";
 INSERT INTO "content_settings" ("id", "key", "label", "type", "required", "is_translatable", "options", "sort_order", "relation", "status", "created_at", "updated_at", "category") VALUES
 (1,	'title',	'Title',	'text',	'1',	'1',	NULL,	1,	NULL,	'1',	NULL,	'2026-01-08 12:17:12',	'list'),
 (2,	'key',	'Key',	'text',	'1',	'0',	NULL,	1,	NULL,	'1',	NULL,	'2026-01-08 12:17:12',	'list');
 
 DROP TABLE IF EXISTS "content_translations";
 DROP SEQUENCE IF EXISTS content_translations_id_seq;
-CREATE SEQUENCE content_translations_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 141 CACHE 1;
+CREATE SEQUENCE content_translations_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 301 CACHE 1;
 
 CREATE TABLE "public"."content_translations" (
     "id" bigint DEFAULT nextval('content_translations_id_seq') NOT NULL,
@@ -103,11 +108,8 @@ WITH (oids = false);
 
 CREATE INDEX content_translations_locale_index ON public.content_translations USING btree (locale);
 
+TRUNCATE "content_translations";
 INSERT INTO "content_translations" ("id", "content_id", "locale", "data", "created_at", "updated_at", "category") VALUES
-(109,	28,	'uz',	'{"title": "To''liq ismingiz:"}',	'2026-01-08 14:33:53',	'2026-01-08 14:33:53',	NULL),
-(110,	28,	'ru',	'{"title": "Ваше полное имя:"}',	'2026-01-08 14:33:53',	'2026-01-08 14:33:53',	NULL),
-(111,	28,	'en',	'{"title": "Your full name:"}',	'2026-01-08 14:33:53',	'2026-01-08 14:33:53',	NULL),
-(112,	28,	NULL,	'{"key": "fullname"}',	'2026-01-08 14:33:53',	'2026-01-08 14:33:53',	NULL),
 (113,	29,	'uz',	'{"title": "Mahalliy"}',	'2026-01-09 01:55:40',	'2026-01-09 01:55:40',	NULL),
 (114,	29,	'ru',	'{"title": null}',	'2026-01-09 01:55:40',	'2026-01-09 01:55:40',	NULL),
 (115,	29,	'en',	'{"title": null}',	'2026-01-09 01:55:40',	'2026-01-09 01:55:40',	NULL),
@@ -120,10 +122,6 @@ INSERT INTO "content_translations" ("id", "content_id", "locale", "data", "creat
 (6,	2,	'ru',	'{"title": "Номер телефона"}',	'2025-12-29 11:34:12',	'2026-01-08 12:17:27',	'list'),
 (7,	2,	'en',	'{"title": "Phone number"}',	'2025-12-29 11:34:12',	'2026-01-08 12:17:27',	'list'),
 (8,	2,	NULL,	'{"key": "phone"}',	'2025-12-29 11:34:12',	'2026-01-08 12:17:27',	'list'),
-(9,	3,	'uz',	'{"title": "Elektron pochta"}',	'2025-12-29 11:34:55',	'2026-01-08 12:17:27',	'list'),
-(10,	3,	'ru',	'{"title": "Электрон поста"}',	'2025-12-29 11:34:55',	'2026-01-08 12:17:27',	'list'),
-(11,	3,	'en',	'{"title": "Email"}',	'2025-12-29 11:34:55',	'2026-01-08 12:17:27',	'list'),
-(12,	3,	NULL,	'{"key": "email"}',	'2025-12-29 11:34:55',	'2026-01-08 12:17:27',	'list'),
 (17,	5,	'uz',	'{"title": "O''zbekiston Respublikasi Prezidenti Administratsiyasi huzuridagi ta''lim sifatini ta''minlash milliy agentligi"}',	'2025-12-29 11:37:26',	'2026-01-08 12:17:27',	'list'),
 (18,	5,	'ru',	'{"title": "Национальное агентство по обеспечению качества образования при Администрации Президента Республики Узбекистан"}',	'2025-12-29 11:37:26',	'2026-01-08 12:17:27',	'list'),
 (19,	5,	'en',	'{"title": "National Agency for Quality Assurance in Education under the Administration of the President of the Republic of Uzbekistan"}',	'2025-12-29 11:37:26',	'2026-01-08 12:17:27',	'list'),
@@ -174,6 +172,13 @@ INSERT INTO "content_translations" ("id", "content_id", "locale", "data", "creat
 (3,	1,	'en',	'{"title": "News"}',	'2025-12-29 11:28:37',	'2026-01-13 06:57:38',	'list'),
 (4,	1,	NULL,	'{"key": "news"}',	'2025-12-29 11:28:37',	'2026-01-13 06:57:38',	'list'),
 (60,	15,	NULL,	'{"key": "application"}',	'2026-01-05 06:16:32',	'2026-01-08 12:17:27',	'list'),
+(9,	3,	'uz',	'{"title": "Elektron pochta"}',	'2025-12-29 11:34:55',	'2026-01-13 08:57:02',	'list'),
+(10,	3,	'ru',	'{"title": "Электрон почта"}',	'2025-12-29 11:34:55',	'2026-01-13 08:57:02',	'list'),
+(11,	3,	'en',	'{"title": "Email"}',	'2025-12-29 11:34:55',	'2026-01-13 08:57:02',	'list'),
+(12,	3,	NULL,	'{"key": "email"}',	'2025-12-29 11:34:55',	'2026-01-13 08:57:02',	'list'),
+(167,	42,	'en',	'{"title": "Working hours:"}',	'2026-01-13 09:01:18',	'2026-01-13 09:01:18',	NULL),
+(168,	42,	NULL,	'{"key": "work-time"}',	'2026-01-13 09:01:18',	'2026-01-13 09:01:18',	NULL),
+(170,	43,	'ru',	'{"title": "Понедельник-пятница:"}',	'2026-01-13 09:02:14',	'2026-01-13 09:17:19',	NULL),
 (61,	16,	'uz',	'{"title": "Biz barcha sizni qiynayotga muammoga yo’l topaolamiz. Bizga murojat qiling"}',	'2026-01-05 06:17:30',	'2026-01-08 12:17:27',	'list'),
 (62,	16,	'ru',	'{"title": "Мы можем помочь вам с любой проблемой. Свяжитесь с нами."}',	'2026-01-05 06:17:30',	'2026-01-08 12:17:27',	'list'),
 (63,	16,	'en',	'{"title": "We can help you with any problem. Contact us."}',	'2026-01-05 06:17:30',	'2026-01-08 12:17:27',	'list'),
@@ -223,11 +228,164 @@ INSERT INTO "content_translations" ("id", "content_id", "locale", "data", "creat
 (137,	35,	'uz',	'{"title": "newtext"}',	'2026-01-13 06:58:18',	'2026-01-13 06:58:18',	NULL),
 (138,	35,	'ru',	'{"title": null}',	'2026-01-13 06:58:18',	'2026-01-13 06:58:18',	NULL),
 (139,	35,	'en',	'{"title": null}',	'2026-01-13 06:58:18',	'2026-01-13 06:58:18',	NULL),
-(140,	35,	NULL,	'{"key": "newtext"}',	'2026-01-13 06:58:18',	'2026-01-13 06:58:18',	NULL);
+(140,	35,	NULL,	'{"key": "newtext"}',	'2026-01-13 06:58:18',	'2026-01-13 06:58:18',	NULL),
+(153,	39,	'uz',	'{"title": "Telefon raqamingiz:"}',	'2026-01-13 08:55:47',	'2026-01-13 08:55:47',	NULL),
+(154,	39,	'ru',	'{"title": "Ваш номер телефона:"}',	'2026-01-13 08:55:47',	'2026-01-13 08:55:47',	NULL),
+(155,	39,	'en',	'{"title": "Your phone number:"}',	'2026-01-13 08:55:47',	'2026-01-13 08:55:47',	NULL),
+(156,	39,	NULL,	'{"key": "number"}',	'2026-01-13 08:55:47',	'2026-01-13 08:55:47',	NULL),
+(157,	40,	'uz',	'{"title": "Xabar matni:"}',	'2026-01-13 08:58:06',	'2026-01-13 08:58:06',	NULL),
+(158,	40,	'ru',	'{"title": "Текст сообщения:"}',	'2026-01-13 08:58:06',	'2026-01-13 08:58:06',	NULL),
+(159,	40,	'en',	'{"title": "Message text:"}',	'2026-01-13 08:58:06',	'2026-01-13 08:58:06',	NULL),
+(160,	40,	NULL,	'{"key": "message"}',	'2026-01-13 08:58:06',	'2026-01-13 08:58:06',	NULL),
+(145,	37,	'uz',	'{"title": "Biz bilan bog''lanish uchun ariza shakli"}',	'2026-01-13 08:52:06',	'2026-01-13 08:52:06',	NULL),
+(146,	37,	'ru',	'{"title": "Форма заявки для связи с нами"}',	'2026-01-13 08:52:06',	'2026-01-13 08:52:06',	NULL),
+(147,	37,	'en',	'{"title": "Application form to contact us"}',	'2026-01-13 08:52:06',	'2026-01-13 08:52:06',	NULL),
+(148,	37,	NULL,	'{"key": "contactmessage"}',	'2026-01-13 08:52:06',	'2026-01-13 08:52:06',	NULL),
+(149,	38,	'uz',	'{"title": "To''liq ismingiz:"}',	'2026-01-13 08:55:00',	'2026-01-13 08:55:00',	NULL),
+(150,	38,	'ru',	'{"title": "Ваше полное имя:"}',	'2026-01-13 08:55:00',	'2026-01-13 08:55:00',	NULL),
+(151,	38,	'en',	'{"title": "Your full name:"}',	'2026-01-13 08:55:00',	'2026-01-13 08:55:00',	NULL),
+(152,	38,	NULL,	'{"key": "fullname"}',	'2026-01-13 08:55:00',	'2026-01-13 08:55:00',	NULL),
+(161,	41,	'uz',	'{"title": "Yuborish"}',	'2026-01-13 08:58:55',	'2026-01-13 08:58:55',	NULL),
+(162,	41,	'ru',	'{"title": "Отправлять"}',	'2026-01-13 08:58:55',	'2026-01-13 08:58:55',	NULL),
+(163,	41,	'en',	'{"title": "Send"}',	'2026-01-13 08:58:55',	'2026-01-13 08:58:55',	NULL),
+(164,	41,	NULL,	'{"key": "request"}',	'2026-01-13 08:58:55',	'2026-01-13 08:58:55',	NULL),
+(165,	42,	'uz',	'{"title": "Ish vaqti:"}',	'2026-01-13 09:01:18',	'2026-01-13 09:01:18',	NULL),
+(166,	42,	'ru',	'{"title": "Рабочее время:"}',	'2026-01-13 09:01:18',	'2026-01-13 09:01:18',	NULL),
+(173,	44,	'uz',	'{"title": "O''zbekiston, Toshkent shahri, Yakkasaroy tumani, Bobur ko''chasi, 45-uy"}',	'2026-01-13 09:03:30',	'2026-01-13 09:03:30',	NULL),
+(174,	44,	'ru',	'{"title": "Узбекистан, город Ташкент, Яккасарайский район, улица Бабура, 45"}',	'2026-01-13 09:03:30',	'2026-01-13 09:03:30',	NULL),
+(175,	44,	'en',	'{"title": "Uzbekistan, Tashkent city, Yakkasaroy district, Babur street, 45"}',	'2026-01-13 09:03:30',	'2026-01-13 09:03:30',	NULL),
+(176,	44,	NULL,	'{"key": "adres"}',	'2026-01-13 09:03:30',	'2026-01-13 09:03:30',	NULL),
+(177,	45,	'uz',	'{"title": "Ma''lumot"}',	'2026-01-13 09:09:32',	'2026-01-13 09:09:32',	NULL),
+(178,	45,	'ru',	'{"title": "Информация"}',	'2026-01-13 09:09:32',	'2026-01-13 09:09:32',	NULL),
+(179,	45,	'en',	'{"title": "Information"}',	'2026-01-13 09:09:32',	'2026-01-13 09:09:32',	NULL),
+(180,	45,	NULL,	'{"key": "info"}',	'2026-01-13 09:09:32',	'2026-01-13 09:09:32',	NULL),
+(181,	46,	'uz',	'{"title": "Rahmat!"}',	'2026-01-13 09:11:01',	'2026-01-13 09:11:01',	NULL),
+(182,	46,	'ru',	'{"title": "Спасибо!"}',	'2026-01-13 09:11:01',	'2026-01-13 09:11:01',	NULL),
+(183,	46,	'en',	'{"title": "Thank you!"}',	'2026-01-13 09:11:01',	'2026-01-13 09:11:01',	NULL),
+(184,	46,	NULL,	'{"key": "thanks"}',	'2026-01-13 09:11:01',	'2026-01-13 09:11:01',	NULL),
+(185,	47,	'uz',	'{"title": "Kontakt ma''lumotlari"}',	'2026-01-13 09:14:35',	'2026-01-13 09:14:35',	NULL),
+(186,	47,	'ru',	'{"title": "Контактная информация"}',	'2026-01-13 09:14:35',	'2026-01-13 09:14:35',	NULL),
+(187,	47,	'en',	'{"title": "Contact information"}',	'2026-01-13 09:14:35',	'2026-01-13 09:14:35',	NULL),
+(188,	47,	NULL,	'{"key": "contacts"}',	'2026-01-13 09:14:35',	'2026-01-13 09:14:35',	NULL),
+(169,	43,	'uz',	'{"title": "Dushanba-Juma:"}',	'2026-01-13 09:02:14',	'2026-01-13 09:17:19',	NULL),
+(171,	43,	'en',	'{"title": "Monday-Friday:"}',	'2026-01-13 09:02:14',	'2026-01-13 09:17:19',	NULL),
+(172,	43,	NULL,	'{"key": "work-days"}',	'2026-01-13 09:02:14',	'2026-01-13 09:17:19',	NULL),
+(189,	48,	'uz',	'{"title": "Iltimos F.I.SH.ni to''liq kiriting:"}',	'2026-01-13 09:21:50',	'2026-01-13 09:21:50',	NULL),
+(190,	48,	'ru',	'{"title": "Пожалуйста, введите ваш полный номер F.I.S.:"}',	'2026-01-13 09:21:50',	'2026-01-13 09:21:50',	NULL),
+(191,	48,	'en',	'{"title": "Please enter your full F.I.S. number:"}',	'2026-01-13 09:21:50',	'2026-01-13 09:21:50',	NULL),
+(192,	48,	NULL,	'{"key": "pleasure"}',	'2026-01-13 09:21:50',	'2026-01-13 09:21:50',	NULL),
+(193,	49,	'uz',	'{"title": "Tug''ilgan sana:"}',	'2026-01-13 09:22:27',	'2026-01-13 09:22:27',	NULL),
+(194,	49,	'ru',	'{"title": "Дата рождения:"}',	'2026-01-13 09:22:27',	'2026-01-13 09:22:27',	NULL),
+(195,	49,	'en',	'{"title": "Date of birth:"}',	'2026-01-13 09:22:27',	'2026-01-13 09:22:27',	NULL),
+(196,	49,	NULL,	'{"key": "birthdate"}',	'2026-01-13 09:22:27',	'2026-01-13 09:22:27',	NULL),
+(197,	50,	'uz',	'{"title": "Mutaxassisligi:"}',	'2026-01-13 09:23:17',	'2026-01-13 09:23:17',	NULL),
+(198,	50,	'ru',	'{"title": "Специализация:"}',	'2026-01-13 09:23:17',	'2026-01-13 09:23:17',	NULL),
+(199,	50,	'en',	'{"title": "Specialization:"}',	'2026-01-13 09:23:17',	'2026-01-13 09:23:17',	NULL),
+(200,	50,	NULL,	'{"key": "Specialization:"}',	'2026-01-13 09:23:17',	'2026-01-13 09:23:17',	NULL),
+(201,	51,	'uz',	'{"title": "Mutaxassislikni tanlang"}',	'2026-01-13 09:24:02',	'2026-01-13 09:24:02',	NULL),
+(202,	51,	'ru',	'{"title": "Выберите специализацию"}',	'2026-01-13 09:24:02',	'2026-01-13 09:24:02',	NULL),
+(203,	51,	'en',	'{"title": "Select a specialization"}',	'2026-01-13 09:24:02',	'2026-01-13 09:24:02',	NULL),
+(204,	51,	NULL,	'{"key": "select_spec"}',	'2026-01-13 09:24:02',	'2026-01-13 09:24:02',	NULL),
+(205,	52,	'uz',	'{"title": "Yashash manzili:"}',	'2026-01-13 09:25:09',	'2026-01-13 09:25:09',	NULL),
+(206,	52,	'ru',	'{"title": "Адрес проживания:"}',	'2026-01-13 09:25:09',	'2026-01-13 09:25:09',	NULL),
+(207,	52,	'en',	'{"title": "Residential address:"}',	'2026-01-13 09:25:09',	'2026-01-13 09:25:09',	NULL),
+(208,	52,	NULL,	'{"key": "turar-joy"}',	'2026-01-13 09:25:09',	'2026-01-13 09:25:09',	NULL),
+(209,	53,	'uz',	'{"title": "Email, telefon yoki boshqa bog‘lanish ma’lumoti:"}',	'2026-01-13 09:25:54',	'2026-01-13 09:25:54',	NULL),
+(210,	53,	'ru',	'{"title": "Адрес электронной почты, номер телефона или другая контактная информация:"}',	'2026-01-13 09:25:54',	'2026-01-13 09:25:54',	NULL),
+(211,	53,	'en',	'{"title": "Email address, phone number or other contact information:"}',	'2026-01-13 09:25:54',	'2026-01-13 09:25:54',	NULL),
+(212,	53,	NULL,	'{"key": "add-info"}',	'2026-01-13 09:25:54',	'2026-01-13 09:25:54',	NULL),
+(213,	54,	'uz',	'{"title": "Takliflar:"}',	'2026-01-13 09:26:45',	'2026-01-13 09:26:45',	NULL),
+(214,	54,	'ru',	'{"title": "Предложения:"}',	'2026-01-13 09:26:45',	'2026-01-13 09:26:45',	NULL),
+(215,	54,	'en',	'{"title": "Offers:"}',	'2026-01-13 09:26:45',	'2026-01-13 09:26:45',	NULL),
+(216,	54,	NULL,	'{"key": "taklif"}',	'2026-01-13 09:26:45',	'2026-01-13 09:26:45',	NULL),
+(217,	55,	'uz',	'{"title": "Ma''lumot kiriting"}',	'2026-01-13 09:37:19',	'2026-01-13 09:37:19',	NULL),
+(218,	55,	'ru',	'{"title": "Введите информацию"}',	'2026-01-13 09:37:19',	'2026-01-13 09:37:19',	NULL),
+(219,	55,	'en',	'{"title": "Enter the information"}',	'2026-01-13 09:37:19',	'2026-01-13 09:37:19',	NULL),
+(220,	55,	NULL,	'{"key": "info-add"}',	'2026-01-13 09:37:19',	'2026-01-13 09:37:19',	NULL),
+(221,	56,	'uz',	'{"title": "Manzilni kiriting"}',	'2026-01-13 09:40:34',	'2026-01-13 09:40:34',	NULL),
+(222,	56,	'ru',	'{"title": "Введите адрес"}',	'2026-01-13 09:40:34',	'2026-01-13 09:40:34',	NULL),
+(223,	56,	'en',	'{"title": "Enter the address"}',	'2026-01-13 09:40:34',	'2026-01-13 09:40:34',	NULL),
+(224,	56,	NULL,	'{"key": "the_address"}',	'2026-01-13 09:40:34',	'2026-01-13 09:40:34',	NULL),
+(225,	57,	'uz',	'{"title": "Bog‘lanish ma’lumoti"}',	'2026-01-13 09:43:04',	'2026-01-13 09:43:04',	NULL),
+(226,	57,	'ru',	'{"title": "Контактная информация"}',	'2026-01-13 09:43:04',	'2026-01-13 09:43:04',	NULL),
+(227,	57,	'en',	'{"title": "Contact information"}',	'2026-01-13 09:43:04',	'2026-01-13 09:43:04',	NULL),
+(228,	57,	NULL,	'{"key": "contact-info"}',	'2026-01-13 09:43:04',	'2026-01-13 09:43:04',	NULL),
+(229,	58,	'uz',	'{"title": "Yopish"}',	'2026-01-13 09:45:06',	'2026-01-13 09:45:06',	NULL),
+(230,	58,	'ru',	'{"title": "Закрывать"}',	'2026-01-13 09:45:06',	'2026-01-13 09:45:06',	NULL),
+(231,	58,	'en',	'{"title": "Close"}',	'2026-01-13 09:45:06',	'2026-01-13 09:45:06',	NULL),
+(232,	58,	NULL,	'{"key": "close"}',	'2026-01-13 09:45:06',	'2026-01-13 09:45:06',	NULL),
+(233,	59,	'uz',	'{"title": "Video qo’llanma"}',	'2026-01-13 09:50:35',	'2026-01-13 09:50:35',	NULL),
+(234,	59,	'ru',	'{"title": "Видеоурок"}',	'2026-01-13 09:50:35',	'2026-01-13 09:50:35',	NULL),
+(235,	59,	'en',	'{"title": "Video tutorial"}',	'2026-01-13 09:50:35',	'2026-01-13 09:50:35',	NULL),
+(236,	59,	NULL,	'{"key": "video_l"}',	'2026-01-13 09:50:35',	'2026-01-13 09:50:35',	NULL),
+(237,	60,	'uz',	'{"title": "Elektron murojaat yuborish platformasi"}',	'2026-01-13 09:53:20',	'2026-01-13 09:53:20',	NULL),
+(238,	60,	'ru',	'{"title": "Электронная платформа для подачи заявок"}',	'2026-01-13 09:53:20',	'2026-01-13 09:53:20',	NULL),
+(239,	60,	'en',	'{"title": "Electronic platform for submitting applications"}',	'2026-01-13 09:53:20',	'2026-01-13 09:53:20',	NULL),
+(240,	60,	NULL,	'{"key": "platform"}',	'2026-01-13 09:53:20',	'2026-01-13 09:53:20',	NULL),
+(241,	61,	'uz',	'{"title": "Biz barcha sizni qiynayotga muammoga yo’l topaolamiz. Bizga murojat qiling"}',	'2026-01-13 09:54:10',	'2026-01-13 09:54:10',	NULL),
+(242,	61,	'ru',	'{"title": "Мы можем помочь вам с любой проблемой. Свяжитесь с нами."}',	'2026-01-13 09:54:10',	'2026-01-13 09:54:10',	NULL),
+(243,	61,	'en',	'{"title": "We can help you with any problem. Contact us."}',	'2026-01-13 09:54:10',	'2026-01-13 09:54:10',	NULL),
+(244,	61,	NULL,	'{"key": "join-us"}',	'2026-01-13 09:54:10',	'2026-01-13 09:54:10',	NULL),
+(245,	62,	'uz',	'{"title": "Statistika"}',	'2026-01-13 09:55:53',	'2026-01-13 09:55:53',	NULL),
+(246,	62,	'ru',	'{"title": "Статистика"}',	'2026-01-13 09:55:53',	'2026-01-13 09:55:53',	NULL),
+(247,	62,	'en',	'{"title": "Statistics"}',	'2026-01-13 09:55:53',	'2026-01-13 09:55:53',	NULL),
+(248,	62,	NULL,	'{"key": "statisctic"}',	'2026-01-13 09:55:53',	'2026-01-13 09:55:53',	NULL),
+(249,	63,	'uz',	'{"title": "Ishtirok etish uchun ariza yuborish"}',	'2026-01-13 10:02:23',	'2026-01-13 10:02:23',	NULL),
+(250,	63,	'ru',	'{"title": "Подайте заявку на участие."}',	'2026-01-13 10:02:23',	'2026-01-13 10:02:23',	NULL),
+(251,	63,	'en',	'{"title": "Submit an application to participate."}',	'2026-01-13 10:02:23',	'2026-01-13 10:02:23',	NULL),
+(252,	63,	NULL,	'{"key": "Participation"}',	'2026-01-13 10:02:23',	'2026-01-13 10:02:23',	NULL),
+(253,	64,	'uz',	'{"title": "Jinsi:"}',	'2026-01-13 10:03:22',	'2026-01-13 10:03:22',	NULL),
+(254,	64,	'ru',	'{"title": "Пол:"}',	'2026-01-13 10:03:22',	'2026-01-13 10:03:22',	NULL),
+(255,	64,	'en',	'{"title": "Gender:"}',	'2026-01-13 10:03:22',	'2026-01-13 10:03:22',	NULL),
+(256,	64,	NULL,	'{"key": "gender"}',	'2026-01-13 10:03:22',	'2026-01-13 10:03:22',	NULL),
+(257,	65,	'uz',	'{"title": "Tanlang"}',	'2026-01-13 10:04:30',	'2026-01-13 10:04:30',	NULL),
+(258,	65,	'ru',	'{"title": "Выбирать"}',	'2026-01-13 10:04:30',	'2026-01-13 10:04:30',	NULL),
+(259,	65,	'en',	'{"title": "Choose"}',	'2026-01-13 10:04:30',	'2026-01-13 10:04:30',	NULL),
+(260,	65,	NULL,	'{"key": "choose"}',	'2026-01-13 10:04:30',	'2026-01-13 10:04:30',	NULL),
+(261,	66,	'uz',	'{"title": "Istiqomat qilayotgan davlatingiz:"}',	'2026-01-13 10:05:28',	'2026-01-13 10:05:28',	NULL),
+(262,	66,	'ru',	'{"title": "Ваша страна проживания:"}',	'2026-01-13 10:05:28',	'2026-01-13 10:05:28',	NULL),
+(263,	66,	'en',	'{"title": "Your country of residence:"}',	'2026-01-13 10:05:28',	'2026-01-13 10:05:28',	NULL),
+(264,	66,	NULL,	'{"key": "owncity"}',	'2026-01-13 10:05:28',	'2026-01-13 10:05:28',	NULL),
+(265,	67,	'uz',	'{"title": "Shahar/tuman:"}',	'2026-01-13 10:06:22',	'2026-01-13 10:06:22',	NULL),
+(266,	67,	'ru',	'{"title": "Город/район:"}',	'2026-01-13 10:06:22',	'2026-01-13 10:06:22',	NULL),
+(267,	67,	'en',	'{"title": "City/district:"}',	'2026-01-13 10:06:22',	'2026-01-13 10:06:22',	NULL),
+(268,	67,	NULL,	'{"key": "city"}',	'2026-01-13 10:06:22',	'2026-01-13 10:06:22',	NULL),
+(269,	68,	'uz',	'{"title": "Ish joyi:"}',	'2026-01-13 10:06:59',	'2026-01-13 10:06:59',	NULL),
+(270,	68,	'ru',	'{"title": "Рабочее место:"}',	'2026-01-13 10:06:59',	'2026-01-13 10:06:59',	NULL),
+(271,	68,	'en',	'{"title": "Workplace:"}',	'2026-01-13 10:06:59',	'2026-01-13 10:06:59',	NULL),
+(272,	68,	NULL,	'{"key": "workplace:"}',	'2026-01-13 10:06:59',	'2026-01-13 10:06:59',	NULL),
+(273,	69,	'uz',	'{"title": "Lavozimi:"}',	'2026-01-13 10:07:40',	'2026-01-13 10:07:40',	NULL),
+(274,	69,	'ru',	'{"title": "Позиция:"}',	'2026-01-13 10:07:40',	'2026-01-13 10:07:40',	NULL),
+(275,	69,	'en',	'{"title": "Position:"}',	'2026-01-13 10:07:40',	'2026-01-13 10:07:40',	NULL),
+(276,	69,	NULL,	'{"key": "position"}',	'2026-01-13 10:07:40',	'2026-01-13 10:07:40',	NULL),
+(277,	70,	'uz',	'{"title": "Ma''lumoti:"}',	'2026-01-13 10:08:38',	'2026-01-13 10:08:38',	NULL),
+(278,	70,	'ru',	'{"title": "Информация:"}',	'2026-01-13 10:08:38',	'2026-01-13 10:08:38',	NULL),
+(279,	70,	'en',	'{"title": "Information:"}',	'2026-01-13 10:08:38',	'2026-01-13 10:08:38',	NULL),
+(280,	70,	NULL,	'{"key": "information"}',	'2026-01-13 10:08:38',	'2026-01-13 10:08:38',	NULL),
+(281,	71,	'uz',	'{"title": "Fayl:"}',	'2026-01-13 10:14:53',	'2026-01-13 10:14:53',	NULL),
+(282,	71,	'ru',	'{"title": "Файл:"}',	'2026-01-13 10:14:53',	'2026-01-13 10:14:53',	NULL),
+(283,	71,	'en',	'{"title": "File:"}',	'2026-01-13 10:14:53',	'2026-01-13 10:14:53',	NULL),
+(284,	71,	NULL,	'{"key": "file"}',	'2026-01-13 10:14:53',	'2026-01-13 10:14:53',	NULL),
+(285,	72,	'uz',	'{"title": "Faylni yuklang yoki sudrab torting"}',	'2026-01-13 10:15:43',	'2026-01-13 10:15:43',	NULL),
+(286,	72,	'ru',	'{"title": "Загрузите или перетащите файл."}',	'2026-01-13 10:15:43',	'2026-01-13 10:15:43',	NULL),
+(287,	72,	'en',	'{"title": "Upload or drag file"}',	'2026-01-13 10:15:43',	'2026-01-13 10:15:43',	NULL),
+(288,	72,	NULL,	'{"key": "upload"}',	'2026-01-13 10:15:43',	'2026-01-13 10:15:43',	NULL),
+(289,	73,	'uz',	'{"title": "Video, rasm, hujjat, PDF, docx, excel va boshqalar"}',	'2026-01-13 10:16:35',	'2026-01-13 10:16:35',	NULL),
+(290,	73,	'ru',	'{"title": "Видео, изображение, документ, PDF, docx, excel и другие"}',	'2026-01-13 10:16:35',	'2026-01-13 10:16:35',	NULL),
+(291,	73,	'en',	'{"title": "Video, image, document, PDF, docx, excel and others"}',	'2026-01-13 10:16:35',	'2026-01-13 10:16:35',	NULL),
+(292,	73,	NULL,	'{"key": "video"}',	'2026-01-13 10:16:35',	'2026-01-13 10:16:35',	NULL),
+(293,	74,	'uz',	'{"title": "Erkak"}',	'2026-01-13 10:17:58',	'2026-01-13 10:17:58',	NULL),
+(294,	74,	'ru',	'{"title": "Мужской"}',	'2026-01-13 10:17:58',	'2026-01-13 10:17:58',	NULL),
+(295,	74,	'en',	'{"title": "Male"}',	'2026-01-13 10:17:58',	'2026-01-13 10:17:58',	NULL),
+(296,	74,	NULL,	'{"key": "erkak"}',	'2026-01-13 10:17:58',	'2026-01-13 10:17:58',	NULL),
+(297,	75,	'uz',	'{"title": "Ayol"}',	'2026-01-13 10:18:27',	'2026-01-13 10:18:27',	NULL),
+(298,	75,	'ru',	'{"title": "Женщина"}',	'2026-01-13 10:18:27',	'2026-01-13 10:18:27',	NULL),
+(299,	75,	'en',	'{"title": "Woman"}',	'2026-01-13 10:18:27',	'2026-01-13 10:18:27',	NULL),
+(300,	75,	NULL,	'{"key": "ayol"}',	'2026-01-13 10:18:27',	'2026-01-13 10:18:27',	NULL);
 
 DROP TABLE IF EXISTS "contents";
 DROP SEQUENCE IF EXISTS contents_id_seq;
-CREATE SEQUENCE contents_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 36 CACHE 1;
+CREATE SEQUENCE contents_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 76 CACHE 1;
 
 CREATE TABLE "public"."contents" (
     "id" bigint DEFAULT nextval('contents_id_seq') NOT NULL,
@@ -250,6 +408,7 @@ WITH (oids = false);
 
 CREATE INDEX contents_type_slug_status_sort_order_index ON public.contents USING btree (type, slug, status, sort_order);
 
+TRUNCATE "contents";
 INSERT INTO "contents" ("id", "type", "slug", "url", "test", "show_admin", "sort_order", "icon", "status", "parent_id", "created_at", "updated_at", "category") VALUES
 (1,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2025-12-29 11:28:37',	'2026-01-08 12:16:36',	'list'),
 (2,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2025-12-29 11:34:12',	'2026-01-08 12:16:36',	'list'),
@@ -277,10 +436,48 @@ INSERT INTO "contents" ("id", "type", "slug", "url", "test", "show_admin", "sort
 (24,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-05 06:58:49',	'2026-01-08 12:16:36',	'list'),
 (33,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-09 03:53:25',	'2026-01-09 03:53:25',	'job'),
 (27,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-08 14:16:27',	'2026-01-08 14:16:27',	'job'),
-(28,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-08 14:33:53',	'2026-01-08 14:33:53',	'job'),
 (29,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-09 01:55:40',	'2026-01-09 01:55:40',	'job'),
 (34,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-12 12:51:22',	'2026-01-12 12:51:22',	'job'),
-(35,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 06:58:18',	'2026-01-13 06:58:18',	'list');
+(35,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 06:58:18',	'2026-01-13 06:58:18',	'list'),
+(37,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 08:52:06',	'2026-01-13 08:52:06',	'list'),
+(38,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 08:55:00',	'2026-01-13 08:55:00',	'list'),
+(39,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 08:55:47',	'2026-01-13 08:55:47',	'list'),
+(40,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 08:58:06',	'2026-01-13 08:58:06',	'list'),
+(41,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 08:58:55',	'2026-01-13 08:58:55',	'list'),
+(42,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 09:01:18',	'2026-01-13 09:01:18',	'list'),
+(43,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 09:02:14',	'2026-01-13 09:02:14',	'list'),
+(44,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 09:03:30',	'2026-01-13 09:03:30',	'list'),
+(45,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 09:09:32',	'2026-01-13 09:09:32',	'list'),
+(46,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 09:11:01',	'2026-01-13 09:11:01',	'list'),
+(47,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 09:14:35',	'2026-01-13 09:14:35',	'list'),
+(48,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 09:21:50',	'2026-01-13 09:21:50',	'list'),
+(49,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 09:22:27',	'2026-01-13 09:22:27',	'list'),
+(50,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 09:23:17',	'2026-01-13 09:23:17',	'list'),
+(51,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 09:24:02',	'2026-01-13 09:24:02',	'list'),
+(52,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 09:25:09',	'2026-01-13 09:25:09',	'list'),
+(53,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 09:25:54',	'2026-01-13 09:25:54',	'list'),
+(54,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 09:26:45',	'2026-01-13 09:26:45',	'list'),
+(55,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 09:37:19',	'2026-01-13 09:37:19',	'list'),
+(56,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 09:40:34',	'2026-01-13 09:40:34',	'list'),
+(57,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 09:43:04',	'2026-01-13 09:43:04',	'list'),
+(58,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 09:45:06',	'2026-01-13 09:45:06',	'list'),
+(59,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 09:50:35',	'2026-01-13 09:50:35',	'list'),
+(60,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 09:53:20',	'2026-01-13 09:53:20',	'list'),
+(61,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 09:54:10',	'2026-01-13 09:54:10',	'list'),
+(62,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 09:55:53',	'2026-01-13 09:55:53',	'list'),
+(63,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 10:02:23',	'2026-01-13 10:02:23',	'list'),
+(64,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 10:03:22',	'2026-01-13 10:03:22',	'list'),
+(65,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 10:04:30',	'2026-01-13 10:04:30',	'list'),
+(66,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 10:05:28',	'2026-01-13 10:05:28',	'list'),
+(67,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 10:06:22',	'2026-01-13 10:06:22',	'list'),
+(68,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 10:06:59',	'2026-01-13 10:06:59',	'list'),
+(69,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 10:07:40',	'2026-01-13 10:07:40',	'list'),
+(70,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 10:08:38',	'2026-01-13 10:08:38',	'list'),
+(71,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 10:14:53',	'2026-01-13 10:14:53',	'list'),
+(72,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 10:15:43',	'2026-01-13 10:15:43',	'list'),
+(73,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 10:16:35',	'2026-01-13 10:16:35',	'list'),
+(74,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 10:17:58',	'2026-01-13 10:17:58',	'list'),
+(75,	'category',	NULL,	NULL,	'0',	'1',	1,	NULL,	'1',	NULL,	'2026-01-13 10:18:27',	'2026-01-13 10:18:27',	'list');
 
 DROP TABLE IF EXISTS "failed_jobs";
 DROP SEQUENCE IF EXISTS failed_jobs_id_seq;
@@ -300,10 +497,11 @@ WITH (oids = false);
 
 CREATE UNIQUE INDEX failed_jobs_uuid_unique ON public.failed_jobs USING btree (uuid);
 
+TRUNCATE "failed_jobs";
 
 DROP TABLE IF EXISTS "form_images";
 DROP SEQUENCE IF EXISTS form_images_id_seq;
-CREATE SEQUENCE form_images_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 7 CACHE 1;
+CREATE SEQUENCE form_images_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1;
 
 CREATE TABLE "public"."form_images" (
     "id" bigint DEFAULT nextval('form_images_id_seq') NOT NULL,
@@ -317,6 +515,7 @@ CREATE TABLE "public"."form_images" (
 )
 WITH (oids = false);
 
+TRUNCATE "form_images";
 INSERT INTO "form_images" ("id", "support_id", "type", "size", "image", "created_at", "updated_at") VALUES
 (1,	108,	'participation',	2413,	'supports/e8b576c4-62f8-4282-bb31-61decd15e290.png',	'2026-01-12 12:29:43',	'2026-01-12 12:29:43'),
 (2,	108,	'participation',	1642,	'supports/1d6b0aee-447b-4b36-bdb5-3899994849dc.png',	'2026-01-12 12:29:43',	'2026-01-12 12:29:43'),
@@ -341,6 +540,7 @@ CREATE TABLE "public"."job_batches" (
 )
 WITH (oids = false);
 
+TRUNCATE "job_batches";
 
 DROP TABLE IF EXISTS "jobs";
 DROP SEQUENCE IF EXISTS jobs_id_seq;
@@ -360,6 +560,7 @@ WITH (oids = false);
 
 CREATE INDEX jobs_queue_index ON public.jobs USING btree (queue);
 
+TRUNCATE "jobs";
 
 DROP TABLE IF EXISTS "langs";
 DROP SEQUENCE IF EXISTS langs_id_seq;
@@ -383,6 +584,7 @@ WITH (oids = false);
 
 CREATE UNIQUE INDEX langs_code_unique ON public.langs USING btree (code);
 
+TRUNCATE "langs";
 INSERT INTO "langs" ("id", "code", "name", "is_default", "status", "locale", "flag_icon", "sort_order", "created_at", "updated_at", "short_name") VALUES
 (2,	'uz',	'Uzbek',	'1',	'1',	'uz_UZ',	'flags/uz.svg',	1,	'2025-12-23 04:21:31',	'2025-12-23 04:21:31',	'O''zb'),
 (3,	'ru',	'Russian',	'1',	'1',	'ru_RU',	'flags/ru.svg',	2,	'2025-12-23 04:21:31',	'2025-12-23 04:21:31',	'Рус'),
@@ -390,7 +592,7 @@ INSERT INTO "langs" ("id", "code", "name", "is_default", "status", "locale", "fl
 
 DROP TABLE IF EXISTS "menu_main_images";
 DROP SEQUENCE IF EXISTS menu_main_images_id_seq;
-CREATE SEQUENCE menu_main_images_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 2 CACHE 1;
+CREATE SEQUENCE menu_main_images_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 3 CACHE 1;
 
 CREATE TABLE "public"."menu_main_images" (
     "id" bigint DEFAULT nextval('menu_main_images_id_seq') NOT NULL,
@@ -409,6 +611,7 @@ WITH (oids = false);
 
 CREATE INDEX menu_main_images_main_index ON public.menu_main_images USING btree (main);
 
+TRUNCATE "menu_main_images";
 INSERT INTO "menu_main_images" ("id", "menu_main_id", "image", "compressed", "type", "size", "main", "status", "created_at", "updated_at") VALUES
 (1,	49,	'menu_images/1768286270_Group 35.png',	NULL,	'image/png',	1252,	'0',	'1',	'2026-01-13 06:37:50',	'2026-01-13 06:37:50');
 
@@ -435,6 +638,7 @@ WITH (oids = false);
 
 CREATE INDEX menu_main_settings_key_is_translatable_status_sort_order_index ON public.menu_main_settings USING btree (key, is_translatable, status, sort_order);
 
+TRUNCATE "menu_main_settings";
 INSERT INTO "menu_main_settings" ("id", "key", "label", "type", "required", "is_translatable", "options", "sort_order", "relation", "status", "created_at", "updated_at") VALUES
 (1,	'title',	'Title',	'text',	'1',	'1',	NULL,	1,	NULL,	'1',	NULL,	NULL),
 (2,	'description',	'Description',	'text',	'1',	'1',	NULL,	1,	NULL,	'1',	NULL,	NULL),
@@ -442,7 +646,7 @@ INSERT INTO "menu_main_settings" ("id", "key", "label", "type", "required", "is_
 
 DROP TABLE IF EXISTS "menu_main_translations";
 DROP SEQUENCE IF EXISTS menu_main_translations_id_seq;
-CREATE SEQUENCE menu_main_translations_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 124 CACHE 1;
+CREATE SEQUENCE menu_main_translations_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 127 CACHE 1;
 
 CREATE TABLE "public"."menu_main_translations" (
     "id" bigint DEFAULT nextval('menu_main_translations_id_seq') NOT NULL,
@@ -457,6 +661,7 @@ WITH (oids = false);
 
 CREATE INDEX menu_main_translations_locale_index ON public.menu_main_translations USING btree (locale);
 
+TRUNCATE "menu_main_translations";
 INSERT INTO "menu_main_translations" ("id", "menu_main_id", "locale", "data", "created_at", "updated_at") VALUES
 (3,	2,	'uz',	'{"title": "Vatandoshlar", "description": null}',	'2025-12-23 04:24:42',	'2025-12-23 04:24:42'),
 (4,	2,	'ru',	'{"title": null, "description": null}',	'2025-12-23 04:24:42',	'2025-12-23 04:24:42'),
@@ -547,7 +752,7 @@ INSERT INTO "menu_main_translations" ("id", "menu_main_id", "locale", "data", "c
 
 DROP TABLE IF EXISTS "menu_mains";
 DROP SEQUENCE IF EXISTS menu_mains_id_seq;
-CREATE SEQUENCE menu_mains_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 50 CACHE 1;
+CREATE SEQUENCE menu_mains_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 51 CACHE 1;
 
 CREATE TABLE "public"."menu_mains" (
     "id" bigint DEFAULT nextval('menu_mains_id_seq') NOT NULL,
@@ -569,6 +774,7 @@ WITH (oids = false);
 
 CREATE INDEX menu_mains_type_slug_status_sort_order_index ON public.menu_mains USING btree (type, slug, status, sort_order);
 
+TRUNCATE "menu_mains";
 INSERT INTO "menu_mains" ("id", "type", "slug", "url", "test", "show_admin", "sort_order", "icon", "status", "parent_id", "created_at", "updated_at") VALUES
 (2,	'section',	'vatandoshlar',	NULL,	'0',	'1',	2,	NULL,	'1',	1,	'2025-12-23 04:24:41',	'2025-12-23 04:24:41'),
 (3,	'section',	'statistika',	NULL,	'0',	'1',	3,	NULL,	'1',	1,	'2025-12-23 04:25:08',	'2025-12-23 04:25:08'),
@@ -621,10 +827,11 @@ CREATE TABLE "public"."menus" (
 )
 WITH (oids = false);
 
+TRUNCATE "menus";
 
 DROP TABLE IF EXISTS "migrations";
 DROP SEQUENCE IF EXISTS migrations_id_seq;
-CREATE SEQUENCE migrations_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 START 27 CACHE 1;
+CREATE SEQUENCE migrations_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1;
 
 CREATE TABLE "public"."migrations" (
     "id" integer DEFAULT nextval('migrations_id_seq') NOT NULL,
@@ -634,6 +841,7 @@ CREATE TABLE "public"."migrations" (
 )
 WITH (oids = false);
 
+TRUNCATE "migrations";
 INSERT INTO "migrations" ("id", "migration", "batch") VALUES
 (1,	'0001_01_01_000000_create_users_table',	1),
 (2,	'0001_01_01_000001_create_cache_table',	1),
@@ -664,7 +872,7 @@ INSERT INTO "migrations" ("id", "migration", "batch") VALUES
 
 DROP TABLE IF EXISTS "order_settings";
 DROP SEQUENCE IF EXISTS order_settings_id_seq;
-CREATE SEQUENCE order_settings_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 2 CACHE 1;
+CREATE SEQUENCE order_settings_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1;
 
 CREATE TABLE "public"."order_settings" (
     "id" bigint DEFAULT nextval('order_settings_id_seq') NOT NULL,
@@ -677,12 +885,13 @@ CREATE TABLE "public"."order_settings" (
 )
 WITH (oids = false);
 
+TRUNCATE "order_settings";
 INSERT INTO "order_settings" ("id", "menu_main_id", "order", "status", "created_at", "updated_at") VALUES
 (1,	26,	'sort_order_desc',	'1',	'2026-01-12 08:02:58',	'2026-01-12 08:14:02');
 
 DROP TABLE IF EXISTS "page_section_images";
 DROP SEQUENCE IF EXISTS page_section_images_id_seq;
-CREATE SEQUENCE page_section_images_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 406 CACHE 1;
+CREATE SEQUENCE page_section_images_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 410 CACHE 1;
 
 CREATE TABLE "public"."page_section_images" (
     "id" bigint DEFAULT nextval('page_section_images_id_seq') NOT NULL,
@@ -704,6 +913,7 @@ WITH (oids = false);
 
 CREATE INDEX page_section_images_main_status_category_category_slug_page_sec ON public.page_section_images USING btree (main, status, category, category_slug, page_section_parent_id, page_section_id);
 
+TRUNCATE "page_section_images";
 INSERT INTO "page_section_images" ("id", "page_section_id", "page_section_parent_id", "category", "category_slug", "image", "compressed", "type", "size", "main", "status", "created_at", "updated_at") VALUES
 (1,	1,	NULL,	NULL,	NULL,	'page_section_images/1766464991_logo.png',	NULL,	'image/png',	98609,	'1',	'1',	'2025-12-23 04:43:12',	'2025-12-23 04:43:12'),
 (2,	2,	NULL,	NULL,	NULL,	'page_section_images/1766465101_stats-img-1.svg',	NULL,	'image/svg+xml',	1022,	'1',	'1',	'2025-12-23 04:45:01',	'2025-12-23 04:45:01'),
@@ -896,11 +1106,15 @@ INSERT INTO "page_section_images" ("id", "page_section_id", "page_section_parent
 (357,	20,	NULL,	NULL,	NULL,	'page_section_images/1768279294_Vector (5).png',	NULL,	'image/png',	2413,	'0',	'1',	'2026-01-13 04:41:34',	'2026-01-13 04:41:34'),
 (358,	20,	NULL,	NULL,	NULL,	'page_section_images/1768279294_Frame 1321315991 (16).png',	NULL,	'image/png',	1642,	'0',	'1',	'2026-01-13 04:41:34',	'2026-01-13 04:41:34'),
 (404,	180,	NULL,	NULL,	NULL,	'page_section_images/1768286156_Vector (5).png',	NULL,	'image/png',	2413,	'0',	'1',	'2026-01-13 06:35:56',	'2026-01-13 06:35:56'),
-(405,	180,	NULL,	NULL,	NULL,	'page_section_images/1768286156_Frame 1321315991 (16).png',	NULL,	'image/png',	1642,	'0',	'1',	'2026-01-13 06:35:56',	'2026-01-13 06:35:56');
+(405,	180,	NULL,	NULL,	NULL,	'page_section_images/1768286156_Frame 1321315991 (16).png',	NULL,	'image/png',	1642,	'0',	'1',	'2026-01-13 06:35:56',	'2026-01-13 06:35:56'),
+(406,	181,	NULL,	NULL,	NULL,	'page_section_images/1768290658_111.jpg',	NULL,	'image/jpeg',	49788,	'0',	'1',	'2026-01-13 07:50:58',	'2026-01-13 07:50:58'),
+(407,	181,	NULL,	NULL,	NULL,	'page_section_images/1768295126_photo_2026-01-09_08-56-36.jpg',	NULL,	'image/jpeg',	44141,	'1',	'1',	'2026-01-13 09:05:26',	'2026-01-13 09:05:48'),
+(408,	183,	NULL,	NULL,	NULL,	'page_section_images/1768295224_Salah.jpg',	NULL,	'image/jpeg',	108682,	'1',	'1',	'2026-01-13 09:07:04',	'2026-01-13 09:07:04'),
+(409,	184,	NULL,	NULL,	NULL,	'page_section_images/1768295248_c1a4917b58c218386f15744094c20059373d611d-min.png',	NULL,	'image/png',	895781,	'1',	'1',	'2026-01-13 09:07:29',	'2026-01-13 09:07:29');
 
 DROP TABLE IF EXISTS "page_section_settings";
 DROP SEQUENCE IF EXISTS page_section_settings_id_seq;
-CREATE SEQUENCE page_section_settings_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 179 CACHE 1;
+CREATE SEQUENCE page_section_settings_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1;
 
 CREATE TABLE "public"."page_section_settings" (
     "id" bigint DEFAULT nextval('page_section_settings_id_seq') NOT NULL,
@@ -925,6 +1139,7 @@ WITH (oids = false);
 
 CREATE INDEX page_section_settings_key_is_translatable_status_sort_order_cat ON public.page_section_settings USING btree (key, is_translatable, status, sort_order, category, category_slug);
 
+TRUNCATE "page_section_settings";
 INSERT INTO "page_section_settings" ("id", "menu_main_id", "page_section_parent_id", "category", "category_slug", "key", "label", "type", "required", "is_translatable", "options", "sort_order", "relation", "status", "created_at", "updated_at") VALUES
 (1,	2,	NULL,	NULL,	NULL,	'title',	'Title',	'text',	'1',	'1',	NULL,	1,	NULL,	'1',	'2025-12-23 04:42:26',	'2025-12-23 04:42:26'),
 (2,	2,	NULL,	NULL,	NULL,	'description',	'Description',	'text',	'1',	'1',	NULL,	1,	NULL,	'1',	'2025-12-23 04:42:26',	'2025-12-23 04:42:26'),
@@ -1107,7 +1322,7 @@ INSERT INTO "page_section_settings" ("id", "menu_main_id", "page_section_parent_
 
 DROP TABLE IF EXISTS "page_section_translations";
 DROP SEQUENCE IF EXISTS page_section_translations_id_seq;
-CREATE SEQUENCE page_section_translations_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 616 CACHE 1;
+CREATE SEQUENCE page_section_translations_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 628 CACHE 1;
 
 CREATE TABLE "public"."page_section_translations" (
     "id" bigint DEFAULT nextval('page_section_translations_id_seq') NOT NULL,
@@ -1125,6 +1340,7 @@ WITH (oids = false);
 
 CREATE INDEX page_section_translations_locale_category_page_section_id_page_ ON public.page_section_translations USING btree (locale, category, page_section_id, page_section_parent_id, category_slug);
 
+TRUNCATE "page_section_translations";
 INSERT INTO "page_section_translations" ("id", "page_section_id", "page_section_parent_id", "category", "category_slug", "locale", "data", "created_at", "updated_at") VALUES
 (1,	1,	NULL,	NULL,	NULL,	'uz',	'{"title": "Vatandoshlar Jamoat Fondi", "description": "\"Vatandoshlar\" jamoat fondi — bu xorijdagi o‘zbekistonlik vatandoshlar bilan aloqalarni mustahkamlash, ularning huquq va manfaatlarini qo‘llab-quvvatlash, shuningdek, ularni O‘zbekiston taraqqiyotiga jalb etish maqsadida tashkil etilgan notijorat tashkilotdir."}',	'2025-12-23 04:43:11',	'2025-12-23 04:43:11'),
 (2,	1,	NULL,	NULL,	NULL,	'ru',	'{"title": null, "description": null}',	'2025-12-23 04:43:11',	'2025-12-23 04:43:11'),
@@ -1222,6 +1438,7 @@ INSERT INTO "page_section_translations" ("id", "page_section_id", "page_section_
 (44,	20,	NULL,	NULL,	NULL,	'ru',	'{"title": null}',	'2025-12-23 05:48:00',	'2026-01-12 09:40:36'),
 (41,	19,	NULL,	NULL,	NULL,	'uz',	'{"title": "Ozbekiston"}',	'2025-12-23 05:47:39',	'2026-01-12 09:40:45'),
 (42,	19,	NULL,	NULL,	NULL,	'ru',	'{"title": null}',	'2025-12-23 05:47:39',	'2026-01-12 09:40:45'),
+(457,	139,	NULL,	NULL,	NULL,	'uz',	'{"title": "2024 yil"}',	'2025-12-29 12:44:36',	'2025-12-30 10:29:52'),
 (93,	39,	NULL,	NULL,	NULL,	'ru',	'{"url": null, "title": null, "content": null, "description": null}',	'2025-12-25 08:50:21',	'2025-12-26 07:23:47'),
 (90,	38,	NULL,	NULL,	NULL,	'ru',	'{"url": null, "title": null, "content": null, "description": null}',	'2025-12-25 08:48:32',	'2025-12-25 10:01:33'),
 (91,	38,	NULL,	NULL,	NULL,	'en',	'{"url": null, "title": null, "content": null, "description": null}',	'2025-12-25 08:48:32',	'2025-12-25 10:01:33'),
@@ -1488,7 +1705,6 @@ INSERT INTO "page_section_translations" ("id", "page_section_id", "page_section_
 (375,	105,	NULL,	NULL,	NULL,	'ru',	'{"title": null}',	'2025-12-28 06:30:40',	'2025-12-28 06:30:40'),
 (376,	105,	NULL,	NULL,	NULL,	'en',	'{"title": null}',	'2025-12-28 06:30:40',	'2025-12-28 06:30:40'),
 (569,	170,	NULL,	NULL,	NULL,	'en',	'{"title": null}',	'2026-01-05 07:12:24',	'2026-01-05 08:22:48'),
-(457,	139,	NULL,	NULL,	NULL,	'uz',	'{"title": "2024 yil"}',	'2025-12-29 12:44:36',	'2025-12-30 10:29:52'),
 (458,	139,	NULL,	NULL,	NULL,	'ru',	'{"title": null}',	'2025-12-29 12:44:36',	'2025-12-30 10:29:52'),
 (459,	139,	NULL,	NULL,	NULL,	'en',	'{"title": null}',	'2025-12-29 12:44:36',	'2025-12-30 10:29:52'),
 (460,	139,	NULL,	NULL,	NULL,	NULL,	'{"year": "2024mavsum"}',	'2025-12-29 12:44:36',	'2025-12-30 10:29:52'),
@@ -1582,6 +1798,9 @@ INSERT INTO "page_section_translations" ("id", "page_section_id", "page_section_
 (259,	108,	71,	'video',	'video-12',	NULL,	'{"url": "https://www.youtube.com/embed/BHACKCNDMW8?si=AtPPS9WpLIT3_TaW"}',	'2025-12-26 14:33:17',	'2025-12-28 06:32:15'),
 (260,	109,	71,	'video',	'video-12',	NULL,	'{"url": "https://www.youtube.com/embed/BHACKCNDMW8?si=AtPPS9WpLIT3_TaW"}',	'2025-12-26 14:33:35',	'2025-12-28 06:35:07'),
 (261,	110,	71,	'video',	'video-12',	NULL,	'{"url": "https://www.youtube.com/embed/BHACKCNDMW8?si=AtPPS9WpLIT3_TaW"}',	'2025-12-26 14:33:48',	'2025-12-28 06:35:30'),
+(621,	182,	NULL,	NULL,	NULL,	'en',	'{"title": null}',	'2026-01-13 09:06:25',	'2026-01-13 09:06:25'),
+(624,	183,	NULL,	NULL,	NULL,	'en',	'{"title": null}',	'2026-01-13 09:07:04',	'2026-01-13 09:07:04'),
+(625,	184,	NULL,	NULL,	NULL,	'uz',	'{"title": "x xz xz zxz"}',	'2026-01-13 09:07:28',	'2026-01-13 09:07:28'),
 (240,	89,	NULL,	NULL,	NULL,	NULL,	'{"code": "UZ-NA", "path": "m688.919 258.371-.46-.772-.423-.266-.413-.064-.414.22-.966-.322-.698-.027-1.729 1.25-.322.073-.625-.275-1.6-1.03-1.048-.285-1.121-.128-1.067.726-.423-.202-.515-.046-1.489-.598-.294-.377.018-.808-.515-.055-.34-.184-.064-.193.588-1.838.846-1.48.717-.735.432-.753.515-1.241-.046-.23-.993-.533-.781-.946-.258-.598.12-1.194-.129-.34-.349-.258-.377.221-.313.515-.745.156-.229-.156-.056-.175.239-1.195-.57-.974-1.287-1.24-.965-2.031-.34-.092-.129.11-.101 1.553-.156.239-.285.064-.194-.377-.091-.624-.285-.249-.35-.027-.579.413-.11.368.377.607-.056.514-.248.193-.386-.239-.377-.652-.092-.423.083-.395.772-1.011.423-.763.064-.432-.22-1.295.119-.276-.055-.68.395-.827-.321-.561-1.048-.046-.331.092-.708.662-.699 1.25-.405.459-1.158.395-.221.322.046.386.294.22 1.049.101.524.212.459.717.12.625-.313 1.121-.404.744-.037.377.735 1.13-.266.607-.607.661-.331.644-.248.9-.202.009-.331-.229-.239.229-.295.662-.551.45-.157.533-.156.037-.23.873-.349.294-.552-.147-.561-.634-.367-.202-.809-.018-.387.321-.616.129-.754-.469-.294.065-1.324 1.58-.046.377.23.708-.239.781v.487l.166.34.79.34.276.662-.818 1.837-.294 1.829-.653 1.48-.028.34-.947 1.029-.487.037-.239-.156-.138-.267-.211-1.626-.212-.451-.726-.763-.359-.174-.496.009-.469.276-.322.377-.211 1.295-.368.699-.736.689-.469.11-.349-.101-.129-.276.203-2.196-.239-1.314-.24-.386-.873-.579-.276-.037-.57.267-.119.367.037.497-.286.211-.257-.055-.395-.974-.295-.009-.321.275-.432.662-.442-.019-.239.138-.763.809-.46.267-.367.027-1.113-.395-.377-.34-.561-.937-.735-.175-1.131-.735-.542.027-2.446 1.664-.515-.184-.496-1.13-.846-.791-.791-.496-.533-.781-.487-.46-.249-.036-.653.294-.432.625-.763 1.893-.276.404-.303.147-.791-.322-.459-.56-.203-.827.028-1.002.68-.873.166-.551-.092-.322-.57-.836-.23-.68-.064-1.645.386-.846.23-1.066-.451-1.884-2.344-3.749-.386-1.075-.175-.147-1.113-.313-.285.028-1.048.781-1.131-.055-1.397.441-.901.772-.377.68-1.545 1.277h-1.912l-.46-.496-.625 1.774-2.731 3.777.616 6.708 1.756 2.408.607 1.231.221 2.142.028 1.608-.138.808.183.386.414-.018.671.368.249.625 1.011.817.064.57.295.221.809 1.093.625.019.505 1.259.929 1.148.359.818 1.02 1.517.423 1.084.248.009.111.34.891.763.515 1.259.763.285.488.432.671.91-.441.349-.157-.083-.266.166.073.294-.175.266-.34.092-.524-.23-.432-1.112-.34 1.14.037.652.294.588.763-.22 1.131.092.781.413-.257.166.827.037.396.211.919.781.202.45.313-.082.239-.239 4.478-1.149 3.107-.561 6.206-.091v.202l-.34.478-1.25 1.525.763 1.81 1.728 1.701 5.13 2.508.368.074.699-.386 2.777-2.619.698-.919.69-1.333 1.131-.726 3.778-2.049 3.163-.947 1.747-1.112-2.023-2.453 1.867-1.737 1.103-.735 7.898-2.013 3.374.028.533.23.671.514 3.062.689 1.342.138 4.487-.404.487-.248.368-.423 1.158-5.385-.386-.239-.413-.533.147-.303 1.158-.276.487-.377.433-.937-.414-.754zm-64.781 13.5-2.924-3.961-1.122-.827-.928-.027-.175-.625.248-.432.671-.515-.248.349 1.104.469 1.388 1.627 1.59 2.159.589 1.452z", "offset": "10,-25"}',	'2025-12-26 14:25:11',	'2025-12-27 07:31:11'),
 (174,	68,	NULL,	NULL,	NULL,	NULL,	'{"code": "UZ-SA", "path": "m489.969 359.172-.101.276-1.471-.285-.892.193-3.062 1.057-.211.267v.174l-.92.211-1.517-.294-3.53-1.093-2.354-1.002-4.1-1.167-.809.046-.396.441.065 1.636-.102.322-.386.441-.754.193-3.567.22-1.738-.138-.855-.487-.303-.441-.055-.533.423-1.562.101-1.158-.451-1.213-.579-.616-7.879-1.406-1.094.055-.745.258-.763.873-1.011 1.635-.754.883-3.347 1.433-.276.009-.634-.303-1.508-1.057-1.517-1.323-1.076-.689-.579-.147-6.942 1.718-3.006 1.535-2.032 1.268-1.407.037-2.831-.717-.662-.23-.203-.193-.082-1.369-2.547-4.273-3.034-3.501-3.963-.809-.036.303-.175.248-1.315.984-1.204.505-1.37.165-16.136-.487-.634-.147-1.949-3.492-.745-1.663-.156-.745.036-.579 1.076-2.15.469-1.342.156-.891-1.241-4.797-.864-1.333-.892-.744-1.361-1.406-.303-.708.074-.34.459-.321 7.953-2.684.919.451 2.621.808.542-.009.478-.276.653-1.185 1.683-5.091.386-5.33-.046-.892.147-.643.322-.524.478-.257.928.156 5.039 1.902.919 1.425.423.956 1.922 1.047 4.946 2.114 1.122.184 8.192-1.774 1.498-.698 3.209-3.024.395-.57.129-1.029-.166-.413-.753-.065-1.315.846-.736-.092-.184-.901 2.115-5.578.791-1.231.809-5.625.156-2.086-.34-.661-.497-.184-.229-.322.542-4.512 1.977-4.301.836-.992 1.021-.175 1.094.083.947 1.424.956.726 1.683.23 1.268-.101 2.161-1.186 1.94-1.764.533.248.892 1.029 1.71 2.445 1.159 3.189 7.162.845 4.238.092.883 2.003.009 1.011-.763 1.682-.129.708.092 3.611.772 3.768 1.711 1.526 1.324 2.582-.065.744-.414 1.232-.22.147-1.14.266-.092.322.322 3.409 5.36 3.612 1.949.735 4.422.368 10.913 2.325.194.22.983 5.477.074.938-1.195.138-1.416.349-1.986.946-.635.497-.698.836-2.961 4.815-.092.34.019 3.823.193.873.597.882.947.965 4.165 3.511 2.051 4.292.763 2.113.864 1.792.193.745z", "offset": "5,-10"}',	'2025-12-26 13:31:14',	'2025-12-27 07:31:55'),
 (178,	72,	NULL,	NULL,	NULL,	NULL,	'{"code": "XO", "path": "m259.77 287.025-1.159-2.628-.478-.69-.634-.56-.276-.744-.147-2.546-.423-.68-.239-.947-1.122-1.874-.082-1.122.147-1.084-.065-1.819-.137-.442-.23-2.619.211-1.488-.202-.368-.469-.193-.166-.662.019-.588-.267-.744-.68-.864-1.352-.717-.524-.101-.413-.239-.276-.514.174-.864-.34-.965-.432-.8-1.122-.671-1.728-1.819-1.039-.313-1.37-.928-1.866-2.215-.442-.275-1.167-.12-.607-.211-.451-.313-.376-.349-.258-.873-.349-.661-.782-.589-.432-.009-1.195.524-1.627-.129-.681-.202-1.48-.827-1.618-.266-.478.036-.432.285-.754 1.351.055 2.435-.414.736-.257 1.442-.396.837-.321.358-.451.303-.965.147-.138.129-1.536.175-.303-.092-1.214.046-.184-.12-.257.092-.644-.147-2.85-1.36-1.958-2.049-.313-.138-1.848.165-1.213-1.433-4.515-.202-.386.192-.956-.064-2.004.294-2.372-.11-1.545.285-3.613.009-4.376.276-.81-.046-2.39.395-.873-.055-.662-.221-2.979-1.783-2.676-2.389-5.617-3.832-3.099-1.774-1.066-.955-.524-1.14-.019-.634.147-.726.037-2.748.258-1.709.349-.744 1.968-1.838.229-.561v-1.075l-.248-.818-1.039-1.856-1.057-1.406-1.701-2.656-.349-1.379.478-1.139.515-2.068.22-.129.285.019.828.45.919-.018 1.821.661 1.02.487 1.177.965 1.094-.027.717.579.754.248.239-.368.671.009.239-.147.028-.404-.478-.643-1.039-.818-1.067-1.213-1.149-.524-1.517-.34-1.278-.8-.699-.781-.285-.661 2.455-4.807 1.747-.781 3.917-1.277 4.854 1.029.359.441.147.533.037 2.426.377 2.252 2.831 4.953.35.432.607.597.643.285 4.753 4.439 3.08 3.584 1.444 1.388 7.567 6.717 5.479 4.173 1.297.533 1.986.33.68.267.653.56 1.848 2.086.34.8.239 1.066 2.069 1.323h1.369l.662-.698.469-1.728 1.076-2.113.717-.809 1.278-.708.57-.184 2.795.01 8.229 1.893 3.236 1.709 2.832 1.755 7.355 8.097 1.379 2.545 4.193 6.81.248.202.598.175 2.344-1.122 2.979 3.061 5.434 6.138.625 1.057-.028 1.415-.726 3.493-4.22 4.714-5.774 6.993z", "offset": "0,-20"}',	'2025-12-26 13:33:21',	'2025-12-27 07:33:25'),
@@ -1607,6 +1826,8 @@ INSERT INTO "page_section_translations" ("id", "page_section_id", "page_section_
 (429,	131,	NULL,	NULL,	NULL,	'ru',	'{"title": null}',	'2025-12-29 12:29:53',	'2025-12-29 13:02:43'),
 (157,	57,	NULL,	NULL,	NULL,	'uz',	'{"url_title": "Qo''llash"}',	'2025-12-26 11:29:45',	'2025-12-29 13:33:55'),
 (279,	117,	NULL,	NULL,	NULL,	'en',	'{"title": "Xorijdagi Vatandoshlar uchun Anor damolish oromgohi ochildi eng", "description": "<p><span style=\"letter-spacing: 0.14px;\">news eng content</span></p>"}',	'2025-12-27 16:57:51',	'2026-01-09 11:52:36'),
+(622,	183,	NULL,	NULL,	NULL,	'uz',	'{"title": "Transfor"}',	'2026-01-13 09:07:04',	'2026-01-13 09:07:04'),
+(623,	183,	NULL,	NULL,	NULL,	'ru',	'{"title": null}',	'2026-01-13 09:07:04',	'2026-01-13 09:07:04'),
 (288,	119,	NULL,	NULL,	NULL,	NULL,	'{"url": "https://www.youtube.com/embed/pDgzE2tXZEs?si=LLxCo7PYWkSD18xd", "description": "<p><span>Fairies have been showing up in stories since the middle ages. Originating as nymphs in Greek Mythology, magical creatures have shown up throughout European literature ever since. In many stories, </span></p>"}',	'2025-12-27 17:01:20',	'2026-01-05 07:58:27'),
 (523,	158,	NULL,	NULL,	NULL,	'uz',	'{"title": "Bank Loyihasi", "description": "Bank Loyihasi haqida"}',	'2025-12-31 01:05:11',	'2026-01-05 08:06:40'),
 (583,	2,	NULL,	NULL,	NULL,	'en',	'{"title": null}',	'2026-01-05 08:12:34',	'2026-01-05 08:12:52'),
@@ -1650,11 +1871,18 @@ INSERT INTO "page_section_translations" ("id", "page_section_id", "page_section_
 (613,	180,	NULL,	NULL,	NULL,	'ru',	'{"title": null}',	'2026-01-13 04:44:50',	'2026-01-13 04:52:01'),
 (614,	180,	NULL,	NULL,	NULL,	'en',	'{"title": null}',	'2026-01-13 04:44:50',	'2026-01-13 04:52:01'),
 (615,	180,	NULL,	NULL,	NULL,	NULL,	'{"code": "asd"}',	'2026-01-13 04:44:50',	'2026-01-13 04:52:01'),
-(612,	180,	NULL,	NULL,	NULL,	'uz',	'{"title": "adasdasdasddsdssd as daf afs"}',	'2026-01-13 04:44:50',	'2026-01-13 04:52:01');
+(612,	180,	NULL,	NULL,	NULL,	'uz',	'{"title": "adasdasdasddsdssd as daf afs"}',	'2026-01-13 04:44:50',	'2026-01-13 04:52:01'),
+(619,	182,	NULL,	NULL,	NULL,	'uz',	'{"title": "Futbol"}',	'2026-01-13 09:06:25',	'2026-01-13 09:06:25'),
+(616,	181,	NULL,	NULL,	NULL,	'uz',	'{"title": "vdbdfbd"}',	'2026-01-13 07:50:58',	'2026-01-13 09:05:48'),
+(617,	181,	NULL,	NULL,	NULL,	'ru',	'{"title": null}',	'2026-01-13 07:50:58',	'2026-01-13 09:05:48'),
+(618,	181,	NULL,	NULL,	NULL,	'en',	'{"title": null}',	'2026-01-13 07:50:58',	'2026-01-13 09:05:48'),
+(620,	182,	NULL,	NULL,	NULL,	'ru',	'{"title": null}',	'2026-01-13 09:06:25',	'2026-01-13 09:06:25'),
+(626,	184,	NULL,	NULL,	NULL,	'ru',	'{"title": null}',	'2026-01-13 09:07:28',	'2026-01-13 09:07:28'),
+(627,	184,	NULL,	NULL,	NULL,	'en',	'{"title": null}',	'2026-01-13 09:07:28',	'2026-01-13 09:07:28');
 
 DROP TABLE IF EXISTS "page_sections";
 DROP SEQUENCE IF EXISTS page_sections_id_seq;
-CREATE SEQUENCE page_sections_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 181 CACHE 1;
+CREATE SEQUENCE page_sections_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 185 CACHE 1;
 
 CREATE TABLE "public"."page_sections" (
     "id" bigint DEFAULT nextval('page_sections_id_seq') NOT NULL,
@@ -1674,6 +1902,7 @@ WITH (oids = false);
 
 CREATE INDEX page_sections_status_sort_order_menu_main_id_category_category_ ON public.page_sections USING btree (status, sort_order, menu_main_id, category, category_slug, parent_id);
 
+TRUNCATE "page_sections";
 INSERT INTO "page_sections" ("id", "menu_main_id", "sort_order", "status", "slug", "category", "category_slug", "parent_id", "created_at", "updated_at", "publish_at") VALUES
 (1,	2,	1,	'1',	'vatandoshlar-jamoat-fondi',	NULL,	NULL,	NULL,	'2025-12-23 04:43:11',	'2025-12-23 04:43:11',	NULL),
 (2,	3,	2,	'1',	'qatnashgan-vatandoshlar-soni',	NULL,	NULL,	NULL,	'2025-12-23 04:45:01',	'2025-12-23 04:45:01',	NULL),
@@ -1824,7 +2053,11 @@ INSERT INTO "page_sections" ("id", "menu_main_id", "sort_order", "status", "slug
 (164,	45,	164,	'1',	'tt',	NULL,	NULL,	NULL,	'2026-01-05 05:37:55',	'2026-01-05 08:20:20',	NULL),
 (178,	47,	178,	'1',	'xx',	NULL,	NULL,	NULL,	'2026-01-06 10:37:53',	'2026-01-07 06:00:21',	NULL),
 (179,	14,	179,	'1',	'',	NULL,	NULL,	NULL,	'2026-01-08 14:06:17',	'2026-01-08 14:06:17',	NULL),
-(180,	23,	180,	'1',	'adasdasdasddsdssd-as-daf-afs',	NULL,	NULL,	NULL,	'2026-01-13 04:44:50',	'2026-01-13 04:46:18',	NULL);
+(180,	23,	180,	'1',	'adasdasdasddsdssd-as-daf-afs',	NULL,	NULL,	NULL,	'2026-01-13 04:44:50',	'2026-01-13 04:46:18',	NULL),
+(181,	47,	181,	'1',	'vdbdfbd',	NULL,	NULL,	NULL,	'2026-01-13 07:50:58',	'2026-01-13 07:50:58',	NULL),
+(182,	47,	182,	'1',	'futbolx',	NULL,	NULL,	NULL,	'2026-01-13 09:06:25',	'2026-01-13 09:06:25',	NULL),
+(183,	47,	183,	'1',	'transford',	NULL,	NULL,	NULL,	'2026-01-13 09:07:04',	'2026-01-13 09:07:04',	NULL),
+(184,	47,	184,	'1',	'x-xz-xz-zxz',	NULL,	NULL,	NULL,	'2026-01-13 09:07:28',	'2026-01-13 09:07:28',	NULL);
 
 DROP TABLE IF EXISTS "password_reset_tokens";
 CREATE TABLE "public"."password_reset_tokens" (
@@ -1835,6 +2068,7 @@ CREATE TABLE "public"."password_reset_tokens" (
 )
 WITH (oids = false);
 
+TRUNCATE "password_reset_tokens";
 
 DROP TABLE IF EXISTS "permissions";
 DROP SEQUENCE IF EXISTS permissions_id_seq;
@@ -1851,6 +2085,7 @@ CREATE TABLE "public"."permissions" (
 )
 WITH (oids = false);
 
+TRUNCATE "permissions";
 
 DROP TABLE IF EXISTS "role_menu_permissions";
 DROP SEQUENCE IF EXISTS role_menu_permissions_id_seq;
@@ -1869,6 +2104,7 @@ WITH (oids = false);
 
 CREATE INDEX role_menu_permissions_role_id_menu_main_id_permission_id_index ON public.role_menu_permissions USING btree (role_id, menu_main_id, permission_id);
 
+TRUNCATE "role_menu_permissions";
 
 DROP TABLE IF EXISTS "roles";
 DROP SEQUENCE IF EXISTS roles_id_seq;
@@ -1884,6 +2120,7 @@ CREATE TABLE "public"."roles" (
 )
 WITH (oids = false);
 
+TRUNCATE "roles";
 INSERT INTO "roles" ("id", "name", "sort_order", "created_at", "updated_at") VALUES
 (1,	'admin',	0,	NULL,	NULL),
 (2,	'moderator',	0,	NULL,	NULL);
@@ -1904,8 +2141,9 @@ CREATE INDEX sessions_user_id_index ON public.sessions USING btree (user_id);
 
 CREATE INDEX sessions_last_activity_index ON public.sessions USING btree (last_activity);
 
+TRUNCATE "sessions";
 INSERT INTO "sessions" ("id", "user_id", "ip_address", "user_agent", "payload", "last_activity") VALUES
-('EOjELDpNxR5dp5pOMvH8uhLBNKTs38DjvH7IFWiG',	1,	'172.20.0.1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36',	'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiWERCdUNpc3laVzV6dnhCMDdBUDFsT050TVc3bWNFYjRqT3lZTExqVSI7czo2OiJsb2NhbGUiO3M6MjoidXoiO3M6OToiX3ByZXZpb3VzIjthOjI6e3M6MzoidXJsIjtzOjIxOiJodHRwOi8vbG9jYWxob3N0OjgwNzgiO3M6NToicm91dGUiO3M6NDoiaG9tZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjE6e3M6ODoiaW50ZW5kZWQiO3M6Mjc6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA3OC9hZG1pbiI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==',	1768289991);
+('6NOXIL2g0ZF2Y330XzLXCe20YT1wz59xGKr6yjrV',	1,	'172.24.0.1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36',	'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiUHFId2ZaU1A2ZklhaTFFTUhyY21kWDFqbUtlczNLNDRSNHdOdjliNiI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czo1NDoiaHR0cDovL2xvY2FsaG9zdDo4MDc5L2FkbWluL3BhZ2VzL2NjL3NlY3Rpb24vNDcvY3JlYXRlIjt9czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA3OS9hZG1pbi9zZXR0aW5ncyI7czo1OiJyb3V0ZSI7czoxNDoiYWRtaW4uc2V0dGluZ3MiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6NjoibG9jYWxlIjtzOjI6InJ1Ijt9',	1768300955);
 
 DROP TABLE IF EXISTS "settings";
 DROP SEQUENCE IF EXISTS settings_id_seq;
@@ -1930,6 +2168,7 @@ CREATE TABLE "public"."settings" (
 )
 WITH (oids = false);
 
+TRUNCATE "settings";
 INSERT INTO "settings" ("id", "title", "meta_description", "meta_keywords", "email", "status", "main_page_id", "admin_ips", "created_at", "updated_at", "search_ids", "sorting_ids", "bot_token", "chat_id") VALUES
 (1,	'{"en": null, "ru": "ProEnd", "uz": "ProEnd"}',	'{"en": null, "ru": "ProEnd", "uz": "ProEnd"}',	'{"en": null, "ru": "ProEnd, ProEnd", "uz": "ProEnd, ProEnd"}',	NULL,	'1',	38,	NULL,	'2025-12-20 15:22:52',	'2026-01-13 04:16:16',	'["38","46","26"]',	'["26"]',	'7871094702:AAFdi2i9wvaCCoh2R4h6bE6vEkEdqHyCyko',	'-1003249220292');
 
@@ -1950,10 +2189,11 @@ CREATE TABLE "public"."socials" (
 )
 WITH (oids = false);
 
+TRUNCATE "socials";
 
 DROP TABLE IF EXISTS "supports";
 DROP SEQUENCE IF EXISTS supports_id_seq;
-CREATE SEQUENCE supports_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 112 CACHE 1;
+CREATE SEQUENCE supports_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1;
 
 CREATE TABLE "public"."supports" (
     "id" bigint DEFAULT nextval('supports_id_seq') NOT NULL,
@@ -1965,6 +2205,7 @@ CREATE TABLE "public"."supports" (
 )
 WITH (oids = false);
 
+TRUNCATE "supports";
 INSERT INTO "supports" ("id", "data", "created_at", "updated_at", "type") VALUES
 (61,	'{"name": "Asad", "email": "yam@gmail.com", "phone": "+998 90-597-55-54", "description": "yZSH"}',	'2026-01-09 05:13:50',	'2026-01-09 05:13:50',	'form'),
 (63,	'{"city": "tashkent", "name": "saasfs", "email": "yam@gmail.com", "phone": "905975554", "gender": "male", "country": "uzbekistan", "position": "Junior", "telegram": null, "whatsapp": null, "birthdate": "2026-01-07", "education": "boshlangich", "instagram": null, "workplace": "ProEnd", "specialization": "orta"}',	'2026-01-09 07:15:17',	'2026-01-09 07:15:17',	'participation'),
@@ -2006,6 +2247,7 @@ WITH (oids = false);
 
 CREATE UNIQUE INDEX users_username_unique ON public.users USING btree (username);
 
+TRUNCATE "users";
 INSERT INTO "users" ("id", "name", "username", "status", "password", "role_id", "email", "email_verified_at", "remember_token", "created_at", "updated_at") VALUES
 (1,	'Admin',	'admin',	'1',	'$2y$12$IdkZ.NfglZq6MhMc5ZI2buef.eMXylpbETW9tRtKsK2g06N.URDP2',	1,	NULL,	NULL,	NULL,	NULL,	NULL),
 (2,	'Moderator',	'moderator',	'1',	'$2y$12$6ZkAf8mM7gBLGpKS61RCku6S8hnXw3Sj5mcPzt5OTyHXM83QtD6C6',	2,	NULL,	NULL,	NULL,	NULL,	NULL),
@@ -2013,7 +2255,7 @@ INSERT INTO "users" ("id", "name", "username", "status", "password", "role_id", 
 
 DROP TABLE IF EXISTS "view_counts";
 DROP SEQUENCE IF EXISTS view_counts_id_seq;
-CREATE SEQUENCE view_counts_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 19 CACHE 1;
+CREATE SEQUENCE view_counts_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1;
 
 CREATE TABLE "public"."view_counts" (
     "id" bigint DEFAULT nextval('view_counts_id_seq') NOT NULL,
@@ -2029,6 +2271,7 @@ WITH (oids = false);
 
 CREATE INDEX view_counts_viewable_type_viewable_id_index ON public.view_counts USING btree (viewable_type, viewable_id);
 
+TRUNCATE "view_counts";
 INSERT INTO "view_counts" ("id", "viewable_type", "viewable_id", "ip_address", "user_agent", "created_at", "updated_at") VALUES
 (13,	'App\Models\PageSection',	33,	'172.23.0.1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36',	'2026-01-06 09:31:35',	'2026-01-06 09:31:35'),
 (14,	'App\Models\PageSection',	117,	'172.23.0.1',	'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36',	'2026-01-07 16:22:48',	'2026-01-07 16:22:48'),
@@ -2053,4 +2296,4 @@ ALTER TABLE ONLY "public"."role_menu_permissions" ADD CONSTRAINT "role_menu_perm
 ALTER TABLE ONLY "public"."role_menu_permissions" ADD CONSTRAINT "role_menu_permissions_permission_id_foreign" FOREIGN KEY (permission_id) REFERENCES permissions(id) ON DELETE CASCADE NOT DEFERRABLE;
 ALTER TABLE ONLY "public"."role_menu_permissions" ADD CONSTRAINT "role_menu_permissions_role_id_foreign" FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE NOT DEFERRABLE;
 
--- 2026-01-13 07:43:52 UTC
+-- 2026-01-13 10:44:34 UTC

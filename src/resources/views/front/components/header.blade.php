@@ -1,6 +1,6 @@
 <header class="header" role="banner">
     <div class="container">
-        <a href="{{route('home')}}" class="logo" aria-label="Home">
+        <a href="{{route('home',['locale' => app()->getLocale()])}}" class="logo" aria-label="Home">
             <img src="{{ asset('front/') }}/images/logo.png" alt="Logo" class="header__brand-img" />
             <span>“Vatandoshlar”<br>Jamoat Fondi</span>
         </a>

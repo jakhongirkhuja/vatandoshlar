@@ -1,6 +1,6 @@
 <header class="header" role="banner">
     <div class="container">
-        <a href="<?php echo e(route('home')); ?>" class="logo" aria-label="Home">
+        <a href="<?php echo e(route('home',['locale' => app()->getLocale()])); ?>" class="logo" aria-label="Home">
             <img src="<?php echo e(asset('front/')); ?>/images/logo.png" alt="Logo" class="header__brand-img" />
             <span>“Vatandoshlar”<br>Jamoat Fondi</span>
         </a>

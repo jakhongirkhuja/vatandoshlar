@@ -17,7 +17,7 @@ use App\Http\Controllers\Admin\FileManagerController;
 use App\Http\Controllers\Admin\PageSectionController;
 use App\Http\Controllers\Admin\ContentSettingController;
 use App\Http\Controllers\Admin\MenuMainSettingsController;
-
+use App\Http\Controllers\Admin\TelegramController;
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('', [AdminController::class, 'index'])->name('admin.index');
     Route::any('file-manager', [FileManagerController::class, 'handleRequest'])->name('admin.file-manager');
@@ -92,5 +92,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     });
     Route::post('image-delete', [MenuMainController::class, 'imageDelete'])->name('admin.menu_main.imageDelete');
     Route::post('image-create/{id?}', [PageSectionController::class, 'addImage'])->name('createImage');
+
+    Route::post('/telegram/check-token', [TelegramController::class, 'checkToken'])->name('telegram.checkToken');
+    Route::post('/telegram/check-bot', [TelegramController::class, 'checkBot'])->name('telegram.checkBot');
 
 });

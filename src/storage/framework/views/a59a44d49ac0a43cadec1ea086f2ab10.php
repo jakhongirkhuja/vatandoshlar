@@ -209,9 +209,50 @@
                                                         Если IP-адресов несколько, разделите их запятыми.
                                                     </small>
                                                 </div>
+                                                <div class="col-md-12 mb-1">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Telegram Bot Token</label>
+                                                                <input type="text" id="tg_token"  value="<?php echo e(old(
+                                                                        'email',
+                                                                        $settings->bot_token ?? ''
+                                                                    )); ?>" name="bot_token" class="form-control"
+                                                                       placeholder="123456:ABC-DEF...">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label>Chat ID</label>
+                                                                <input type="text" id="tg_chat_id" value="<?php echo e(old(
+                                                                        'email',
+                                                                        $settings->chat_id ?? ''
+                                                                    )); ?>" name="chat_id" class="form-control"
+                                                                       placeholder="-1001234567890">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="d-flex gap-2">
+                                                                <button class="btn btn-secondary" type="button" onclick="checkToken()">
+                                                                    Check Token
+                                                                </button>
 
+                                                                <button class="btn btn-primary ml-2" type="button" onclick="checkBot()">
+                                                                    Check Bot & Admin
+                                                                </button>
+                                                            </div>
+
+                                                            <div class="mt-3">
+                                                                <div id="tg_result" class="alert d-none"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
 
                                             </div>
+
+
 
 
                                             <div class="row">
@@ -229,7 +270,7 @@
                                             </div>
                                         </form>
 
-                                        <!-- users edit account form ends -->
+
                                     </div>
 
                                 </div>
@@ -237,12 +278,66 @@
                         </div>
                     </div>
                 </section>
-                <!-- users edit ends -->
+
 
             </div>
         </div>
     </div>
     <!-- END: Content-->
+    <script>
+        function showResult(type, message) {
+            const box = document.getElementById('tg_result');
+            box.className = 'alert alert-' + type;
+            box.innerText = message;
+            box.classList.remove('d-none');
+        }
+        function checkToken() {
+            fetch('<?php echo e(route('telegram.checkToken')); ?>', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '<?php echo e(csrf_token()); ?>'
+                },
+                body: JSON.stringify({
+                    token: document.getElementById('tg_token').value
+                })
+            })
+                .then(r => r.json())
+                .then(r => {
+                    if (r.success) {
+                        showResult('success', 'Bot found: @' + r.username);
+                    } else {
+                        showResult('danger', 'Error ' + r.message);
+                    }
+                });
+        }
+        function checkBot() {
+            fetch('<?php echo e(route('telegram.checkBot')); ?>', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '<?php echo e(csrf_token()); ?>'
+                },
+                body: JSON.stringify({
+                    token: document.getElementById('tg_token').value,
+                    chat_id: document.getElementById('tg_chat_id').value
+                })
+            })
+                .then(r => r.json())
+                .then(r => {
+                    if (!r.success) {
+                        showResult('danger', 'Error ' + r.message);
+                        return;
+                    }
+
+                    if (r.is_admin) {
+                        showResult('success', 'Bot is ADMIN in this chat');
+                    } else {
+                        showResult('warning', 'Bot is in group but NOT admin');
+                    }
+                });
+        }
+    </script>
 
 <?php $__env->stopSection(); ?>
 

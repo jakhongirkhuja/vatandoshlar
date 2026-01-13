@@ -81,7 +81,7 @@ class PageSectionController extends Controller
     }
     public function updateSection(PageSectionRequest $request, $slug, $id, $section_id, $parent_id = null)
     {
-    //    dd($request->validated());
+
         return $this->service->updateSection($slug, $id, $section_id, $parent_id, $request->validated());
     }
     public function index($slug, $id, $parent_id = null, $category_slug = null)

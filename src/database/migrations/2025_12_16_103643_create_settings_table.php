@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('admin_ips')->nullable();
             $table->json('search_ids')->nullable();
             $table->json('sorting_ids')->nullable();
+            $table->text('bot_token')->nullable();
+            $table->text('chat_id')->nullable();
             $table->timestamps();
         });
     }

@@ -15,7 +15,9 @@ class Setting extends Model
         'main_page_id',
         'admin_ips',
         'search_ids',
-        'sorting_ids'
+        'sorting_ids',
+        'bot_token',
+        'chat_id'
     ];
 
     protected $casts = [

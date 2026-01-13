@@ -244,9 +244,6 @@
 </div>
 
 
-
-<?php $__env->stopSection(); ?>
-<?php $__env->startSection('script'); ?>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const titleInput = document.querySelector('input.title');

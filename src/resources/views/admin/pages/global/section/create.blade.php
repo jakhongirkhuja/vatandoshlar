@@ -243,9 +243,6 @@
 </div>
 
 
-
-@endsection
-@section('script')
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const titleInput = document.querySelector('input.title');

@@ -15,7 +15,7 @@
                         <span>Добавить</span>
                         <input type="hidden" id="main_image_input" name="main_image_input">
                         <input id="file" type="file" name="images[]" multiple
-                            accept="image/jpeg,image/jpg,image/png,image/gif,image/svg+xml,video/mp4,video/webm,video/ogg,video/quicktime,video/x-msvideo">
+                               accept="image/jpeg,image/jpg,image/png,image/gif,image/svg+xml,video/mp4,video/webm,video/ogg,video/quicktime,video/x-msvideo">
                     </span>
 
                     <span class="btn btn-success fileinput-button delete_image" id="image-delete">
@@ -24,68 +24,74 @@
                     </span>
 
                     <span class="btn btn-success fileinput-button delete_image_select" id="image-delete-btn"
-                        style="cursor: pointer;">
+                          style="cursor: pointer;">
                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                         <span>Удалить выбранные</span>
                     </span>
                     <input name="category" type="hidden" value="<?php echo e(request('category')); ?>">
-                        <?php if(request('slug') == 'menu'): ?>
-    <input name="post_id" type="hidden" value="<?php echo e(request()->route('menu_main_id')); ?>">
-<?php elseif(request('slug') == 'content'): ?>
-    <input name="post_id" type="hidden" value="<?php echo e(request()->route('content_id')); ?>">
-<?php else: ?>
-    
-    <input name="post_id" type="hidden" value="<?php echo e(request()->route('section_id')); ?>">
-<?php endif; ?>
+                    <?php if (request('slug') == 'menu'): ?>
+                    <input name="post_id" type="hidden" value="<?php echo e(request()->route('menu_main_id')); ?>">
+                    <?php elseif(request('slug') == 'content'): ?>
+                    <input name="post_id" type="hidden" value="<?php echo e(request()->route('content_id')); ?>">
+                    <?php else: ?>
+
+                    <input name="post_id" type="hidden" value="<?php echo e(request()->route('section_id')); ?>">
+                    <?php endif; ?>
                 </div>
 
                 <div id="reset" class="media-block">
                     <ul class="thumbnails list-unstyled ui-sortable" id="media_list">
-                        <?php if(isset($menu)): ?>
-                            <?php $__currentLoopData = $menu->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <li class="thumb <?php echo e($image->main ? 'main' : ''); ?>" data-id="<?php echo e($image->id); ?>">
-                                    <?php
-                                        $fileExtension = pathinfo($image->image, PATHINFO_EXTENSION);
-                                        $videoExtensions = ['mp4', 'webm', 'ogg', 'mov', 'avi', 'mkv'];
-                                        $isVideo = in_array(strtolower($fileExtension), $videoExtensions);
-                                    ?>
-                                    <?php if($isVideo): ?>
-                                        <a href="<?php echo e(asset('storage/' . $image->image)); ?>" class="thumbnail fancybox tooltips"
-                                            rel="group">
-                                            <video style="width: 180px; height: 180px; object-fit: cover;" controls>
-                                                <source src="<?php echo e(asset('storage/' . $image->image)); ?>"
-                                                    type="video/<?php echo e($fileExtension); ?>">
-                                                Your browser does not support the video tag.
-                                            </video>
-                                        </a>
-                                    <?php else: ?>
-                                        <a href="<?php echo e(asset('storage/' . $image->image)); ?>" class="thumbnail fancybox tooltips"
-                                            rel="group">
-                                            <img src="<?php echo e(asset('storage/' . $image->image)); ?>"
-                                                style="width: 180px; height: 180px; object-fit: cover;">
-                                        </a>
-                                    <?php endif; ?>
-                                    <div class="toolbar">
-                                        <div class="btn-group">
-                                            <a class="btn btn-mini move ui-sortable-handle center" href="#" title="Перемещать">
-                                                <i class="fa fa-arrows"></i>
-                                            </a>
-                                            <a class="btn btn-mini ajax_set_main center <?php echo e($image->main ? 'btn-info' : ''); ?>"
-                                                href="#" title="Сделать Главным">
-                                                <i class="fa fa-arrow-up"></i>
-                                            </a>
-                                            <a class="btn btn-mini btn-delete ajax_delete center" href="#" title="Удалить">
-                                                <i class="fa fa-trash-o"></i>
-                                            </a>
-                                        </div>
-                                        <div class="btn btn-mini check">
-                                            <input type="checkbox" class="selected_images" value="<?php echo e($image->id); ?>"
-                                                id="img_<?php echo e($image->id); ?>" name="img[]">
-                                            <label for="img_<?php echo e($image->id); ?>"><span></span></label>
-                                        </div>
-                                    </div>
-                                </li>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php if (isset($menu)): ?>
+                            <?php $__currentLoopData = $menu->images; $__env->addLoop($__currentLoopData); foreach ($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <li class="thumb <?php echo e($image->main ? 'main' : ''); ?>"
+                            data-id="<?php echo e($image->id); ?>">
+                                <?php
+                                $fileExtension = pathinfo($image->image, PATHINFO_EXTENSION);
+                                $videoExtensions = ['mp4', 'webm', 'ogg', 'mov', 'avi', 'mkv'];
+                                $isVideo = in_array(strtolower($fileExtension), $videoExtensions);
+                                ?>
+                                <?php if ($isVideo): ?>
+                            <a href="<?php echo e(asset('storage/' . $image->image)); ?>"
+                               class="thumbnail fancybox tooltips"
+                               rel="group">
+                                <video style="width: 180px; height: 180px; object-fit: cover;" controls>
+                                    <source src="<?php echo e(asset('storage/' . $image->image)); ?>"
+                                            type="video/<?php echo e($fileExtension); ?>">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </a>
+                            <?php else: ?>
+                            <a href="<?php echo e(asset('storage/' . $image->image)); ?>"
+                               class="thumbnail fancybox tooltips"
+                               rel="group">
+                                <img src="<?php echo e(asset('storage/' . $image->image)); ?>"
+                                     style="width: 180px; height: 180px; object-fit: cover;">
+                            </a>
+                            <?php endif; ?>
+                            <div class="toolbar">
+                                <div class="btn-group">
+                                    <a class="btn btn-mini move ui-sortable-handle center" href="#"
+                                       title="Перемещать">
+                                        <i class="fa fa-arrows"></i>
+                                    </a>
+                                    <a class="btn btn-mini ajax_set_main center <?php echo e($image->main ? 'btn-info' : ''); ?>"
+                                       href="#" title="Сделать Главным">
+                                        <i class="fa fa-arrow-up"></i>
+                                    </a>
+                                    <a class="btn btn-mini btn-delete ajax_delete center" href="#"
+                                       title="Удалить">
+                                        <i class="fa fa-trash-o"></i>
+                                    </a>
+                                </div>
+                                <div class="btn btn-mini check">
+                                    <input type="checkbox" class="selected_images" value="<?php echo e($image->id); ?>"
+                                           id="img_<?php echo e($image->id); ?>" name="img[]">
+                                    <label for="img_<?php echo e($image->id); ?>"><span></span></label>
+                                </div>
+                            </div>
+                        </li>
+                        <?php endforeach;
+                            $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         <?php endif; ?>
                     </ul>
                 </div>
@@ -96,6 +102,7 @@
 <script>
     const dropZone = document.getElementById('dropZone');
     const uploadFile = document.getElementById('fileInput');
+    const media = document.getElementById('media_list');
 
     let files = null; // shared variable
 
@@ -117,13 +124,18 @@
     /* Drop files */
     dropZone.addEventListener('drop', e => {
         files = e.dataTransfer.files;
-        uploadImage();
+        const filesArray = [...e.dataTransfer.files];
+        // console.log(filesArray);
+        imageDropFiles(filesArray);
+        // uploadImage();
     });
 
     /* Select files */
     uploadFile.addEventListener('change', e => {
         files = e.target.files;
-        uploadImage();
+        console.log('--');
+        console.log(files);
+        // uploadImage();
     });
 
     /* Upload / preview function */
@@ -181,10 +193,12 @@
                 alert('Server bilan aloqa uzildi');
             });
     }
+
     function fetchImage(tempIds) {
         const onlyTemp = tempIds.filter(id => id.startsWith('temp_'));
         if (!onlyTemp.length) return;
     }
+
     let selectedValues = [];
     document.querySelectorAll('input.selected_images').forEach(checkbox => {
         checkbox.addEventListener('change', function () {
@@ -192,16 +206,17 @@
                 .map(cb => cb.value);
         });
     });
+    let checkedButtonTriggerd = true;
     document.getElementById('image-delete-btn').addEventListener('click', function () {
+        $('#deleteImageSelectionsModal').modal('show');
+        checkedButtonTriggerd = true;
 
-        fetchData(Array.from(document.querySelectorAll('input.selected_images:checked'))
-            .map(cb => cb.value))
 
     });
     document.getElementById('image-delete').addEventListener('click', function () {
+        $('#deleteImageSelectionsModal').modal('show');
+        checkedButtonTriggerd = false;
 
-        fetchData(Array.from(document.querySelectorAll('input.selected_images'))
-            .map(cb => cb.value))
     });
     !function () {
         var inp = document.getElementById('file');
@@ -251,7 +266,7 @@
     }();
 </script>
 <script>
-    const routeCreateImage = "<?php echo e(route('createImage', ['id' => (request()->route('slug') ?? '')])); ?>";
+    const routeCreateImage = "<?php echo e(route('createImage', ['id' => (request()->route('section_id') ?? '')])); ?>";
 </script>
 <script>
     const fileInput = document.getElementById('file');
@@ -261,7 +276,6 @@
     let storedFiles = new DataTransfer();
     let imageToDelete = null; // modal uchun
     let deleteImageId = null;
-    /* ================== SET MAIN IMAGE ================== */
     function attachThumbEvents(li) {
         li.querySelector('.ajax_set_main')?.addEventListener('click', function (e) {
             e.preventDefault();
@@ -275,8 +289,6 @@
             mainInput.value = li.dataset.name || li.dataset.id;
         });
     }
-
-    /* ================== DELETE (ONLY MODAL) ================== */
     function attachDeleteEvent(li) {
         li.querySelector('.btn-delete')?.addEventListener('click', function (e) {
             e.preventDefault();
@@ -284,9 +296,6 @@
             $('#deleteImageModal').modal('show');
         });
     }
-
-    /* ================== CONFIRM DELETE ================== */
-
     document.addEventListener('click', function (e) {
         if (e.target.id === 'confirmImageDelete') {
 
@@ -301,39 +310,48 @@
 
             deleteImageId = null;
             imageToDelete = null;
-
             $('#deleteImageModal').modal('hide');
+
         }
+        if (e.target.id === 'confirmImageDeleteSelections') {
+            if (checkedButtonTriggerd) {
+                fetchData(Array.from(document.querySelectorAll('input.selected_images:checked'))
+                    .map(cb => cb.value))
+            } else {
+                fetchData(Array.from(document.querySelectorAll('input.selected_images'))
+                    .map(cb => cb.value))
+            }
+            $('#deleteImageSelectionsModal').modal('hide');
+        }
+
     });
-
-
-
     document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('#media_list .thumb').forEach(li => {
             attachThumbEvents(li);
             attachDeleteEvent(li);
         });
     });
- const filepart = document.getElementById('file');
-const media = document.getElementById('media_list');
+    const filepart = document.getElementById('file');
 
-filepart.addEventListener('change', function (event) {
 
-    [...event.target.files].forEach(file => {
+    // new update function
+    function imageDropFiles(takefiles){
+        const formData = new FormData();
+        console.log(takefiles);
+        takefiles.forEach(file => {
+            formData.append('files[]', file);
+            const li = document.createElement('li');
+            li.className = 'thumb uploading';
 
-        // 1. PREVIEW (darhol ko‘rinadi)
-        const li = document.createElement('li');
-        li.className = 'thumb uploading';
+            const reader = new FileReader();
+            reader.onload = function (e) {
 
-        const reader = new FileReader();
-        reader.onload = function (e) {
+                const isVideo = file.type.startsWith('video/');
+                const preview = isVideo
+                    ? `<video src="${e.target.result}" width="180" height="180" controls></video>`
+                    : `<img src="${e.target.result}" width="180" height="180">`;
 
-            const isVideo = file.type.startsWith('video/');
-            const preview = isVideo
-                ? `<video src="${e.target.result}" width="180" height="180" controls></video>`
-                : `<img src="${e.target.result}" width="180" height="180">`;
-
-            li.innerHTML = `
+                li.innerHTML = `
                 <a class="thumbnail">${preview}</a>
                 <div class="toolbar">
                    <div class="btn-group">
@@ -344,67 +362,67 @@ filepart.addEventListener('change', function (event) {
                         <a class="btn btn-mini btn-delete ajax_delete"><i class="fa fa-trash-o"></i></a>
                     </div>
                 </div>
-            `;
+                <div class="btn btn-mini check">
+                    <input type="checkbox" class="selected_images" value=""
+                           id="img_" name="img[]"><label for="img_385"><span></span></label>
 
-            media.appendChild(li);
-        };
-        reader.readAsDataURL(file);
-
-        // 2. DARHOL SERVERGA SAVE
-        const formData = new FormData();
-       
-formData.append('files[]', file);  // request rules da files[] ishlatiladi
-formData.append('_token', document.querySelector('meta[name="csrf-token"]').content);
-fetch(routeCreateImage, {
-    method: 'POST',
-    body: formData,
-    credentials: 'same-origin',
-})
-.then(res => res.json())
-        .then(data => {
-             
-            if (!data.status) {
-                li.remove();
-                alert('Upload xato');
-                return;
-            }
-
-            // 3. TEMP → REAL
-            li.classList.remove('uploading');
-            li.dataset.id = data.id;
-
-            const mediaTag = data.type === 'video'
-                ? `<video src="${data.url}" width="180" height="180" controls></video>`
-                : `<img src="${data.url}" width="180" height="180">`;
-
-            li.innerHTML = `
-                <a class="thumbnail fancybox" href="${data.url}">
-                    ${mediaTag}
-                </a>
-                <div class="toolbar">
-                    <div class="btn-group">
-                      <a class="btn btn-mini move ui-sortable-handle center" href="#" title="Перемещать">
-                            <i class="fa fa-arrows"></i>
-                        </a>
-                        <a class="btn btn-mini ajax_set_main"><i class="fa fa-arrow-up"></i></a>
-                        <a class="btn btn-mini btn-delete ajax_delete"><i class="fa fa-trash-o"></i></a>
-                    </div>
                 </div>
             `;
 
-            attachThumbEvents(li);
-            attachDeleteEvent(li);
-        })
-        .catch(() => {
-            li.remove();
-            alert('Server bilan aloqa yo‘q');
+                media.appendChild(li);
+            };
+            reader.readAsDataURL(file);
         });
+        formData.append('_token', document.querySelector('meta[name="csrf-token"]').content);
+        <?php
+
+        if (request()->route('section_id')){
+
+            ?>
+        fetch(routeCreateImage, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (!data.success) {
+                    //li.remove();
+                    // alert('Upload error check console');
+                    return;
+                }
+                const uploadingItems = document.querySelectorAll('.thumb.uploading');
+                let li = document.querySelectorAll('.thumb.uploading');
+                data.data.forEach((value, index) => {
+
+                    li = uploadingItems[index];
+
+                    if (li) {
+                        li.classList.remove('uploading');
+                        li.dataset.id = value;
+                        li.querySelector('.selected_images').id = `img_${value}`;
+                        li.querySelector('.selected_images').value = value;
+                        li.querySelector('label').htmlFor = `img_${value}`
+                    }
+                    attachThumbEvents(li);
+                    attachDeleteEvent(li);
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+                alert('Error check console');
+            });
+
+            <?php
+        }
+
+        ?>
+    }
+    filepart.addEventListener('change', function (event) {
+        imageDropFiles([...event.target.files])
     });
 
-    fileInput.value = '';
-});
-
- </script>
+</script>
 
 <div class="modal fade" id="deleteImageModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -431,16 +449,43 @@ fetch(routeCreateImage, {
         </div>
     </div>
 </div>
+<div class="modal fade" id="deleteImageSelectionsModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content small">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title">Подтвердить удаление</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <p class="mb-0">Вы уверены, что хотите удалить выбранные изображения?</p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    Отмена
+                </button>
+                <button type="button" id="confirmImageDeleteSelections" class="btn btn-danger">
+                    Удалить
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 <?php $__env->startSection('script'); ?>
-    <script>
-        let buttonId;
-        $(document).on('click', '.btn-delete', function (e) {
-            e.preventDefault();
+<script>
+    let buttonId;
+    $(document).on('click', '.btn-delete', function (e) {
+        e.preventDefault();
 
-            imageToDelete = this.closest('li');
-            deleteImageId = imageToDelete.dataset.id;
-            $('#deleteImageModal').modal('show');
+        imageToDelete = this.closest('li');
+        deleteImageId = imageToDelete.dataset.id;
+        $('#deleteImageModal').modal('show');
 
-        });
-    </script>
-<?php $__env->stopSection(); ?><?php /**PATH /var/www/html/resources/views/admin/components/modal.blade.php ENDPATH**/ ?>
+    });
+</script>
+<?php $__env->stopSection(); ?>
+<?php /**PATH /var/www/html/resources/views/admin/components/modal.blade.php ENDPATH**/ ?>
+<?php /**PATH /var/www/html/resources/views/admin/components/modal.blade.php ENDPATH**/ ?>

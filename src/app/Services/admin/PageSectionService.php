@@ -151,15 +151,14 @@ class PageSectionService
                 'message' => 'Page section not found'
             ], 404);
         }
-        if (isset($data['images'])) {
+        $responseImageId = [];
+        if (isset($data['files'])) {
             $mainImageName = isset($data['main_image_input']) ? $data['main_image_input'] : '';
 
             $imageId = false;
 
             foreach ($data['files'] as $file) {
-                // dd($file);
                 $fileOriginalName = $file->getClientOriginalName();
-
                 $filename = time() . '_' . $file->getClientOriginalName();
                 $path = $file->storeAs('page_section_images', $filename, 'public');
                 $menuImage = new PageSectionImage();
@@ -170,6 +169,7 @@ class PageSectionService
                 $menuImage->main = ($fileOriginalName === $mainImageName);
                 $menuImage->status = true;
                 $menuImage->save();
+                $responseImageId[] =$menuImage->id;
                 if ($fileOriginalName === $mainImageName) {
                     $imageId = $menuImage->id;
                 }
@@ -200,7 +200,7 @@ class PageSectionService
         return response()->json([
             'success' => true,
             'message' => 'Images added successfully',
-            'data' => $menuImage ?? null,
+            'data' =>$responseImageId,
         ]);
     }
     public function storeSettings($id, $slug, $parent_id, $category_slug, array $data)

@@ -77,7 +77,7 @@
                         <h5>{{staticValue('platform')}}</h5>
                         <p>{{staticValue('join-us')}}</p>
                         <div class="contacts__right--wrapper">
-                            <a class="button"  href="{{ route('home',['locale'=>app()->getlocale(), 'any'=>'murojat-qilish']) }}">{{staticValue('button1')}}</a>
+                            <a class="button"  href="{{ route('home',['locale'=>app()->getlocale(), 'any'=>'application']) }}">{{staticValue('button1')}}</a>
                             <a class="link" href="#"><i class="i-play"></i><span>{{staticValue('video_l')}}</span></a>
                         </div>
                     </div>

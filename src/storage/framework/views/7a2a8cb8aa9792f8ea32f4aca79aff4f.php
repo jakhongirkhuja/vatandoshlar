@@ -77,7 +77,7 @@
                         <h5><?php echo e(staticValue('platform')); ?></h5>
                         <p><?php echo e(staticValue('join-us')); ?></p>
                         <div class="contacts__right--wrapper">
-                            <a class="button"  href="<?php echo e(route('home',['locale'=>app()->getlocale(), 'any'=>'murojat-qilish'])); ?>"><?php echo e(staticValue('button1')); ?></a>
+                            <a class="button"  href="<?php echo e(route('home',['locale'=>app()->getlocale(), 'any'=>'application'])); ?>"><?php echo e(staticValue('button1')); ?></a>
                             <a class="link" href="#"><i class="i-play"></i><span><?php echo e(staticValue('video_l')); ?></span></a>
                         </div>
                     </div>

@@ -17,7 +17,7 @@
         <div class="join-us__content">
             <h2>{{staticValue('vatandosh')}}</h2>
             <p>{{staticValue('vatandosh1')}}</p>
-            <a class="join-us__content--btn"  href="{{ route('home',['locale'=>app()->getlocale(), 'any'=>'murojat-qilish']) }}">{{staticValue('button1')}}</a>
+            <a class="join-us__content--btn"  href="{{ route('home',['locale'=>app()->getlocale(), 'any'=>'application']) }}">{{staticValue('button1')}}</a>
 
         </div>
         <div class="join-us__img join-us__img--right">

@@ -33,7 +33,7 @@
                             <select name="data[job]" id="specialization" class="form-control" required>
                                 <option value="">{{staticValue('select_spec')}}</option>
                                 @foreach($jobs as $job)
-                                    <option value="{{ $job->id }}">
+                                    <option value="{{ sectionValue($job,'title') }}">
                                         {{ sectionValue($job,'title') }}
                                     </option>
                                 @endforeach

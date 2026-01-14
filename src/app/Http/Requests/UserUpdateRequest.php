@@ -21,11 +21,18 @@ class UserUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'username'=>'required|string|between:2,100',
-            'name'=>'required|string|max:255',
-            'status' => 'required|in:0,1',
-            'role_id'=>'required|exists:roles,id',
+     return [
+            'username' => 'nullable|unique:users,username|string|between:2,100',
+            'name' => 'nullable|string|max:255',
+            'status' => 'nullable|in:0,1',
+            'password' => [
+                'nullable',
+                'string',
+                'min:8',
+                'regex:/[A-Z]/',        
+                'regex:/[\W_]/',      
+            ],
+            'role_id' => 'nullable|exists:roles,id',
         ];
     }
 }

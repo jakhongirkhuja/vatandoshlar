@@ -1,6 +1,4 @@
-@extends('admin.layouts.layouts')
-
-@section('body')
+<?php $__env->startSection('body'); ?>
 
     <!-- BEGIN: Content-->
     <div class="app-content content">
@@ -10,7 +8,7 @@
             <div class="content-header row">
             </div>
             <div class="content-body">
-                 @include('admin.components.error')
+                 <?php echo $__env->make('admin.components.error', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
                 <!-- users edit start -->
                 <section class="users-edit">
                     <div class="card">
@@ -27,19 +25,19 @@
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="account" aria-labelledby="account-tab" role="tabpanel">
 
-                                        @php
+                                        <?php
                                             $isEdit = isset($user);
-                                        @endphp
+                                        ?>
 
                                         <form
                                             novalidate
-                                            action="{{ $isEdit ? route('admin.users.update', $user->id) : route('admin.users.create') }}"
+                                            action="<?php echo e($isEdit ? route('admin.users.update', $user->id) : route('admin.users.create')); ?>"
                                             method="POST"
                                         >
-                                            @csrf
-                                            @if($isEdit)
-                                                @method('PUT')
-                                            @endif
+                                            <?php echo csrf_field(); ?>
+                                            <?php if($isEdit): ?>
+                                                <?php echo method_field('PUT'); ?>
+                                            <?php endif; ?>
 
                                             <div class="row">
 
@@ -54,7 +52,7 @@
                                                                 class="form-control"
                                                                 name="username"
                                                                 placeholder="Username"
-                                                                value="{{ old('username', $isEdit ? $user->username : '') }}"
+                                                                value="<?php echo e(old('username', $isEdit ? $user->username : '')); ?>"
                                                                 required
                                                             >
                                                         </div>
@@ -68,7 +66,7 @@
                                                                 class="form-control"
                                                                 name="password"
                                                                 placeholder="Password"
-                                                                value="{{ old('password', $isEdit ? $user->username : '') }}"
+                                                                value="<?php echo e(old('password', $isEdit ? $user->username : '')); ?>"
                                                                 required
                                                             >
                                                         </div>
@@ -82,7 +80,7 @@
                                                                 class="form-control"
                                                                 name="name"
                                                                 placeholder="Name"
-                                                                value="{{ old('name', $isEdit ? $user->name : '') }}"
+                                                                value="<?php echo e(old('name', $isEdit ? $user->name : '')); ?>"
                                                                 required
                                                             >
                                                         </div>
@@ -95,23 +93,25 @@
                                                     <label>Status</label>
                                                     <div class="form-group">
                                                         <select name="status" required class="form-control">
-                                                            <option value="1" {{ old('status', $user->status ?? 1) == 1 ? 'selected' : '' }}>Active</option>
-                                                            <option value="0" {{ old('status', $user->status ?? 1) == 0 ? 'selected' : '' }}>Deactivated</option>
+                                                            <option value="1" <?php echo e(old('status', $user->status ?? 1) == 1 ? 'selected' : ''); ?>>Active</option>
+                                                            <option value="0" <?php echo e(old('status', $user->status ?? 1) == 0 ? 'selected' : ''); ?>>Deactivated</option>
                                                         </select>
                                                     </div>
 
                                                     <div class="form-group">
                                                         <label>Role</label>
                                                         <select name="role_id" required class="form-control">
-                                                            @forelse ($roles as $role)
-                                                                <option value="{{ $role->id }}"
-                                                                    {{ $isEdit && $user->role_id == $role->id ? 'selected' : '' }}
+                                                            <?php $__empty_1 = true; $__currentLoopData = $roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                                                <option value="<?php echo e($role->id); ?>"
+                                                                    <?php echo e($isEdit && $user->role_id == $role->id ? 'selected' : ''); ?>
+
                                                                 >
-                                                                    {{ $role->name }}
+                                                                    <?php echo e($role->name); ?>
+
                                                                 </option>
-                                                            @empty
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                                                 <option value="0"></option>
-                                                            @endforelse
+                                                            <?php endif; ?>
 
                                                         </select>
                                                     </div>
@@ -168,7 +168,8 @@
                                                 <!-- BUTTONS -->
                                                 <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
                                                     <button type="submit" class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1">
-                                                        {{ $isEdit ? 'Update User' : 'Create User' }}
+                                                        <?php echo e($isEdit ? 'Update User' : 'Create User'); ?>
+
                                                     </button>
                                                     <button type="reset" class="btn btn-outline-warning">Reset</button>
                                                 </div>
@@ -192,4 +193,6 @@
     </div>
     <!-- END: Content-->
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.layouts.layouts', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /var/www/html/resources/views/admin/pages/users/save.blade.php ENDPATH**/ ?>

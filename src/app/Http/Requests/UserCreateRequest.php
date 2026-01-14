@@ -22,10 +22,17 @@ class UserCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'username'=>'required|string|between:2,100',
-            'name'=>'required|string|max:255',
+            'username' => 'required|unique:users,username|string|between:2,100',
+            'name' => 'required|string|max:255',
             'status' => 'required|in:0,1',
-            'role_id'=>'required|exists:roles,id',
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'regex:/[A-Z]/',        
+                'regex:/[\W_]/',      
+            ],
+            'role_id' => 'required|exists:roles,id',
         ];
     }
 }

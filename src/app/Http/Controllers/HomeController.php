@@ -32,19 +32,33 @@ class HomeController extends Controller
                 return view('front.pages.contacts.index', compact('breadcrumbs', 'currentPage'));
             }
             if ($inside && $detail) {
+                $detailViewPath = "front.pages." . str_replace("-", "_", $any) . ".inside.detail.index";
 
-                $viewPath = "front.pages." . str_replace("-", "_", $any) . ".inside.detail.index";
+                if (view()->exists($detailViewPath)) {
+                    $viewPath = $detailViewPath;
+                } else {
+                    return redirect("/{$locale}/{$any}/{$inside}");
+                }
 
             } elseif ($inside) {
-                if ($any === 'yangiliklar') {
-                    $newsItem = PageSection::where('slug', $inside)->firstOrFail();
-                    $newsItem->addView(request());
+                $insideViewPath = "front.pages." . str_replace("-", "_", $any) . ".inside.index";
+
+                if (view()->exists($insideViewPath)) {
+                    $viewPath = $insideViewPath;
+
+                    if ($any === 'yangiliklar') {
+                        $newsItem = PageSection::where('slug', $inside)->first();
+                        if ($newsItem) {
+                            $newsItem->addView(request());
+                        }
+                    }
+                } else {
+                    return redirect("/{$locale}/{$any}");
                 }
-                $viewPath = "front.pages." . str_replace("-", "_", $any) . ".inside.index";
+
             } else {
-
+                // Any level
                 $viewPath = "front.pages." . str_replace("-", "_", $any) . ".index";
-
             }
 
 
@@ -60,18 +74,18 @@ class HomeController extends Controller
                         ->where('slug', $inside)->orderBy('sort_order')
                         ->get());
 
-                    if (count($items)==0 && $inside!='ariza-topshirish') {
+                    if (count($items) == 0 && $inside != 'ariza-topshirish') {
                         abort(404);
                     }
 
                 } else {
-                    $orderSettings = OrderSetting::where('menu_main_id',$currentPage->id)->first();
+                    $orderSettings = OrderSetting::where('menu_main_id', $currentPage->id)->first();
 
-                    if($any =='yangiliklar'){
+                    if ($any == 'yangiliklar') {
                         $query = PageSection::with(['children', 'translations', 'images'])
                             ->where('menu_main_id', $currentPage->id);
 
-                        if($orderSettings){
+                        if ($orderSettings) {
                             switch ($orderSettings->order) {
                                 case 'sort_order_desc':
                                     $query->orderBy('sort_order', 'desc');
@@ -95,7 +109,7 @@ class HomeController extends Controller
                                     $query->orderBy('sort_order', 'asc');
                                     break;
                             }
-                        }else{
+                        } else {
                             $query->orderBy('sort_order', 'asc');
                         }
 
@@ -119,7 +133,7 @@ class HomeController extends Controller
                 }
                 $breadcrumbs = $this->createBreadCrumb($currentPage);
 
-                if ($items->isEmpty() && $currentPage->id!=49) {
+                if ($items->isEmpty() && $currentPage->id != 49) {
 
                     $viewPath = "front.static.index";
                 }

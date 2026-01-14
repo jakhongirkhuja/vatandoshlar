@@ -42,6 +42,7 @@
         </div>
     @endif
 
+    
     @if(count($segments)<=1)
 
         <script>

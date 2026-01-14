@@ -42,6 +42,7 @@
         </div>
     <?php endif; ?>
 
+    
     <?php if(count($segments)<=1): ?>
 
         <script>

@@ -16,7 +16,7 @@
             </button>
         <div class="col-md-6">
             <div class="form-group">
-                <form method="get" action="<?php echo e(route('search')); ?>" >
+                <form method="get" action="<?php echo e(route('search', ['locale'=> app()->getLocale()])); ?>" >
                     <div class="input-group">
                         <input class="form-control" name="search" placeholder="Search...">
                         <button type="submit" class="btn btn-primary">Search</button>

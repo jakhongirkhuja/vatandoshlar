@@ -17,7 +17,7 @@
     <div class="search-content">
         <div class="container">
             <div class="search-box">
-                <form action="{{ route('search') }}" method="GET" class="search-form">
+                <form action="{{ route('search', ['locale'=> app()->getLocale()]) }}" method="GET" class="search-form">
                     <div class="input-group">
                         <span class="search-icon">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -36,7 +36,7 @@
                         <button type="submit" class="search-btn">IZLASH</button>
                     </div>
                 </form>
-
+              
                 {{-- Results Count --}}
                 @if(isset($results))
                 <div class="results-info">
@@ -50,21 +50,16 @@
             @if(isset($results) && $results->count() > 0)
             <div class="results-list">
                 @foreach($results as $result)
-               @php
-    $any = '';
-
-    if ($result->menu_main_id == 26) {
-        $any = 'yangiliklar';
-    }
-    elseif ($result->menu_main_id == 38) {
-        $any = 'barcha-loyihalar';
-    }
-    elseif ($result->menu_main_id == 46) {
-        $any = 'gazetalar';
-    }
-@endphp
-
-                        <a href="{{route('home',['locale'=>app()->getlocale(),'any' => $any,'inside' => $result->slug])}}">
+                        @php
+                            foreach($menus as $menu){
+                                if($result->menu_main_id ==$menu->id){
+                                        $slug = $menu->slug;
+                                        break;
+                                }
+                            }
+                            
+                        @endphp
+                        <a href="{{route('home',['locale'=>app()->getLocale(),'any' => $slug,'inside' => $result->slug])}}">
                             <div class="result-item">
                                 <h3 class="result-title">
                                     {{ sectionValue($result,'title')}}

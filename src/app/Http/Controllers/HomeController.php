@@ -46,7 +46,7 @@ class HomeController extends Controller
                 if (view()->exists($insideViewPath)) {
                     $viewPath = $insideViewPath;
 
-                    if ($any === 'yangiliklar') {
+                    if ($any === 'news') {
                         $newsItem = PageSection::where('slug', $inside)->first();
                         if ($newsItem) {
                             $newsItem->addView(request());
@@ -81,10 +81,9 @@ class HomeController extends Controller
                 } else {
                     $orderSettings = OrderSetting::where('menu_main_id', $currentPage->id)->first();
 
-                    if ($any == 'yangiliklar') {
+                    if ($any == 'news') {
                         $query = PageSection::with(['children', 'translations', 'images'])
                             ->where('menu_main_id', $currentPage->id);
-
                         if ($orderSettings) {
                             switch ($orderSettings->order) {
                                 case 'sort_order_desc':

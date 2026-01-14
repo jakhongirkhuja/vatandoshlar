@@ -34,6 +34,7 @@ class PageSectionRequest extends FormRequest
             ],
             'fields' => 'required|array',
             'parent_id' => 'nullable|exists:page_sections,id',
+            'publish_at' => 'nullable|date',
             'status' => 'nullable|in:on,off',
             // 'images' => 'nullable|array',
             // 'images.*' => [

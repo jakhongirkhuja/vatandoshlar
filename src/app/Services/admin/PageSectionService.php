@@ -27,6 +27,7 @@ class PageSectionService
                 'slug' => isset($data['slug']) ? $data['slug'] : '',
                 'menu_main_id' => $id,
                 'parent_id' => $parent_id ?? null,
+                'publish_at'=> $data['publish_at'],
                 'status' => isset($data['status']) && $data['status'] == 'on' ? true : false,
                 'category_slug' => $category_slug,
                 'category' => $category,
@@ -114,6 +115,7 @@ class PageSectionService
                 'slug' => isset($data['slug']) ? $data['slug'] : '',
                 //                'menu_main_id' => $id,
                 //                'parent_id' => $data['parent_id'] ?? null,
+                'publish_at'=> $data['publish_at'] ?? $pagesection->publish_at,
                 'status' => isset($data['status']) && $data['status'] == 'on' ? true : false,
             ];
             $pagesection->update($dataToSave);

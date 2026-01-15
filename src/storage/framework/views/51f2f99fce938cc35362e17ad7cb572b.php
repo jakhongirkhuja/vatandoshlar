@@ -2,6 +2,7 @@
 $sections = menuSections(31, 2, false);
 $section = $sections->skip(1)->first();
 $news = menuSections(26,3);
+$newsSlug = menuSection(26);
 ?> 
 
 
@@ -82,6 +83,7 @@ $news = menuSections(26,3);
                     <?php endif; ?>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                        <?php if($section): ?>
+                       
     <div class="associations-detail__gallery">
         <h2 class="associations-detail__gallery--title"><?php echo e(sectionValue($section, 'title')); ?></h2>
         
@@ -107,7 +109,7 @@ $news = menuSections(26,3);
         <h2 class="associations-detail__gallery--title"><?php echo e(staticValue('news')); ?></h2>
         <div class="carousel carousel3 owl-carousel">
             <?php $__currentLoopData = $news; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $newsItem): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <a class="carousel__item" href="<?php echo e(route('home', ['locale' => app()->getLocale(), 'any' => request()->route('any'), 'inside' => $newsItem->slug])); ?>">
+                <a class="carousel__item" href="<?php echo e(route('home', ['locale' => app()->getLocale(), 'any' =>$newsSlug->slug, 'inside' => $newsItem->slug])); ?>">
                     <div class="carousel__item--img">
                         <?php
                             $mainImage = sectionImages($newsItem, true);

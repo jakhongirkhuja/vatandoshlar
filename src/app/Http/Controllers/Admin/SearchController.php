@@ -19,7 +19,18 @@ class SearchController extends Controller
         $locale = app()->getLocale();
 
         $ids = Setting::value('search_ids');
-      $menus = MenuMain::whereIn('id', $ids)->get();
+        if (is_string($ids)) {
+            $ids = json_decode($ids, true);
+        }
+
+        $ids = is_array($ids) ? $ids : [];
+
+        // parent + child menu id lar
+        $ids = MenuMain::whereIn('id', $ids)
+            ->orWhereIn('parent_id', $ids)
+            ->pluck('id')
+            ->toArray();
+        $menus = MenuMain::whereIn('id', $ids)->get();
         $results = PageSection::whereIn('menu_main_id', $ids)
             ->whereHas('translations', function ($query) use ($locale, $search) {
                 $query->where('locale', $locale)

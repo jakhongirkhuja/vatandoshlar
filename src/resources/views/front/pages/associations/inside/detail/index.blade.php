@@ -2,6 +2,7 @@
 $sections = menuSections(31, 2, false);
 $section = $sections->skip(1)->first();
 $news = menuSections(26,3);
+$newsSlug = menuSection(26);
 @endphp 
 
 @extends('front.layouts.layout')
@@ -82,6 +83,7 @@ $news = menuSections(26,3);
                     @endif
                     @endforeach
                        @if($section)
+                       
     <div class="associations-detail__gallery">
         <h2 class="associations-detail__gallery--title">{{ sectionValue($section, 'title') }}</h2>
         
@@ -107,7 +109,7 @@ $news = menuSections(26,3);
         <h2 class="associations-detail__gallery--title">{{ staticValue('news') }}</h2>
         <div class="carousel carousel3 owl-carousel">
             @foreach($news as $newsItem)
-                <a class="carousel__item" href="{{ route('home', ['locale' => app()->getLocale(), 'any' => request()->route('any'), 'inside' => $newsItem->slug]) }}">
+                <a class="carousel__item" href="{{ route('home', ['locale' => app()->getLocale(), 'any' =>$newsSlug->slug, 'inside' => $newsItem->slug]) }}">
                     <div class="carousel__item--img">
                         @php
                             $mainImage = sectionImages($newsItem, true);

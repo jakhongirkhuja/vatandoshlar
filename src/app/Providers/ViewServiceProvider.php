@@ -24,11 +24,11 @@ class ViewServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('*', function ($view) {
-                
-            $langs = Lang::select('id','code','short_name')->get();
+
+            $langs = Lang::select('id', 'code', 'short_name')->get();
             $view->with([
-                'langs'=> $langs,
-            ]   );
+                'langs' => $langs,
+            ]);
             if (Request::is('admin/*') || Request::is('admin')) {
                 $menus = MenuMain::with('translations', 'children')->whereNull('parent_id')->where('show_admin', true)->orderBy('sort_order')->get();
                 $view->with([
@@ -36,7 +36,16 @@ class ViewServiceProvider extends ServiceProvider
                     'permissionMenus' => auth()->user()?->role->menus->pluck('id')->toArray(),
                 ]);
             } else {
-                $menus = MenuMain::with(['childrens', 'translations'])->whereNull('parent_id')->where('status', true)->orderBy('sort_order')->get();
+                $menus = MenuMain::with([
+                    'childrens' => function ($q) {
+                        $q->where('status', true);
+                    },
+                    'translations'
+                ])
+                    ->whereNull('parent_id')
+                    ->where('status', true)
+                    ->orderBy('sort_order')
+                    ->get();
                 $view->with([
                     'headerMenu' => $menus
                 ]);

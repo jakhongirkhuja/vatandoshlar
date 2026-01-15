@@ -146,50 +146,7 @@ unset($__errorArgs, $__bag); ?>"
 
 
                                                     </div>
-<style>
-    .captcha{
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 10px !important;
-}
 
-/* captcha rasm o‘ralgan span */
-.captcha span{
-    background: #fff;
-    border: 1px solid #e3e6ef;
-    border-radius: 999px;
-    padding: 6px 12px;
-    display: flex;
-    align-items: center;
-}
-
-/* captcha rasmning o‘zi */
-.captcha span img{
-    width: 120px !important;
-    height: 35px !important;
-    border: 0 !important;
-    display: block !important;
-}
-
-/* reload tugma */
-.captcha .reload{
-    width: 38px;
-    height: 38px;
-    background: #3f51ff;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
-.captcha .reload i{
-    color: #ffffff;
-    font-size: 14px;
-}
-
-</style>
 
                                                     <button type="submit"
                                                         class="btn btn-primary float-right btn-inline">Вход в

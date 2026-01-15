@@ -79,8 +79,14 @@ return [
 
     // style
     'bgImage' => false,
-    'bgColor' => '#ffffff',
-    'fontColors' => ['#1f2937'],
+    'bgColor' => '#e0f2fe',
+    'fontColors' => [
+    '#ef4444', // qizil
+    '#22c55e', // yashil
+    '#3b82f6', // ko‘k
+    '#a855f7', // binafsha
+    '#f59e0b', // sariq
+],  
     'lines' => 1,
     'contrast' => 0,
     'angle' => 0,
@@ -100,11 +106,32 @@ return [
         'bgColor' => '#28faef',
         'contrast' => 0,
     ],
-    'mini' => [
-        'length' => 3,
-        'width' => 60,
-        'height' => 32,
+  'mini' => [
+    'length' => 3,
+    'width'  => 60,
+    'height' => 32,
+    'quality' => 95,
+    'math' => false,
+    'expire' => 60,
+    'encrypt' => true,
+
+    // style
+    'bgImage' => false,
+    'bgColor' => '#fef3c7', // och sariq fon
+    'fontColors' => [
+        '#ef4444', // qizil
+        '#22c55e', // yashil
+        '#3b82f6', // ko‘k
+        '#a855f7', // binafsha
+        '#f59e0b', // to‘q sariq
     ],
+    'lines' => 1,
+    'contrast' => 0,
+    'angle' => 5,
+    'sharpen' => 6,
+    'blur' => 0,
+],
+
     'inverse' => [
         'length' => 5,
         'width' => 120,

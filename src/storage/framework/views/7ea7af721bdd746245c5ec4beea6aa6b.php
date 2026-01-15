@@ -35,8 +35,7 @@ $defaultIcon = 'corner-down-right';
 <?php if($menu->show_admin): ?>
 <li class="nav-item <?php echo e($menu->children->isNotEmpty() ? 'has-sub' : ''); ?>
 
-    <?php echo e((int) request()->route('id') === (int) $menu->id ? 'active' : ''); ?>">
-
+    <?php echo e((int) request()->route('id') === (int) $menu->id && request()->route('slug')? 'active' : ''); ?>">
     <?php if($menu->children->isEmpty()): ?>
     <a href="<?php echo e($route); ?>" <?php if($menu->type === 'url'): ?> target="_blank" <?php endif; ?>>
         <i class="feather <?php echo e($menu->icon ?? $defaultIcon); ?>"></i>

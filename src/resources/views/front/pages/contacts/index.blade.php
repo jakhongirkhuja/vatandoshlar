@@ -7,7 +7,7 @@
             <div class="contacts-page">
                 <div class="contacts-page__data">
                     <h2 class="contacts-page__data--title">{{staticValue('contactmessage')}}</h2>
-                  
+
                     {{-- Success Message --}}
                   @if(session('success'))
                     {{-- Modal faqat success bo'lgandagina ko'rinadi --}}
@@ -55,10 +55,10 @@
                            <input type="hidden" name="type" value="form">
                         <div class="contacts-page__data--form-group">
                             <label>{{staticValue('fullname')}}</label>
-                            <input class="form-control" 
-                                   type="text" 
-                                   placeholder="{{staticValue('info-add')}}" 
-                                   name="data[name]" 
+                            <input class="form-control"
+                                   type="text"
+                                   placeholder="{{staticValue('info-add')}}"
+                                   name="data[name]"
                                    required />
                             @error('data.name')
                                 <span class="text-danger" style="color: red; font-size: 14px;">{{ $message }}</span>
@@ -68,9 +68,9 @@
                         <div class="contacts-page__data--form-row">
                             <div class="contacts-page__data--form-group">
                                 <label>{{staticValue('number')}}</label>
-                                <input id="phone" 
-                                       class="form-control" 
-                                       type="text" 
+                                <input id="phone"
+                                       class="form-control"
+                                       type="text"
                                        name="data[phone]"
                                        required />
                                 @error('data.phone')
@@ -80,10 +80,10 @@
 
                             <div class="contacts-page__data--form-group">
                                 <label>{{staticValue('email')}}</label>
-                                <input class="form-control" 
-                                       type="email" 
+                                <input class="form-control"
+                                       type="email"
                                        placeholder="example@gmail.com"
-                                       name="data[email]"  
+                                       name="data[email]"
                                        required />
                                 @error('data.email')
                                     <span class="text-danger" style="color: red; font-size: 14px;">{{ $message }}</span>
@@ -93,9 +93,9 @@
 
                         <div class="contacts-page__data--form-group">
                             <label>{{staticValue('message')}}</label>
-                            <textarea class="form-control" 
-                                      placeholder="Kiriting" 
-                                      name="data[description]" 
+                            <textarea class="form-control"
+                                      placeholder="Kiriting"
+                                      name="data[description]"
                                       required> </textarea>
                             @error('data.description')
                                 <span class="text-danger" style="color: red; font-size: 14px;">{{ $message }}</span>
@@ -108,7 +108,7 @@
                         </button>
                     </form>
                 </div>
-                
+
                 <div class="contacts-page__contact">
                     <h2 class="contacts-page__data--title">{{staticValue('contacts')}}</h2>
                     <div class="contacts-page__contact--info">
@@ -123,7 +123,7 @@
                                 <span>+998 71 234 56 78</span>
                             </div>
                         </a>
-                        
+
                         <a href="mailto:info@example.com" class="contacts-page__contact--info-item">
                             <div class="contacts-page__contact--info-item-img">
                                 <div class="contacts-page__contact--info-item-img-circle">
@@ -135,7 +135,7 @@
                                 <span>info@example.com</span>
                             </div>
                         </a>
-                        
+
                         <div class="contacts-page__contact--info-item">
                             <div class="contacts-page__contact--info-item-img">
                                 <div class="contacts-page__contact--info-item-img-circle">
@@ -147,7 +147,7 @@
                                 <span>{{staticValue('work-days')}} 09:00 – 18:00</span>
                             </div>
                         </div>
-                        
+
                         <div class="contacts-page__contact--info-item">
                             <div class="contacts-page__contact--info-item-img">
                                 <div class="contacts-page__contact--info-item-img-circle">
@@ -161,16 +161,11 @@
                         </div>
                     </div>
                 </div>
-                
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d749.4925232956783!2d69.25348876967365!3d41.287755348207035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8aee77c2889f%3A0x1a0e4085e1b2ab8!2s77Q3%2B4M6%2C%20Babur%20Street%2045%2C%20Tashkent%2C%20Uzbekistan!5e0!3m2!1sen!2s!4v1766139483379!5m2!1sen!2s"
-                    width="600" 
-                    height="450" 
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+
+                @if(isset($items[0]))
+                {!!  sectionValue($items[0],'map')!!}
+                @endif
+
             </div>
             <script>
                 const input = document.querySelector('#phone');

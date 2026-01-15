@@ -60,7 +60,7 @@
                                 <li class="nav-item fx align-items-center">
                                     <a class="nav-link {{ $k == 0 ? 'active' : '' }}" data-toggle="tab"
                                         href="#lang{{ $language->code }}">
-                                        <img src="{{ asset('assets/'.$language->flag_icon) }}"
+                                        <img src="{{ sectionImages($language, true) }}"
                                             class="size_small" alt="flag">
                                         {{ $language->name }}
                                     </a>

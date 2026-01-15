@@ -10,6 +10,17 @@
     <meta name="keywords" content="{{ setting('meta_keywords') }}">
     <meta name="author" content="ProEnd">
     <title>Admin - {{ setting('title') }}</title>
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{url()->current()}}">
+    <meta property="og:title" content="{{ setting('title') }}">
+    <meta property="og:description" content="{{ setting('meta_description') }}">
+    <meta property="og:image" content="https://www.yourwebsite.com/path-to-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Vatandoshlar">
+
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="apple-touch-icon" href="{{asset('assets/admin')}}/app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/admin')}}/app-assets/images/ico/favicon.ico">

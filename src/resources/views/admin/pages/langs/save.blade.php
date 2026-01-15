@@ -34,7 +34,7 @@
                                         @endphp
 
                                         <form
-                                            novalidate
+                                            novalidate enctype="multipart/form-data"
                                             action="{{ $isEdit ? route('langs.update', $lang) : route('langs.store') }}"
                                             method="POST"
                                         >
@@ -61,7 +61,7 @@
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label>Name</label>
+                                                        <label>Admin Name</label>
                                                         <input
                                                             type="text"
                                                             class="form-control"
@@ -73,19 +73,25 @@
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label>Direction</label>
-                                                        <select name="direction" class="form-control" required>
-                                                            <option
-                                                                value="ltr" {{ old('direction', $isEdit ? $lang->direction : '') == 'ltr' ? 'selected' : '' }}>
-                                                                LTR
-                                                            </option>
-                                                            <option
-                                                                value="rtl" {{ old('direction', $isEdit ? $lang->direction : '') == 'rtl' ? 'selected' : '' }}>
-                                                                RTL
-                                                            </option>
-                                                        </select>
+                                                        <label>Locale (optional)</label>
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            name="locale"
+                                                            placeholder="e.g., en_US"
+                                                            value="{{ old('locale', $isEdit ? $lang->locale : '') }}"
+                                                        >
                                                     </div>
-
+                                                    <div class="form-group">
+                                                        <label>Front name</label>
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            name="short_name"
+                                                            placeholder="e.g., en_US"
+                                                            value="{{ old('short_name', $isEdit ? $lang->short_name : '') }}"
+                                                        >
+                                                    </div>
                                                     <div class="form-group">
                                                         <label>Status</label>
                                                         <select name="status" class="form-control">
@@ -100,41 +106,14 @@
                                                         </select>
                                                     </div>
 
-                                                    <div class="form-group">
-                                                        <label>Default Language</label>
-                                                        <select name="is_default" class="form-control">
-                                                            <option
-                                                                value="1" {{ old('is_default', $isEdit ? $lang->is_default : 0) == 1 ? 'selected' : '' }}>
-                                                                Yes
-                                                            </option>
-                                                            <option
-                                                                value="0" {{ old('is_default', $isEdit ? $lang->is_default : 0) == 0 ? 'selected' : '' }}>
-                                                                No
-                                                            </option>
-                                                        </select>
+                                                    <div class="col-12 mb-1">
+
+                                                        <a href="#myModal" role="button"
+                                                           class="btn btn-info waves-effect waves-light"
+                                                           data-toggle="modal"><i class="feather icon-image"></i>
+                                                            Фото</a>
                                                     </div>
 
-                                                    <div class="form-group">
-                                                        <label>Locale (optional)</label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            name="locale"
-                                                            placeholder="e.g., en_US"
-                                                            value="{{ old('locale', $isEdit ? $lang->locale : '') }}"
-                                                        >
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label>Flag Icon (optional)</label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            name="flag_icon"
-                                                            placeholder="Path to flag icon"
-                                                            value="{{ old('flag_icon', $isEdit ? $lang->flag_icon : '') }}"
-                                                        >
-                                                    </div>
 
                                                 </div>
 
@@ -148,6 +127,13 @@
                                                 </div>
 
                                             </div>
+                                            <input type="file" style="display: none" multiple name="images[]">
+                                            <input type="hidden" multiple name="main_image">
+                                            <?php $menu = $isEdit ? $lang : null ?>
+                                            <input type="hidden" id="delete-route"
+                                                   value="{{ route('admin.menu_main.imageDelete') }}">
+                                            <input type="hidden" id="slug" value="langs">
+                                            @include('admin.components.modal')
                                         </form>
                                         <!-- lang edit form ends -->
 

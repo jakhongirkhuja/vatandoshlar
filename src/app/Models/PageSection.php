@@ -33,7 +33,9 @@ class PageSection extends Model
     {
         return $this->hasMany(PageSection::class, 'parent_id', 'id')->with('children', 'children.images');
     }
-
+    public function menuMain(){
+        return $this->belongsTo(MenuMain::class, 'menu_main_id', 'id');
+    }
     public function images()
     {
         return $this->hasMany(PageSectionImage::class)->orderBy('main', 'desc');

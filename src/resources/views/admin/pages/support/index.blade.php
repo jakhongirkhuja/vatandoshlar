@@ -36,14 +36,17 @@
                                         <table class="table table-hover-animation mb-0">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">Data</th>
-
+                                                    <th scope="col" width="100">Date</th>
+                                                    <th scope="col" >Name</th>
                                                     <th scope="col" class="action-col"></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach($supports as $support)
                                                     <tr>
+                                                        <td>
+                                                            {{$support->created_at->format('Y-m-d H:i')}}
+                                                        </td>
                                                         <td>
                                                             @php
                                                                 $data = $support->data;

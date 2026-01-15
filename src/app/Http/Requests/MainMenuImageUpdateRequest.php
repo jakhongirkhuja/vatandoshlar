@@ -22,7 +22,7 @@ class MainMenuImageUpdateRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'slug' => 'required|in:menu,section,content',
+            'slug' => 'required|in:menu,section,content,settings,langs',
             'img' => 'required|array|min:1',
         ];
 
@@ -35,6 +35,12 @@ class MainMenuImageUpdateRequest extends FormRequest
         }
         if ($this->slug === 'content') {
             $rules['img.*'] = 'required|integer|exists:content_images,id';
+        }
+        if ($this->slug === 'settings') {
+            $rules['img.*'] = 'required|integer|exists:setting_images,id';
+        }
+        if ($this->slug === 'langs') {
+            $rules['img.*'] = 'required|integer|exists:lang_images,id';
         }
 
         return $rules;

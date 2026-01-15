@@ -6,7 +6,7 @@
             <div class="contacts-page">
                 <div class="contacts-page__data">
                     <h2 class="contacts-page__data--title"><?php echo e(staticValue('contactmessage')); ?></h2>
-                  
+
                     
                   <?php if(session('success')): ?>
                     
@@ -54,10 +54,10 @@
                            <input type="hidden" name="type" value="form">
                         <div class="contacts-page__data--form-group">
                             <label><?php echo e(staticValue('fullname')); ?></label>
-                            <input class="form-control" 
-                                   type="text" 
-                                   placeholder="<?php echo e(staticValue('info-add')); ?>" 
-                                   name="data[name]" 
+                            <input class="form-control"
+                                   type="text"
+                                   placeholder="<?php echo e(staticValue('info-add')); ?>"
+                                   name="data[name]"
                                    required />
                             <?php $__errorArgs = ['data.name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -70,13 +70,13 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                         </div>
-
+                        
                         <div class="contacts-page__data--form-row">
                             <div class="contacts-page__data--form-group">
                                 <label><?php echo e(staticValue('number')); ?></label>
-                                <input id="phone" 
-                                       class="form-control" 
-                                       type="text" 
+                                <input id="phone"
+                                       class="form-control"
+                                       type="text"
                                        name="data[phone]"
                                        required />
                                 <?php $__errorArgs = ['data.phone'];
@@ -93,10 +93,10 @@ unset($__errorArgs, $__bag); ?>
 
                             <div class="contacts-page__data--form-group">
                                 <label><?php echo e(staticValue('email')); ?></label>
-                                <input class="form-control" 
-                                       type="email" 
+                                <input class="form-control"
+                                       type="email"
                                        placeholder="example@gmail.com"
-                                       name="data[email]"  
+                                       name="data[email]"
                                        required />
                                 <?php $__errorArgs = ['data.email'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -113,9 +113,9 @@ unset($__errorArgs, $__bag); ?>
 
                         <div class="contacts-page__data--form-group">
                             <label><?php echo e(staticValue('message')); ?></label>
-                            <textarea class="form-control" 
-                                      placeholder="Kiriting" 
-                                      name="data[description]" 
+                            <textarea class="form-control"
+                                      placeholder="Kiriting"
+                                      name="data[description]"
                                       required> </textarea>
                             <?php $__errorArgs = ['data.description'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -136,7 +136,7 @@ unset($__errorArgs, $__bag); ?>
                         </button>
                     </form>
                 </div>
-                
+
                 <div class="contacts-page__contact">
                     <h2 class="contacts-page__data--title"><?php echo e(staticValue('contacts')); ?></h2>
                     <div class="contacts-page__contact--info">
@@ -151,7 +151,7 @@ unset($__errorArgs, $__bag); ?>
                                 <span>+998 71 234 56 78</span>
                             </div>
                         </a>
-                        
+
                         <a href="mailto:info@example.com" class="contacts-page__contact--info-item">
                             <div class="contacts-page__contact--info-item-img">
                                 <div class="contacts-page__contact--info-item-img-circle">
@@ -163,7 +163,7 @@ unset($__errorArgs, $__bag); ?>
                                 <span>info@example.com</span>
                             </div>
                         </a>
-                        
+
                         <div class="contacts-page__contact--info-item">
                             <div class="contacts-page__contact--info-item-img">
                                 <div class="contacts-page__contact--info-item-img-circle">
@@ -175,7 +175,7 @@ unset($__errorArgs, $__bag); ?>
                                 <span><?php echo e(staticValue('work-days')); ?> 09:00 – 18:00</span>
                             </div>
                         </div>
-                        
+
                         <div class="contacts-page__contact--info-item">
                             <div class="contacts-page__contact--info-item-img">
                                 <div class="contacts-page__contact--info-item-img-circle">
@@ -189,16 +189,12 @@ unset($__errorArgs, $__bag); ?>
                         </div>
                     </div>
                 </div>
-                
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d749.4925232956783!2d69.25348876967365!3d41.287755348207035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8aee77c2889f%3A0x1a0e4085e1b2ab8!2s77Q3%2B4M6%2C%20Babur%20Street%2045%2C%20Tashkent%2C%20Uzbekistan!5e0!3m2!1sen!2s!4v1766139483379!5m2!1sen!2s"
-                    width="600" 
-                    height="450" 
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+
+                <?php if(isset($items[0])): ?>
+                <?php echo sectionValue($items[0],'map'); ?>
+
+                <?php endif; ?>
+
             </div>
             <script>
                 const input = document.querySelector('#phone');
@@ -210,4 +206,5 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('front.layouts.layout', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /var/www/html/resources/views/front/pages/contacts/index.blade.php ENDPATH**/ ?>

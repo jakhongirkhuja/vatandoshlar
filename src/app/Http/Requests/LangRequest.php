@@ -21,8 +21,7 @@ class LangRequest extends FormRequest
      */
     public function rules(): array
     {
-        $langId = $this->route('lang') ? $this->route('lang')->id : null;
-
+        $langId = $this->route('lang') ? $this->route('lang') : null;
         return [
             'code' => [
                 'required',
@@ -30,12 +29,13 @@ class LangRequest extends FormRequest
                 'max:10',
                 Rule::unique('langs', 'code')->ignore($langId),
             ],
+            'locale' => 'required|string|max:10',
             'name' => 'required|string|max:50',
-            'direction' => 'required|in:ltr,rtl',
+            'short_name'=>'required|string|max:50',
             'status' => 'required|boolean',
-            'is_default' => 'required|boolean',
-            'locale' => 'nullable|string|max:10',
-            'flag_icon' => 'nullable|string|max:255',
+            'images' => 'nullable|array',
+            'images.*' => 'file|mimes:jpeg,jpg,png,gif,svg,mp4,webm,ogg,mov,avi|max:51200',
+            'main_image_input' => 'nullable|string',
         ];
     }
 }

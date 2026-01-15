@@ -36,6 +36,7 @@ class SettingStoreRequest extends FormRequest
             'sorting_ids.*'           =>  ['required','integer','exists:menu_mains,id'],
             'chat_id'=>'nullable|string|max:255',
             'bot_token'=>'nullable|string|max:500',
+            'main_image_input' => 'nullable|string',
         ];
     }
 

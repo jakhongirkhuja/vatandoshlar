@@ -4,6 +4,8 @@ namespace App\Services\admin;
 
 use App\Models\Content;
 use App\Models\ContentImages;
+use App\Models\Lang;
+use App\Models\LangImage;
 use App\Models\MenuMain;
 use App\Models\MenuMainImages;
 use App\Models\MenuMainTranslation;
@@ -12,6 +14,8 @@ use App\Models\PageSection;
 use App\Models\PageSectionImage;
 use App\Models\PageSectionSetting;
 use App\Models\PageSectionTranslation;
+use App\Models\Setting;
+use App\Models\SettingImage;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
@@ -77,7 +81,7 @@ class PageSectionService
                 $mainImageName = isset($data['main_image_input']) ? $data['main_image_input'] : '';
                 foreach ($data['images'] as $file) {
                     $fileOriginalName = $file->getClientOriginalName();
-                    $filename = time() . '_' . $file->getClientOriginalName();
+                    $filename = Str::orderedUuid() . rand(1, 500) . '.' . $file->getClientOriginalExtension();
                     $path = $file->storeAs('page_section_images', $filename, 'public');
                     $menuImage = new PageSectionImage();
                     $menuImage->page_section_id = $pagesection->id;
@@ -175,11 +179,15 @@ class PageSectionService
             $mainImageName = isset($data['main_image_input']) ? $data['main_image_input'] : '';
 
             $imageId = false;
+            $slug= 'menu_main';
+            if($menumain->type == 'page'){
+                $slug = str_replace("-", "_", $menumain->slug);
+            }
 
             foreach ($data['files'] as $file) {
                 $fileOriginalName = $file->getClientOriginalName();
-                $filename = time() . '_' . $file->getClientOriginalName();
-                $path = $file->storeAs('menu_images', $filename, 'public');
+                $filename = Str::orderedUuid() . rand(1, 500) . '.' . $file->getClientOriginalExtension();
+                $path = $file->storeAs($slug, $filename, 'public');
                 $menuImage = new MenuMainImages();
                 $menuImage->menu_main_id = $menumain->id;
                 $menuImage->image = $path;
@@ -218,9 +226,47 @@ class PageSectionService
         }
         return $responseImageId;
     }
+    private function addToLang($id, $data)
+    {
+        $responseImageId = [];
+        $lang =Lang::withoutGlobalScope('active')->find($id);
+        if (!$lang) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Lang not found'
+            ], 404);
+        }
+
+        if (isset($data['files'])) {
+
+            $imageId = false;
+            $settingImageName = isset($data['main_image_input']) ? $data['main_image_input'] : '';
+            foreach ($data['files'] as $file) {
+
+                $fileOriginalName = $file->getClientOriginalName();
+                $filename = Str::orderedUuid() . rand(1, 500) . '.' . $file->getClientOriginalExtension();
+                $path = $file->storeAs('langs', $filename, 'public');
+                $conten = new LangImage();
+                $conten->lang_id = $lang->id;
+                $conten->image = $path;
+                $conten->type = $file->getClientMimeType();
+                $conten->size = $file->getSize();
+                $conten->main = ($fileOriginalName === $settingImageName);
+                $conten->status = true;
+                $conten->save();
+                $responseImageId[] = $conten->id;
+            }
+        }
+        return $responseImageId;
+    }
     private function addToSection($id,$data){
         $responseImageId = [];
-        $pagesection = PageSection::find($id);
+        $pagesection = PageSection::with('menuMain')->find($id);
+        $slug = 'page_section_images';
+        if($pagesection->menuMain){
+            $slug = str_replace("-", "_", $pagesection->menuMain->slug);
+
+        }
         if (!$pagesection) {
             return response()->json([
                 'success' => false,
@@ -235,8 +281,9 @@ class PageSectionService
 
             foreach ($data['files'] as $file) {
                 $fileOriginalName = $file->getClientOriginalName();
-                $filename = time() . '_' . $file->getClientOriginalName();
-                $path = $file->storeAs('page_section_images', $filename, 'public');
+                $filename = Str::orderedUuid() . rand(1, 500) . '.' . $file->getClientOriginalExtension();
+
+                $path = $file->storeAs($slug, $filename, 'public');
                 $menuImage = new PageSectionImage();
                 $menuImage->page_section_id = $pagesection->id;
                 $menuImage->image = $path;
@@ -293,7 +340,7 @@ class PageSectionService
             $contentImageName = isset($data['main_image_input']) ? $data['main_image_input'] : '';
             foreach ($data['files'] as $file) {
                 $fileOriginalName = $file->getClientOriginalName();
-                $filename = time() . '_' . $file->getClientOriginalName();
+                $filename = Str::orderedUuid() . rand(1, 500) . '.' . $file->getClientOriginalExtension();
                 $path = $file->storeAs('contents', $filename, 'public');
                 $conten = new ContentImages();
                 $conten->content_id = $content->id;
@@ -322,6 +369,41 @@ class PageSectionService
         }
         return $responseImageId;
     }
+    private function addToSettings($data){
+
+        $responseImageId = [];
+        $setting = Setting::first();
+        if (!$setting) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Page section not found'
+            ], 404);
+        }
+
+        if (isset($data['files'])) {
+
+
+            $imageId = false;
+            $settingImageName = isset($data['main_image_input']) ? $data['main_image_input'] : '';
+            foreach ($data['files'] as $file) {
+
+                $fileOriginalName = $file->getClientOriginalName();
+                $filename = Str::orderedUuid() . rand(1, 500) . '.' . $file->getClientOriginalExtension();
+                $path = $file->storeAs('settings', $filename, 'public');
+                $conten = new SettingImage();
+                $conten->setting_id = $setting->id;
+                $conten->image = $path;
+                $conten->type = $file->getClientMimeType();
+                $conten->size = $file->getSize();
+                $conten->main = ($fileOriginalName === $settingImageName);
+                $conten->status = true;
+                $conten->save();
+
+                $responseImageId[] = $conten->id;
+            }
+        }
+        return $responseImageId;
+    }
     public function addImage($id, array $data)
     {
         $responseImageId = [];
@@ -336,6 +418,13 @@ class PageSectionService
             case 'content':
                 $responseImageId=  $this->addToContent($id,$data);
                 break;
+            case 'settings':
+                $responseImageId=  $this->addToSettings($data);
+                break;
+            case 'langs':
+                $responseImageId=  $this->addToLang($id, $data);
+                break;
+
         }
 
         return response()->json([

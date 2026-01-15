@@ -58,7 +58,7 @@
                                 <li class="nav-item fx align-items-center">
                                     <a class="nav-link <?php echo e($k == 0 ? 'active' : ''); ?>" data-toggle="tab"
                                         href="#lang<?php echo e($language->code); ?>">
-                                        <img src="<?php echo e(asset('assets/'.$language->flag_icon)); ?>"
+                                        <img src="<?php echo e(sectionImages($language, true)); ?>"
                                             class="size_small" alt="flag">
                                         <?php echo e($language->name); ?>
 

@@ -10,6 +10,7 @@ use App\Models\PageSectionImage;
 use App\Models\ContentTranslation;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ContentService
 {
@@ -80,7 +81,7 @@ class ContentService
                 $contentImageName = isset($data['main_image_input']) ? $data['main_image_input'] : '';
                 foreach ($data['images'] as $file) {
                     $fileOriginalName = $file->getClientOriginalName();
-                    $filename = time() . '_' . $file->getClientOriginalName();
+                    $filename = Str::orderedUuid() . rand(1, 500) . '.' . $file->getClientOriginalExtension();
                     $path = $file->storeAs('contents', $filename, 'public');
                     $conten = new ContentImages();
                     $conten->content_id = $content->id;

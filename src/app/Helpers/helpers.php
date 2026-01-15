@@ -3,8 +3,9 @@
 use App\Models\Content;
 use App\Models\MenuMain;
 use App\Models\PageSection;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Request;
-
+use App\Models\SettingImage;
 use App\Models\Setting;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
@@ -22,18 +23,28 @@ if (!function_exists('setting')) {
     {
         $locale ??= app()->getLocale();
 
-        $settings = cache()->rememberForever('settings', function () {
+        $settings = Cache::remember('setting_global', now()->addMinute(5),function () {
             return Setting::first();
         });
         $property = $settings?->toArray();
-
-
         return isset($property['title'][$locale]) ? $property['title'][$locale] : '';
     }
 }
+if (!function_exists('settingImageMain')) {
+    function settingImageMain()
+    {
+
+        $settings = Cache::remember('setting_global_image', now()->addMinute(5),function () {
+            return SettingImage::where('main',true)->first();
+        });
+        return $settings ? url(Storage::url($settings->image)) : null;
+    }
+}
+
 if (!function_exists('sectionValue')) {
     function sectionValue($item, string $key, $default = null)
     {
+
         return data_get($item, "content.$key", $default);
     }
 }
@@ -177,5 +188,37 @@ if (!function_exists('staticValue')) {
             ->value('value');
 
         return $value ?? $default;
+    }
+}
+if (!function_exists('countries')) {
+    /**
+     * Get all countries optionally localized.
+     *
+     * @param bool $localized Return localized names if true
+     * @return \Illuminate\Support\Collection
+     */
+    function countries($localized = true)
+    {
+        $locale = app()->getLocale();
+
+        $all = \App\Models\Country::all();
+        if($locale=='uz' || $locale==null ){
+            $locale = 'oz';
+        }
+
+        if ($localized) {
+            return $all->map(function ($country) use ($locale) {
+                return [
+                    'id' => $country->id,
+                    'iso' => $country->iso,
+                    'iso3' => $country->iso3,
+                    'nicename' => $country->nicename,
+                    'phonecode' => $country->phonecode,
+                    'name' => $country->name[$locale] ?? $country->name['en'] ?? $country->nicename,
+                ];
+            });
+        }
+
+        return $all;
     }
 }

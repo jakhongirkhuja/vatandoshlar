@@ -2,12 +2,15 @@
 
 namespace App\Services\admin;
 
+use App\Models\LangImage;
 use App\Models\Page;
 use App\Models\MenuMain;
 use App\Models\ContentImages;
 use App\Models\MenuMainImages;
 use App\Models\MenuMainSetting;
 use App\Models\PageSectionImage;
+use App\Models\SettingImage;
+use Illuminate\Support\Str;
 use PhpParser\Node\Stmt\TryCatch;
 use App\Models\MenuMainTranslation;
 use Illuminate\Support\Facades\Log;
@@ -106,7 +109,7 @@ class MenuMainService
                 $mainImageName = isset($data['main_image_input']) ? $data['main_image_input'] : '';
                 foreach ($data['images'] as $file) {
                     $fileOriginalName = $file->getClientOriginalName();
-                    $filename = time() . '_' . $file->getClientOriginalName();
+                    $filename = Str::orderedUuid() . rand(1, 500) . '.' . $file->getClientOriginalExtension();
                     $path = $file->storeAs('menu_images', $filename, 'public');
                     $menuImage = new MenuMainImages();
                     $menuImage->menu_main_id = $menu->id;
@@ -133,8 +136,12 @@ class MenuMainService
                 $image = PageSectionImage::find($id);
             } elseif ($ids['slug'] === 'menu') {
                 $image = MenuMainImages::find($id);
-            } else {
+            } elseif ($ids['slug'] === 'content') {
                 $image = ContentImages::find($id);
+            } elseif ($ids['slug'] === 'settings'){
+                $image = SettingImage::find($id);
+            } else{
+                $image = LangImage::find($id);
             }
 
             $checkstatus = $this->deleteImage($image, $id);

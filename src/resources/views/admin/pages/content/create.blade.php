@@ -46,7 +46,7 @@
                                         <li class="nav-item fx align-items-center">
                                             <a class="nav-link {{ $k == 0 ? 'active' : '' }}" data-toggle="tab"
                                                href="#lang{{ $language->code }}">
-                                                <img src="{{ asset('assets/'.$language->flag_icon) }}"
+                                                <img src="{{ sectionImages($language, true) }}"
                                                      class="size_small" alt="flag">
                                                 {{ $language->name }}
                                             </a>
@@ -69,7 +69,7 @@
 
                                                         <label>{{ $setting->label }} ({{ $language->code }})</label>
                                                         @if($setting->type=='textarea')
-                                                            <textarea class="form-control moxiecut" 
+                                                            <textarea class="form-control moxiecut"
                                                                       name="fields[{{ $language->code }}][{{ $setting->key }}]">{{ $value }}</textarea>
                                                         @else
                                                             @php $type = $setting->type=='text'? 'text' : 'number' @endphp

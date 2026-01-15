@@ -1,6 +1,8 @@
 <div class="row">
     <div class="col-4">
+
         <?php if(in_array($id, $settings)): ?>
+
         <fieldset class="form-group">
 
             <select class="form-control round text-center" name="sorting" id="basicSelect2" onchange="updateSorting(this)">
@@ -53,7 +55,7 @@
     <div class="col-6">
         <form  method="GET">
             <div class="input-group">
-                <input type="text" class="form-control round" placeholder="Поиск" name="s">
+                <input type="text" class="form-control round" placeholder="Поиск" name="s" value="<?php echo e(request()->s); ?>">
                 <button class="btn btn-primary" type="submit">
                     <i class="feather icon-search"></i>
                 </button>

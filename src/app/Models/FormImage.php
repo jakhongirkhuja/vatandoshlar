@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Services\admin\TelegramService;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class FormImage extends Model
 {
@@ -19,12 +20,16 @@ class FormImage extends Model
 
             $settings = Setting::first();
             if (!$settings) return;
+            try{
+                TelegramService::sendAnyFile(
+                    $settings->chat_id,
+                    $settings->bot_token,
+                    $image->image
+                );
+            }catch (\Exception $e){
+                Log::error('Telegram error: '.$e->getMessage());
+            }
 
-            TelegramService::sendAnyFile(
-                $settings->chat_id,
-                $settings->bot_token,
-                $image->image
-            );
         });
     }
 }

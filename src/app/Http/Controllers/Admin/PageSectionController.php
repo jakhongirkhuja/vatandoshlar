@@ -100,6 +100,7 @@ class PageSectionController extends Controller
         } else {
             $sorting = request()->get('sorting', 'sort_order_asc');
             $sort_trigger = request()->get('sort_trigger');
+            $search = request()->get('s');
             $query  =PageSection::with('translations','children')->where('menu_main_id', $id)->whereNull('parent_id');
             switch ($sorting) {
                 case 'sort_order_desc':
@@ -136,6 +137,14 @@ class PageSectionController extends Controller
                     ['menu_main_id' => $id],
                     ['order' => $sorting]
                 );
+            }
+            if($search){
+                $query ->whereHas('translations', function ($query) use ($search) {
+                    $query->where(function ($q) use ($search) {
+                            $q->whereRaw("data->>'title' ILIKE ?", ["%{$search}%"])
+                                ->orWhereRaw("data->>'description' ILIKE ?", ["%{$search}%"]);
+                        });
+                });
             }
             $sections = $query->paginate($perPage)->withQueryString();
 //            $sections = PageSection::with('children')->where('menu_main_id', $id)->whereNull('parent_id')->orderby('sort_order')->paginate($perPage)->withQueryString();

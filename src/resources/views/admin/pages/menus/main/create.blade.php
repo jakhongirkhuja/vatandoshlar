@@ -46,7 +46,7 @@
                                         <li class="nav-item fx align-items-center">
                                             <a class="nav-link {{ $k == 0 ? 'active' : '' }}" data-toggle="tab"
                                                href="#lang{{ $language->code }}">
-                                                <img src="{{ asset('assets/'.$language->flag_icon) }}"
+                                                <img src="{{ sectionImages($language, true) }}"
                                                      class="size_small" alt="flag">
                                                 {{ $language->name }}
                                             </a>
@@ -139,7 +139,7 @@
                                         <div class="form-group">
                                             <label>Категория</label>
                                             <select name="parent_id" class="form-control">
-                                                <option value="">Выбрать категорию</option>
+                                                <option value="">Главное меню</option>
 
                                                 @foreach($menus as $parent)
                                                     <option

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\MenuMain;
 use App\Models\OrderSetting;
 use App\Models\PageSection;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -22,15 +23,18 @@ class HomeController extends Controller
     {
         // dd($request->ip(),$request->header('user-agent'));
         $locale = app()->getLocale();
+
         if ($any != null) {
+
             $currentPage = MenuMain::with(['parent', 'childrens', 'translations', 'images'])->where('slug', $any)->first();
             if (!$currentPage) {
                 abort(404);
             }
-            if ($currentPage->slug == 'contacts' || $currentPage->id == 44) {
-                $breadcrumbs = $this->createBreadCrumb($currentPage);
-                return view('front.pages.contacts.index', compact('breadcrumbs', 'currentPage'));
-            }
+//            if ($currentPage->slug == 'contacts' || $currentPage->id == 44) {
+//                $breadcrumbs = $this->createBreadCrumb($currentPage);
+////                dd('ss');
+//                return view('front.pages.contacts.index', compact('breadcrumbs', 'currentPage'));
+//            }
             if ($inside && $detail) {
                 $detailViewPath = "front.pages." . str_replace("-", "_", $any) . ".inside.detail.index";
 
@@ -58,6 +62,7 @@ class HomeController extends Controller
 
             } else {
                 // Any level
+
                 $viewPath = "front.pages." . str_replace("-", "_", $any) . ".index";
             }
 
@@ -80,8 +85,10 @@ class HomeController extends Controller
 
                 } else {
                     $orderSettings = OrderSetting::where('menu_main_id', $currentPage->id)->first();
+                    $settings = Setting::value('sorting_ids');
 
-                    if ($any == 'news') {
+                    if (in_array($currentPage->id, $settings)) {
+
                         $query = PageSection::with(['children', 'translations', 'images'])
                             ->where('menu_main_id', $currentPage->id);
                         if ($orderSettings) {

@@ -133,7 +133,7 @@
                                                         <label class="custom-control-label" for="customSwitch"></label>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-12 mb-1">
+                                                <div class="col-md-12 mb-1" style="display: none">
                                                     <div class="form-group">
                                                         <label>Главная страница</label>
                                                         <select name="main_page_id" required class="form-control">
@@ -249,7 +249,10 @@
                                                     </div>
 
                                                 </div>
+                                                <div class="col-12 mb-1">
 
+                                                    <a href="#myModal" role="button" class="btn btn-info waves-effect waves-light" data-toggle="modal"><i class="feather icon-image"></i> Фото</a>
+                                                </div>
                                             </div>
 
 
@@ -268,6 +271,15 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <input type="file" style="display: none" multiple name="images[]">
+                                            <input type="hidden" multiple name="main_image">
+                                            <input type="hidden" id="delete-route" value="<?php echo e(route('admin.menu_main.imageDelete')); ?>">
+                                            <input type="hidden" id="slug" value="settings">
+
+                                                <?php $menu = $settings ?>
+
+                                            <?php echo $__env->make('admin.components.modal', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
                                         </form>
 
 

@@ -26,10 +26,10 @@
                     $parameters = ['slug'=>$slug,'id'=>$menu->id];
                     $parameters2= ['slug'=>$slug,'id'=>$menu->id];
                     if($parent_id && $category_slug){
-                    $parameters['parent_id'] = $parent_id;
-                    $parameters['category_slug'] = $category_slug;
-                    $parameters2['parent_id'] = $parent_id;
-                    $parameters2['category_slug']= $category_slug;
+                        $parameters['parent_id'] = $parent_id;
+                        $parameters['category_slug'] = $category_slug;
+                        $parameters2['parent_id'] = $parent_id;
+                        $parameters2['category_slug']= $category_slug;
                     }
                     ?>
 

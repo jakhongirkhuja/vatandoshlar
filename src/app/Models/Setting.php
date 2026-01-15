@@ -28,5 +28,8 @@ class Setting extends Model
         'meta_keywords'    => 'array',
         'status'           => 'boolean',
     ];
-
+    public function images()
+    {
+        return $this->hasMany(SettingImage::class)->orderBy('main', 'desc');
+    }
 }

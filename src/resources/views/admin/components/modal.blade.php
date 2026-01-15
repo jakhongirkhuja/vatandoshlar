@@ -40,61 +40,54 @@
                 </div>
 
                 <div id="reset" class="media-block">
-                    <ul class="thumbnails list-unstyled ui-sortable" id="media_list">
-                        <?php if (isset($menu)): ?>
-                            <?php $__currentLoopData = $menu->images; $__env->addLoop($__currentLoopData); foreach ($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <li class="thumb <?php echo e($image->main ? 'main' : ''); ?>"
-                            data-id="<?php echo e($image->id); ?>">
-                                <?php
-                                $fileExtension = pathinfo($image->image, PATHINFO_EXTENSION);
-                                $videoExtensions = ['mp4', 'webm', 'ogg', 'mov', 'avi', 'mkv'];
-                                $isVideo = in_array(strtolower($fileExtension), $videoExtensions);
-                                ?>
-                                <?php if ($isVideo): ?>
-                            <a href="<?php echo e(asset('storage/' . $image->image)); ?>"
-                               class="thumbnail fancybox tooltips"
-                               rel="group">
-                                <video style="width: 180px; height: 180px; object-fit: cover;" controls>
-                                    <source src="<?php echo e(asset('storage/' . $image->image)); ?>"
-                                            type="video/<?php echo e($fileExtension); ?>">
-                                    Your browser does not support the video tag.
-                                </video>
-                            </a>
-                            <?php else: ?>
-                            <a href="<?php echo e(asset('storage/' . $image->image)); ?>"
-                               class="thumbnail fancybox tooltips"
-                               rel="group">
-                                <img src="<?php echo e(asset('storage/' . $image->image)); ?>"
-                                     style="width: 180px; height: 180px; object-fit: cover;">
-                            </a>
-                            <?php endif; ?>
-                            <div class="toolbar">
-                                <div class="btn-group">
-                                    <a class="btn btn-mini move ui-sortable-handle center" href="#"
-                                       title="Перемещать">
-                                        <i class="fa fa-arrows"></i>
-                                    </a>
-                                    <a class="btn btn-mini ajax_set_main center <?php echo e($image->main ? 'btn-info' : ''); ?>"
-                                       href="#" title="Сделать Главным">
-                                        <i class="fa fa-arrow-up"></i>
-                                    </a>
-                                    <a class="btn btn-mini btn-delete ajax_delete center" href="#"
-                                       title="Удалить">
-                                        <i class="fa fa-trash-o"></i>
-                                    </a>
-                                </div>
-                                <div class="btn btn-mini check">
-                                    <input type="checkbox" class="selected_images" value="<?php echo e($image->id); ?>"
-                                           id="img_<?php echo e($image->id); ?>" name="img[]">
-                                    <label for="img_<?php echo e($image->id); ?>"><span></span></label>
-                                </div>
-                            </div>
-                        </li>
-                        <?php endforeach;
-                            $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <?php endif; ?>
+                    <ul class="thumbnails list-unstyled " id="media_list">
+                        @isset($menu)
+
+                            @foreach($menu->images as $image)
+                                @php
+                                    $fileExtension = pathinfo($image->image, PATHINFO_EXTENSION);
+                                    $videoExtensions = ['mp4', 'webm', 'ogg', 'mov', 'avi', 'mkv'];
+                                    $isVideo = in_array(strtolower($fileExtension), $videoExtensions);
+                                @endphp
+
+                                <li class="thumb {{ $image->main ? 'main' : '' }}" data-id="{{ $image->id }}">
+                                    @if($isVideo)
+                                        <a href="{{ asset('storage/' . $image->image) }}" class="thumbnail fancybox tooltips" rel="group">
+                                            <video style="width: 180px; height: 180px; object-fit: cover;" controls>
+                                                <source src="{{ asset('storage/' . $image->image) }}" type="video/{{ $fileExtension }}">
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        </a>
+                                    @else
+                                        <a href="{{ asset('storage/' . $image->image) }}" class="thumbnail fancybox tooltips" rel="group">
+                                            <img src="{{ asset('storage/' . $image->image) }}" style="width: 180px; height: 180px; object-fit: cover;">
+                                        </a>
+                                    @endif
+
+                                    <div class="toolbar">
+                                        <div class="btn-group">
+                                            <a class="btn btn-mini move ui-sortable-handle center" href="#" title="Перемещать">
+                                                <i class="fa fa-arrows"></i>
+                                            </a>
+                                            <a class="btn btn-mini ajax_set_main center {{ $image->main ? 'btn-info' : '' }}" href="#" title="Сделать Главным">
+                                                <i class="fa fa-arrow-up"></i>
+                                            </a>
+                                            <a class="btn btn-mini btn-delete ajax_delete center" href="#" title="Удалить">
+                                                <i class="fa fa-trash-o"></i>
+                                            </a>
+                                        </div>
+
+                                        <div class="btn btn-mini check">
+                                            <input type="checkbox" class="selected_images" value="{{ $image->id }}" id="img_{{ $image->id }}" name="img[]">
+                                            <label for="img_{{ $image->id }}"><span></span></label>
+                                        </div>
+                                    </div>
+                                </li>
+                            @endforeach
+                        @endisset
                     </ul>
                 </div>
+
             </div>
         </div>
     </div>
@@ -104,25 +97,36 @@
     const uploadFile = document.getElementById('fileInput');
     const media = document.getElementById('media_list');
 
-    let files = null; // shared variable
+    let files = null;
+    function isInsideThumb(target) {
 
-    /* Drag events */
+       if(target.dataTransfer?.files.length === 0) return true;
+
+
+    }
+
     ['dragenter', 'dragover'].forEach(event => {
+
         dropZone.addEventListener(event, e => {
+
+            if (isInsideThumb(e.target)) return;
             e.preventDefault();
             dropZone.classList.add('dragover');
         });
     });
-
-    ['dragleave', 'drop'].forEach(event => {
-        dropZone.addEventListener(event, e => {
-            e.preventDefault();
-            dropZone.classList.remove('dragover');
-        });
-    });
+    //
+    // ['dragleave', 'drop'].forEach(event => {
+    //     dropZone.addEventListener(event, e => {
+    //         if (isInsideThumb(e.target)) return;
+    //         e.preventDefault();
+    //         dropZone.classList.remove('dragover');
+    //     });
+    // });
 
     /* Drop files */
     dropZone.addEventListener('drop', e => {
+
+        if (isInsideThumb(e.target)) return;
         files = e.dataTransfer.files;
         const filesArray = [...e.dataTransfer.files];
         imageDropFiles(filesArray);
@@ -267,16 +271,21 @@
 
     @php
     if(isset($globaltype)){
-         if($globaltype=='menu' || $globaltype=='content'){
+         if($globaltype=='menu' || $globaltype=='content' ){
             $id = request()->route('id');
         }elseif($globaltype=='section'){
              $id = request()->route('section_id');
+        }elseif ($globaltype=='settings'){
+             $id = 1;
+        }elseif ($globaltype=='langs'){
+             $id = request()->route('lang');
+
         }
     }else{
         $id = null;
     }
     @endphp
-    const routeCreateImage = "<?php echo e(route('createImage', ['id' => $id])); ?>";
+    const routeCreateImage = "{{ route('createImage', ['id' => $id]) }}";
 </script>
 <script>
     const fileInput = document.getElementById('file');
@@ -394,6 +403,7 @@
             };
             reader.readAsDataURL(file);
         });
+        console.log(document.querySelector('meta[name="csrf-token"]').content);
         formData.append('_token', document.querySelector('meta[name="csrf-token"]').content);
 
         let newslug = document.querySelector('#slug').value;

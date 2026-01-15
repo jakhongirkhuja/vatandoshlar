@@ -34,8 +34,7 @@ $defaultIcon = 'corner-down-right';
 @endphp
 @if($menu->show_admin)
 <li class="nav-item {{ $menu->children->isNotEmpty() ? 'has-sub' : '' }}
-    {{ (int) request()->route('id') === (int) $menu->id ? 'active' : '' }}">
-
+    {{ (int) request()->route('id') === (int) $menu->id && request()->route('slug')? 'active' : '' }}">
     @if($menu->children->isEmpty())
     <a href="{{ $route }}" @if($menu->type === 'url') target="_blank" @endif>
         <i class="feather {{ $menu->icon ?? $defaultIcon }}"></i>

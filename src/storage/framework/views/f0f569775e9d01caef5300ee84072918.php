@@ -44,7 +44,7 @@
                                         <li class="nav-item fx align-items-center">
                                             <a class="nav-link <?php echo e($k == 0 ? 'active' : ''); ?>" data-toggle="tab"
                                                href="#lang<?php echo e($language->code); ?>">
-                                                <img src="<?php echo e(asset('assets/'.$language->flag_icon)); ?>"
+                                                <img src="<?php echo e(sectionImages($language, true)); ?>"
                                                      class="size_small" alt="flag">
                                                 <?php echo e($language->name); ?>
 
@@ -68,7 +68,7 @@
 
                                                         <label><?php echo e($setting->label); ?> (<?php echo e($language->code); ?>)</label>
                                                         <?php if($setting->type=='textarea'): ?>
-                                                            <textarea class="form-control moxiecut" 
+                                                            <textarea class="form-control moxiecut"
                                                                       name="fields[<?php echo e($language->code); ?>][<?php echo e($setting->key); ?>]"><?php echo e($value); ?></textarea>
                                                         <?php else: ?>
                                                             <?php $type = $setting->type=='text'? 'text' : 'number' ?>

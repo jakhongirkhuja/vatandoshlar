@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 class Lang extends Model
 {
+    protected $table = 'langs';
     protected $fillable = [
         'code',
         'name',
@@ -13,8 +14,18 @@ class Lang extends Model
         'status',
         'locale',
         'flag_icon',
+        'short_name',
         'sort_order'
     ];
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($model) {
+            $model->sort_order = $model->id;
+            $model->saveQuietly();
+        });
+    }
     protected static function booted()
     {
         static::addGlobalScope('active', function (Builder $builder) {
@@ -23,5 +34,9 @@ class Lang extends Model
         static::addGlobalScope('sort_order', function (Builder $builder) {
             $builder->orderBy('sort_order');
         });
+    }
+    public function images()
+    {
+        return $this->hasMany(LangImage::class)->orderBy('main', 'desc');
     }
 }

@@ -59,16 +59,26 @@
                                                             >
                                                         </div>
                                                     </div>
-  <!-- #region -->                                  
-     <div class="form-group">
+                                                    <div class="form-group">
                                                         <div class="controls">
                                                             <label>Password</label>
+                                                            @php
+                                                                $length = 10;
+                                                                $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';
+
+                                                                $password = '';
+                                                                for ($i = 0; $i < $length; $i++) {
+                                                                    $password .= $chars[random_int(0, strlen($chars) - 1)];
+                                                                }
+                                                            @endphp
                                                             <input
-                                                                type="text"
+                                                                type="password"
+                                                                id="password"
                                                                 class="form-control"
                                                                 name="password"
+                                                                autocomplete="new-password"
                                                                 placeholder="Password"
-                                                                value="{{ old('password', $isEdit ? $user->username : '') }}"
+
                                                                 required
                                                             >
                                                         </div>

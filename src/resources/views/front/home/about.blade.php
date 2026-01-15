@@ -34,10 +34,10 @@ $items = menuSections(36,1);
             <div class="about-section__middle--content">
                 <p class="about-section__middle--content-text">{{sectionValue($items[0],'title')}}
                 </p>
-               
+
                 <div class="about-section__middle--content-video">
                     @if($heroVideo)
-                    <video class="hero-video" src="{{$heroVideo}}" autoplay muted></video>
+                    <video class="hero-video" src="{{$heroVideo}}" loop autoplay muted></video>
                     @endif
                 </div>
             </div>

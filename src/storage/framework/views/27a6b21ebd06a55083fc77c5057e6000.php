@@ -44,7 +44,7 @@
                                         <li class="nav-item fx align-items-center">
                                             <a class="nav-link <?php echo e($k == 0 ? 'active' : ''); ?>" data-toggle="tab"
                                                href="#lang<?php echo e($language->code); ?>">
-                                                <img src="<?php echo e(asset('assets/'.$language->flag_icon)); ?>"
+                                                <img src="<?php echo e(sectionImages($language, true)); ?>"
                                                      class="size_small" alt="flag">
                                                 <?php echo e($language->name); ?>
 
@@ -138,7 +138,7 @@
                                         <div class="form-group">
                                             <label>Категория</label>
                                             <select name="parent_id" class="form-control">
-                                                <option value="">Выбрать категорию</option>
+                                                <option value="">Главное меню</option>
 
                                                 <?php $__currentLoopData = $menus; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $parent): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <option

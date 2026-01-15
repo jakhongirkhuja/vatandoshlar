@@ -62,16 +62,17 @@
                                             <input type="text" placeholder="Search">
                                         </div>
                                         <ul>
-                                            <li data-code="+7" data-flag="{{ asset('front') }}/images/flags/us.png">
-                                                <img src="{{ asset('front') }}/images/flags/us.png">
-                                                <span>USA</span>
-                                                <small>+7</small>
-                                            </li>
-                                            <li data-code="+998" data-flag="{{ asset('front') }}/images/flags/uz.png">
-                                                <img src="{{ asset('front') }}/images/flags/uz.png">
-                                                <span>Uzbekistan</span>
-                                                <small>+998</small>
-                                            </li>
+
+
+                                                @foreach(countries() as $country)
+                                                <li data-code="+{{$country['phonecode']}}" data-flag="{{ asset('front') }}/images/flags/us.png">
+                                                    <img src="{{ asset('front') }}/images/flags/{{ strtolower($country['iso'])  }}.png">
+                                                    <span>{{ $country['iso3'] }}</span>
+                                                    <small>+{{$country['phonecode']}}</small>
+                                                </li>
+
+                                                @endforeach
+
                                         </ul>
                                     </div>
                                 </div>
@@ -152,11 +153,15 @@
                         <div class="form-row form-row--two">
                             <div class="form-field form-field--select">
                                 <label for="country">{{staticValue('owncity')}}</label>
+
                                 <div class="select-wrapper">
                                     <select id="country" name="data[country]" class="form-control" required>
-                                        <option value="" disabled selected>Tanlang</option>
-                                        <option value="uzbekistan">O'zbekiston</option>
+                                        <option value="" disabled selected>{{staticValue('choose')}}</option>
+                                        @foreach(countries() as $country)
+                                            <option value="{{ $country['name'] }}">{{ $country['name'] }}</option>
+                                        @endforeach
                                     </select>
+
                                 </div>
                             </div>
                             <div class="form-field form-field--select">

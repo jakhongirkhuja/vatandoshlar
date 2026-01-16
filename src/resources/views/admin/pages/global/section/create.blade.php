@@ -8,7 +8,7 @@
     <div class="header-navbar-shadow"></div>
     <div class="content-wrapper">
         <div class="content-header row">
-            <div class="content-header-left col-md-9 col-12 mb-2">
+            <div class="content-header-left col-md-9 col-12 ">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
                         <h2 class="content-header-title float-left mb-0">Добавить / Редактирование</h2>
@@ -54,8 +54,8 @@
                     <input type="hidden" name="category_name" value="{{$settings[0]->category}}">
                     @endif
                     <div class="row">
-                        <div class="col-12 mt-3">
-                            <ul class="nav nav-tabs mb-2" role="tablist">
+                        <div class="col-12 mt-1">
+                            <ul class="nav nav-tabs mb-1" role="tablist">
                                 @foreach($languages as $k => $language)
                                 <li class="nav-item fx align-items-center">
                                     <a class="nav-link {{ $k == 0 ? 'active' : '' }}" data-toggle="tab"
@@ -79,7 +79,7 @@
                                     $data = $translation ? json_decode($translation->data, true) : [];
                                     $value = old('fields.' . $language->code . '.' . $setting->key, $data[$setting->key] ?? '');
                                     @endphp
-                                    <div class="form-group">
+                                    <div class="form-group mb-1">
 
                                         <label>{{ $setting->label }} ({{ $language->code }})</label>
                                          @if($setting->type=='textarea' || $setting->type=='textarea-editor')

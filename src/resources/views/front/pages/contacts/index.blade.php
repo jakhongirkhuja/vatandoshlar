@@ -50,7 +50,7 @@
                         </div>
                     @endif
 
-                    <form action="{{route('support.createForm')}}" class="contacts-page__data--form" method="post">
+                    <form action="{{route('support.createForm')}}" class="contacts-page__data--form" id="myForm" method="post">
                         @csrf
                            <input type="hidden" name="type" value="form">
                         <div class="contacts-page__data--form-group">
@@ -101,11 +101,9 @@
                                 <span class="text-danger" style="color: red; font-size: 14px;">{{ $message }}</span>
                             @enderror
                         </div>
+                        <div id="recaptcha-container" style="display: none"></div>
 
-                        <button type="submit" class="btn-submit">
-                            <img src="{{asset('front/images/send.svg')}}" alt="Send">
-                            {{staticValue('request')}}
-                        </button>
+                        <button id="submitBtn" class="btn-submit">  <img src="{{asset('front/images/send.svg')}}" alt="Send"> {{staticValue('request')}}</button>
                     </form>
                 </div>
 
@@ -176,4 +174,7 @@
             </script>
         </div>
     </div>
+@endsection
+@section('script')
+    @include('front.components.recaptchaHandler')
 @endsection

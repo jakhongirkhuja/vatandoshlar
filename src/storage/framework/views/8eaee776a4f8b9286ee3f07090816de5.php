@@ -49,7 +49,7 @@
                         </div>
                     <?php endif; ?>
 
-                    <form action="<?php echo e(route('support.createForm')); ?>" class="contacts-page__data--form" method="post">
+                    <form action="<?php echo e(route('support.createForm')); ?>" class="contacts-page__data--form" id="myForm" method="post">
                         <?php echo csrf_field(); ?>
                            <input type="hidden" name="type" value="form">
                         <div class="contacts-page__data--form-group">
@@ -128,12 +128,9 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                         </div>
+                        <div id="recaptcha-container"></div>
 
-                        <button type="submit" class="btn-submit">
-                            <img src="<?php echo e(asset('front/images/send.svg')); ?>" alt="Send">
-                            <?php echo e(staticValue('request')); ?>
-
-                        </button>
+                        <button id="submitBtn" class="btn-submit">  <img src="<?php echo e(asset('front/images/send.svg')); ?>" alt="Send"> <?php echo e(staticValue('request')); ?></button>
                     </form>
                 </div>
 
@@ -205,6 +202,9 @@ unset($__errorArgs, $__bag); ?>
             </script>
         </div>
     </div>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
+    <?php echo $__env->make('front.components.recaptchaHandler', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('front.layouts.layout', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /var/www/html/resources/views/front/pages/contacts/index.blade.php ENDPATH**/ ?>

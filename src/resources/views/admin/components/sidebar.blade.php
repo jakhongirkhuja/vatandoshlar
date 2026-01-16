@@ -30,20 +30,21 @@
                                 href="{{route('langs.index')}}"><i class="feather icon-circle"></i><span class="menu-item"
                                     data-i18n="View">Lang</span></a>
                         </li>
-                        <li class=" nav-item"><a href="#"><i class="feather icon-list"></i><span class="menu-title"
-                                    data-i18n="Ecommerce">Меню</span></a>
-                            <ul class="menu-content">
-                                <li class="{{is_current_route('admin.menu_main.index') ? 'active' : ''}}"><a
-                                        href="{{route('admin.menu_main.index')}}"><i class="feather icon-circle"></i><span
-                                            class="menu-item" data-i18n="Shop">Меню Главное</span></a>
-                                </li>
 
-
-                            </ul>
-                        </li>
                     </ul>
                 </li>
             @endif
+                <li class=" nav-item"><a href="#"><i class="feather icon-list"></i><span class="menu-title"
+                                                                                         data-i18n="Ecommerce">Меню</span></a>
+                    <ul class="menu-content">
+                        <li class="{{is_current_route('admin.menu_main.index') ? 'active' : ''}}"><a
+                                href="{{route('admin.menu_main.index')}}"><i class="feather icon-circle"></i><span
+                                    class="menu-item" data-i18n="Shop">Меню Главное</span></a>
+                        </li>
+
+
+                    </ul>
+                </li>
             <li class=" nav-item "><a href="#"><i class="feather icon-settings"></i><span class="menu-title"
                         data-i18n="User">Настройки</span></a>
                 <ul class="menu-content">
@@ -77,7 +78,7 @@
             @endforeach
     <li class=" navigation-header"><span>Формы</span>
             </li>
-      
+
     <li class="nav-item {{is_current_route('admin.supports', ['type' => 'form']) ? 'active' : ''}}">
                 <a href="{{route('admin.supports', ['type' => 'form'])}}"><i class="feather icon-mail "></i>
                         <span  class="menu-item" data-i18n="View">Enquire</span>

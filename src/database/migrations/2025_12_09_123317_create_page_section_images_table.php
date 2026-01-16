@@ -25,6 +25,7 @@ return new class extends Migration
             $table->boolean('main')->default(false);
             $table->boolean('status')->default(true);
             $table->timestamps();
+            $table->bigInteger('sort_order')->default(0);
             $table->index(['main', 'status', 'category','category_slug','page_section_parent_id','page_section_id']);
 
         });

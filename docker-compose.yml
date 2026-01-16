@@ -57,8 +57,9 @@ services:
       POSTGRES_PASSWORD: changeme
       POSTGRES_DB: userdb
     networks: 
-      - laravel    
-      
+      - laravel
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
   admin:
     image: adminer
     restart: always
@@ -68,3 +69,5 @@ services:
       - 8310:8080
     networks:
       - laravel
+volumes:
+  postgres_data:

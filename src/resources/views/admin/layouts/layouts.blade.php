@@ -67,7 +67,9 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/app-assets/css/pages/data-list-view.css">
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/assets/css/style.css">
-    <!-- END: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/fancy-box/fancybox.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/app-assets/css/plugins/extensions/toastr.css">
+
 
 </head>
 <!-- END: Head-->
@@ -116,7 +118,9 @@
     <script src="{{asset('assets/admin/summernote/summernote-image-attributes.js')}}"></script>
     <script src="{{asset('assets/admin')}}/app-assets/vendors/js/forms/select/select2.full.min.js"></script>
     <script src="{{asset('assets/admin')}}/app-assets/js/scripts/forms/select/form-select2.js"></script>
-    <script>
+    <script src="{{asset('assets/admin')}}/fancy-box/fancybox.umd.js"></script>
+    <script src="{{asset('assets/admin')}}/app-assets/js/scripts/extensions/toastr.min.js"></script>
+     <script>
         $('.summernote').summernote({
             callbacks: {
                 onInit: function () {

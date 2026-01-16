@@ -3,93 +3,106 @@
 @section('body')
     <div class="layout">
         <div class="container">
-            <div class="search-page">
+            <div class="search-page w-100" style="margin-top: 8rem;">
+
                 <div class="search-header">
-                    <div class="container">
 
-
-                        {{-- Title --}}
-                        <h1 class="search-title">Qidiruv</h1>
-                    </div>
                 </div>
-
-                {{-- Search Form Section --}}
                 <div class="search-content">
-                    <div class="container">
-                        <div class="search-box">
-                            <form action="{{ route('search', ['locale' => app()->getLocale()]) }}" method="GET"
-                                class="search-form">
-                                <div class="input-group">
-                                    <span class="search-icon">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                                            <path
-                                                d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
-                                                stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                                        </svg>
-                                    </span>
-                                    <input type="text" name="search" class="search-input"
-                                        placeholder="Qidiruv so'zingizni kiriting" value="{{ $search ?? '' }}" required>
-                                    <button type="submit" class="search-btn">IZLASH</button>
+
+                    <div class="search-box">
+                        <form action="{{ route('search', ['locale' => app()->getLocale()]) }}" method="GET"
+                              class="search-form">
+                            <div class="input-group w-100">
+                                <div class="row w-100">
+                                    <div class="col-md-10">
+                                        <input type="text" name="search" class="form-control"
+                                               placeholder="Qidiruv so'zingizni kiriting" value="{{ $search ?? '' }}"
+                                               required>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="submit"
+                                                class="btn btn-secondary">{{staticValue('search')}}</button>
+                                    </div>
                                 </div>
-                            </form>
 
-                            {{-- Results Count --}}
-                            @if(isset($results))
-                                <div class="results-info">
-                                    <p>
-                                        «<strong>{{ $search }}</strong>» qidiruv bo'yicha,
-                                        <strong>{{ $count }}</strong> ta natija topildi:
-                                    </p>
-                                </div>
-                            @endif
-                        </div>
-                        @if(isset($results) && $results->count() > 0)
-                            <div class="results-list">
-                                @foreach($results as $result)
-
-                                    @php
-                                        $menu = $menus->firstWhere('id', $result->menu_main_id);
-
-                                        if ($menu && $menu->parent) {
-                                            $parentSlug = $menu->parent->slug;
-                                            $childSlug = $menu->slug;
-                                        } else {
-                                            $parentSlug = $menu?->slug;
-                                            $childSlug = null;
-                                        }
-                                    @endphp
-
-                                    @if($childSlug)
-                                                    <a href="{{ route('home', [
-                                            'locale' => app()->getLocale(),
-                                            'any' => $parentSlug,
-                                            'inside' => $childSlug,
-                                            'detail' => $result->slug
-                                        ]) }}">
-                                    @else
-                                                            <a href="{{ route('home', [
-                                                'locale' => app()->getLocale(),
-                                                'any' => $parentSlug,
-                                                'inside' => $result->slug
-                                            ]) }}">
-                                        @endif
-
-                                            <div class="result-item">
-                                                <h3 class="result-title">
-                                                    {{ sectionValue($result, 'title') }}
-                                                </h3>
-                                            </div>
-                                        </a>
-
-                                @endforeach
 
                             </div>
-                        @elseif(isset($results) && $results->count() == 0)
-                            <div class="no-results">
-                                <p>Hech qanday natija topilmadi</p>
-                            </div>
-                        @endif
+                        </form>
+
                     </div>
+                    @if($results->count() > 0)
+                        <div class="results-list mt-3">
+                            @foreach($results as $result)
+
+                                @php
+                                    $menu = $menus->firstWhere('id', $result->menu_main_id);
+//                                    $check = [];
+////                                    dd($result,$menu);
+//                                    if($result->parent_id && $menu->parent_id){
+//                                        $d['any']= $menu->parent?->slug;
+//                                    }else{
+//                                        $d['any'] = $menu->slug;
+//                                    }
+//
+//
+//                                    if($result->parent_id){
+//                                        $d['inside'] = $result->parent?->slug;
+//                                    }else{
+//                                        $d['detail'] = $result->slug;
+//                                    }
+//                                    dd($d,$results);
+                                    if ($menu && $menu->parent) {
+                                        $parentSlug = $menu->parent->slug;
+                                        $childSlug = $menu->slug;
+                                    } else {
+                                        $parentSlug = $menu?->slug;
+                                        $childSlug = null;
+                                    }
+
+                                    if($childSlug){
+                                         $routes = [
+                                                'locale' => app()->getLocale(),
+                                                 'any' => $parentSlug,
+                                                 'inside' => $childSlug,
+                                                  'detail' => $result->slug
+                                                ];
+                                    }else{
+                                        $routes = [
+                                                'locale' => app()->getLocale(),
+                                                 'any' => $parentSlug,
+
+                                                  'detail' => $result->slug
+                                                ];
+                                    }
+
+
+                                @endphp
+
+
+
+                                <a href="{{ route('home', $routes) }}" class="p-2 " >
+                                    <div class="result-item ">
+                                        <h5 class="result-title">
+                                            {{ sectionValue($result, 'title') }}
+                                        </h5>
+                                    </div>
+                                </a>
+                            @endforeach
+                        </div>
+                        <div class="results-info mt-3">
+                            <p>
+                                «<strong>{{ $search }}</strong>» qidiruv bo'yicha,
+                                <strong>{{ $count }}</strong> ta natija topildi:
+                            </p>
+                        </div>
+                    @else
+                        <div class="no-results">
+                            <p>Hech qanday natija topilmadi</p>
+                        </div>
+                    @endif
+
+
                 </div>
             </div>
         </div>

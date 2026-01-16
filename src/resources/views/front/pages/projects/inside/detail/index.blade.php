@@ -9,7 +9,7 @@
                     <h2 class="title">Ishtirok etish uchun ariza yuborish</h2>
                     @include('front.components.error')
 
-                    <form class="apply-form" action="{{ route('participation.create') }}" enctype="multipart/form-data"
+                    <form class="apply-form" action="{{ route('participation.create') }}" id="myForm" enctype="multipart/form-data"
                           method="post">
                         @csrf
                         <input type="hidden" name="type" value="participation">
@@ -239,9 +239,9 @@
                             <input id="file-input" name="image[]" type="file" multiple hidden
                                    accept="video/*,image/*,.pdf,.doc,.docx," required>
                         </div>
-
+                        <div id="recaptcha-container" style="display: none"></div>
                         <div class="form-actions">
-                            <button type="submit" class="submit-btn">
+                            <button type="button"  id="submitBtn"  class="submit-btn">
                                 <img src="{{ asset('front') }}/images/send.svg" alt="Send icon">
                                 <span>{{staticValue('request')}}</span>
                             </button>
@@ -511,4 +511,8 @@
             elements.uploadArea.addEventListener('drop', handleDrop);
         })();
     </script>
+@endsection
+@section('script')
+
+    @include('front.components.recaptchaHandler')
 @endsection

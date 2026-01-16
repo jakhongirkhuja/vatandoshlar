@@ -43,7 +43,7 @@ class SearchController extends Controller
                 'translations' => function ($query) use ($locale) {
                     $query->where('locale', $locale)
                         ->select('page_section_id', 'locale', 'data');
-                }
+                }, 'parent'
             ])
             ->get();
         $count = $results->count();

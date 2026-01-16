@@ -73,7 +73,7 @@
         </script>
     @endif
     @include('front.components.footer')
-
+    @yield('script')
 </body>
 
 

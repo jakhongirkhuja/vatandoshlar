@@ -448,9 +448,13 @@ class PageSectionService
             if (isset($data['category'])) {
                 $uniqueSlug = $this->makeSlugUnique($data['category'], $parent_id);
             }
+
+
+            $fieldIds = [];
             // dd($id, $slug, $parent_id, $category_slug, $data);
             foreach ($data['fields'] as $item) {
                 if (isset($item['id'])) {
+                    $fieldIds[] = $item['id'];
                     $pagesectionSettings = PageSectionSetting::find($item['id']);
                     if ($pagesectionSettings) {
                         $pagesectionSettings->update([
@@ -490,55 +494,19 @@ class PageSectionService
                             'category_slug' => $uniqueSlug,
                         ]);
                     }
+                    $fieldIds[] = $menuSetting->id;
+                }
+            }
+            if(!empty($fieldIds)){
+                if ($parent_id) {
+
+                   PageSectionSetting::where('menu_main_id', $id)->where('page_section_parent_id', $parent_id)->where('category_slug', $category_slug)->whereNotIn('id', $fieldIds)->delete();
+                } else {
+                    PageSectionSetting::where('menu_main_id', $id)->whereNull('page_section_parent_id')->whereNotIn('id', $fieldIds)->delete();
                 }
 
-                // $where = [
-                //     'menu_main_id' => $id,
-                // ];
-                // if (!empty($item['id'])) {
-                //     $where['id'] = $item['id'];
-                // }
-
-                // if (!empty($parent_id)) {
-                //     $where['page_section_parent_id'] = $parent_id;
-                // }
-                // $menuSetting = PageSectionSetting::updateOrCreate(
-                //     $where,
-                //     [
-                //         'key' => $item['key'],
-                //         'label' => $item['label'],
-                //         'type' => $item['type'],
-                //         'required' => ($item['required'] ?? '') === 'on',
-                //         'is_translatable' => ($item['is_translatable'] ?? '') === 'on',
-                //         'options' => !empty($item['options']) ? json_encode(explode(',', $item['options'])) : null,
-                //         'sort_order' => $item['sort'] == 0 ? 1 : $item['sort'],
-                //         'relation' => $item['relation'] ?? null,
-                //         'menu_main_id' => $id,
-                //         'page_section_parent_id' => $parent_id,
-                //         'category' => $data['category'] ?? null,
-
-                //     ]
-                // );
-
-
-
-                // if ($parent_id) {
-                //     if ($category_slug) {
-
-                //         //                        return redirect()->route('admin.pages.section.settings.create',['slug'=>$slug,'id'=>$menuSetting->id,'parent_id'=>$parent_id, 'category_slug'=>$category_slug])->with('success', 'Page Section Settings updated successfully.');
-
-                //     }
-                //     //                    return redirect()->route('admin.pages.section.settings.create',['slug'=>$slug,'id'=>$menuSetting->id,'parent_id'=>$parent_id])->with('success', 'Page Section Settings updated successfully.');
-
-                // }
-                // $itemIds[] = $menuSetting->id;
             }
-            if ($parent_id && $category_slug) {
 
-                //                PageSectionSetting::where('menu_main_id', $id)->where('page_section_parent_id', $parent_id)->where('category_slug',$category_slug)->whereNotIn('id', $itemIds)->delete();
-            } else {
-                //                PageSectionSetting::where('menu_main_id', $id)->whereNull('page_section_parent_id')->whereNotIn('id', $itemIds)->delete();
-            }
             if ($parent_id) {
                 return redirect()->route('admin.pages.section.settings.create', ['slug' => $slug, 'id' => $id, 'parent_id' => $parent_id, 'category_slug' => $uniqueSlug])->with('success', 'Updated');
             }

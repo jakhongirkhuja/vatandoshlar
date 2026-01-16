@@ -9,7 +9,7 @@
 
                     @include('front.components.error')
 
-                    <form class="apply-form" action="{{ route('support.create') }}" method="post">
+                    <form class="apply-form" action="{{ route('support.create') }}" id="myForm" method="post">
                         <input type="hidden" name="type" value="application">
                         @csrf
                         <div class="form-row form-row--name-date">
@@ -56,8 +56,8 @@
                             <input type="text" id="description" name="data[description]" class="form-control" placeholder="{{staticValue('info-add')}}"
                                    required>
                         </div>
-
-                        <button type="submit">{{staticValue('request')}}</button>
+                        <div id="recaptcha-container" style="display: none"></div>
+                        <button id="submitBtn"  type="button" class="btn btn-primary" >{{staticValue('request')}}</button>
                     </form>
                 </div>
             </div>
@@ -132,193 +132,11 @@
             })
         }
 
-        datePicker("#birthdate");
+        // datePicker("#birthdate");
 
-        (function () {
-            'use strict';
-
-            // Constants
-            const CONFIG = {
-                MAX_FILE_SIZE: 10 * 1024 * 1024, // 10MB
-                MAX_FILES: 5,
-                ALLOWED_TYPES: [
-                    'image/jpeg', 'image/png', 'image/gif', 'image/webp',
-                    'video/mp4', 'video/mpeg', 'video/quicktime',
-                    'application/pdf',
-                    'application/msword',
-                    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-                    'application/vnd.ms-excel',
-                    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-                ],
-                BG_COLORS: {
-                    DEFAULT: '#EFF3F9',
-                    HOVER: '#dde5f5'
-                }
-            };
-
-            // DOM Elements
-            const elements = {
-                fileInput: document.getElementById('file-input'),
-                uploadArea: document.getElementById('upload-area'),
-                uploadText: document.getElementById('upload-text'),
-                fileList: document.getElementById('file-list')
-            };
-
-            // State
-            let currentFiles = [];
-
-            // UI Functions
-            function toggleError(show = true) {
-                elements.uploadArea.classList.toggle('error', show);
-            }
-
-            function updateUploadTextVisibility() {
-                const hasFiles = currentFiles.length > 0;
-                elements.uploadText.style.opacity = hasFiles ? '0.6' : '1';
-                elements.uploadText.style.marginBottom = hasFiles ? '24px' : '0';
-            }
-
-            function createFileItem(file, index) {
-                const sizeKB = (file.size / 1024).toFixed(1);
-                const item = document.createElement('div');
-                item.className = 'file-item';
-                item.innerHTML = `
-            <span class="file-name" title="${file.name}">${file.name}</span>
-            <span class="file-size">${sizeKB} KB</span>
-            <button type="button" class="remove-file" aria-label="Remove file">×</button>
-        `;
-
-                item.querySelector('.remove-file').addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    removeFile(index);
-                });
-
-                return item;
-            }
-
-            function renderFileList() {
-                elements.fileList.innerHTML = '';
-                toggleError(false);
-                updateUploadTextVisibility();
-
-                if (currentFiles.length === 0) return;
-
-                currentFiles.forEach((file, index) => {
-                    elements.fileList.appendChild(createFileItem(file, index));
-                });
-            }
-
-            // File Management
-            function removeFile(index) {
-                currentFiles.splice(index, 1);
-                renderFileList();
-                updateFileInput();
-            }
-
-            function updateFileInput() {
-                const dataTransfer = new DataTransfer();
-                currentFiles.forEach(file => dataTransfer.items.add(file));
-                elements.fileInput.files = dataTransfer.files;
-            }
-
-            function isFileDuplicate(file) {
-                return currentFiles.some(f =>
-                    f.name === file.name &&
-                    f.size === file.size &&
-                    f.lastModified === file.lastModified
-                );
-            }
-
-            function validateFile(file) {
-                if (isFileDuplicate(file)) {
-                    return `"${file.name}" allaqachon yuklangan.`;
-                }
-
-                if (file.type && !CONFIG.ALLOWED_TYPES.includes(file.type)) {
-                    return `"${file.name}" ruxsat etilmagan formatda.`;
-                }
-
-                if (file.size > CONFIG.MAX_FILE_SIZE) {
-                    return `"${file.name}" juda katta (maksimum 10 MB).`;
-                }
-
-                return null;
-            }
-
-            function addFiles(newFiles) {
-                toggleError(false);
-
-                if (currentFiles.length + newFiles.length > CONFIG.MAX_FILES) {
-                    toggleError(true);
-                    return false;
-                }
-
-                let errorMessage = null;
-
-                for (const file of newFiles) {
-                    const error = validateFile(file);
-                    if (error) {
-                        errorMessage = error;
-                        break;
-                    }
-                    currentFiles.push(file);
-                }
-
-                if (errorMessage) {
-                    toggleError(true);
-                    return false;
-                }
-
-                return true;
-            }
-
-            // Event Handlers
-            function handleFileInputChange(e) {
-                e.stopPropagation();
-                const files = Array.from(elements.fileInput.files);
-                if (files.length > 0 && addFiles(files)) {
-                    renderFileList();
-                    updateFileInput();
-                }
-            }
-
-            function handleUploadAreaClick(e) {
-                if (!e.target.classList.contains('remove-file')) {
-                    e.stopPropagation();
-                    elements.fileInput.click();
-                }
-            }
-
-            function handleDragOver(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                elements.uploadArea.style.backgroundColor = CONFIG.BG_COLORS.HOVER;
-            }
-
-            function handleDragLeave(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                elements.uploadArea.style.backgroundColor = CONFIG.BG_COLORS.DEFAULT;
-            }
-
-            function handleDrop(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                elements.uploadArea.style.backgroundColor = CONFIG.BG_COLORS.DEFAULT;
-
-                const files = Array.from(e.dataTransfer.files);
-                if (files.length > 0 && addFiles(files)) {
-                    renderFileList();
-                    updateFileInput();
-                }
-            }
-
-            // Event Listeners
-            elements.fileInput.addEventListener('change', handleFileInputChange);
-            elements.uploadArea.addEventListener('click', handleUploadAreaClick);
-            elements.uploadArea.addEventListener('dragover', handleDragOver);
-            elements.uploadArea.addEventListener('dragleave', handleDragLeave);
-            elements.uploadArea.addEventListener('drop', handleDrop);
-        })();
     </script>
+@endsection
+@section('script')
+
+    @include('front.components.recaptchaHandler')
 @endsection

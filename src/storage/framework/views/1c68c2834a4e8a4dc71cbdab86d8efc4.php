@@ -30,20 +30,21 @@
                                 href="<?php echo e(route('langs.index')); ?>"><i class="feather icon-circle"></i><span class="menu-item"
                                     data-i18n="View">Lang</span></a>
                         </li>
-                        <li class=" nav-item"><a href="#"><i class="feather icon-list"></i><span class="menu-title"
-                                    data-i18n="Ecommerce">Меню</span></a>
-                            <ul class="menu-content">
-                                <li class="<?php echo e(is_current_route('admin.menu_main.index') ? 'active' : ''); ?>"><a
-                                        href="<?php echo e(route('admin.menu_main.index')); ?>"><i class="feather icon-circle"></i><span
-                                            class="menu-item" data-i18n="Shop">Меню Главное</span></a>
-                                </li>
 
-
-                            </ul>
-                        </li>
                     </ul>
                 </li>
             <?php endif; ?>
+                <li class=" nav-item"><a href="#"><i class="feather icon-list"></i><span class="menu-title"
+                                                                                         data-i18n="Ecommerce">Меню</span></a>
+                    <ul class="menu-content">
+                        <li class="<?php echo e(is_current_route('admin.menu_main.index') ? 'active' : ''); ?>"><a
+                                href="<?php echo e(route('admin.menu_main.index')); ?>"><i class="feather icon-circle"></i><span
+                                    class="menu-item" data-i18n="Shop">Меню Главное</span></a>
+                        </li>
+
+
+                    </ul>
+                </li>
             <li class=" nav-item "><a href="#"><i class="feather icon-settings"></i><span class="menu-title"
                         data-i18n="User">Настройки</span></a>
                 <ul class="menu-content">
@@ -77,7 +78,7 @@
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     <li class=" navigation-header"><span>Формы</span>
             </li>
-      
+
     <li class="nav-item <?php echo e(is_current_route('admin.supports', ['type' => 'form']) ? 'active' : ''); ?>">
                 <a href="<?php echo e(route('admin.supports', ['type' => 'form'])); ?>"><i class="feather icon-mail "></i>
                         <span  class="menu-item" data-i18n="View">Enquire</span>
@@ -95,4 +96,5 @@
             </li>
         </ul>
     </div>
-</div><?php /**PATH /var/www/html/resources/views/admin/components/sidebar.blade.php ENDPATH**/ ?>
+</div>
+<?php /**PATH /var/www/html/resources/views/admin/components/sidebar.blade.php ENDPATH**/ ?>

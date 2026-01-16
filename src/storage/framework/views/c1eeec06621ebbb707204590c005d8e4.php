@@ -8,7 +8,7 @@
                     <h2 class="title">Ishtirok etish uchun ariza yuborish</h2>
                     <?php echo $__env->make('front.components.error', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
-                    <form class="apply-form" action="<?php echo e(route('participation.create')); ?>" enctype="multipart/form-data"
+                    <form class="apply-form" action="<?php echo e(route('participation.create')); ?>" id="myForm" enctype="multipart/form-data"
                           method="post">
                         <?php echo csrf_field(); ?>
                         <input type="hidden" name="type" value="participation">
@@ -239,9 +239,9 @@
                             <input id="file-input" name="image[]" type="file" multiple hidden
                                    accept="video/*,image/*,.pdf,.doc,.docx," required>
                         </div>
-
+                        <div id="recaptcha-container" style="display: none"></div>
                         <div class="form-actions">
-                            <button type="submit" class="submit-btn">
+                            <button type="button"  id="submitBtn"  class="submit-btn">
                                 <img src="<?php echo e(asset('front')); ?>/images/send.svg" alt="Send icon">
                                 <span><?php echo e(staticValue('request')); ?></span>
                             </button>
@@ -511,6 +511,10 @@
             elements.uploadArea.addEventListener('drop', handleDrop);
         })();
     </script>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
+
+    <?php echo $__env->make('front.components.recaptchaHandler', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('front.layouts.layout', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /var/www/html/resources/views/front/pages/projects/inside/detail/index.blade.php ENDPATH**/ ?>

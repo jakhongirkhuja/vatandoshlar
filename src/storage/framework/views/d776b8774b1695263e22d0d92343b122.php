@@ -21,7 +21,7 @@
 
             <div class="content-header-right text-md-right col-md-6 col-12 d-md-block">
 
-                <div class="form-group breadcrum-right ">
+                <div class="form-group breadcrumb-right ">
                     <?php
                     $parameters = ['slug'=>$slug,'id'=>$menu->id];
                     $parameters2= ['slug'=>$slug,'id'=>$menu->id];

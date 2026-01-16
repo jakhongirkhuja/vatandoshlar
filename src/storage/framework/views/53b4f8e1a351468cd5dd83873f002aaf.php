@@ -98,40 +98,35 @@
     const media = document.getElementById('media_list');
 
     let files = null;
-    function isInsideThumb(target) {
 
-       if(target.dataTransfer?.files.length === 0) return true;
-
-
-    }
 
     ['dragenter', 'dragover'].forEach(event => {
 
         dropZone.addEventListener(event, e => {
 
-            if (isInsideThumb(e.target)) return;
+
             e.preventDefault();
             dropZone.classList.add('dragover');
         });
     });
-    //
-    // ['dragleave', 'drop'].forEach(event => {
-    //     dropZone.addEventListener(event, e => {
-    //         if (isInsideThumb(e.target)) return;
-    //         e.preventDefault();
-    //         dropZone.classList.remove('dragover');
-    //     });
-    // });
+
+    ['dragleave', 'drop'].forEach(event => {
+        dropZone.addEventListener(event, e => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+        });
+    });
 
     /* Drop files */
     dropZone.addEventListener('drop', e => {
-
-        if (isInsideThumb(e.target)) return;
         files = e.dataTransfer.files;
         const filesArray = [...e.dataTransfer.files];
         imageDropFiles(filesArray);
     });
-
+    window.addEventListener("load", () => {
+        document.querySelectorAll(".drop-zone, .drop-zone *")
+            .forEach(el => el.draggable = false)
+    })
     /* Select files */
     // uploadFile.addEventListener('change', e => {
     //     files = e.target.files;
@@ -270,20 +265,20 @@
 <script>
 
     <?php
-    if(isset($globaltype)){
-         if($globaltype=='menu' || $globaltype=='content' ){
-            $id = request()->route('id');
-        }elseif($globaltype=='section'){
-             $id = request()->route('section_id');
-        }elseif ($globaltype=='settings'){
-             $id = 1;
-        }elseif ($globaltype=='langs'){
-             $id = request()->route('lang');
+        if(isset($globaltype)){
+             if($globaltype=='menu' || $globaltype=='content' ){
+                $id = request()->route('id');
+            }elseif($globaltype=='section'){
+                 $id = request()->route('section_id');
+            }elseif ($globaltype=='settings'){
+                 $id = 1;
+            }elseif ($globaltype=='langs'){
+                 $id = request()->route('lang');
 
+            }
+        }else{
+            $id = null;
         }
-    }else{
-        $id = null;
-    }
     ?>
     const routeCreateImage = "<?php echo e(route('createImage', ['id' => $id])); ?>";
 </script>
@@ -367,7 +362,7 @@
             <?php
                 if(!$id){
 
-                  ?>  li.dataset.name = file.name;  <?php
+            ?>  li.dataset.name = file.name;  <?php
                 }
             ?>
 
@@ -528,5 +523,4 @@
     });
 </script>
 <?php $__env->stopSection(); ?>
-<?php /**PATH /var/www/html/resources/views/admin/components/modal.blade.php ENDPATH**/ ?>
 <?php /**PATH /var/www/html/resources/views/admin/components/modal.blade.php ENDPATH**/ ?>

@@ -30,11 +30,10 @@ class HomeController extends Controller
             if (!$currentPage) {
                 abort(404);
             }
-//            if ($currentPage->slug == 'contacts' || $currentPage->id == 44) {
-//                $breadcrumbs = $this->createBreadCrumb($currentPage);
-////                dd('ss');
-//                return view('front.pages.contacts.index', compact('breadcrumbs', 'currentPage'));
-//            }
+        //    if ($currentPage->slug == 'contacts' || $currentPage->id == 44) {
+        //        $breadcrumbs = $this->createBreadCrumb($currentPage);
+        //        return view('front.pages.contacts.index', compact('breadcrumbs', 'currentPage'));
+        //    }
             if ($inside && $detail) {
                 $detailViewPath = "front.pages." . str_replace("-", "_", $any) . ".inside.detail.index";
 

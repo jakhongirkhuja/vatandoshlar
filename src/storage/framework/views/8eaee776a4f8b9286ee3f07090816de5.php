@@ -70,7 +70,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                         </div>
-                        
+
                         <div class="contacts-page__data--form-row">
                             <div class="contacts-page__data--form-group">
                                 <label><?php echo e(staticValue('number')); ?></label>

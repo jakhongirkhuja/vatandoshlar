@@ -34,53 +34,82 @@
                             <?php $__currentLoopData = $results; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $result): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
                                 <?php
+
                                     $menu = $menus->firstWhere('id', $result->menu_main_id);
-//                                    $check = [];
-////                                    dd($result,$menu);
-//                                    if($result->parent_id && $menu->parent_id){
-//                                        $d['any']= $menu->parent?->slug;
-//                                    }else{
-//                                        $d['any'] = $menu->slug;
-//                                    }
-//
-//
-//                                    if($result->parent_id){
-//                                        $d['inside'] = $result->parent?->slug;
-//                                    }else{
-//                                        $d['detail'] = $result->slug;
-//                                    }
-//                                    dd($d,$results);
-                                    if ($menu && $menu->parent) {
-                                        $parentSlug = $menu->parent->slug;
-                                        $childSlug = $menu->slug;
-                                    } else {
-                                        $parentSlug = $menu?->slug;
-                                        $childSlug = null;
+
+                                    $existingViews = [];
+                                    $urlSegments = [];
+
+                                    $parentSlug = null;
+                                    $childSlug = null;
+
+                                    // traverse menu hierarchy
+                                    while ($menu) {
+                                        $slug = $menu->slug;
+                                        array_unshift($urlSegments, $slug);
+                                        $basePath = 'front.pages.' . $slug;
+
+                                        $candidates = [
+                                            'root'           => $basePath . '.index',
+                                            'inside_detail' => $basePath . '.inside.detail.index',
+                                            'inside'         => $basePath . '.inside.index',
+
+
+
+                                        ];
+                                        $d = null;
+                                        foreach ($candidates as $type => $view) {
+                                              $d['locale'] =app()->getLocale();
+                                            if (\View::exists($view)) {
+                                                $existingViews[$type] = $view;
+
+                                                // assign parent/child slug for route params
+
+                                                if ($type === 'root') {
+                                                    $parentSlug = $slug;
+                                                    $d['any'] =$slug;
+
+                                                }
+                                                if ($type === 'inside') {
+                                                    if(isset($d['detail'])){
+                                                        $in = $result->parent?->slug;
+                                                        if($in){
+                                                            $d['inside'] = $in;
+                                                        }
+
+
+                                                    }else{
+
+                                                         $d['inside'] = $result->slug;
+                                                    }
+
+                                                    $childSlug = $slug;
+                                                }
+                                                if ($type === 'inside_detail') {
+                                                    $childSlug = $slug;
+                                                     $d['detail'] = $result->slug;
+                                                }
+                                            }
+                                        }
+
+                                        $menu = $menu->parent_id
+                                            ? $menus->firstWhere('id', $menu->parent_id)
+                                            : null;
                                     }
 
-                                    if($childSlug){
-                                         $routes = [
-                                                'locale' => app()->getLocale(),
-                                                 'any' => $parentSlug,
-                                                 'inside' => $childSlug,
-                                                  'detail' => $result->slug
-                                                ];
-                                    }else{
-                                        $routes = [
-                                                'locale' => app()->getLocale(),
-                                                 'any' => $parentSlug,
 
-                                                  'detail' => $result->slug
-                                                ];
-                                    }
 
+                                    $parentSlug = $parentSlug ?? ($urlSegments[0] ?? 'default');
+                                    $childSlug  = $childSlug ?? ($urlSegments[1] ?? null);
+
+                                    $routes = $d;
+                                     $url = '/' . implode('/', $routes);
 
                                 ?>
 
-
-
-                                <a href="<?php echo e(route('home', $routes)); ?>" class="p-2 " >
-                                    <div class="result-item ">
+                                
+                                <a href="<?php echo e($url); ?>" class="p-2">
+                                    <div class="result-item">
                                         <h5 class="result-title">
                                             <?php echo e(sectionValue($result, 'title')); ?>
 
@@ -88,6 +117,8 @@
                                     </div>
                                 </a>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+
                         </div>
                         <div class="results-info mt-3">
                             <p>

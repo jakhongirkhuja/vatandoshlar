@@ -13,14 +13,14 @@
 
         @if($menu->childrens->count())
             <a href="{{ $link }}" class="header__menu-link">
-                {{ $menu->title }}
+                {{ sectionValue($menu, 'title') }}
                 @if($menu->childrens->count())
                     <i class="i-dropdown bi bi-chevron-down toggle-dropdown"></i>
                 @endif
             </a>
         @else
         <a href="{{ $link }}">
-            <span class="header__submenu-link">{{ $menu->title }}</span>
+            <span class="header__submenu-link">{{ sectionValue($menu, 'title') }}</span>
             </a>
         @endif
 

@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\Cache;
 class Content extends Model
 {
        protected $fillable = [
@@ -44,6 +44,7 @@ class Content extends Model
     }
     public function getContentAttribute()
     {
+        
         $locale = app()->getLocale();
         $translations = $this->translations->filter(function ($t) use ($locale) {
             return $t->locale === $locale || $t->locale === null;
@@ -59,4 +60,17 @@ class Content extends Model
         }
         return $result;
     }
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            // Get the latest ID
+            $latest = self::max('id');
+
+            // Increment it by 1, or start at 1 if table empty
+            $model->id = $latest ? $latest + 1 : 1;
+        });
+    }
+  
 }

@@ -31,7 +31,12 @@
                             </div>
                             <div class="card-content">
                                 <div class="card-body">
+                                    <style>
+                                            .bold{
+                                                font-weight: bold;
+                                            }
 
+                                    </style>
                                     <div class="table-responsive">
                                         <table class="table table-hover-animation mb-0">
                                             <thead>
@@ -41,11 +46,12 @@
                                                     <th scope="col" class="action-col"></th>
                                                 </tr>
                                             </thead>
+
                                             <tbody>
                                                 @foreach($supports as $support)
-                                                    <tr>
-                                                        <td>
-                                                            {{$support->created_at->format('Y-m-d H:i')}}
+                                                    <tr class="{{$support->user_id? '' : 'bold'}}">
+                                                        <td >
+                                                            {{$support->created_at->format('Y-m-d H:i')}}</b>
                                                         </td>
                                                         <td>
                                                             @php

@@ -83,19 +83,13 @@
                                                     </div>
                                                 </div>
                                             @endif
-
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div
-                                                        class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
-                                                        <button type="submit"
-                                                                class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1">
-                                                            {{ $isEdit ? 'Обновить' : 'Сохранить' }}
-                                                        </button>
-
-                                                    </div>
+                                            <div class="row mt-3">
+                                                <div class="col-12 d-flex justify-content-between">
+                                                    <button type="button" class="btn btn-outline-secondary" onclick="history.back()">Orqaga</button>
+                                                    <button type="submit" class="btn btn-primary px-3">{{ $isEdit ? 'Yangilash' : 'Saqlash' }}</button>
                                                 </div>
                                             </div>
+
                                         </form>
 
                                         <!-- users edit account form ends -->

@@ -35,10 +35,10 @@ $items = menuSections(36,1);
                 <p class="about-section__middle--content-text"><?php echo e(sectionValue($items[0],'title')); ?>
 
                 </p>
-
+               
                 <div class="about-section__middle--content-video">
                     <?php if($heroVideo): ?>
-                    <video class="hero-video" src="<?php echo e($heroVideo); ?>" loop autoplay muted></video>
+                    <video class="hero-video" src="<?php echo e($heroVideo); ?>" autoplay muted></video>
                     <?php endif; ?>
                 </div>
             </div>
@@ -123,5 +123,4 @@ $items = menuSections(36,1);
         }
     });
 
-</script>
-<?php /**PATH /var/www/html/resources/views/front/home/about.blade.php ENDPATH**/ ?>
+</script><?php /**PATH /var/www/html/resources/views/front/home/about.blade.php ENDPATH**/ ?>

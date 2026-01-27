@@ -20,9 +20,13 @@ class PageSection extends Model
     {
         parent::boot();
 
-        static::created(function ($model) {
-            $model->sort_order = $model->id;
-            $model->saveQuietly();
+        static::creating(function ($model) {
+            // Get the latest ID
+            $latest = self::max('id');
+
+            // Increment it by 1, or start at 1 if table empty
+            $model->id = $latest ? $latest + 1 : 1;
+            $model->sort_order = $latest;
         });
     }
     public function translations()
@@ -32,9 +36,6 @@ class PageSection extends Model
     public function children()
     {
         return $this->hasMany(PageSection::class, 'parent_id', 'id')->with('children', 'children.images');
-    }
-    public function parent(){
-        return $this->belongsTo(PageSection::class, 'parent_id', 'id');
     }
     public function menuMain(){
         return $this->belongsTo(MenuMain::class, 'menu_main_id', 'id');
@@ -77,7 +78,7 @@ class PageSection extends Model
     }
     public function views()
     {
-        return $this->morphMany(ViewCount::class, 'viewable');
+        return $this->morphMany(ViewCount::class, 'viewable')->where('page_section_created_at',$this->created_at);
     }
     public function addView($request)
     {
@@ -88,9 +89,11 @@ class PageSection extends Model
                 [
                     'ip_address' => $ip,
                     'user_agent' => $userAgent,
+                    'page_section_created_at'=>$this->created_at
                 ]
             );
         }
         return null;
     }
+
 }

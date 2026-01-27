@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('sort_order')->default(0);
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

@@ -20,7 +20,6 @@ return new class extends Migration {
             $table->boolean('main')->default(false);
             $table->boolean('status')->default(true);
             $table->text('category')->nullable();
-            $table->bigInteger('sort_order')->default(0);
             $table->timestamps();
             $table->index(['main']);
         });

@@ -40,4 +40,13 @@ class RoleController extends Controller
        $this->roleservice->destroy($role);
         return redirect()->route('admin.roles');
     }
+    public function updateStatus(Request $request, $id){
+        try{
+            Role::where('id', $id)->update(['status' => $request->status]);
+            return back()->with('success', 'Updated');
+        }catch (\Exception $exception){
+            return back()->with('error', $exception->getMessage());
+        }
+
+    }
 }

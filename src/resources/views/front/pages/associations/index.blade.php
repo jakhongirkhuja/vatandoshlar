@@ -12,10 +12,10 @@
                     </div>
                     <div class="tab-navigation international-partnership__navigation">
                         <button data-tab-system="1" class="tab-button active">
-                            Xarita ko'rinishida
+                       {{staticValue('map')}}
                         </button>
                         <button data-tab-system="1" class="tab-button">
-                            Grid ko'rinishida
+                        {{staticValue('grid')}}
                         </button>
                     </div>
                     <div class="tab-panels international-partnership__panels">
@@ -51,7 +51,7 @@
         </div>
     </div>
     <link href="{{ asset('front/location2/jqvmap.css') }}" rel="stylesheet"/>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="{{ asset('front/location2/jquery.vmap.min.js') }}"></script>
     <script src="{{ asset('front/location2/jquery.vmap.world.js') }}"></script>
     <script src="{{ asset('front/location2/jquery.vmap.sampledata.js') }}"></script>

@@ -76,6 +76,12 @@
                                                        class="btn btn-small btn-info">
                                                         <i class="feather icon-edit icon-white"></i>
                                                     </a>
+                                                    <div class="custom-control custom-switch custom-control-inline" style="display: inline-block;     margin-left: 10px;">
+                                                        <input type="checkbox" name="status" class="custom-control-input lang-status-switch"
+                                                               id="customSwitch<?php echo e($role->id); ?>" data-id="<?php echo e($role->id); ?>"
+                                                                <?php if($role->status): echo 'checked'; endif; ?>>
+                                                        <label class="custom-control-label" for="customSwitch<?php echo e($role->id); ?>"></label>
+                                                    </div>
                                                     <a href="#"
                                                        class="btn btn-small btn-danger ml-2 delete-btn"
                                                        data-id="<?php echo e($role->id); ?>"
@@ -130,6 +136,25 @@
             </form>
         </div>
     </div>
+    <script>
+        document.querySelectorAll('.lang-status-switch').forEach(el => {
+            el.addEventListener('change', function () {
+                const id = this.dataset.id;
+                const status = this.checked ? 1 : 0;
+
+                fetch(`/admin/roles/update-status/${id}`, {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    },
+                    body: JSON.stringify({ status })
+                });
+            });
+        });
+
+    </script>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('script'); ?>

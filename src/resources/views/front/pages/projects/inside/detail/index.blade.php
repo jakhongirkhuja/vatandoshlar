@@ -2,29 +2,25 @@
 @section('body')
     <div class="layout">
         <div class="container">
-            <div class="projects__apply  w-100">
-
+            <div class="projects__apply">
                 @include('front.components.breadcrumbs')
                 <div class="projects__apply-wrapper content">
-                    <h2 class="title">Ishtirok etish uchun ariza yuborish</h2>
-                    @include('front.components.error')
+                    <h2 class="title">{{ staticValue('Participation') }}</h2>
 
-                    <form class="apply-form" action="{{ route('participation.create') }}" id="myForm" enctype="multipart/form-data"
-                          method="post">
+                    <form class="apply-form" action="{{ route('participation.create') }}" id="myForm"
+                        enctype="multipart/form-data" method="post">
                         @csrf
                         <input type="hidden" name="type" value="participation">
                         <div class="form-row form-row--name-date">
                             <div class="form-field">
                                 <label for="fullname">{{staticValue('fullname')}}</label>
                                 <input type="text" id="fullname" name="data[name]" class="form-control"
-                                       placeholder="{{staticValue('info-add')}}"
-                                       required>
+                                    placeholder="{{staticValue('info-add')}}" required>
                             </div>
                             <div class="form-field">
                                 <label for="birthdate">{{staticValue('birthdate')}}</label>
                                 <input type="date" id="birthdate" placeholder="DD-MM-YYYY" name="data[birthdate]"
-                                       class="form-control"
-                                       required>
+                                    class="form-control" required>
                             </div>
                         </div>
 
@@ -42,15 +38,14 @@
                             <div class="form-field">
                                 <label for="email">E-mail:</label>
                                 <input type="email" id="email" name="data[email]" class="form-control"
-                                       placeholder="example@gmail.com"
-                                       required>
+                                    placeholder="example@gmail.com" required>
                             </div>
                             <div class="form-field">
                                 <label for="phone">{{staticValue('number')}}</label>
                                 <div class="phone-dropdown">
                                     <button type="button" class="phone-toggle">
                                         <img src="https://greenuniversity.uz/assets/public/apply/flags/uz.png"
-                                             data-code="+998">
+                                            data-code="+998">
                                         <i class="i-dropdown"></i>
                                     </button>
 
@@ -59,19 +54,19 @@
                                     <div class="phone-menu">
                                         <div class="phone-search">
                                             <i class="i-search"></i>
-                                            <input type="text" placeholder="Search">
+                                            <input type="text" placeholder="{{staticValue('search')}}">
                                         </div>
                                         <ul>
-
-
-                                                @foreach(countries() as $country)
-                                                <li data-code="+{{$country['phonecode']}}" data-flag="{{ asset('front') }}/images/flags/us.png">
-                                                    <img src="{{ asset('front') }}/images/flags/{{ strtolower($country['iso'])  }}.png">
+                                            @foreach(countries() as $country)
+                                                <li data-code="+{{$country['phonecode']}}"
+                                                    data-flag="{{ asset('front') }}/images/flags/{{ strtolower($country['iso']) }}.png">
+                                                    <img
+                                                        src="{{ asset('front') }}/images/flags/{{ strtolower($country['iso'])  }}.png">
                                                     <span>{{ $country['iso3'] }}</span>
                                                     <small>+{{$country['phonecode']}}</small>
                                                 </li>
 
-                                                @endforeach
+                                            @endforeach
 
                                         </ul>
                                     </div>
@@ -92,58 +87,107 @@
                                             if (!menu.classList.contains('active')) return
                                             if (e.target.closest('.phone-dropdown')) return
                                             menu.classList.remove('active')
-                                            console.log('menu closed by outside click')
                                         })
                                         let mask
-
                                         const masks = {
-                                            '+998': '+998 00-000-00-00',
-                                            '+7': '+7 000 000-00-00'
+                                            @foreach(countries() as $country)
+                                                @php
+                                                    // Trim all country data before processing
+                                                    $phonecode = trim(strval($country['phonecode']));
+                                                    $code = '+' . ltrim(trim($phonecode), '+');
+                                                    $phonemask = !empty($country['phonemask']) ? trim($country['phonemask']) : '00 000-00-00';
+                                                    // Escape each digit in the phone code for IMask literal format
+                                                    $codeDigits = ltrim(trim($phonecode), '+');
+                                                    $escapedCode = '+' . implode('', array_map(fn($c) => "\\\\$c", str_split($codeDigits)));
+                                                    $mask = trim("{$escapedCode} {$phonemask}");
+                                                @endphp
+                                                '{{ trim($code) }}': '{{ trim($mask) }}',
+                                            @endforeach
+                                    }
+
+                                        const updateToggleFromCode = code => {
+                                        if (!code) return
+                                        const img = toggle.querySelector('img')
+                                        if (!img) return
+                                        const match = Array.from(menu.querySelectorAll('li')).find(li => li.dataset.code === code)
+                                        if (match) {
+                                            img.src = match.dataset.flag
+                                            img.dataset.code = match.dataset.code
                                         }
+                                    }
 
-                                        const setMask = code => {
-                                            mask && mask.destroy()
-                                            phoneInput.value = ''
+                                    const setMask = code => {
+                                        mask && mask.destroy()
+                                        phoneInput.value = ''
 
-                                            mask = IMask(phoneInput, {
-                                                mask: masks[code] || '+000 00-000-00-00',
-                                                lazy: false
-                                            })
+                                        // Create fallback with escaped code digits
+                                        let fallbackMask = code ? code.split('').map(c => c === '+' ? '+' : '\\' + c).join('') + ' 00 000-00-00' : '+\\0\\0\\0 00 000-00-00';
+                                        const selectedMaskPattern = masks[code] || fallbackMask;
 
-                                            mask.value = ''
-                                            phoneInput.focus()
-                                            phoneInput.blur()
-                                        }
 
-                                        setMask('+998')
+                                        // Use IMask with simple pattern
+                                        mask = IMask(phoneInput, {
+                                            mask: selectedMaskPattern,
+                                            lazy: false
+                                        })
 
-                                        toggle.onclick = () => {
-                                            menu.classList.toggle('active')
-                                        }
+                                        // share mask instance for other scripts (e.g., persistence)
+                                        phoneMaskInstance = mask
 
-                                        menu.onclick = e => {
-                                            const li = e.target.closest('li')
-                                            if (!li) {
-                                                return
+                                        mask.value = ''
+                                        phoneInput.focus()
+                                        phoneInput.blur()
+                                    }
+
+                                    // choose initial mask: saved phone_code from sessionStorage if present, else current toggle flag, else fallback to +998
+                                    let initialMaskCode = '+998'
+                                    try {
+                                        const savedRaw = sessionStorage.getItem('form_apply_data')
+                                        if (savedRaw) {
+                                            const savedObj = JSON.parse(savedRaw)
+                                            if (savedObj?.inputs?.phone_code) {
+                                                initialMaskCode = savedObj.inputs.phone_code
                                             }
+                                        }
+                                    } catch (e) {
+                                        // ignore parse errors, keep default
+                                    }
 
+                                    const toggleImg = toggle.querySelector('img')
+                                    if (toggleImg?.dataset?.code && (!initialMaskCode || initialMaskCode === '+998')) {
+                                        initialMaskCode = toggleImg.dataset.code
+                                    }
 
-                                            toggle.querySelector('img').src = li.dataset.flag
-                                            toggle.querySelector('img').dataset.code = li.dataset.code
-                                            setMask(li.dataset.code)
-                                            menu.classList.remove('active')
+                                    setMask(initialMaskCode)
+                                    updateToggleFromCode(initialMaskCode)
+
+                                    toggle.onclick = () => {
+                                        menu.classList.toggle('active')
+                                    }
+
+                                    menu.onclick = e => {
+                                        const li = e.target.closest('li')
+                                        if (!li) {
+                                            return
                                         }
 
-                                        search.oninput = () => {
-                                            const v = search.value.toLowerCase()
 
-                                            menu.querySelectorAll('li').forEach(li => {
-                                                const visible = li.querySelector('span').textContent.toLowerCase().includes(v)
-                                                li.style.display = visible ? 'flex' : 'none'
-                                            })
-                                        }
+                                        toggle.querySelector('img').src = li.dataset.flag
+                                        toggle.querySelector('img').dataset.code = li.dataset.code
+                                        setMask(li.dataset.code)
+                                        menu.classList.remove('active')
+                                    }
 
-                                        console.groupEnd()
+                                    search.oninput = () => {
+                                        const v = search.value.toLowerCase()
+
+                                        menu.querySelectorAll('li').forEach(li => {
+                                            const visible = li.querySelector('span').textContent.toLowerCase().includes(v)
+                                            li.style.display = visible ? 'flex' : 'none'
+                                        })
+                                    }
+
+                                    console.groupEnd()
                                     })
                                 </script>
 
@@ -166,15 +210,9 @@
                             </div>
                             <div class="form-field form-field--select">
                                 <label for="city">{{staticValue('city')}}</label>
-                                <div class="select-wrapper">
-                                    <select id="city" name="data[city]" class="form-control" required>
-                                        <option value="" disabled selected>{{staticValue('choose')}}</option>
-                                        <option value="tashkent">Toshkent</option>
-                                        <option value="fergana">Fargona</option>
-                                        <option value="sirdaryo">Sirdaryo</option>
-                                        <option value="jizzakh">Jizzax</option>
-                                    </select>
-                                </div>
+                                <input id="city" name="data[city]" class="form-control"
+                                    placeholder="{{staticValue('choose')}}" required>
+
                             </div>
                         </div>
 
@@ -182,14 +220,15 @@
                             <div class="form-field">
                                 <label for="workplace">{{staticValue('workplace:')}}</label>
                                 <input type="text" id="workplace" name="data[workplace]" class="form-control"
-                                       placeholder="{{staticValue('info-add')}}"
-                                       required>
+                                    placeholder="{{staticValue('info-add')}}" required>
                             </div>
+
                             <div class="form-field">
                                 <label for="position">{{staticValue('position')}}</label>
                                 <input type="text" id="position" name="data[position]" class="form-control"
-                                       placeholder="{{staticValue('info-add')}}"
-                                       required>
+                                       placeholder="{{staticValue('info-add')}}" required>
+
+
                             </div>
                         </div>
 
@@ -197,12 +236,21 @@
                             <div class="form-field">
                                 <label for="education">{{staticValue('information')}}</label>
                                 <input type="text" id="education" name="data[education]" class="form-control"
-                                       placeholder="{{staticValue('info-add')}}">
+                                    placeholder="{{staticValue('info-add')}}">
                             </div>
+                            @php
+                                $jobs = contentSection('job');
+                            @endphp
                             <div class="form-field">
-                                <label for="specialization">{{staticValue('select_spec')}}label>
-                                <input type="text" id="specialization" name="data[specialization]" class="form-control"
-                                       placeholder="{{staticValue('info-add')}}">
+                                <label for="specialization">{{staticValue('select_spec')}}</label>
+
+                                <select id="specialization" name="data[specialization]" class="form-control">
+                                    <option selected disabled >{{staticValue('info-add')}}</option>
+                                    @foreach($jobs as $job)
+                                        <option value="{{sectionValue($job,'title')}}">{{sectionValue($job,'title')}}</option>
+                                    @endforeach
+                                </select>
+
                             </div>
                         </div>
 
@@ -210,17 +258,17 @@
                             <div class="form-field">
                                 <label for="telegram">Telegram:</label>
                                 <input type="text" id="telegram" name="data[telegram]" class="form-control"
-                                       placeholder="{{staticValue('info-add')}}">
+                                    placeholder="{{staticValue('info-add')}}">
                             </div>
                             <div class="form-field">
                                 <label for="instagram">Instagram:</label>
                                 <input type="text" id="instagram" name="data[instagram]" class="form-control"
-                                       placeholder="{{staticValue('info-add')}}">
+                                    placeholder="{{staticValue('info-add')}}">
                             </div>
                             <div class="form-field">
                                 <label for="whatsapp">WhatsApp:</label>
                                 <input type="text" id="whatsapp" name="data[whatsapp]" class="form-control"
-                                       placeholder="{{staticValue('info-add')}}">
+                                    placeholder="{{staticValue('info-add')}}">
                             </div>
                         </div>
 
@@ -237,11 +285,11 @@
                                 <div class="file-list" id="file-list"></div>
                             </div>
                             <input id="file-input" name="image[]" type="file" multiple hidden
-                                   accept="video/*,image/*,.pdf,.doc,.docx," required>
+                                accept="video/*,image/*,.pdf,.doc,.docx," required>
                         </div>
                         <div id="recaptcha-container" style="display: none"></div>
                         <div class="form-actions">
-                            <button type="button"  id="submitBtn"  class="submit-btn">
+                            <button type="button" id="submitBtn" class="submit-btn">
                                 <img src="{{ asset('front') }}/images/send.svg" alt="Send icon">
                                 <span>{{staticValue('request')}}</span>
                             </button>
@@ -251,36 +299,7 @@
             </div>
         </div>
     </div>
-    @if(session('success'))
-        {{-- Modal faqat success bo'lgandagina ko'rinadi --}}
-        <div class="modal fade" id="supportResponseModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    {{-- Header qismini ko'k (bg-primary) qildik --}}
-                    <div class="modal-header bg-primary text-white">
-                        <h5 class="modal-title">Ma'lumot</h5>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body text-center py-4">
-                        <h4 class="text-primary mb-2">Rahmat!</h4>
-                        <p class="mb-0">{{ session('success') }}</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Yopish</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        {{-- Success bo'lganda modalni avtomatik chiqarish uchun skript --}}
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                var myModal = new bootstrap.Modal(document.getElementById('supportResponseModal'));
-                myModal.show();
-            });
-        </script>
-    @endif
+    @include('front.components.modal')
     <link rel="stylesheet" href="{{ asset('front/') }}/assets/flatpickr/flatpickr.css">
     <script src="{{ asset('front/') }}/assets/js/imask.js"></script>
     <script src="{{ asset('front/') }}/assets/flatpickr/flatpickr.js"></script>
@@ -298,20 +317,24 @@
     <script>
 
         function datePicker(selector) {
+            const weekShorthand = "{{ setting('week_short') }}".split(', ');
+            const weekLonghand = "{{ setting('week_long') }}".split(', ');
+            const monthShorthand = "{{ setting('month_short') }}".split(', ');
+            const monthLonghand = "{{ setting('month_long') }}".split(', ');
             flatpickr.localize({
                 weekdays: {
-                    shorthand: ['Yak', 'Du', 'Se', 'Ch', 'Pa', 'Ju', 'Sha'],
-                    longhand: ['Yakshanba', 'Dushanba', 'Seshanba', 'Chorshanba', 'Payshanba', 'Juma', 'Shanba']
+                    shorthand: weekShorthand,
+                    longhand: weekLonghand
                 },
                 months: {
-                    shorthand: ['Yan', 'Fev', 'Mar', 'Apr', 'May', 'Iyn', 'Iyl', 'Avg', 'Sen', 'Okt', 'Noy', 'Dek'],
-                    longhand: ['Yanvar', 'Fevral', 'Mart', 'Aprel', 'May', 'Iyun', 'Iyul', 'Avgust', 'Sentabr', 'Oktabr', 'Noyabr', 'Dekabr']
+                    shorthand: monthShorthand,
+                    longhand: monthLonghand
                 },
                 firstDayOfWeek: 1,
                 rangeSeparator: ' — ',
-                weekAbbreviation: 'Hafta',
-                scrollTitle: 'O‘zgartirish uchun aylantiring',
-                toggleTitle: 'Ochiq/Yopiq'
+                weekAbbreviation: '{{staticValue('week')}}',
+                scrollTitle: '{{staticValue('week', 'content')}}',
+                toggleTitle: '{{staticValue('week', 'short_description')}}'
             })
 
             flatpickr(selector, {
@@ -373,10 +396,10 @@
                 const item = document.createElement('div');
                 item.className = 'file-item';
                 item.innerHTML = `
-            <span class="file-name" title="${file.name}">${file.name}</span>
-            <span class="file-size">${sizeKB} KB</span>
-            <button type="button" class="remove-file" aria-label="Remove file">×</button>
-        `;
+                <span class="file-name" title="${file.name}">${file.name}</span>
+                <span class="file-size">${sizeKB} KB</span>
+                <button type="button" class="remove-file" aria-label="Remove file">×</button>
+            `;
 
                 item.querySelector('.remove-file').addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -509,10 +532,8 @@
             elements.uploadArea.addEventListener('dragover', handleDragOver);
             elements.uploadArea.addEventListener('dragleave', handleDragLeave);
             elements.uploadArea.addEventListener('drop', handleDrop);
-        })();
+        })(); 
     </script>
-@endsection
-@section('script')
 
-    @include('front.components.recaptchaHandler')
 @endsection
+@include('front.components.recaptchaHandler')

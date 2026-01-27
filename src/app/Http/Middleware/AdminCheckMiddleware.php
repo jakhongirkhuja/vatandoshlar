@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Setting;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,13 +17,21 @@ class AdminCheckMiddleware
    */
   public function handle(Request $request, Closure $next): Response
   {
-    $user = Auth::user();
+      $requestIP = $request->ip();
+      $settings = Setting::first();
 
-    if ($user && $user->role_id !== 1) {
-      return redirect()->route('admin.index');
-    }
+      $expoledIp = array_map('trim', explode(',', $settings->admin_ips));
 
-    return $next($request);
+        if(!in_array($requestIP, $expoledIp)) {
+            auth()->logout();
+            return redirect()->route('login');
+        }
+        $user = Auth::user();
+        if ($user && $user->status) {
+            return $next($request);
+        }
+        return redirect()->route('login');
+
   }
 }
 

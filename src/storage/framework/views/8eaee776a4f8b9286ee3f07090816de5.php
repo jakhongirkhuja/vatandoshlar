@@ -1,6 +1,6 @@
 <?php $__env->startSection('body'); ?>
- <?php echo $__env->make('front.components.breadcrumbs', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-  <script src="<?php echo e(asset('front/')); ?>/assets/js/imask.js"></script>
+    <?php echo $__env->make('front.components.breadcrumbs', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+    <script src="<?php echo e(asset('front/')); ?>/assets/js/imask.js"></script>
     <div class="layout">
         <div class="container">
             <div class="contacts-page">
@@ -8,57 +8,19 @@
                     <h2 class="contacts-page__data--title"><?php echo e(staticValue('contactmessage')); ?></h2>
 
                     
-                  <?php if(session('success')): ?>
-                    
-                    <div class="modal fade"  id="supportResponseModal" tabindex="-1" role="dialog">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                
-                                <div class="modal-header bg-primary text-white">
-                                    <h5 class="modal-title"><?php echo e(staticValue('info')); ?></h5>
-                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body text-center py-4">
-                                    <h4 class="text-primary mb-2"><?php echo e(staticValue('thanks')); ?></h4>
-                                    <p class="mb-0"><?php echo e(session('success')); ?></p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><?php echo e(staticValue('close')); ?></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php echo $__env->make('front.components.modal', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
                     
-                    <script>
-                        document.addEventListener('DOMContentLoaded', function() {
-                            var myModal = new bootstrap.Modal(document.getElementById('supportResponseModal'));
-                            myModal.show();
-                        });
-                    </script>
-                <?php endif; ?>
 
-                    
-                    <?php if($errors->any()): ?>
-                        <div class="alert alert-danger" style="padding: 15px; margin-bottom: 20px; background: #f8d7da; color: #721c24; border-radius: 5px;">
-                            <ul style="margin: 0; padding-left: 20px;">
-                                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <li><?php echo e($error); ?></li>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </ul>
-                        </div>
-                    <?php endif; ?>
-
-                    <form action="<?php echo e(route('support.createForm')); ?>" class="contacts-page__data--form" id="myForm" method="post">
+                    <form action="<?php echo e(route('support.createForm')); ?>" class="contacts-page__data--form" id="myForm"
+                        method="post">
                         <?php echo csrf_field(); ?>
-                           <input type="hidden" name="type" value="form">
+                        <input type="hidden" name="type" value="form">
                         <div class="contacts-page__data--form-group">
                             <label><?php echo e(staticValue('fullname')); ?></label>
-                            <input class="form-control"
-                                   type="text"
-                                   placeholder="<?php echo e(staticValue('info-add')); ?>"
-                                   name="data[name]"
-                                   required />
+                            <input type="hidden" name="chat_id" value="<?php echo e(staticValue('telegram_contact_chat_id','description')); ?>">
+                            <input class="form-control" type="text" placeholder="<?php echo e(staticValue('info-add')); ?>"
+                                name="data[name]" required />
                             <?php $__errorArgs = ['data.name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -74,30 +36,171 @@ unset($__errorArgs, $__bag); ?>
                         <div class="contacts-page__data--form-row">
                             <div class="contacts-page__data--form-group">
                                 <label><?php echo e(staticValue('number')); ?></label>
-                                <input id="phone"
-                                       class="form-control"
-                                       type="text"
-                                       name="data[phone]"
-                                       required />
-                                <?php $__errorArgs = ['data.phone'];
+                                <!-- <input id="phone" class="form-control" type="text" name="data[phone]" required /> -->
+                                <div class="phone-dropdown">
+                                    <button type="button" class="phone-toggle">
+                                        <img src="" data-code="+998">
+                                        <i class="i-dropdown"></i>
+                                    </button>
+
+                                    <input type="tel" class="form-control" id="phone" name="data[phone]" required>
+
+                                    <div class="phone-menu">
+                                        <div class="phone-search">
+                                            <i class="i-search"></i>
+                                            <input type="text" placeholder="<?php echo e(staticValue('search')); ?>">
+                                        </div>
+                                        <ul>
+                                            <?php $__currentLoopData = countries(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $country): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <li data-code="+<?php echo e($country['phonecode']); ?>"
+                                                    data-flag="<?php echo e(asset('front')); ?>/images/flags/<?php echo e(strtolower($country['iso'])); ?>.png">
+                                                    <img
+                                                        src="<?php echo e(asset('front')); ?>/images/flags/<?php echo e(strtolower($country['iso'])); ?>.png">
+                                                    <span><?php echo e($country['iso3']); ?></span>
+                                                    <small>+<?php echo e($country['phonecode']); ?></small>
+                                                </li>
+
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', () => {
+                                        const phoneInput = document.getElementById('phone')
+                                        const toggle = document.querySelector('.phone-toggle')
+                                        const menu = document.querySelector('.phone-menu')
+                                        const search = document.querySelector('.phone-search input')
+                                        if (!phoneInput || !toggle || !menu || !search) {
+                                            console.error('Required DOM elements missing')
+                                            console.groupEnd()
+                                            return
+                                        }
+                                        document.addEventListener('click', e => {
+                                            if (!menu.classList.contains('active')) return
+                                            if (e.target.closest('.phone-dropdown')) return
+                                            menu.classList.remove('active')
+                                        })
+                                        let mask
+                                        const masks = {
+                                            <?php $__currentLoopData = countries(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $country): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php
+                                                    // Trim all country data before processing
+                                                    $phonecode = trim(strval($country['phonecode']));
+                                                    $code = '+' . ltrim(trim($phonecode), '+');
+                                                    $phonemask = !empty($country['phonemask']) ? trim($country['phonemask']) : '00 000-00-00';
+                                                    // Escape each digit in the phone code for IMask literal format
+                                                    $codeDigits = ltrim(trim($phonecode), '+');
+                                                    $escapedCode = '+' . implode('', array_map(fn($c) => "\\\\$c", str_split($codeDigits)));
+                                                    $mask = trim("{$escapedCode} {$phonemask}");
+                                                ?>
+                                                '<?php echo e(trim($code)); ?>': '<?php echo e(trim($mask)); ?>',
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    };
+
+                                    const updateToggleFromCode = code => {
+                                        if (!code) return
+                                        const img = toggle.querySelector('img')
+                                        if (!img) return
+                                        const match = Array.from(menu.querySelectorAll('li')).find(li => li.dataset.code === code)
+                                        if (match) {
+                                            img.src = match.dataset.flag
+                                            img.dataset.code = match.dataset.code
+                                        }
+                                    }
+
+                                    const setMask = code => {
+                                        mask && mask.destroy()
+                                        phoneInput.value = ''
+
+                                        // Create fallback with escaped code digits
+                                        let fallbackMask = code ? code.split('').map(c => c === '+' ? '+' : '\\' + c).join('') + ' 00 000-00-00' : '+\\0\\0\\0 00 000-00-00';
+                                        const selectedMaskPattern = masks[code] || fallbackMask;
+
+
+                                        // Use IMask with simple pattern
+                                        mask = IMask(phoneInput, {
+                                            mask: selectedMaskPattern,
+                                            lazy: false
+                                        })
+
+                                        // share mask instance for other scripts (e.g., persistence)
+                                        phoneMaskInstance = mask
+
+                                        mask.value = ''
+                                        phoneInput.focus()
+                                        phoneInput.blur()
+                                    }
+
+                                    // choose initial mask: saved phone_code from sessionStorage if present, else current toggle flag, else fallback to +998
+                                    let initialMaskCode = '+998'
+                                    try {
+                                        const savedRaw = sessionStorage.getItem('form_apply_data')
+                                        if (savedRaw) {
+                                            const savedObj = JSON.parse(savedRaw)
+                                            if (savedObj?.inputs?.phone_code) {
+                                                initialMaskCode = savedObj.inputs.phone_code
+                                            }
+                                        }
+                                    } catch (e) {
+                                        // ignore parse errors, keep default
+                                    }
+
+                                    const toggleImg = toggle.querySelector('img')
+                                    if (toggleImg?.dataset?.code && (!initialMaskCode || initialMaskCode === '+998')) {
+                                        initialMaskCode = toggleImg.dataset.code
+                                    }
+
+                                    setMask(initialMaskCode)
+                                    updateToggleFromCode(initialMaskCode)
+
+                                    toggle.onclick = () => {
+                                        menu.classList.toggle('active')
+                                    }
+
+                                    menu.onclick = e => {
+                                        const li = e.target.closest('li')
+                                        if (!li) {
+                                            return
+                                        }
+
+
+                                        toggle.querySelector('img').src = li.dataset.flag
+                                        toggle.querySelector('img').dataset.code = li.dataset.code
+                                        setMask(li.dataset.code)
+                                        menu.classList.remove('active')
+                                    }
+
+                                    search.oninput = () => {
+                                        const v = search.value.toLowerCase()
+
+                                        menu.querySelectorAll('li').forEach(li => {
+                                            const visible = li.querySelector('span').textContent.toLowerCase().includes(v)
+                                            li.style.display = visible ? 'flex' : 'none'
+                                        })
+                                    }
+
+                                    console.groupEnd()
+                                                    })
+                                </script>
+
+                                <!-- <?php $__errorArgs = ['data.phone'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <span class="text-danger" style="color: red; font-size: 14px;"><?php echo e($message); ?></span>
-                                <?php unset($message);
+                                                <span class="text-danger" style="color: red; font-size: 14px;"><?php echo e($message); ?></span>
+                                                <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>
+unset($__errorArgs, $__bag); ?> -->
                             </div>
 
                             <div class="contacts-page__data--form-group">
                                 <label><?php echo e(staticValue('email')); ?></label>
-                                <input class="form-control"
-                                       type="email"
-                                       placeholder="example@gmail.com"
-                                       name="data[email]"
-                                       required />
+                                <input class="form-control" type="email" placeholder="example@gmail.com" name="data[email]"
+                                    required />
                                 <?php $__errorArgs = ['data.email'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -113,10 +216,8 @@ unset($__errorArgs, $__bag); ?>
 
                         <div class="contacts-page__data--form-group">
                             <label><?php echo e(staticValue('message')); ?></label>
-                            <textarea class="form-control"
-                                      placeholder="Kiriting"
-                                      name="data[description]"
-                                      required> </textarea>
+                            <textarea class="form-control" placeholder="Kiriting" name="data[description]"
+                                required> </textarea>
                             <?php $__errorArgs = ['data.description'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -129,8 +230,8 @@ endif;
 unset($__errorArgs, $__bag); ?>
                         </div>
                         <div id="recaptcha-container"></div>
-
-                        <button id="submitBtn" class="btn-submit">  <img src="<?php echo e(asset('front/images/send.svg')); ?>" alt="Send"> <?php echo e(staticValue('request')); ?></button>
+                        <button type="submit" id="submitBtn" class="submit-btn"> <img
+                                src="<?php echo e(asset('front/images/send.svg')); ?>" alt="Send"> <?php echo e(staticValue('request')); ?></button>
                     </form>
                 </div>
 
@@ -145,7 +246,7 @@ unset($__errorArgs, $__bag); ?>
                             </div>
                             <div class="contacts-page__contact--info-item-numbers">
                                 <p><?php echo e(staticValue('phone')); ?></p>
-                                <span>+998 71 234 56 78</span>
+                                <span><?php echo e(staticValue('phone', 'description')); ?></span>
                             </div>
                         </a>
 
@@ -157,7 +258,7 @@ unset($__errorArgs, $__bag); ?>
                             </div>
                             <div class="contacts-page__contact--info-item-numbers">
                                 <p><?php echo e(staticValue('email')); ?></p>
-                                <span>info@example.com</span>
+                                <span><?php echo e(staticValue('email', 'description')); ?></span>
                             </div>
                         </a>
 
@@ -169,7 +270,7 @@ unset($__errorArgs, $__bag); ?>
                             </div>
                             <div class="contacts-page__contact--info-item-numbers">
                                 <p><?php echo e(staticValue('work-time')); ?></p>
-                                <span><?php echo e(staticValue('work-days')); ?> 09:00 – 18:00</span>
+                                <span><?php echo e(staticValue('work-days')); ?> <?php echo e(staticValue('work-days', 'description')); ?></span>
                             </div>
                         </div>
 
@@ -181,30 +282,21 @@ unset($__errorArgs, $__bag); ?>
                             </div>
                             <div class="contacts-page__contact--info-item-numbers">
                                 <p><?php echo e(staticValue('address')); ?></p>
-                                <span><?php echo e(staticValue('adres')); ?></span>
+                                <span><?php echo e(staticValue('address', 'content')); ?></span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <?php if(isset($items[0])): ?>
-                <?php echo sectionValue($items[0],'map'); ?>
+                    <?php echo sectionValue($items[0], 'map'); ?>
 
                 <?php endif; ?>
 
             </div>
-            <script>
-                const input = document.querySelector('#phone');
-                IMask(input, {
-                    mask: '+998 00-000-00-00',
-                    lazy: false
-                });
-            </script>
         </div>
     </div>
 <?php $__env->stopSection(); ?>
-<?php $__env->startSection('script'); ?>
-    <?php echo $__env->make('front.components.recaptchaHandler', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-<?php $__env->stopSection(); ?>
+<?php echo $__env->make('front.components.recaptchaHandler', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
 <?php echo $__env->make('front.layouts.layout', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /var/www/html/resources/views/front/pages/contacts/index.blade.php ENDPATH**/ ?>

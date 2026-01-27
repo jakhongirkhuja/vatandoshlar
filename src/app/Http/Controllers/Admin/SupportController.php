@@ -49,16 +49,30 @@ class SupportController extends Controller
 
     public function create(ApplicationFormRequest $applicationFormRequest)
     {
-        Support::create($applicationFormRequest->validated());
-        return redirect()->back()->with('success', 'Ваша заявка принята');
+        try {
+
+            Support::create($applicationFormRequest->validated());
+            return redirect()->back()->with('success', 'Ваша заявка принята.');
+        } catch (\Exception $e) {
+            Log::error('Error:' . $e->getMessage());
+            return redirect()->back()->with('error', 'Ваша заявка не принята.');
+        }
     }
 
     public function show($id)
     {
         $support = Support::find($id);
+
         if (!$support) {
             return redirect()->route('admin.supports');
         }
+
+        try {
+            $support->update(['user_id' => auth()->id()]);
+        } catch (\Exception $exception) {
+            Log::error('Error:' . $exception->getMessage());
+        }
+
         return view('admin.pages.support.show', compact('support'));
     }
 
@@ -103,10 +117,11 @@ class SupportController extends Controller
                         ]);
                     }
                 }
+
                 return redirect()->back()->with('success', 'Ваша заявка принята.');
             } catch (\Exception $e) {
                 Log::error('Error:' . $e->getMessage());
-                return redirect()->back()->with('Error', 'Ваша заявка  не принята.');
+                return redirect()->back()->withError('Error', 'Ваша заявка  не принята.');
             }
         });
 

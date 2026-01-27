@@ -68,9 +68,29 @@
                 <?php endif; ?>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </ul>
+            
         </div>
     </div>
 </div>
+<script>
+document.querySelectorAll('.lang-status-switch').forEach(el => {
+  el.addEventListener('change', function () {
+    const id = this.dataset.id;
+    const status = this.checked ? 1 : 0;
+
+    fetch(`/admin/menu-main/update-status/${id}`, {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+      },
+      body: JSON.stringify({ status })
+    });
+  });
+});
+      
+</script>
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <form id="deleteForm" method="POST">
@@ -79,22 +99,22 @@
 
             <div class="modal-content small">
                 <div class="modal-header bg-danger text-white">
-                    <h5 class="modal-title">Подтвердить удаление</h5>
+                    <h5 class="modal-title">Подтвердите удаление</h5>
                     <button type="button" class="close" data-dismiss="modal">
                         ×
                     </button>
                 </div>
 
                 <div class="modal-body">
-                    Вы уверены, что хотите удалить этот раздел?
+                Вы действительно хотите удалить этот раздел?
                 </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary"
-                        data-dismiss="modal">Отмена</button>
+                        data-dismiss="modal">Назад</button>
 
                     <button type="submit" class="btn btn-danger">
-                        Удалить
+                    Удалить
                     </button>
                 </div>
             </div>

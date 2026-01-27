@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->jsonb('data');
             $table->text('type')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->text('chat_id')->nullable();
             $table->timestamps();
         });
     }

@@ -19,10 +19,13 @@ use App\Http\Controllers\Admin\ContentSettingController;
 use App\Http\Controllers\Admin\MenuMainSettingsController;
 use App\Http\Controllers\Admin\TelegramController;
 Route::middleware('auth')->prefix('admin')->group(function () {
-    Route::get('', [AdminController::class, 'index'])->name('admin.index');
+
     Route::any('file-manager', [FileManagerController::class, 'handleRequest'])->name('admin.file-manager');
 
     Route::middleware('admin')->group(function () {
+        Route::get('', [AdminController::class, 'index'])->name('admin.index');
+        Route::get('update-status/{section_id}', [PageSectionController::class, 'updateStatus'])->name('update-status');
+        Route::post('update-main-button', [PageSectionController::class, 'updateMainButton'])->name('updateMainButton');
         Route::get('supports/index/{type}', [SupportController::class, 'index'])->name('admin.supports');
         Route::get('supports/{id}', [SupportController::class, 'show'])->name('admin.supports.show');
         Route::delete('supports/{id}', [SupportController::class, 'delete'])->name('admin.supports.delete');
@@ -35,6 +38,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
             Route::get('', [MenuMainController::class, 'index'])->name('index');
             Route::get('create', [MenuMainController::class, 'create'])->name('create');
             Route::get('edit/{id}', [MenuMainController::class, 'edit'])->name('edit');
+            Route::post('update-status/{id}', [MenuMainController::class, 'updateStatus'])->name('update-status');
             Route::post('update-sort/{id}', [MenuMainController::class, 'updateSort'])->name('update-sort');
             Route::post('update-sort', [MenuMainController::class, 'updateSortMenu'])->name('update-sort-menu');
             Route::post('store', [MenuMainController::class, 'store'])->name('store');
@@ -50,6 +54,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
             Route::post('', [UserController::class, 'usersCreate'])->name('admin.users.create');
             Route::get('create', [UserController::class, 'usersCreateView'])->name('admin.users.create.view');
             Route::get('{user}', [UserController::class, 'usersEdit'])->name('admin.users.edit');
+            Route::post('user/status-update/{id}', [UserController::class, 'updateStatus'])->name('admin.user.status-update');
             Route::put('{user}', [UserController::class, 'usersUpdate'])->name('admin.users.update');
             Route::delete('{user}', [UserController::class, 'usersDelete'])->name('admin.users.delete');
         });
@@ -57,9 +62,11 @@ Route::middleware('auth')->prefix('admin')->group(function () {
             Route::get('', [RoleController::class, 'roles'])->name('admin.roles');
             Route::post('', [RoleController::class, 'rolesCreate'])->name('admin.roles.create');
             Route::get('create', [RoleController::class, 'rolesCreateView'])->name('admin.roles.create.view');
+            Route::post('update-status/{role_id}', [RoleController::class, 'updateStatus'])->name('admin.role.update-status');
             Route::get('{role}', [RoleController::class, 'rolesEdit'])->name('admin.roles.edit');
             Route::put('{role}', [RoleController::class, 'rolesUpdate'])->name('admin.roles.update');
             Route::delete('{roles}', [RoleController::class, 'delete'])->name('admin.roles.delete');
+
         });
         Route::resource('langs', LangController::class);
         Route::get('langs-status/{id}', [LangController::class, 'lang_status'])->name('admin.langs.status');
@@ -68,7 +75,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::prefix('pages/{slug}/section/{id}')->name('admin.pages.section.')->controller(PageSectionController::class)->group(function () {
             Route::get('/items/{parent_id?}/{category_slug?}', 'index')->name('index');
             Route::post('/update-sort/{section_id}', 'updateSort')->name('update-sort');
-            Route::get('/update-status/{section_id}', 'updateStatus')->name('update-status');
+
             Route::get('/create/{parent_id?}/{category_slug?}', 'createSection')->name('create');
             Route::post('/store/{parent_id?}/{category_slug?}', 'storeSection')->name('store');
             Route::get('/edit/{section_id}/{parent_id?}/{category_slug?}', 'editSection')->name('edit');
@@ -77,19 +84,22 @@ Route::middleware('auth')->prefix('admin')->group(function () {
             Route::post('/settings-store/{parent_id?}/{category_slug?}', 'storeSettings')->name('settings.store');
         });
     });
+    Route::post('social-links/update-status/{id}', [SocialLinkController::class, 'updateStatus'])
+        ->name('social_links.update-status');
+    Route::resource('social_links', SocialLinkController::class);
     Route::resource('social_links', SocialLinkController::class);
     Route::prefix('content/{category}')->name('admin.content.')->group(function () {
         Route::get('', [ContentController::class, 'index'])->name('index');
         Route::get('create', [ContentController::class, 'create'])->name('create');
         Route::get('edit/{id}', [ContentController::class, 'edit'])->name('edit');
         Route::post('update-sort/{id}', [ContentController::class, 'updateSort'])->name('update-sort');
-
         Route::post('store', [ContentController::class, 'store'])->name('store');
         Route::put('update/{id}', [ContentController::class, 'update'])->name('update');
         Route::get('settings', [ContentSettingController::class, 'index'])->name('settings');
         Route::post('settings/create', [ContentSettingController::class, 'create'])->name('settings.create');
         Route::delete('delete/{id}', [ContentController::class, 'delete'])->name('delete');
     });
+    Route::post('update-status/{id}', [ContentController::class, 'updateStatus'])->name('content.update-status');
     Route::post('image-delete', [MenuMainController::class, 'imageDelete'])->name('admin.menu_main.imageDelete');
     Route::post('image-create/{id?}', [PageSectionController::class, 'addImage'])->name('createImage');
 

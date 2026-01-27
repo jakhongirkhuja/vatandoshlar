@@ -3,13 +3,38 @@
 use App\Models\Content;
 use App\Models\MenuMain;
 use App\Models\PageSection;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Request;
-use App\Models\SettingImage;
 use App\Models\Setting;
+use App\Models\SettingImage;
+use App\Models\Social;
+use App\Models\OrderSetting;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
+if (!function_exists('formatLocalizedDate')) {
+
+    function formatLocalizedDate($date,$dat=null)
+    {
+        if (!$date) return '';
+        $timestamp = is_numeric($date) ? $date : strtotime($date);
+        $locale = app()->getLocale();
+        $formatter = new \IntlDateFormatter(
+            $locale,
+            \IntlDateFormatter::NONE,
+            \IntlDateFormatter::NONE
+        );
+        if($dat){
+            $formatter->setPattern('d MMMM yyyy');
+        }else{
+            $formatter->setPattern('d MMMM YYYY, HH:mm');
+
+        }
+
+
+        return $formatter->format($timestamp);
+    }
+}
 if (!function_exists('is_current_route')) {
     function is_current_route(string $routeName, array $params = []): bool
     {
@@ -23,23 +48,39 @@ if (!function_exists('setting')) {
     {
         $locale ??= app()->getLocale();
 
-        $settings = Cache::remember('setting_global', now()->addMinute(5),function () {
-            return Setting::first();
-        });
+        $settings =  Setting::first();
+//        $settings = Cache::remember('setting_global', now()->addMinute(5), function () {
+//            return Setting::first();
+//        });
         $property = $settings?->toArray();
-        return isset($property['title'][$locale]) ? $property['title'][$locale] : '';
+        return isset($property[$key][$locale]) ? $property[$key][$locale] : '';
     }
 }
 if (!function_exists('settingImageMain')) {
-    function settingImageMain()
-    {
 
-        $settings = Cache::remember('setting_global_image', now()->addMinute(5),function () {
-            return SettingImage::where('main',true)->first();
-        });
-        return $settings ? url(Storage::url($settings->image)) : null;
+    function settingImageMain(?bool $main = null)
+    {
+       // return Cache::remember(
+           // 'setting_global_image_' . ($main === true ? 'main' : ($main === false ? 'secondary' : 'all')),
+        //    now()->addMinutes(5),
+         //   function () use ($main) {
+
+                $query = SettingImage::query();
+
+                if ($main === true) {
+                    $image = $query->where('main', true)->first();
+
+                } else {
+                    $image = $query->where('main', false)->first();
+                }
+
+                return $image ? url(Storage::url($image->image)) : null;
+
+//}
+     //   );
     }
 }
+
 
 if (!function_exists('sectionValue')) {
     function sectionValue($item, string $key, $default = null)
@@ -71,6 +112,7 @@ if (!function_exists('sectionImages')) {
 
         if ($main === true) {
             $image = $query->where('main', true)->first();
+
             return $image ? Storage::url($image->image) : null;
         }
 
@@ -82,61 +124,123 @@ if (!function_exists('sectionImages')) {
     }
 }
 
+if (!function_exists('sorting')) {
+
+    function sorting(int $menuMainId,$query, $orderSettings)
+    {
+
+        $settings = Setting::value('sorting_ids');
+        if(is_array($settings)){
+            if (!in_array($menuMainId, $settings)) {
+                return collect();
+            }
+        }
+
+        if ($orderSettings) {
+            switch ($orderSettings->order) {
+                case 'sort_order_desc':
+                    $query->orderBy('sort_order', 'desc');
+                    break;
+                case 'created_at_asc':
+                    $query->orderBy('created_at', 'asc');
+                    break;
+                case 'created_at_desc':
+                    $query->orderBy('created_at', 'desc');
+                    break;
+                case 'time_asc':
+                    $query->orderBy('publish_at', 'asc');
+                    break;
+                case 'time_desc':
+                    $query->orderBy('publish_at', 'desc');
+                    break;
+                case 'random':
+                    $query->inRandomOrder();
+                    break;
+                default:
+                    $query->orderBy('sort_order', 'asc');
+                    break;
+            }
+        } else {
+            $query->orderBy('sort_order', 'asc');
+        }
+
+        return $query;
+    }
+}
+
 if (!function_exists('menuSections')) {
 
-        function menuSections($menu, $limit = null, $order = true, $onlyparents = false)
-        {
-            if (is_bool($limit)) {
-                $order = $limit;
-                $limit = null;
-            }
-
-            if (is_numeric($menu)) {
-                $menu = MenuMain::with('children')->find(id: $menu);
-                if (!$menu) {
-                    return collect();
-                }
-            }
-
-            $sections = collect();
-            $orderDirection = $order ? 'desc' : 'asc';
-            if ($onlyparents) {
-                $query = PageSection::with(['children', 'translations', 'images'])
-                    ->where('menu_main_id', $menu->id)->whereNull('parent_id')
-                    ->orderBy('sort_order', $orderDirection);
-                      if (is_numeric($limit)) {
-                        $query->limit($limit);
-                    }
-                    $sections = $query->get();
-            } else {
-                if ($menu->children->isNotEmpty()) {
-                    $query = PageSection::with(['children', 'translations', 'images'])
-                        ->whereIn('menu_main_id', $menu->children->pluck('id'))
-                        ->orderBy('sort_order', $orderDirection);
-
-                    if (is_numeric($limit)) {
-                        $query->limit($limit);
-                    }
-
-                    $sections = $query->get();
-                }
-
-                if ($sections->isEmpty()) {
-                    $query = PageSection::with(['children', 'translations', 'images'])
-                        ->where('menu_main_id', $menu->id)
-                        ->orderBy('sort_order', $orderDirection);
-
-                    if (is_numeric($limit)) {
-                        $query->limit($limit);
-                    }
-
-                    $sections = $query->get();
-                }
-            }
+    function menuSections($menu, $limit = null, $order = true, $onlyparents = false)
+    {
 
 
-            return $sections;
+        if (is_bool($limit)) {
+            $order = $limit;
+            $limit = null;
         }
+
+        if (is_numeric($menu)) {
+            $menu = MenuMain::with('children')->find(id: $menu);
+            if (!$menu) {
+                return collect();
+            }
+        }
+
+        $sections = collect();
+        $orderDirection = $order ? 'desc' : 'asc';
+        if ($onlyparents) {
+            $query = PageSection::with(['children', 'translations', 'images'])->where('status', 1)
+                ->where('menu_main_id', $menu->id)->whereNull('parent_id')
+                ->orderBy('sort_order', $orderDirection);
+            if (is_numeric($limit)) {
+                $query->limit($limit);
+            }
+            $sections = $query->get();
+        } else {
+
+            if ($menu->children->isNotEmpty()) {
+
+                $query = PageSection::with(['children', 'translations', 'images'])->where('status', 1)
+                    ->whereIn('menu_main_id', $menu->children->pluck('id'));
+
+                $orderSettingsSorting = OrderSetting::where('menu_main_id', $menu->id)->first();
+                if($orderSettingsSorting) {
+
+                    sorting($menu->id,$query,$orderSettingsSorting );
+                }else{
+                    $query->orderBy('sort_order', $orderDirection);
+                }
+
+                if (is_numeric($limit)) {
+                    $query->limit($limit);
+                }
+
+                $sections = $query->get();
+            }
+
+            if ($sections->isEmpty()) {
+
+                $query = PageSection::with(['children', 'translations', 'images'])->where('status', 1)
+                    ->where('menu_main_id', $menu->id);
+                $orderSettingsSorting = OrderSetting::where('menu_main_id', $menu->id)->first();
+
+                if($orderSettingsSorting) {
+                   $query=  sorting($menu->id,$query,$orderSettingsSorting );
+                }else{
+                    $query->orderBy('sort_order', $orderDirection);
+                }
+
+                if (is_numeric($limit)) {
+                    $query->limit($limit);
+                }
+
+                $sections = $query->get();
+            }
+        }
+
+
+        return $sections;
+    }
 
 }
 if (!function_exists('menuSection')) {
@@ -156,38 +260,49 @@ if (!function_exists('contentSection')) {
 
     function contentSection($category)
     {
-        $content = Content::where('category',$category)->get();
+        $content = Content::where('category', $category)->get();
         return $content ?? null;
     }
 }
-use Illuminate\Support\Facades\DB;
 
 
 if (!function_exists('staticValue')) {
+
     function staticValue(
-        string $staticKey,
-        string $field = 'title',
-        $default = null,
+        string  $staticKey,
+        string  $field = 'title',
+                $default = null,
         ?string $locale = null
-    ) {
+    )
+    {
         $locale = $locale ?? app()->getLocale();
 
-        $value = DB::table('content_translations as g')
-            ->leftJoin('content_translations as l', function ($join) use ($locale) {
-                $join->on('l.content_id', '=', 'g.content_id')
-                    ->where('l.locale', '=', $locale);
-            })
-            ->whereNull('g.locale')
-            ->where('g.data->key', $staticKey)
-            ->selectRaw("
-                COALESCE(
-                    l.data->>'$field',
-                    g.data->>'$field'
-                ) as value
-            ")
-            ->value('value');
+    //    $cacheKey = "static_value:{$staticKey}:{$field}:{$locale}";
 
-        return $value ?? $default;
+    //    return Cache::remember($cacheKey, 3600, function () use ($staticKey, $field, $locale, $default) {
+
+            $value = DB::table('content_translations as g')
+                ->join('contents as c', function ($join) {
+                    $join->on('c.id', '=', 'g.content_id')
+                        ->where('c.status', '=', 1);
+                })
+                ->leftJoin('content_translations as l', function ($join) use ($locale) {
+                    $join->on('l.content_id', '=', 'g.content_id')
+                        ->where('l.locale', '=', $locale);
+                })
+                ->whereNull('g.locale')
+                ->whereRaw("g.data->>'key' = ?", [$staticKey])
+                ->selectRaw("
+                    COALESCE(
+                        l.data->>'{$field}',
+                        g.data->>'{$field}'
+                    ) as value
+                ")
+                ->limit(1)
+                ->value('value');
+
+            return $value ?? $default;
+     //   });
     }
 }
 if (!function_exists('countries')) {
@@ -202,7 +317,7 @@ if (!function_exists('countries')) {
         $locale = app()->getLocale();
 
         $all = \App\Models\Country::all();
-        if($locale=='uz' || $locale==null ){
+        if ($locale == 'uz' || $locale == null) {
             $locale = 'oz';
         }
 
@@ -220,5 +335,14 @@ if (!function_exists('countries')) {
         }
 
         return $all;
+    }
+
+    if (!function_exists('linkData')) {
+        function linkData()
+        {
+            // return Cache::remember('social_links', now()->addMinutes(5), function () {
+            return Social::where('status', 1)->get();
+            // });
+        }
     }
 }

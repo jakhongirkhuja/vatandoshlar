@@ -20,7 +20,6 @@ return new class extends Migration
             $table->bigInteger('size')->nullable();
             $table->boolean('main')->default(false);
             $table->boolean('status')->default(true);
-            $table->bigInteger('sort_order')->default(0);
             $table->index(['main']);
             $table->timestamps();
         });

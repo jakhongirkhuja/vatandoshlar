@@ -30,6 +30,7 @@ class ApplicationFormRequest extends FormRequest
             'data.extra_info' => 'required',
             'data.address' => 'required',
             'data.description' => 'required|string',
+            'chat_id'=>'nullable|string',
         ];
     }
 }

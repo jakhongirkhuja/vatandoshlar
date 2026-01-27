@@ -5,9 +5,8 @@ $children = $menus->where('parent_id', $menu->id);
 <li class="menu__item" data-id="{{ $menu->id }}">
     <div class="menu__top">
         <div class="menu__left">
-
             @if($children->count())
-            <span class="menu__toggle" aria-label="toggle">+</span>
+            <span class="menu__toggle m-0" aria-label="toggle">+</span>
             @endif
             @include('admin.components.sort-form', [
             'menu' => $menu,
@@ -20,27 +19,18 @@ $children = $menus->where('parent_id', $menu->id);
 
 
         <div class="menu__actions">
-            <a href="{{ route('admin.menu_main.edit', $menu->id) }}"
-                class="btn btn-sm btn-info">
+            <a href="{{ route('admin.menu_main.edit', $menu->id) }}" class="btn  btn-info">
                 <i class="feather icon-edit"></i>
             </a>
 
             <div class="custom-control custom-switch custom-control-inline">
-                <input
-                    type="checkbox"
-                    class="custom-control-input lang-status-switch"
-                    id="customSwitch{{ $menu->id }}"
-                    data-id="{{ $menu->id }}"
-                    @checked($menu->status)
-                >
-                <label class="custom-control-label"
-                    for="customSwitch{{ $menu->id }}"></label>
+                <input type="checkbox" class="custom-control-input lang-status-switch" id="customSwitch{{ $menu->id }}"
+                    data-id="{{ $menu->id }}" @checked($menu->status)>
+                <label class="custom-control-label" for="customSwitch{{ $menu->id }}"></label>
             </div>
 
-            <button
-                type="button"
-                class="btn btn-sm btn-danger delete-btn"
-                data-id="{{ $menu->id }}"
+
+            <button type="button" class="btn btn-danger delete-btn" data-id="{{ $menu->id }}"
                 data-url="{{ route('admin.menu_main.delete', $menu->id) }}">
                 <i class="feather icon-trash"></i>
             </button>

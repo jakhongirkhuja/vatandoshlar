@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\Cache;
 class MenuMain extends Model
 {
     protected $fillable = [
@@ -35,7 +35,7 @@ class MenuMain extends Model
             ->with([
                 'translations',
                 'childrens' => function ($q) {
-                    $q->where('type', '!=', 'section')->where('status',true)->orderby('sort_order');
+                    $q->where('type', '!=', 'section')->where('status', true)->orderby('sort_order');
                 }
             ])
             ->where('type', '!=', 'section')->orderBy('sort_order');
@@ -90,7 +90,16 @@ class MenuMain extends Model
                     'sort_order' => $model->id
                 ]);
             }
+            Cache::flush();
         });
+        static::updated(function ($content) {
+            Cache::flush();
+        });
+
+        static::deleted(function ($content) {
+            Cache::flush();
+        });
+
     }
     public function parent()
     {
@@ -124,4 +133,18 @@ class MenuMain extends Model
         }
         return $result;
     }
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            // Get the latest ID
+            $latest = self::max('id');
+
+            // Increment it by 1, or start at 1 if table empty
+            $model->id = $latest ? $latest + 1 : 1;
+        });
+    }
 }
+
+

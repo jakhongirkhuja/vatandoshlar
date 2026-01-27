@@ -70,26 +70,7 @@
                                                         >
                                                     </div>
 
-                                                    <div class="form-group">
-                                                        <label>Locale (optional)</label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            name="locale"
-                                                            placeholder="e.g., en_US"
-                                                            value="<?php echo e(old('locale', $isEdit ? $lang->locale : '')); ?>"
-                                                        >
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Front name</label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            name="short_name"
-                                                            placeholder="e.g., en_US"
-                                                            value="<?php echo e(old('short_name', $isEdit ? $lang->short_name : '')); ?>"
-                                                        >
-                                                    </div>
+
                                                     <div class="form-group">
                                                         <label>Status</label>
                                                         <select name="status" class="form-control">
@@ -116,15 +97,14 @@
                                                 </div>
 
                                                 <!-- BUTTONS -->
-                                                <div
-                                                    class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
-                                                    <button type="submit"
-                                                            class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1">
-                                                        <?php echo e($isEdit ? 'Update' : 'Save'); ?>
 
-                                                    </button>
+
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-12 d-flex justify-content-between">
+                                                    <button type="button" class="btn btn-outline-secondary" onclick="history.back()">Orqaga</button>
+                                                    <button type="submit" class="btn btn-primary px-3"><?php echo e($isEdit ? 'Yangilash' : 'Saqlash'); ?></button>
                                                 </div>
-
                                             </div>
                                             <input type="file" style="display: none" multiple name="images[]">
                                             <input type="hidden" multiple name="main_image">

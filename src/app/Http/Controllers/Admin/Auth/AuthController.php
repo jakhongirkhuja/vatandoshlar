@@ -20,10 +20,15 @@ class AuthController extends Controller
 
     public function loginForm(LoginRequest $request)
     {
-        if(Auth::attempt($request->only(['username', 'password']))) {
+        if (Auth::attempt($request->only(['username', 'password']))) {
+
+            if (! auth()->user()->status) {
+                Auth::logout();
+
+                return redirect()->back()
+                    ->withErrors(['username' => 'Your account is inactive.']);
+            }
             return redirect()->route('admin.index');
-        }else{
-            return redirect()->back();
         }
     }
     public function logout(Request $request){

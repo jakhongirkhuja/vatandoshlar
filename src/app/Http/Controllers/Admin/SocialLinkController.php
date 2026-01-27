@@ -18,9 +18,17 @@ class SocialLinkController extends Controller
     {
         return view('admin.pages.social_links.form');
     }
+    public function updateStatus(Request $request, $id)
+{
+    Social::where('id',$id)->update(['status'=> $request->status]);
+
+    return response()->json(['success' => true]);
+}
     public function store(SocialLinkRequest $request)
     {
-        Social::create($request->validated());
+        $data = $request->validated();
+        $data['status'] = isset($data['status']) ? 1 : 0;
+        Social::create($data);
 
         return redirect()->route('social_links.index')
             ->with('success', 'Социальная ссылка успешно создана');
@@ -33,7 +41,10 @@ class SocialLinkController extends Controller
     public function update(SocialLinkRequest $request, $social)
     {
         $social = Social::findorfail($social);
-        $social->update($request->validated());
+
+        $data = $request->validated();
+        $data['status'] = isset($data['status']) ? 1 : 0;
+        $social->update($data);
         return redirect()->route('social_links.index')
             ->with('success', 'Ссылка на социальную сеть успешно обновлена');
     }

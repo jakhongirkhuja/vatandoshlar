@@ -1,0 +1,42 @@
+@extends('front.layouts.layout')
+
+@section('body')
+    @include('front.components.breadcrumbs')
+    <div class="layout">
+        <div class="container">
+            <div class="layout-content">
+                <div class="content">
+                    @foreach ($items as $item)
+                    <div class="content__title">{{ sectionValue($item, 'title') }}</div>
+                    <div class="content__text">
+                        {{ sectionValue($item, 'description') }}
+                    </div>
+                    <div class="content__grid gtc-3">
+                            <a class="content__grid--item video-card" data-fancybox="gallery" href="{{sectionValue($item,'url')}}">
+                                <div class="content__grid--item-img">
+                                    @php
+                                        $mainImage = sectionImages($item, true);
+                                    @endphp
+                                    @if($mainImage)
+                                        <img src="{{ $mainImage }}" alt="{{ sectionValue($item, 'title') }}">
+                                    @endif
+                                </div>
+                                <div class="content__grid--item-content">
+                                    <p class="content__grid--item-content-title line-clamp-2">
+                                        {{ sectionValue($item, 'title') }}
+                                    </p>
+                                </div>
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+               <script>
+        Fancybox.bind("[data-fancybox]", {
+           thumbs: false
+        });
+    </script>
+            @include('front.components.sidebar')
+        </div>
+    </div>
+@endsection

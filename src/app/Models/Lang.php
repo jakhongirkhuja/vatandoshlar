@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Cache;
 class Lang extends Model
 {
     protected $table = 'langs';
@@ -21,9 +22,24 @@ class Lang extends Model
     {
         parent::boot();
 
-        static::created(function ($model) {
-            $model->sort_order = $model->id;
-            $model->saveQuietly();
+        static::creating(function ($model) {
+            // Get the latest ID
+            $latest = self::max('id');
+
+            // Increment it by 1, or start at 1 if table empty
+            $model->id = $latest ? $latest + 1 : 1;
+        });
+
+        static::created(function ($content) {
+            Cache::flush();
+        });
+
+        static::updated(function ($content) {
+            Cache::flush();
+        });
+
+        static::deleted(function ($content) {
+            Cache::flush();
         });
     }
     protected static function booted()
@@ -39,4 +55,5 @@ class Lang extends Model
     {
         return $this->hasMany(LangImage::class)->orderBy('main', 'desc');
     }
+
 }

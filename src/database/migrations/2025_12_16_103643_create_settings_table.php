@@ -16,6 +16,12 @@ return new class extends Migration
             $table->jsonb('title');
             $table->jsonb('meta_description')->nullable();
             $table->jsonb('meta_keywords')->nullable();
+
+            $table->jsonb('week_short')->nullable();
+            $table->jsonb('week_long')->nullable();
+            $table->jsonb('month_long')->nullable();
+            $table->jsonb('month_short')->nullable();
+
             $table->string('email')->nullable();
             $table->boolean('status')->default(false);
             $table->unsignedBigInteger('main_page_id')->nullable();

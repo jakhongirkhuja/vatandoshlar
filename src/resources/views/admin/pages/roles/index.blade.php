@@ -78,6 +78,12 @@
                                                        class="btn btn-small btn-info">
                                                         <i class="feather icon-edit icon-white"></i>
                                                     </a>
+                                                    <div class="custom-control custom-switch custom-control-inline" style="display: inline-block;     margin-left: 10px;">
+                                                        <input type="checkbox" name="status" class="custom-control-input lang-status-switch"
+                                                               id="customSwitch{{ $role->id }}" data-id="{{ $role->id }}"
+                                                                @checked($role->status)>
+                                                        <label class="custom-control-label" for="customSwitch{{ $role->id }}"></label>
+                                                    </div>
                                                     <a href="#"
                                                        class="btn btn-small btn-danger ml-2 delete-btn"
                                                        data-id="{{ $role->id }}"
@@ -132,6 +138,25 @@
             </form>
         </div>
     </div>
+    <script>
+        document.querySelectorAll('.lang-status-switch').forEach(el => {
+            el.addEventListener('change', function () {
+                const id = this.dataset.id;
+                const status = this.checked ? 1 : 0;
+
+                fetch(`/admin/roles/update-status/${id}`, {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    },
+                    body: JSON.stringify({ status })
+                });
+            });
+        });
+
+    </script>
 @endsection
 
 @section('script')

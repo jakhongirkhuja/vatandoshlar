@@ -55,4 +55,37 @@ class PageSectionRequest extends FormRequest
             'publish_at'=> 'nullable|date',
         ];
     }
+    public function messages(): array
+    {
+        return [
+            // Category Name
+            'category_name.string' => 'Название категории должно быть строкой.',
+
+            // Slug
+            'slug.string' => 'URL-путь (slug) должен быть строковой.',
+            'slug.unique' => 'Такой URL-путь (slug) уже занят.',
+
+            // Fields
+            'fields.required' => 'Поле "Поля" обязательно для заполнения.',
+            'fields.array'    => 'Поле "Поля" должно быть массивом.',
+
+            // Parent ID
+            'parent_id.exists' => 'Выбранная родительская категория не существует.',
+
+            // Publish At
+            'publish_at.date' => 'Поле "Дата публикации" должно быть корректной датой.',
+
+            // Status
+            'status.in' => 'Статус должен быть либо "on", либо "off".',
+
+            // Images
+            'images.array'   => 'Поле изображений должно быть списком.',
+            'images.*.file'  => 'Каждый элемент в списке изображений должен быть файлом.',
+            'images.*.mimes' => 'Допустимые форматы файлов: jpeg, jpg, png, gif, svg, mp4, webm, ogg, mov, avi.',
+            'images.*.max'   => 'Размер файла не должен превышать 50 МБ.',
+
+            // Main Image Input
+            'main_image_input.string' => 'Данные главного изображения должны быть строкой.',
+        ];
+    }
 }

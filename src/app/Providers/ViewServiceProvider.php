@@ -34,21 +34,17 @@ class ViewServiceProvider extends ServiceProvider
                     'permissionMenus' => auth()->user()?->role->menus->pluck('id')->toArray(),
                 ]);
             } else {
-                $langs = Cache::remember('lang', now()->addMinute(5),function () {
-                    return Lang::with('images')->select('id', 'code', 'short_name')->get();
-                });
-                $menus = Cache::remember('menu', now()->addMinute(5),function () {
-                    return MenuMain::with([
-                        'childrens' => function ($q) {
-                            $q->where('status', true);
-                        },
-                        'translations'
-                    ])
-                        ->whereNull('parent_id')
-                        ->where('status', true)
-                        ->orderBy('sort_order')
-                        ->get();
-                });
+                $langs = Lang::with('images')->select('id', 'code', 'name')->where('status',1)->get();
+                $menus =MenuMain::with([
+                    'childrens' => function ($q) {
+                        $q->where('status', true);
+                    },
+                    'translations'
+                ])
+                    ->whereNull('parent_id')
+                    ->where('status', true)
+                    ->orderBy('sort_order')
+                    ->get();
                 $view->with([
                     'langs' => $langs,
                     'headerMenu' => $menus

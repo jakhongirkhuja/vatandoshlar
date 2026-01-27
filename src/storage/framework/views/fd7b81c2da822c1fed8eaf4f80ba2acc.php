@@ -13,7 +13,7 @@
 
         <?php if($menu->childrens->count()): ?>
             <a href="<?php echo e($link); ?>" class="header__menu-link">
-                <?php echo e(sectionValue($menu, 'title')); ?>
+                <?php echo e($menu->title); ?>
 
                 <?php if($menu->childrens->count()): ?>
                     <i class="i-dropdown bi bi-chevron-down toggle-dropdown"></i>
@@ -21,7 +21,7 @@
             </a>
         <?php else: ?>
         <a href="<?php echo e($link); ?>">
-            <span class="header__submenu-link"><?php echo e(sectionValue($menu, 'title')); ?></span>
+            <span class="header__submenu-link"><?php echo e($menu->title); ?></span>
             </a>
         <?php endif; ?>
 
@@ -35,5 +35,4 @@
         <?php endif; ?>
 
     </li>
-<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-<?php /**PATH /var/www/html/resources/views/front/components/menu-items.blade.php ENDPATH**/ ?>
+<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php /**PATH /var/www/html/resources/views/front/components/menu-items.blade.php ENDPATH**/ ?>

@@ -5,9 +5,8 @@ $children = $menus->where('parent_id', $menu->id);
 <li class="menu__item" data-id="<?php echo e($menu->id); ?>">
     <div class="menu__top">
         <div class="menu__left">
-
             <?php if($children->count()): ?>
-            <span class="menu__toggle" aria-label="toggle">+</span>
+            <span class="menu__toggle m-0" aria-label="toggle">+</span>
             <?php endif; ?>
             <?php echo $__env->make('admin.components.sort-form', [
             'menu' => $menu,
@@ -20,27 +19,18 @@ $children = $menus->where('parent_id', $menu->id);
 
 
         <div class="menu__actions">
-            <a href="<?php echo e(route('admin.menu_main.edit', $menu->id)); ?>"
-                class="btn btn-sm btn-info">
+            <a href="<?php echo e(route('admin.menu_main.edit', $menu->id)); ?>" class="btn  btn-info">
                 <i class="feather icon-edit"></i>
             </a>
 
             <div class="custom-control custom-switch custom-control-inline">
-                <input
-                    type="checkbox"
-                    class="custom-control-input lang-status-switch"
-                    id="customSwitch<?php echo e($menu->id); ?>"
-                    data-id="<?php echo e($menu->id); ?>"
-                    <?php if($menu->status): echo 'checked'; endif; ?>
-                >
-                <label class="custom-control-label"
-                    for="customSwitch<?php echo e($menu->id); ?>"></label>
+                <input type="checkbox" class="custom-control-input lang-status-switch" id="customSwitch<?php echo e($menu->id); ?>"
+                    data-id="<?php echo e($menu->id); ?>" <?php if($menu->status): echo 'checked'; endif; ?>>
+                <label class="custom-control-label" for="customSwitch<?php echo e($menu->id); ?>"></label>
             </div>
 
-            <button
-                type="button"
-                class="btn btn-sm btn-danger delete-btn"
-                data-id="<?php echo e($menu->id); ?>"
+
+            <button type="button" class="btn btn-danger delete-btn" data-id="<?php echo e($menu->id); ?>"
                 data-url="<?php echo e(route('admin.menu_main.delete', $menu->id)); ?>">
                 <i class="feather icon-trash"></i>
             </button>

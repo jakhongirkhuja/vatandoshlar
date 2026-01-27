@@ -47,7 +47,7 @@
                                                                    data-toggle="tab"
                                                                    href="#lang{{ $language->code }}">
                                                                     <img
-                                                                        src="{{ asset('assets/'.$language->flag_icon) }}"
+                                                                            src="{{ sectionImages($language, true) }}"
                                                                         class="size_small">
                                                                     {{ $language->name }}
                                                                 </a>
@@ -59,7 +59,6 @@
                                                     @foreach($languages as $k => $language)
                                                         <div class="tab-pane fade {{ $k === 0 ? 'show active' : '' }}"
                                                              id="lang{{ $language->code }}">
-
 
                                                             <div class="col-md-12 mb-2">
                                                                 <label>Заголовок сайта ({{ $language->code }})</label>
@@ -101,6 +100,55 @@
                                                                     ) }}"
                                                                 >
                                                             </div>
+                                                            <div class="col-md-12 mb-2">
+                                                                <label>Неделя (короткий) ({{ $language->code }})</label>
+                                                                <input
+                                                                        type="text"
+                                                                        class="form-control"
+                                                                        name="week_short[{{ $language->code }}]"
+                                                                        value="{{ old(
+                                                                        'week_short.'.$language->code,
+                                                                        $settings->week_short[$language->code] ?? ''
+                                                                    ) }}"
+                                                                >
+                                                            </div>
+                                                            <div class="col-md-12 mb-2">
+                                                                <label>Неделя ({{ $language->code }})</label>
+                                                                <input
+                                                                        type="text"
+                                                                        class="form-control"
+                                                                        name="week_long[{{ $language->code }}]"
+                                                                        value="{{ old(
+                                                                        'week_long.'.$language->code,
+                                                                        $settings->week_long[$language->code] ?? ''
+                                                                    ) }}"
+                                                                >
+                                                            </div>
+                                                            <div class="col-md-12 mb-2">
+                                                                <label>Месяц (короткий) ({{ $language->code }})</label>
+                                                                <input
+                                                                        type="text"
+                                                                        class="form-control"
+                                                                        name="month_short[{{ $language->code }}]"
+                                                                        value="{{ old(
+                                                                        'month_short.'.$language->code,
+                                                                        $settings->month_short[$language->code] ?? ''
+                                                                    ) }}"
+                                                                >
+                                                            </div>
+                                                            <div class="col-md-12 mb-2">
+                                                                <label>Месяц ({{ $language->code }})</label>
+                                                                <input
+                                                                        type="text"
+                                                                        class="form-control"
+                                                                        name="month_long[{{ $language->code }}]"
+                                                                        value="{{ old(
+                                                                        'month_long.'.$language->code,
+                                                                        $settings->month_long[$language->code] ?? ''
+                                                                    ) }}"
+                                                                >
+                                                            </div>
+
 
                                                         </div>
                                                     @endforeach
@@ -173,12 +221,28 @@
                                                     <div class="form-group">
                                                         <label>Вкл сортировок</label>
                                                         <select name="sorting_ids[]"  id="sorting_ids" multiple="multiple"  class="form-control select2">
-                                                            <option >Выбрать</option>
+                                                            <option disabled >Выбрать</option>
 
                                                             @foreach($pages as $menu)
                                                                 <option value="{{ $menu->id }}"
                                                                     {{ in_array($menu->id, $settings->sorting_ids ?? []) ? 'selected' : '' }}>
                                                                     {{  $menu->getTitle($menu->translations, app()->getLocale())  }}
+                                                                </option>
+                                                            @endforeach
+
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 mb-1">
+                                                    <div class="form-group">
+                                                        <label>Выбор языка по умолчанию</label>
+                                                        <select name="default_lang"  id="default_lang"  class="form-control">
+                                                            <option disabled  selected>Выбрать</option>
+
+                                                            @foreach($languages as $language)
+                                                                <option value="{{ $language->code }}" @if($language->code==$settings->default_lang) selected @endif>
+                                                                    {{$language->name}}
                                                                 </option>
                                                             @endforeach
 
@@ -254,19 +318,13 @@
 
 
 
-
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div
-                                                        class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
-                                                        <button type="submit"
-                                                                class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1">
-                                                            {{'Обновить'}}
-                                                        </button>
-
-                                                    </div>
+                                            <div class="row mt-3">
+                                                <div class="col-12 d-flex justify-content-between">
+                                                    <button type="button" class="btn btn-outline-secondary" onclick="history.back()">Orqaga</button>
+                                                    <button type="submit" class="btn btn-primary px-3">Yangilash</button>
                                                 </div>
                                             </div>
+
 
                                             <input type="file" style="display: none" multiple name="images[]">
                                             <input type="hidden" multiple name="main_image">

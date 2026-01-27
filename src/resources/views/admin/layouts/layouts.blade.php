@@ -9,7 +9,7 @@
     <meta name="description" content="{{ setting('meta_description') }}">
     <meta name="keywords" content="{{ setting('meta_keywords') }}">
     <meta name="author" content="ProEnd">
-    <title>Admin - {{ setting('title') }}</title>
+    <title>Админ панель PROEND-TEAM</title>
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{url()->current()}}">
@@ -23,7 +23,8 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="apple-touch-icon" href="{{asset('assets/admin')}}/app-assets/images/ico/apple-icon-120.png">
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/admin')}}/app-assets/images/ico/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon"
+        href="{{asset('assets/admin')}}/app-assets/images/ico/proend-icon.png">
     {{--
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">--}}
 
@@ -45,13 +46,15 @@
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/app-assets/vendors/css/forms/select/select2.min.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/app-assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/app-assets/css/bootstrap-extended.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/app-assets/css/colors.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/app-assets/css/components.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/app-assets/css/themes/dark-layout.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/app-assets/css/themes/semi-dark-layout.css">
+    <link rel="stylesheet" type="text/css"
+        href="{{asset('assets/admin')}}/app-assets/vendors/css/forms/select/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/app-assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/app-assets/css/bootstrap-extended.min.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/app-assets/css/colors.min.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/app-assets/css/components.min.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/app-assets/css/themes/dark-layout.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="{{asset('assets/admin')}}/app-assets/css/themes/semi-dark-layout.min.css">
 
     <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css"
@@ -65,11 +68,16 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/app-assets/css/pages/aggrid.css">
     <!-- END: Page CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/app-assets/css/pages/data-list-view.css">
+
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/app-assets/vendors/css/pickers/pickadate/pickadate.css">
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/fancy-box/fancybox.css">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/admin')}}/app-assets/css/plugins/extensions/toastr.css">
+    <link rel="stylesheet" href="{{ asset('assets/admin') }}/fancy-box/fancybox.css">
 
+
+    <script src="{{ asset('assets/admin') }}/fancy-box/fancybox.umd.js"></script>
+
+    <!-- END: Custom CSS-->
 
 </head>
 <!-- END: Head-->
@@ -116,11 +124,15 @@
     <link href="{{asset('assets/admin/summernote/summernote.min.css')}}" rel="stylesheet">
     <script src="{{asset('assets/admin/summernote/summernote-bs4.min.js')}}"></script>
     <script src="{{asset('assets/admin/summernote/summernote-image-attributes.js')}}"></script>
+
+
+    <script src="{{asset('assets/admin')}}/app-assets/vendors/js/pickers/pickadate/picker.js"></script>
+    <script src="{{asset('assets/admin')}}/app-assets/vendors/js/pickers/pickadate/picker.date.js"></script>
+    <script src="{{asset('assets/admin')}}/app-assets/vendors/js/pickers/pickadate/picker.time.js"></script>
+    <script src="{{asset('assets/admin')}}/app-assets/vendors/js/pickers/pickadate/legacy.js"></script>
     <script src="{{asset('assets/admin')}}/app-assets/vendors/js/forms/select/select2.full.min.js"></script>
     <script src="{{asset('assets/admin')}}/app-assets/js/scripts/forms/select/form-select2.js"></script>
-    <script src="{{asset('assets/admin')}}/fancy-box/fancybox.umd.js"></script>
-    <script src="{{asset('assets/admin')}}/app-assets/js/scripts/extensions/toastr.min.js"></script>
-     <script>
+    <script>
         $('.summernote').summernote({
             callbacks: {
                 onInit: function () {
@@ -160,6 +172,12 @@
             ],
             fontsize: ['8', '9', '10', '11', '12', '14', '18', '24', '36'],
             fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Merriweather'],
+        });
+        $('.pickadate').pickadate({
+            format: 'yyyy-mm-dd'
+        });
+        $('.select2-single-multiple').select2({
+            maximumSelectionLength: 1
         });
     </script>
     <!-- END: Page JS-->

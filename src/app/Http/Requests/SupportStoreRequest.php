@@ -28,6 +28,7 @@ class SupportStoreRequest extends FormRequest
             'data.phone' => 'required',
             'data.email' => 'required|email',
             'data.description' => 'required|string',
+            'chat_id'=>'nullable|string',
         ];
     }
 }

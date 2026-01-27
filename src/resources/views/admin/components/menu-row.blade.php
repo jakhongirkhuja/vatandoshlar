@@ -33,7 +33,7 @@
 
         </div>
         <a href="#"
-           class="btn btn-small btn-danger ml-2 delete-btn"
+           class="btn btn-danger ml-2 delete-btn"
            data-id="{{ $menu->id }}"
            data-url="{{ route('admin.menu_main.delete',  $menu->id) }}">
             <i class="feather icon-trash icon-white"></i>

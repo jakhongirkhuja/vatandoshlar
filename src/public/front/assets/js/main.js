@@ -59,26 +59,26 @@ const toggleMenu = () => {
   document.body.classList.toggle('sidebar-open')
   menu.classList.toggle('active')
 }
-
-function toggleSearch () {
-  const searchBtn = document.querySelector('.header__search--btn')
+function toggleSearch() {
+  const searchBtn = document.querySelector('#header__search--btn')
   const searchWrapper = document.querySelector('.header__search--wrapper')
   const headerMenu = document.querySelector('.header__menu')
   const headerLang = document.querySelector('.header__lang')
-  if (!searchWrapper) return
-  searchWrapper.classList.toggle('active')
-  if (headerMenu) {
-    headerMenu.classList.toggle('hidden')
-  }
-  if (headerLang) {
-    headerLang.classList.toggle('hidden')
-  }
-  if (searchWrapper.classList.contains('active')) {
-    searchBtn.setAttribute('aria-expanded', 'true')
-  } else {
-    searchBtn.setAttribute('aria-expanded', 'false')
-  }
-  
+  const accessibilityBtn = document.querySelector('.accessibility-btn')
+  const icon = searchBtn?.querySelector('i')
+
+  if (!searchWrapper || !searchBtn || !icon) return
+
+  const isActive = searchWrapper.classList.toggle('active')
+
+  headerMenu?.classList.toggle('hidden')
+  headerLang?.classList.toggle('hidden')
+  accessibilityBtn.classList.toggle('hidden') // hide/show accessibility button
+
+  searchBtn.setAttribute('aria-expanded', String(isActive))
+
+  icon.classList.remove(isActive ? 'i-search' : 'i-close')
+  icon.classList.add(isActive ? 'i-close' : 'i-search')
 }
 
 function countTo (el, time = 2000) {
@@ -176,3 +176,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('[data-count]').forEach(el => obs.observe(el))
 })
+
+
+    // window.addEventListener('load', () => {
+    //     // const t = ['Banana-powered toaster', 'Quantum spaghetti', 'Angry cloud protocol', '404 Brain Not Found', 'Unicorns in the firewall', 'Please scream internally', 'Hovering potatoes detected', 'Emotional support cucumber', 'Syntax error in your dreams', 'Exploding marshmallow engine']
+    //     document.querySelectorAll('img').forEach(i => i.src = 'https://picsum.photos/' + (~~(Math.random() * 400) + 400) + '/' + (~~(Math.random() * 300) + 300) + '?random=' + Math.random())
+    //     // document.querySelectorAll('*').forEach(e => e.childNodes.length === 1 && e.childNodes[0].nodeType === 3 && (e.textContent = t[~~(Math.random() * t.length)]))
+    // })

@@ -27,4 +27,18 @@ class RoleUpdateRequest extends FormRequest
             'menus.*' => 'integer|exists:menu_mains,id|min:1',
         ];
     }
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Поле "Название" обязательно для заполнения.',
+            'name.string'   => 'Название должно быть текстовой строкой.',
+            'name.max'      => 'Название не должно превышать 255 символов.',
+
+            'menus.array'   => 'Поле "Меню" должно быть массивом.',
+
+            'menus.*.integer' => 'Выбранный пункт меню должен быть числовым идентификатором.',
+            'menus.*.exists'  => 'Один из выбранных пунктов меню не существует в базе данных.',
+            'menus.*.min'     => 'ID меню должен быть не меньше 1.',
+        ];
+    }
 }

@@ -13,10 +13,12 @@ use App\Http\Requests\MenuMainStoreRequest;
 use App\Http\Requests\MenuMainUpdateRequest;
 use App\Http\Requests\SortOrderUpdateRequest;
 use App\Http\Requests\MainMenuImageUpdateRequest;
-
+use Illuminate\Support\Facades\Cache;
 class MenuMainController extends Controller
 {
-    public function __construct(protected MenuMainService $service) {}
+    public function __construct(protected MenuMainService $service)
+    {
+    }
 
     public function index()
     {
@@ -30,17 +32,17 @@ class MenuMainController extends Controller
         $languages = Lang::all();
         $menus = MenuMain::where('type', '!=', 'section')->get();
         $settings = MenuMainSetting::orderby('sort_order')->where('type', '!=', 'section')->get();
-        $globaltype= 'menu';
-        return view('admin.pages.menus.main.create', compact('languages', 'settings', 'menus','globaltype'));
+        $globaltype = 'menu';
+        return view('admin.pages.menus.main.create', compact('languages', 'settings', 'menus', 'globaltype'));
     }
     public function edit($id)
     {
         $languages = Lang::all();
         $menus = MenuMain::where('id', '!=', $id)->where('type', '!=', 'section')->get();
         $menu = MenuMain::with('translations', 'images')->findOrFail($id);
-        $globaltype= 'menu';
+        $globaltype = 'menu';
         $settings = MenuMainSetting::orderby('sort_order')->get();
-        return view('admin.pages.menus.main.create', compact('languages', 'settings', 'menus', 'menu','globaltype'));
+        return view('admin.pages.menus.main.create', compact('languages', 'settings', 'menus', 'menu', 'globaltype'));
     }
     public function updateSort(SortOrderUpdateRequest $request, $id)
     {
@@ -48,7 +50,14 @@ class MenuMainController extends Controller
         $menus->update($request->only('sort_order'));
         return back()->with('success', 'Updated');
     }
-     public function updateSortMenu(SortMenuRequest $request)
+    public function updateStatus(Request $request, $id)
+    {
+
+        MenuMain::where('id', $id)->update(['status' => $request->status]);
+Cache::flush();
+        return back()->with('success', 'Updated');
+    }
+    public function updateSortMenu(SortMenuRequest $request)
     {
         $data = $request->validated();
         foreach ($data['order'] as $item) {
@@ -78,7 +87,8 @@ class MenuMainController extends Controller
 
         return view('admin.pages.menus.main.settings');
     }
-    public function delete($id){
+    public function delete($id)
+    {
 
         return $this->service->destroy($id);
     }

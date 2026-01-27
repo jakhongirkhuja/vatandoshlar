@@ -10,14 +10,26 @@ use App\Services\admin\ContentService;
 use App\Http\Requests\ContentStoreRequest;
 use App\Http\Requests\ContentUpdateRequest;
 use App\Http\Requests\SortOrderUpdateRequest;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use App\Models\ContentTranslation;
 class ContentController extends Controller
 {
      public function __construct(protected ContentService $service) {}
 
     public function index($category = null)
     {
-        $content = Content::with('translations')->where('category', $category)->orderBy('sort_order')->get();
+
+        $query = Content::with('translations')->where('category', $category);
+        $search = request()->get('s');
+
+        $query->whereHas('translations', function ($query) use ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->whereRaw("data->>'title' ILIKE ?", ["%{$search}%"])
+                    ->orWhereRaw("data->>'key' ILIKE ?", ["%{$search}%"]);
+            });
+        });
+        $content = $query->latest()->get();
         return view('admin.pages.content.index', [
             'contents' => $content
         ]);
@@ -48,17 +60,45 @@ class ContentController extends Controller
         $contents->update($request->only('sort_order'));
         return back()->with('success', 'Updated');
     }
-    public function store(ContentStoreRequest $request)
+    public function updateStatus(Request $request, $id)
     {
+       Content::where('id', $id)->update(['status'=> $request->status]);
+        return back()->with('success', 'Updated');
+        Cache:flush();
+    }
+    public function store(ContentStoreRequest $request, $category)
+    {
+
+        $data = $request->validated();
+        if($category=='list'){
+            if(!isset($data['fields']['key'])){
+                return back()->withInput()->withErrors(['message'=>'Content key not exists']);
+            }
+            $contentTransation = ContentTranslation::whereRaw("data->>'key' = ?", [$data['fields']['key']])->exists();
+            if($contentTransation){
+                return back()->withInput()->withErrors(['message'=>'Content key already exists']);
+            }
+        }
+
 
         return $this->service->ContentStore($request->validated());
     }
-    public function update($category,ContentUpdateRequest $request, $id)
+    public function update(ContentUpdateRequest $request, $category, $id)
     {
-
+        $data = $request->validated();
+        if($category=='list'){
+            if(!isset($data['fields']['key'])){
+                return back()->withInput()->withErrors(['message'=>'Content key not exists']);
+            }
+            $contentTransation = ContentTranslation::whereRaw("data->>'key' = ?", [$data['fields']['key']])->where('content_id','!=',$id)->exists();
+            if($contentTransation){
+                return back()->withInput()->withErrors(['message'=>'Content key already exists']);
+            }
+        }
         $content = Content::findorfail($id);
-        //        dd($request->validated());
-        return $this->service->ContentUpdate($category,$request->validated(), $content);
+
+        Cache::flush();
+        return $this->service->ContentUpdate($category,$data, $content);
     }
     public function settings()
     {

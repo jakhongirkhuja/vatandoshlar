@@ -1,141 +1,160 @@
 @extends('front.layouts.layout')
 
 @section('body')
-    <div class="layout">
-        <div class="container">
-            <div class="search-page w-100" style="margin-top: 8rem;">
+<div class="layout">
+    <div class="container">
+        <div class="search">
+            {{-- Search Form Section --}}
+            <div class="search__wrapper">
+                <div class="search__sidebar">
+                    <form action="{{ route('search', ['locale' => app()->getLocale(),'search' => request()->route()]) }}" method="POST"
+                        class="search__form">
+            @csrf
 
-                <div class="search-header">
+                        <div class="search-wrapper">
+                            <input type="text" name="search" class="search-input"
+                                placeholder="{{staticValue('search')}}" value="{{ $search ?? '' }}" required>
+                        </div>
+                        <button type="submit" class="search__button button"> <i class="i-search"></i>
+                        </button>
 
-                </div>
-                <div class="search-content">
+                    </form>
 
-                    <div class="search-box">
-                        <form action="{{ route('search', ['locale' => app()->getLocale()]) }}" method="GET"
-                              class="search-form">
-                            <div class="input-group w-100">
-                                <div class="row w-100">
-                                    <div class="col-md-10">
-                                        <input type="text" name="search" class="form-control"
-                                               placeholder="Qidiruv so'zingizni kiriting" value="{{ $search ?? '' }}"
-                                               required>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <button type="submit"
-                                                class="btn btn-secondary">{{staticValue('search')}}</button>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </form>
-
+                    {{-- Results Count --}}
+                    @if(isset($results))
+                    <div class="results-info">
+                        <p>
+                            <strong>{{ $count }}</strong> {{staticValue('search-found')}}
+                        </p>
                     </div>
-                    @if($results->count() > 0)
-                        <div class="results-list mt-3">
-                            @foreach($results as $result)
-
-                                @php
-
-                                    $menu = $menus->firstWhere('id', $result->menu_main_id);
-
-                                    $existingViews = [];
-                                    $urlSegments = [];
-
-                                    $parentSlug = null;
-                                    $childSlug = null;
-
-                                    // traverse menu hierarchy
-                                    while ($menu) {
-                                        $slug = $menu->slug;
-                                        array_unshift($urlSegments, $slug);
-                                        $basePath = 'front.pages.' . $slug;
-
-                                        $candidates = [
-                                            'root'           => $basePath . '.index',
-                                            'inside_detail' => $basePath . '.inside.detail.index',
-                                            'inside'         => $basePath . '.inside.index',
-
-
-
-                                        ];
-                                        $d = null;
-                                        foreach ($candidates as $type => $view) {
-                                              $d['locale'] =app()->getLocale();
-                                            if (\View::exists($view)) {
-                                                $existingViews[$type] = $view;
-
-                                                // assign parent/child slug for route params
-
-                                                if ($type === 'root') {
-                                                    $parentSlug = $slug;
-                                                    $d['any'] =$slug;
-
-                                                }
-                                                if ($type === 'inside') {
-                                                    if(isset($d['detail'])){
-                                                        $in = $result->parent?->slug;
-                                                        if($in){
-                                                            $d['inside'] = $in;
-                                                        }
-
-
-                                                    }else{
-
-                                                         $d['inside'] = $result->slug;
-                                                    }
-
-                                                    $childSlug = $slug;
-                                                }
-                                                if ($type === 'inside_detail') {
-                                                    $childSlug = $slug;
-                                                     $d['detail'] = $result->slug;
-                                                }
-                                            }
-                                        }
-
-                                        $menu = $menu->parent_id
-                                            ? $menus->firstWhere('id', $menu->parent_id)
-                                            : null;
-                                    }
-
-
-
-                                    $parentSlug = $parentSlug ?? ($urlSegments[0] ?? 'default');
-                                    $childSlug  = $childSlug ?? ($urlSegments[1] ?? null);
-
-                                    $routes = $d;
-                                     $url = '/' . implode('/', $routes);
-
-                                @endphp
-
-                                {{-- Generate route --}}
-                                <a href="{{$url }}" class="p-2">
-                                    <div class="result-item">
-                                        <h5 class="result-title">
-                                            {{ sectionValue($result, 'title') }}
-                                        </h5>
-                                    </div>
-                                </a>
-                            @endforeach
-
-
-                        </div>
-                        <div class="results-info mt-3">
-                            <p>
-                                «<strong>{{ $search }}</strong>» qidiruv bo'yicha,
-                                <strong>{{ $count }}</strong> ta natija topildi:
-                            </p>
-                        </div>
-                    @else
-                        <div class="no-results">
-                            <p>Hech qanday natija topilmadi</p>
-                        </div>
                     @endif
+                </div>
+                @if(isset($results) && $results->count() > 0)
+                <div class="search__results">
+                    @foreach($results as $result)
+                        @php
 
+                            $menu = $menus->firstWhere('id', $result->menu_main_id);
+
+                            $existingViews = [];
+                            $urlSegments = [];
+
+                            $parentSlug = null;
+                            $childSlug = null;
+
+                            // traverse menu hierarchy
+                            while ($menu) {
+                                $slug = $menu->slug;
+                                array_unshift($urlSegments, $slug);
+                                $basePath = 'front.pages.' . $slug;
+
+                                $candidates = [
+                                    'root'           => $basePath . '.index',
+                                    'inside_detail' => $basePath . '.inside.detail.index',
+                                    'inside'         => $basePath . '.inside.index',
+
+
+
+                                ];
+                                $d = null;
+                                foreach ($candidates as $type => $view) {
+                                      $d['locale'] =app()->getLocale();
+                                    if (\View::exists($view)) {
+                                        $existingViews[$type] = $view;
+
+                                        // assign parent/child slug for route params
+
+                                        if ($type === 'root') {
+                                            $parentSlug = $slug;
+                                            $d['any'] =$slug;
+
+                                        }
+                                        if ($type === 'inside') {
+                                            if(isset($d['detail'])){
+                                                $in = $result->parent?->slug;
+                                                if($in){
+                                                    $d['inside'] = $in;
+                                                }
+
+
+                                            }else{
+
+                                                 $d['inside'] = $result->slug;
+                                            }
+
+                                            $childSlug = $slug;
+                                        }
+                                        if ($type === 'inside_detail') {
+                                            $childSlug = $slug;
+                                             $d['detail'] = $result->slug;
+                                        }
+                                    }
+                                }
+
+                                $menu = $menu->parent_id
+                                    ? $menus->firstWhere('id', $menu->parent_id)
+                                    : null;
+                            }
+
+
+
+                            $parentSlug = $parentSlug ?? ($urlSegments[0] ?? 'default');
+                            $childSlug  = $childSlug ?? ($urlSegments[1] ?? null);
+
+                            $routes = $d;
+                             $url = '/' . implode('/', $routes);
+
+                        @endphp
+                    @php
+//                    $menu = $menus->firstWhere('id', $result->menu_main_id);
+//
+//                    if ($menu && $menu->parent) {
+//                    $childSlug = $menu->slug;
+//                    } else {
+//                    $childSlug = null;
+//                    }
+                    @endphp
+
+                    @if($childSlug)
+{{--                    <a href="{{ route('home', [--}}
+{{--                                        'locale' => app()->getLocale(),--}}
+{{--                                        'inside' => $childSlug,--}}
+{{--                                        'detail' => $result->slug--}}
+{{--                                    ]) }}" class="search__resuts--item">--}}
+                        @else
+{{--                        <a href="{{ route('home', [--}}
+{{--                                            'locale' => app()->getLocale(),--}}
+{{--                                            'inside' => $result->slug--}}
+{{--                                        ]) }}">--}}
+                            @endif
+                        <a href="{{$url }}" >
+                            @if(sectionValue($result, 'title'))
+                            <p class="search__results--title">
+                                {{ sectionValue($result, 'title') }}
+                            </p>
+                            @endif
+                            @if(sectionValue($result, 'description'))
+                            <div class="search__results--desc line-clamp-3 no-tooltip">
+                                {!! sectionValue($result, 'description') !!}
+                            </div>
+                            @endif
+
+                        </a>
+
+                        @if(!$loop->last)
+                        <hr class="result-separator">
+                        @endif
+
+                        @endforeach
 
                 </div>
+                @elseif(isset($results) && $results->count() == 0)
+                <div class="no-results">
+                    <p>{{staticValue('search-not-found')}}</p>
+                </div>
+                @endif
             </div>
         </div>
     </div>
+</div>
 @endsection

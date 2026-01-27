@@ -6,16 +6,16 @@
 <div class="app-content content">
     <div class="content-overlay"></div>
     <div class="header-navbar-shadow"></div>
-    <div class="content-wrapper">
+    <div class="content-wrapper ">
         <div class="content-header row">
             <div class="content-header-left col-md-9 col-12 ">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-left mb-0">Добавить / Редактирование</h2>
+                        <h2 class="content-header-title float-left mb-0">Добавить / Изменить</h2>
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Главная</a></li>
-                                <li class="breadcrumb-item"><a href="{{route('admin.pages.section.index',['slug'=>$slug,'id'=>$id])}}">Секция</a>
+                                <li class="breadcrumb-item"><a href="{{route('admin.pages.section.index',['slug'=>$slug,'id'=>$id])}}">Раздел</a>
                                 </li>
                                 <li class="breadcrumb-item"><a href="#" onclick="history.go(-1)">Назад</a></li>
                             </ol>
@@ -55,7 +55,7 @@
                     @endif
                     <div class="row">
                         <div class="col-12 mt-1">
-                            <ul class="nav nav-tabs mb-1" role="tablist">
+                            <ul class="nav nav-tabs " role="tablist">
                                 @foreach($languages as $k => $language)
                                 <li class="nav-item fx align-items-center">
                                     <a class="nav-link {{ $k == 0 ? 'active' : '' }}" data-toggle="tab"
@@ -79,7 +79,7 @@
                                     $data = $translation ? json_decode($translation->data, true) : [];
                                     $value = old('fields.' . $language->code . '.' . $setting->key, $data[$setting->key] ?? '');
                                     @endphp
-                                    <div class="form-group mb-1">
+                                    <div class="form-group">
 
                                         <label>{{ $setting->label }} ({{ $language->code }})</label>
                                          @if($setting->type=='textarea' || $setting->type=='textarea-editor')
@@ -181,21 +181,29 @@
 
                                 <div class="col-12 mb-1">
 
-                                    <a href="#myModal" role="button" class="btn btn-info waves-effect waves-light" data-toggle="modal"><i class="feather icon-image"></i> Фото</a>
+                                    <a href="#myModal" role="button" class="btn btn-info waves-effect waves-light" data-toggle="modal"><i class="feather icon-image"></i> Rasm</a>
                                 </div>
 
+                                @php
+                                    date_default_timezone_set('Asia/Tashkent');
+                                @endphp
 
-                                <div class="col-12 mb-1">
-                                    <label for="">Время создания</label>
+
+                                <div class="col-12 mb-1 {{!in_array($id, $settingValues)? 'd-none' : ''}}">
+                                    <label for="">Дата</label>
                                     <input
-                                        type="datetime-local"
-                                        class="form-control "
+                                        type="text"
+                                        class="form-control pickadate"
                                         name="publish_at"
-                                        placeholder="Время создания"
-                                        value="{{ old('publish_at', $section->publish_at ?? now()) }}">
+                                        value="{{ old(
+                                    'publish_at',
+                                    isset($section->publish_at)
+                                        ? \Carbon\Carbon::parse($section->publish_at)->format('Y-m-d')
+                                        : now()->format('Y-m-d')
+                                ) }}">
                                 </div>
                                 <div class="col-12 mb-1">
-                                    <label for="">Slug</label>
+                                    <label for="">Alias</label>
                                     <input
                                         type="text"
                                         class="form-control slug"
@@ -207,7 +215,7 @@
                                 <div class="col-12">
                                     <div class="form-check">
                                         <div class="custom-control custom-switch custom-switch-success mr-2 mb-1">
-                                            <p class="mb-0">Status</p>
+                                            <p class="mb-0">Статус</p>
                                             <input type="checkbox" class="custom-control-input"
                                                 name="status"
                                                 {{ old('status', $section->status ?? true) ? 'checked' : '' }}
@@ -224,12 +232,28 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-12 d-flex flex-sm-row flex-column justify-content-end ">
-                            <button type="submit" class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1">
-                                {{ $isEdit ? 'Update' : 'Save' }}
+                        <div class="col-6 d-flex justify-content-start align-items-center gap-2">
+
+
+                            <button type="button"
+                                    class="btn btn-secondary px-4"
+                                    onclick="history.back()">
+                                Назад
                             </button>
+
+                        </div>
+                        <div class="col-6 d-flex justify-content-end align-items-center gap-2">
+
+                            <button type="submit"
+                                    class="btn btn-primary px-4 mr-1">
+                                Сохранить
+                            </button>
+
+
+
                         </div>
                     </div>
+
                     <input type="file" style="display: none" multiple name="images[]">
                     <input type="hidden" multiple name="main_image">
                     <?php $menu = $isEdit ? $section : null ?>

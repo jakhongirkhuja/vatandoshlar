@@ -11,7 +11,7 @@ class SettingImage extends Model
         'main',
         'category'
     ];
-     protected static function boot()
+    protected static function boot()
     {
         parent::boot();
 

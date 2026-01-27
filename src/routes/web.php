@@ -17,7 +17,7 @@ Route::middleware(CheckSiteStatus::class)->group(function () {
     Route::get('participation', [SupportController::class, 'participation'])->name('participation');
     Route::post('participation/create', [SupportController::class, 'participate'])->name('participation.create');
     Route::middleware([SetLocale::class])->group(function () {
-        Route::get('{locale?}/search', [SearchController::class, 'search'])->name('search');
+        Route::post('{locale?}/search', [SearchController::class, 'search'])->name('search');
         Route::get('{locale?}/{any?}/{inside?}/{detail?}/', [HomeController::class, 'index'])->name('home');
     });
 });

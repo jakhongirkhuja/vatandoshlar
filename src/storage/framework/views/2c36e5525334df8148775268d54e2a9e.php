@@ -17,7 +17,7 @@
         <div class="join-us__content">
             <h2><?php echo e(staticValue('vatandosh')); ?></h2>
             <p><?php echo e(staticValue('vatandosh1')); ?></p>
-            <a class="join-us__content--btn"  href="<?php echo e(route('home',['locale'=>app()->getlocale(), 'any'=>'application'])); ?>"><?php echo e(staticValue('button1')); ?></a>
+            <a class="join-us__content--btn"  href="<?php echo e(route('home',['locale'=>app()->getlocale(), 'any'=>'murojat-qilish'])); ?>"><?php echo e(staticValue('button1')); ?></a>
 
         </div>
         <div class="join-us__img join-us__img--right">

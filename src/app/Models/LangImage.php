@@ -9,7 +9,7 @@ class LangImage extends Model
     protected $fillable =[
         'main',
     ];
-     protected static function boot()
+    protected static function boot()
     {
         parent::boot();
 

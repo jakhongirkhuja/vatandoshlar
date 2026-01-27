@@ -34,18 +34,14 @@
                                         <table class="table table-hover-animation mb-0">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col" width="100">Date</th>
-                                                    <th scope="col" >Name</th>
+                                                    <th scope="col">Data</th>
+
                                                     <th scope="col" class="action-col"></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php $__currentLoopData = $supports; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $support): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <tr>
-                                                        <td>
-                                                            <?php echo e($support->created_at->format('Y-m-d H:i')); ?>
-
-                                                        </td>
                                                         <td>
                                                             <?php
                                                                 $data = $support->data;
@@ -128,5 +124,4 @@
     </script>
 
 <?php $__env->stopSection(); ?>
-
 <?php echo $__env->make('admin.layouts.layouts', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /var/www/html/resources/views/admin/pages/support/index.blade.php ENDPATH**/ ?>

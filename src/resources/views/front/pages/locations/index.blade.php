@@ -1,0 +1,183 @@
+@extends('front.layouts.layout')
+
+@section('body')
+@include('front.components.breadcrumbs')
+<div class="layout">
+    <div class="container">
+        <div class="layout-content">
+            <div class="content">
+                <div class="content__title">{{ sectionValue($items[0], 'title') }}</div>
+                <div class="content__text">
+                    {{ sectionValue($items[0], 'description') }}
+                </div>
+                <div class="locations">
+                    <div class="select-wrapper">
+                        <select name="regions" id="regions">
+                            <option value="" selected disabled>{{staticValue('cities')}}</option>
+                            @php
+                            $locations = menuSections(33,null,true,true);
+
+                            @endphp
+                            @foreach ($locations as $region)
+                            <option value="{{ sectionValue($region, 'code') }}" data-link="{{ $region->slug }}">
+                                {{ sectionValue($region, 'title') }}
+                            </option>
+                            @endforeach
+                        </select>
+                        <script>
+                            const select = document.getElementById('regions');
+                            select.selectedIndex = 0;
+
+                            select.addEventListener('change', function () {
+                                const link = this.options[this.selectedIndex].getAttribute('data-link');
+                                if (link) window.location.href = window.location.pathname.replace(/\/$/, '') + '/' + link;
+                            });
+                        </script>
+                    </div>
+                    <svg class="map" xmlns="http://www.w3.org/2000/svg" id="map" width="729" height="475" fill="none"
+                        viewBox="0 0 729 475">
+                        @foreach ($locations as $region)
+                        <g id="{{ sectionValue($region, 'code') }}" class="available"
+                            data-id="{{ sectionValue($region, 'id') }}" data-slug="{{ $region->slug }}"
+                            data-name="{{ sectionValue($region, 'title') }}"
+                            data-offset="{{ sectionValue($region, 'offset') }}">
+                            <path stroke="#BFC3D7" stroke-width=".8" d="{{ sectionValue($region, 'path') }}" />
+                        </g>
+                        @endforeach
+
+
+                    </svg>
+                    <template id="pinpoint">
+                        <div class="map-marker"></div>
+                    </template>
+
+                    <style>
+                        .map-point {
+                            pointer-events: none !important;
+                        }
+                    </style>
+                    <script>
+                        const svgGroups = document.querySelectorAll('#map g.available');
+                        const mapSvg = document.querySelector('#map');
+                        const BASE_URL = "{{ route('home', ['locale' => app()->getLocale(), 'any' => request()->route('any')]) }}";
+                        function addMapPoint(group) {
+                            const path = group.querySelector('path');
+                            const centroid = findVisualCenter(path);
+                            const regionName = group.getAttribute('data-name') || group.getAttribute('title') || group.id;
+                            const offset = group.getAttribute('data-offset') || '0,0';
+                            const [offsetX, offsetY] = offset.split(',').map(v => parseFloat(v.trim()) || 0);
+                            const dataId = group.getAttribute('data-id');
+
+                            const div = document.createElement('div');
+                            div.classList.add('pinpoint');
+                            div.textContent = regionName;
+                            div.style.position = 'absolute';
+
+                            const tempDiv = document.createElement('div');
+                            tempDiv.style.visibility = 'hidden';
+                            tempDiv.style.position = 'absolute';
+                            tempDiv.className = div.className;
+                            tempDiv.textContent = div.textContent;
+                            document.body.appendChild(tempDiv);
+                            const width = tempDiv.offsetWidth;
+                            const height = tempDiv.offsetHeight;
+                            document.body.removeChild(tempDiv);
+
+                            const foreignObject = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
+                            foreignObject.classList.add('map-point');
+                            foreignObject.setAttribute('data-region', group.id);
+                            foreignObject.setAttribute('data-id', dataId);
+                            foreignObject.setAttribute('x', centroid.x - (width / 2) + offsetX);
+                            foreignObject.setAttribute('y', centroid.y - (height / 2) + offsetY);
+                            foreignObject.setAttribute('width', width);
+                            foreignObject.setAttribute('height', height);
+                            foreignObject.style.cursor = 'pointer';
+
+                            foreignObject.addEventListener('click', (e) => {
+                                e.stopPropagation();
+                                const slug = group.dataset.slug;
+                                if (dataId) {
+                                    const currentPath = window.location.pathname;
+                                    // window.location.href = `${currentPath}/${dataId}`;
+                                    window.location.href = `${BASE_URL}/${slug}`;
+                                }
+                            });
+
+                            foreignObject.appendChild(div);
+                            mapSvg.appendChild(foreignObject);
+                        }
+
+                        function addAllMapPoints() {
+                            document.querySelectorAll('.map-point').forEach(el => el.remove());
+                            svgGroups.forEach(group => {
+                                addMapPoint(group);
+                            });
+                        }
+
+                        function findVisualCenter(path) {
+                            const bbox = path.getBBox();
+                            const gridSize = 10;
+                            const stepX = bbox.width / gridSize;
+                            const stepY = bbox.height / gridSize;
+
+                            let totalX = 0;
+                            let totalY = 0;
+                            let pointCount = 0;
+                            for (let i = 0; i <= gridSize; i++) {
+                                for (let j = 0; j <= gridSize; j++) {
+                                    const testX = bbox.x + (i * stepX);
+                                    const testY = bbox.y + (j * stepY);
+
+                                    const point = mapSvg.createSVGPoint();
+                                    point.x = testX;
+                                    point.y = testY;
+
+                                    if (path.isPointInFill(point)) {
+                                        totalX += testX;
+                                        totalY += testY;
+                                        pointCount++;
+                                    }
+                                }
+                            }
+
+                            if (pointCount === 0) {
+                                return {
+                                    x: bbox.x + (bbox.width / 2),
+                                    y: bbox.y + (bbox.height / 2)
+                                };
+                            }
+
+                            return {
+                                x: totalX / pointCount,
+                                y: totalY / pointCount
+                            };
+                        }
+
+
+                        svgGroups.forEach(g => {
+                            g.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                const slug = g.dataset.slug;
+                                if (slug) {
+                                    window.location.href = `${BASE_URL}/${slug}`;
+                                } else {
+                                    console.warn('Region data-id or slug not found.');
+                                }
+                            });
+                            g.addEventListener('mouseleave', () => {
+                                g.style.opacity = '';
+                            });
+                        });
+
+
+                        if (svgGroups.length) {
+                            addAllMapPoints();
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+        @include('front.components.sidebar')
+    </div>
+</div>
+@endsection

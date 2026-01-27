@@ -4,7 +4,7 @@
             <div class="col">
                 <a href="/" class="logo light" aria-label="Home">
                     <img src="{{ asset('front/') }}/images/logo.png" alt="Logo" class="header__brand-img" />
-                    <span>“Vatandoshlar”<br>Jamoat Fondi</span>
+                    <span>{{staticValue('vatandoshlar')}}<br>{{ staticValue('vatandoshlar', 'content') }}</span>
                 </a>
                 <p class="footer__text">
                     {{staticValue('agency')}}
@@ -13,18 +13,18 @@
             <div class="col">
                 <div class="footer__items">
                     <div class="footer__item">
-                        <a href="tel:+998998765432" class="footer__item-value">+998 (55) 502-22-99</a>
-                        <span class="footer__item-label">{{staticValue('phone')}}</span>
+                        <a href="tel:{{staticValue('phonenumber', 'description')}}"
+                            class="footer__item-value">{{staticValue('phonenumber', 'description')}}</a>
+                        <span class="footer__item-label">{{staticValue('phonenumber')}}</span>
                     </div>
                     <div class="footer__item">
-                        <a href="mailto:info@vatandoshlar.uz" class="footer__item-value">
-                            info@vatandoshlarfondi.uz</a>
+                        <a href="mailto:{{staticValue('email', 'description')}}" class="footer__item-value">
+                            {{staticValue('email', 'description')}}</a>
                         <span class="footer__item-label">{{staticValue('email')}}</span>
                     </div>
                     <div class="footer__item">
-                        <span class="footer__item-value">100100, Toshkent sh., Yakkasaroy tumani, Bobur ko'chasi,
-                            30-uy.</span>
-                        <span class="footer__item-label">{{staticValue('address')}}</span>
+                        <span class="footer__item-value">{{staticValue('adress_info', 'content')}}</span>
+                        <span class="footer__item-label">{{staticValue('adress_info')}}</span>
                     </div>
                 </div>
             </div>
@@ -36,10 +36,10 @@
         </div>
         <div class="footer__nav">
             <span class="footer__nav-item">
-                ©2025 VATANDOSHLAR FONDI. Barcha huquqlari himoyalangan.
+                ©<span>{{ date('Y') }}</span> {{staticValue('safe')}}
             </span>
             <span class="footer__nav-item d-flex">
-                Developed by: <a href="">
+                {{staticValue('develop')}} <a href="">
                     <img src="{{ asset('front/') }}/images/proend.svg" width="100" alt="">
                 </a>
             </span>
@@ -124,4 +124,54 @@
             },
         }
     });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const bviOnBtn = document.querySelector('.bvi-open');
+        if (!bviOnBtn) return;
+
+        const bindCloseListener = function () {
+            const bviOffBtn = document.querySelector('[data-bvi="close"]');
+            if (!bviOffBtn) return;
+
+            if (bviOffBtn.dataset.bound) return;
+            bviOffBtn.dataset.bound = '1';
+
+            bviOffBtn.addEventListener('click', function () {
+                console.log('[data-bvi="close"] clicked');
+                document.body.classList.remove('bvi-active');
+
+                const expire = 'Thu, 01 Jan 1970 00:00:00 UTC';
+                const cookies = [
+                    'bvi_builtElements',
+                    'bvi_fontFamily',
+                    'bvi_fontSize',
+                    'bvi_images',
+                    'bvi_lang',
+                    'bvi_letterSpacing',
+                    'bvi_lineHeight',
+                    'bvi_panelActive',
+                    'bvi_panelFixed',
+                    'bvi_panelHide',
+                    'bvi_reload',
+                    'bvi_speech',
+                    'bvi_target'
+                ];
+
+                cookies.forEach(function (name) {
+                    document.cookie = name + '=; expires=' + expire + '; path=/;';
+                    document.cookie = name + '=; expires=' + expire + '; path=/; domain=' + location.hostname + ';';
+                    document.cookie = name + '=; expires=' + expire + '; path=/; domain=.' + location.hostname + ';';
+                    document.cookie = name + '=; expires=' + expire + '; path=/; secure;';
+                    console.log('Delete fired for', name);
+                });
+
+                console.log('document.cookie now:', document.cookie);
+            });
+        };
+
+        bindCloseListener();
+        bviOnBtn.addEventListener('click', bindCloseListener);
+    });
+
 </script>

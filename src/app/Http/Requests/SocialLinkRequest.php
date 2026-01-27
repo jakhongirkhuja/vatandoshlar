@@ -22,11 +22,21 @@ class SocialLinkRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'   => 'required|string|max:255',
-            'icon'   => 'nullable|string|max:255',
-            'url'    => 'required|url|max:500',
-            'key'    => 'nullable|string|max:255',
-            'status' => 'nullable|boolean',
+            'name' => 'required|string|max:255',
+            'icon' => 'nullable|string|max:255',
+            'url' => [
+                'required',
+                'max:500',
+                'regex:/^(https?:\/\/)?(www\.)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/.*)?$/'
+            ],
+            'key' => 'nullable|string|max:255',
+            'status' => 'nullable',
+        ];
+    }
+    public function messages(): array
+    {
+        return [
+            'url.regex' => 'Неверный формат поля :attribute.',
         ];
     }
 }

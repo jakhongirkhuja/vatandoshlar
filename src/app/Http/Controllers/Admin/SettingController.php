@@ -10,6 +10,8 @@ use App\Models\MenuMain;
 use App\Models\Setting;
 use App\Models\SettingImage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class SettingController extends Controller
 {
@@ -23,22 +25,29 @@ class SettingController extends Controller
     public function settingscreate(SettingStoreRequest $request){
 
         $data = $request->validated();
-        Setting::updateOrCreate(
-            ['id' => 1],
-            $data
-        );
-        $mainImageId = isset($data['main_image_input']) ? (int) $data['main_image_input'] : false;
+        try {
+            Setting::updateOrCreate(
+                ['id' => 1],
+                $data
+            );
+            $mainImageId = isset($data['main_image_input']) ? (int) $data['main_image_input'] : false;
 
-        if ($mainImageId) {
+            if ($mainImageId) {
 
-            SettingImage::where('setting_id', 1)
-                ->where('main', true)
-                ->update(['main' => false]);
-            $settingImage = SettingImage::find($mainImageId);
-            if ($settingImage) {
-                $settingImage->update(['main' => true]);
+                SettingImage::where('setting_id', 1)
+                    ->where('main', true)
+                    ->update(['main' => false]);
+                $settingImage = SettingImage::find($mainImageId);
+                if ($settingImage) {
+                    $settingImage->update(['main' => true]);
+                }
             }
+            Cache::flush();
+            return redirect()->route('admin.index')->with('success', 'Настройки сохранены');
+        }catch (\Exception $exception){
+            Log::error($exception->getMessage());
+            return back()->withErrors($exception->getMessage());
         }
-        return back()->with('success', 'Настройки сохранены');
+
     }
 }

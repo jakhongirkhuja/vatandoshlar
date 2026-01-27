@@ -9,7 +9,7 @@
             <div class="layout-content">
 
                 {{-- Swiper CSS --}}
-                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"/>
 
                 <div class="news-view">
                     <div class="news-view--main">
@@ -34,7 +34,17 @@
                                                 <img src="{{ $image }}" alt="{{ sectionValue($item, 'title') }}">
                                             </div>
                                         @endforeach
+                                    @else
+                                        @php
+
+                                $mainImage = asset('front/images/news_fallback.png');
+
+                                     @endphp
+                                        <div class="swiper-slide">
+                                            <img src="{{ $mainImage }}" alt="{{ sectionValue($item, 'title') }}">
+                                        </div>
                                     @endif
+
 
                                 </div>
 
@@ -47,52 +57,51 @@
                                 <div class="swiper-pagination"></div>
                             </div>
 
-                            <h4 class="text-2">
-                                {!!  sectionValue($item, 'description') !!}
-                            </h4>
 
                             <div class="text-wrapper">
-                                {!! sectionValue($item, 'content') !!}
+                                {!!  sectionValue($item, 'description') !!}
                             </div>
 
-                            @if(sectionValue($item, 'url'))
-                                <div class="iframe-text">
+                            <div class="iframe-text mt-3">
+                                <style>
+                                    .custom_style_p{
+                                        display:flex;
+                                        align-items: center;
+                                        color: #98a2b3;
+                                        font-size: 16px;
+                                        font-weight: 500;
+                                        gap: 4px;
+                                    }
+                                </style>
 
-                                    <iframe width="560" height="315"
-                                        src="{{ sectionValue($item, 'url') }}"
-                                        title="{{ sectionValue($item, 'title') }}" frameborder="0"
-                                        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                        referrerpolicy="strict-origin-when-cross-origin"  height="550" allowfullscreen style="border-radius:12px;margin-bottom:20px; width: 100%;"></iframe>
-                                    
+                                <div class="iframe-text--link">
+                                    <p class="custom_style_p">
+                                        <i class="i-calendar"></i>
+                                        {{ date('Y-m-d', strtotime($item->publish_at)) }}
 
-                                    <div class="iframe-text--link">
-                                        <a href="#">
-                                            <i class="i-calendar"></i>
-                                            {{ $item->created_at->toDateString()  }}
-                                        </a>
-                                        <a href="#">
-                                            <i class="i-eye"></i>{{ $item->views()->count() }}
-                                        </a>
-                                    </div>
+                                    </p>
+                                    <p class="custom_style_p">
+                                        <i class="i-eye"></i>{{ $item->views()->count() }}
+                                    </p>
+                                </div>
 
-                                    <div class="iframe-text--line"></div>
+                                <div class="iframe-text--line"></div>
 
-                                    <div class="iframe-text--copy">
-                                        <p>Bo’lishish</p>
-                                        <div class="copy-flex">
-                                            <button class="btn-copy">
-                                                <i class="i-copy"></i>Copy link
-                                            </button>
-                                            <button class="btn-ilova">
-                                                <i class="i-telegram"></i>
-                                            </button>
-                                            <button class="btn-ilova">
-                                                <i class="i-facebook"></i>
-                                            </button>
-                                        </div>
+                                <div class="iframe-text--copy">
+                                    <p>{{staticValue('share')}}</p>
+                                    <div class="copy-flex">
+                                        <button class="btn-copy">
+                                            <i class="i-copy"></i>{{staticValue('copy')}}
+                                        </button>
+                                        <button class="btn-ilova">
+                                            <i class="i-telegram"></i>
+                                        </button>
+                                        <button class="btn-ilova">
+                                            <i class="i-facebook"></i>
+                                        </button>
                                     </div>
                                 </div>
-                            @endif
+                            </div>
 
                         @endforeach
 

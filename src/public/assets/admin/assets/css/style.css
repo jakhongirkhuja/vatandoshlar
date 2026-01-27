@@ -9,45 +9,56 @@ NOTE:
 ------
 PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
-.tippy-popper{
+.tippy-popper {
     display: none;
 }
+
 .action-col {
-    width: 120px; /* adjust as needed */
+    width: 120px;
+    /* adjust as needed */
     white-space: nowrap;
 }
 
 /* First columns take remaining space and shrink if needed */
-table th, table td {
+table th,
+table td {
     white-space: nowrap;
 }
-.fx{
+
+.fx {
     display: flex;
 
 }
-.fx.align-items-center{
+
+.fx.align-items-center {
     align-items: center;
 }
-.size_small{
+
+.size_small {
     width: 16px;
     height: auto;
 }
-.sort_submit{
+
+.sort_submit {
     gap: 5px;
 }
-.sort_submit input{
+
+.sort_submit input {
     width: 50px;
     text-align: center;
 }
-.sort_submit button{
+
+.sort_submit button {
     padding: 0;
-    width: 70px;
+    width: 40px;
 }
-.sort_submit button i{
+
+.sort_submit button i {
     padding: 10px;
     font-size: 14px;
 }
-.modal.show .modal-dialog{
+
+.modal.show .modal-dialog {
     height: 100vh;
 }
 
@@ -55,12 +66,15 @@ table th, table td {
 .note-editor .modal.show .modal-dialog {
     height: auto;
 }
-.modal .modal-content{
+
+.modal .modal-content {
     height: 90vh;
 }
-.modal .modal-content.small{
+
+.modal .modal-content.small {
     height: initial;
 }
+
 .modal.show .modal-dialog .media-block {
     /* height: 100%;
     overflow-y: auto;*/
@@ -132,7 +146,7 @@ table th, table td {
     transition: all .2s ease-in-out;
 }
 
-.media-block .thumbnails>li {
+.media-block .thumbnails > li {
     margin: 0 13px 10px 0;
     position: relative;
 }
@@ -147,7 +161,7 @@ table th, table td {
     justify-content: center;
 }
 
-.media-block input[type="checkbox"]+label span {
+.media-block input[type="checkbox"] + label span {
     display: inline-block;
     width: 19px;
     height: 19px;
@@ -159,7 +173,7 @@ table th, table td {
     z-index: 1;
 }
 
-.media-block input[type="checkbox"]:checked+label span {
+.media-block input[type="checkbox"]:checked + label span {
     /*background: url(../img/check_radio_sheet.png) -19px top no-repeat;*/
 }
 
@@ -182,13 +196,14 @@ table th, table td {
     display: block;
 }
 
-.media-block .thumbnail>img {
+.media-block .thumbnail > img {
     display: block;
     max-width: 100%;
     margin-right: auto;
     margin-left: auto;
 }
-.center{
+
+.center {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -228,12 +243,12 @@ table th, table td {
     border-radius: 3px;
 }
 
-.media-block .check input[type="checkbox"]:checked+label span {
+.media-block .check input[type="checkbox"]:checked + label span {
     background: #28a745;
     border-color: #28a745;
 }
 
-.media-block .check input[type="checkbox"]:checked+label span:after {
+.media-block .check input[type="checkbox"]:checked + label span:after {
     content: '';
     position: absolute;
     left: 3px;
@@ -244,8 +259,9 @@ table th, table td {
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
 }
-.reload{
-       width: 40px;
+
+.reload {
+    width: 40px;
     display: inline-flex;
     text-align: center;
     background: #4a51dd;
@@ -254,82 +270,98 @@ table th, table td {
     justify-content: center;
     align-items: center;
     color: #fff;
-    text-decoration: none;  
+    text-decoration: none;
 }
-.captcha{
+
+.captcha {
     text-align: center;
     margin-bottom: 1rem;
 }
 
 
 .menu {
-    padding: 20px 0 20px 20px;
+    padding: 0;
     position: relative;
     width: 100%;
-    
+
 }
+
 .menu * {
-  transition: 0.3s all ease;
-  user-select: none;
-  list-style: none;
+    transition: 0.3s all ease;
+    user-select: none;
+    list-style: none;
 }
-.menu__left{
+
+.menu__left {
     display: flex;
     align-items: center;
 }
+
 .menu__item.active > .menu__bottom {
-  display: flex;
-  border-left-color: black;
-  border-bottom-color: black;
-  margin-bottom: 4px;
+    display: flex;
+    border-left-color: black;
+    border-bottom-color: black;
+    margin-bottom: 4px;
 }
+
 .menu__top {
-  background: #f2f2f2;
-    padding: 16px 0 16px 16px;
-    border-radius: 3px;
-    margin-bottom: 4px; 
+    background: #f2f2f2;
+    padding: 12px 8px;
+    border-radius: 4px;
+    margin-bottom: 4px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.menu__top .menu__actions{
+
+.menu__top .menu__actions {
     display: flex;
     align-items: center;
     gap: 15px;
 }
+
+.menu__top .menu__actions .btn {
+    font-size: 16px;
+}
+
 .menu__top:hover {
-  background: #dcdcdc;
+    background: #dcdcdc;
 }
+
 .menu__bottom {
-  flex-direction: column;
-  margin-top: 0;
-  border: 1px solid transparent;
-  border-top: none;
-  border-right: none;
-  overflow: hidden;
+    flex-direction: column;
+    margin-top: 0;
+    border: 1px solid transparent;
+    border-top: none;
+    border-right: none;
+    overflow: hidden;
 }
+
 .menu__bottom > li:not(:has(.menu__item)) {
-  background: #f2f2f2;
-  border-radius: 3px;
-  gap: 0px;
-  margin-bottom: 4px;
+    background: #f2f2f2;
+    border-radius: 3px;
+    gap: 0px;
+    margin-bottom: 4px;
 }
+
 .menu__bottom > li:not(:has(.menu__item)):hover {
-  background: #dcdcdc;
+    background: #dcdcdc;
 }
+
 .menu__bottom li {
-  list-style-type: none;
-  padding: 0;
-  line-height: 20px;
-  font-size: 16px;
-  gap: 4px;
+    list-style-type: none;
+    padding: 0;
+    line-height: 20px;
+    font-size: 16px;
+    gap: 4px;
 }
+
 .menu__toggle {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 18px;
-    height: 18px;
+    width: 32px;
+    height: 32px;
     margin-right: 6px;
     font-weight: bold;
     border: 1px solid #aaa;
@@ -341,12 +373,55 @@ table th, table td {
 .menu__item.active > .menu__top .menu__toggle {
     content: "−";
 }
-  .drop-zone {
+
+.drop-zone {
     border: 1px dashed transparent;
-   
+
 }
+
 .drop-zone.dragover {
     border-color: #4caf50;
-      cursor: pointer;
+    cursor: pointer;
     background: #f0fff4;
+}
+
+.navbar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-brand {
+    margin: 0 !important;
+    width: 100%;
+    margin: 0;
+    padding: 26px;
+    height: auto;
+    background: url("../../app-assets/images/logo/vuexy-logo.png") no-repeat;
+    background-size: contain;
+    background-position: center center;
+}
+
+.menu__title {
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.form-group label {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.nav-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+
+}
+
+label {
+    font-weight: 500 !important;
+    font-size: 15px !important;
+    margin-bottom: 6px;
 }

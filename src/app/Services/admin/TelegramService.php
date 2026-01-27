@@ -20,10 +20,29 @@ class TelegramService
 
     public static function formatSupportMessage(Support $support): string
     {
+
+        $labels = [
+            'job' => 'Mutaxxasisligi',
+            'name' => 'Ismi',
+            'email' => 'Email',
+            'phone' => 'Telefon raqami',
+            'description' => 'Batafsil',
+            'address' => 'Yashash joyi',
+            'birthdate' => 'Tugilgan kuni',
+            'extra_info' => 'Qoshimcha malumot',
+            'city' => 'Shahar',
+            'gender' => 'Jinsi',
+            'country' => 'Davlat',
+            'position' => 'Lavozimi',
+            'education' => 'Malumoti',
+            'workplace' => 'Ish joyi',
+            'specialization' => 'Mutaxxasisligi'
+        ];
+
         $message = "*Enquire*\n";
         $message .= "ID: {$support->id}\n";
         foreach ($support->data as $key => $value) {
-            $message .= "*" . ucfirst($key) . "*: " . $value . "\n";
+            $message .= "*" .((isset($labels[$key]) && $labels[$key])? $labels[$key] : ucfirst($key)) . "*: " . $value . "\n";
         }
         return $message;
     }

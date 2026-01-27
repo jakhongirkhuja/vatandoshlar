@@ -23,12 +23,29 @@ class MenuMainSettingsController extends Controller
 
     public function create(MenuMainSettinsRequest $request)
     {
-        return $this->service->create($request->validated());
+        $seenKeys = [];
+        $duplicateKey = null;
+        $data =$request->validated();
+        foreach ($data['fields'] as $item) {
+            $currentKey = $item['key'];
+
+            if (isset($seenKeys[$currentKey])) {
+                $duplicateKey = $currentKey;
+                break;
+            }
+            $seenKeys[$currentKey] = true;
+        }
+
+        if ($duplicateKey) {
+            return back()->withInput()->withErrors("Duplicate key name found: $duplicateKey");
+        }
+        return $this->service->create($data);
     }
 
 
     public function edit(MenuMainSetting $menu_main_setting)
     {
+
         $menus = MenuMain::all();
         return view('menu_main_settings.edit', [
             'setting' => $menu_main_setting,

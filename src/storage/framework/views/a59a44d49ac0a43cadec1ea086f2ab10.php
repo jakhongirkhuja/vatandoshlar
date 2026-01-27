@@ -45,7 +45,7 @@
                                                                    data-toggle="tab"
                                                                    href="#lang<?php echo e($language->code); ?>">
                                                                     <img
-                                                                        src="<?php echo e(asset('assets/'.$language->flag_icon)); ?>"
+                                                                            src="<?php echo e(sectionImages($language, true)); ?>"
                                                                         class="size_small">
                                                                     <?php echo e($language->name); ?>
 
@@ -58,7 +58,6 @@
                                                     <?php $__currentLoopData = $languages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $language): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <div class="tab-pane fade <?php echo e($k === 0 ? 'show active' : ''); ?>"
                                                              id="lang<?php echo e($language->code); ?>">
-
 
                                                             <div class="col-md-12 mb-2">
                                                                 <label>Заголовок сайта (<?php echo e($language->code); ?>)</label>
@@ -100,6 +99,55 @@
                                                                     )); ?>"
                                                                 >
                                                             </div>
+                                                            <div class="col-md-12 mb-2">
+                                                                <label>Неделя (короткий) (<?php echo e($language->code); ?>)</label>
+                                                                <input
+                                                                        type="text"
+                                                                        class="form-control"
+                                                                        name="week_short[<?php echo e($language->code); ?>]"
+                                                                        value="<?php echo e(old(
+                                                                        'week_short.'.$language->code,
+                                                                        $settings->week_short[$language->code] ?? ''
+                                                                    )); ?>"
+                                                                >
+                                                            </div>
+                                                            <div class="col-md-12 mb-2">
+                                                                <label>Неделя (<?php echo e($language->code); ?>)</label>
+                                                                <input
+                                                                        type="text"
+                                                                        class="form-control"
+                                                                        name="week_long[<?php echo e($language->code); ?>]"
+                                                                        value="<?php echo e(old(
+                                                                        'week_long.'.$language->code,
+                                                                        $settings->week_long[$language->code] ?? ''
+                                                                    )); ?>"
+                                                                >
+                                                            </div>
+                                                            <div class="col-md-12 mb-2">
+                                                                <label>Месяц (короткий) (<?php echo e($language->code); ?>)</label>
+                                                                <input
+                                                                        type="text"
+                                                                        class="form-control"
+                                                                        name="month_short[<?php echo e($language->code); ?>]"
+                                                                        value="<?php echo e(old(
+                                                                        'month_short.'.$language->code,
+                                                                        $settings->month_short[$language->code] ?? ''
+                                                                    )); ?>"
+                                                                >
+                                                            </div>
+                                                            <div class="col-md-12 mb-2">
+                                                                <label>Месяц (<?php echo e($language->code); ?>)</label>
+                                                                <input
+                                                                        type="text"
+                                                                        class="form-control"
+                                                                        name="month_long[<?php echo e($language->code); ?>]"
+                                                                        value="<?php echo e(old(
+                                                                        'month_long.'.$language->code,
+                                                                        $settings->month_long[$language->code] ?? ''
+                                                                    )); ?>"
+                                                                >
+                                                            </div>
+
 
                                                         </div>
                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -175,12 +223,29 @@
                                                     <div class="form-group">
                                                         <label>Вкл сортировок</label>
                                                         <select name="sorting_ids[]"  id="sorting_ids" multiple="multiple"  class="form-control select2">
-                                                            <option >Выбрать</option>
+                                                            <option disabled >Выбрать</option>
 
                                                             <?php $__currentLoopData = $pages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $menu): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                 <option value="<?php echo e($menu->id); ?>"
                                                                     <?php echo e(in_array($menu->id, $settings->sorting_ids ?? []) ? 'selected' : ''); ?>>
                                                                     <?php echo e($menu->getTitle($menu->translations, app()->getLocale())); ?>
+
+                                                                </option>
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 mb-1">
+                                                    <div class="form-group">
+                                                        <label>Выбор языка по умолчанию</label>
+                                                        <select name="default_lang"  id="default_lang"  class="form-control">
+                                                            <option disabled  selected>Выбрать</option>
+
+                                                            <?php $__currentLoopData = $languages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $language): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                <option value="<?php echo e($language->code); ?>" <?php if($language->code==$settings->default_lang): ?> selected <?php endif; ?>>
+                                                                    <?php echo e($language->name); ?>
 
                                                                 </option>
                                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -257,20 +322,13 @@
 
 
 
-
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div
-                                                        class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
-                                                        <button type="submit"
-                                                                class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1">
-                                                            <?php echo e('Обновить'); ?>
-
-                                                        </button>
-
-                                                    </div>
+                                            <div class="row mt-3">
+                                                <div class="col-12 d-flex justify-content-between">
+                                                    <button type="button" class="btn btn-outline-secondary" onclick="history.back()">Orqaga</button>
+                                                    <button type="submit" class="btn btn-primary px-3">Yangilash</button>
                                                 </div>
                                             </div>
+
 
                                             <input type="file" style="display: none" multiple name="images[]">
                                             <input type="hidden" multiple name="main_image">

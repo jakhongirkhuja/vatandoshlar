@@ -59,18 +59,31 @@
                                                             >
                                                         </div>
                                                     </div>
+                                                    <style>
+                                                        .password_block{
+                                                            position: relative;
+                                                            display: flex;
+                                                            align-items: center;
+                                                        }
+                                                        .password_block #togglePassword{
+                                                            position: absolute;
+                                                            right: 37px;
+                                                            padding: 9px;
+                                                            cursor: pointer;
+                                                        }
+                                                        .password_block #keygenerate{
+                                                            position: absolute;
+                                                            right: 1px;
+                                                            padding: 9px;
+                                                        }
+                                                        .password_block #keygenerate:hover{
+                                                            background: #0000000a;
+                                                        }
+                                                    </style>
                                                     <div class="form-group">
                                                         <div class="controls">
                                                             <label>Password</label>
-                                                            @php
-                                                                $length = 10;
-                                                                $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';
-
-                                                                $password = '';
-                                                                for ($i = 0; $i < $length; $i++) {
-                                                                    $password .= $chars[random_int(0, strlen($chars) - 1)];
-                                                                }
-                                                            @endphp
+                                                            <div class="password_block">
                                                             <input
                                                                 type="password"
                                                                 id="password"
@@ -81,8 +94,60 @@
 
                                                                 required
                                                             >
+                                                                <div  id="togglePassword">
+                                                                    <i class="feather icon-eye-off" id="eyeIcon"></i>
+                                                                </div>
+
+                                                                <div  type="button" id="keygenerate" onclick="generateAndShow()">
+                                                                    <i class="fa fa-key"></i>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
+                                                    <script>
+                                                        const passwordInput = document.getElementById('password');
+                                                        const toggleBtn = document.getElementById('togglePassword');
+                                                        const eyeIcon = document.getElementById('eyeIcon');
+
+                                                        toggleBtn.addEventListener('click', function() {
+                                                            // Переключаем тип поля
+                                                            const isPassword = passwordInput.type === 'password';
+                                                            passwordInput.type = isPassword ? 'text' : 'password';
+
+                                                            // Переключаем классы иконки
+                                                            if (isPassword) {
+                                                                eyeIcon.classList.replace('icon-eye-off', 'icon-eye');
+                                                            } else {
+                                                                eyeIcon.classList.replace('icon-eye', 'icon-eye-off');
+
+                                                            }
+                                                        });
+
+                                                        // Функция генерации (с учетом ваших правил Laravel)
+                                                        function generateAndShow() {
+                                                            const length = 12;
+                                                            // Обязательные наборы для regex: /[A-Z]/ и /[\W_]/
+                                                            const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                                                            const symbols = "!@#$%^&*()_+";
+                                                            const all = "abcdefghijklmnopqrstuvwxyz0123456789";
+
+                                                            let pass = "";
+                                                            pass += upper[Math.floor(Math.random() * upper.length)];
+                                                            pass += symbols[Math.floor(Math.random() * symbols.length)];
+
+                                                            const combined = upper + symbols + all;
+                                                            for (let i = pass.length; i < length; i++) {
+                                                                pass += combined[Math.floor(Math.random() * combined.length)];
+                                                            }
+
+                                                            // Перемешиваем
+                                                            passwordInput.value = pass.split('').sort(() => 0.5 - Math.random()).join('');
+
+                                                            // Показываем пароль и меняем иконку
+                                                            passwordInput.type = 'text';
+                                                            eyeIcon.classList.replace('fa-eye', 'fa-eye-slash');
+                                                        }
+                                                    </script>
                                                     <div class="form-group">
                                                         <div class="controls">
                                                             <label>Name</label>
@@ -175,16 +240,15 @@
                                                     </div>
                                                 </div>
 
-                                                <!-- BUTTONS -->
-                                                <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
-                                                    <button type="submit" class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1">
-                                                        {{ $isEdit ? 'Update User' : 'Create User' }}
-                                                    </button>
-                                                    <button type="reset" class="btn btn-outline-warning">Reset</button>
-                                                </div>
+
 
                                             </div>
-
+                                            <div class="row mt-3">
+                                                <div class="col-12 d-flex justify-content-between">
+                                                    <button type="button" class="btn btn-outline-secondary" onclick="history.back()">Orqaga</button>
+                                                    <button type="submit" class="btn btn-primary px-3">{{ $isEdit ? 'Yangilash' : 'Saqlash' }}</button>
+                                                </div>
+                                            </div>
                                         </form>
 
                                         <!-- users edit account form ends -->

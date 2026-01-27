@@ -10,7 +10,7 @@ use App\Models\LangImage;
 use App\Models\SettingImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\Cache;
 class LangController extends Controller
 {
     public function lang_status($id)
@@ -19,6 +19,7 @@ class LangController extends Controller
 
         $lang->status = $lang->status == 0 ? 1 : 0;
         $lang->save();
+        Cache::flush();
         return response()->json([
             'status' => $lang->status,
             'message' => 'Language status updated successfully'

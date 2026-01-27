@@ -1,13 +1,9 @@
 <!-- BEGIN: Main Menu-->
 <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
-    <div class="navbar-header">
-        <ul class="nav navbar-nav flex-row">
-            <li class="nav-item mr-auto">
+    <div class="navbar-header"> 
                 <a class="navbar-brand" href="{{route('admin.index')}}">
-                    <div class="brand-logo"></div>
-                </a>
-            </li>
-        </ul>
+                  
+                </a> 
     </div>
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
@@ -34,38 +30,31 @@
                     </ul>
                 </li>
             @endif
-                <li class=" nav-item"><a href="#"><i class="feather icon-list"></i><span class="menu-title"
-                                                                                         data-i18n="Ecommerce">Меню</span></a>
-                    <ul class="menu-content">
-                        <li class="{{is_current_route('admin.menu_main.index') ? 'active' : ''}}"><a
-                                href="{{route('admin.menu_main.index')}}"><i class="feather icon-circle"></i><span
-                                    class="menu-item" data-i18n="Shop">Меню Главное</span></a>
-                        </li>
-
-
-                    </ul>
-                </li>
+            <li class=" nav-item">    <a
+                            href="{{route('admin.menu_main.index')}}"><i class="feather icon-circle"></i><span
+                                class="menu-item" data-i18n="Shop">Menyu</span></a>
+            </li>
             <li class=" nav-item "><a href="#"><i class="feather icon-settings"></i><span class="menu-title"
                         data-i18n="User">Настройки</span></a>
                 <ul class="menu-content">
                     <li class="{{ is_current_route('admin.content.index', ['category' => 'list']) ? 'active' : '' }}">
-<a
-                            href="{{route('admin.content.index', ['category' => 'list'])}}"><i class="feather icon-circle"></i><span
-                                class="menu-item" data-i18n="List">Список</span></a>
+                        <a href="{{route('admin.content.index', ['category' => 'list'])}}"><i
+                                class="feather icon-circle"></i><span class="menu-item"
+                                data-i18n="List">Список</span></a>
                     </li>
-                      <li class="{{ is_current_route('admin.content.index', ['category' => 'job']) ? 'active' : '' }}">
-<a
-                            href="{{route('admin.content.index', ['category' => 'job'])}}"><i class="feather icon-circle"></i><span
-                                class="menu-item" data-i18n="List">Приложения</span></a>
+                    <li class="{{ is_current_route('admin.content.index', ['category' => 'job']) ? 'active' : '' }}">
+                        <a href="{{route('admin.content.index', ['category' => 'job'])}}"><i
+                                class="feather icon-circle"></i><span class="menu-item"
+                                data-i18n="List">Mutaxassislar ro'yhati</span></a>
                     </li>
                     <li class="{{is_current_route('social_links.index') ? 'active' : ''}}"><a
                             href="{{route('social_links.index')}}"><i class="feather icon-circle"></i><span
-                                class="menu-item" data-i18n="View">Соц сети</span></a>
+                                class="menu-item" data-i18n="View">Ijtimoiy tarmoqlar</span></a>
                     </li>
 
                 </ul>
             </li>
-            <li class=" navigation-header"><span>Main</span>
+            <li class=" navigation-header"><span>Sahifalar</span>
             </li>
 
             @foreach($globalmenus as $menu)
@@ -75,23 +64,24 @@
                     'slug' => $menu->slug
                 ])
 
-            @endforeach
-    <li class=" navigation-header"><span>Формы</span>
-            </li>
 
-    <li class="nav-item {{is_current_route('admin.supports', ['type' => 'form']) ? 'active' : ''}}">
+              @endforeach
+    <li class=" navigation-header"><span>Formalar</span>
+            </li>
+  
+<li class="nav-item {{is_current_route('admin.supports', ['type' => 'form']) ? 'active' : ''}}">
                 <a href="{{route('admin.supports', ['type' => 'form'])}}"><i class="feather icon-mail "></i>
-                        <span  class="menu-item" data-i18n="View">Enquire</span>
+                        <span  class="menu-item" data-i18n="View">Aloqa</span>
                     </a>
-            </li>
-            <li class="nav-item {{is_current_route('admin.supports', ['type' => 'application']) ? 'active' : ''}}">
+        </li>
+        <li class="nav-item {{is_current_route('admin.supports', ['type' => 'application']) ? 'active' : ''}}">
                 <a href="{{route('admin.supports', ['type' => 'application'])}}"><i class="feather icon-mail "></i>
-                        <span  class="menu-item" data-i18n="View">Applications</span>
+                       <span  class="menu-item" data-i18n="View">Murojaatlar</span>
                     </a>
-            </li>
-             <li class="nav-item {{is_current_route('admin.supports', ['type' => 'participation']) ? 'active' : ''}}">
+        </li>
+         <li class="nav-item {{is_current_route('admin.supports', ['type' => 'participation']) ? 'active' : ''}}">
                 <a href="{{route('admin.supports', ['type' => 'participation'])}}"><i class="feather icon-mail "></i>
-                        <span  class="menu-item" data-i18n="View">Participations</span>
+                        <span  class="menu-item" data-i18n="View">Ishtirok etuvchilar</span>
                     </a>
             </li>
         </ul>

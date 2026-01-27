@@ -11,13 +11,13 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">Добавить / Редактирование</h2>
+                            <h2 class="content-header-title float-left mb-0">Добавить / Изменить</h2>
                             <div class="breadcrumb-wrapper col-12">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Главная</a>
+                                    <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Домой</a>
                                     </li>
                                     <li class="breadcrumb-item"><a
-                                            href="{{route('admin.pages.section.index',['slug'=>$slug,'id'=>$menu->id])}}">Секция</a>
+                                            href="{{route('admin.pages.section.index',['slug'=>$slug,'id'=>$menu->id])}}">Раздел</a>
                                     </li>
                                     <li class="breadcrumb-item"><a href="#" onclick="history.go(-1)"> Назад</a>
                                     </li>
@@ -33,13 +33,13 @@
                     <div class="card">
                         <div class="card-content">
                             <div class="card-body">
-                                <ul class="nav nav-tabs mb-3" role="tablist">
+                                <ul class="nav nav-tabs  " role="tablist">
 
                                     <li class="nav-item ">
                                         <a class="nav-link d-flex align-items-center active" id="account-tab"
                                            data-toggle="tab" href="#account" aria-controls="account" role="tab"
                                            aria-selected="true">
-                                            <i class="feather icon-user mr-25"></i><span class="d-none d-sm-block">Настройка секции</span>
+                                            <i class="feather icon-user "></i><span class="d-none d-sm-block"> Раздел настройки</span>
                                         </a>
                                     </li>
 
@@ -54,7 +54,7 @@
                                                 class="btn bg-gradient-success">Создать Под секции</a></div>
                                     </div>
                                 @endif
-                                <div class="container">
+                                <div class=" ">
 
                                     @php
                                         $params = ['slug' => $slug, 'id' => $menu->id];
@@ -82,7 +82,7 @@
 
                                             @foreach($fields as $index => $f)
 
-                                                <div class="card p-3 mb-3 field-item">
+                                                <div class="card field-item">
                                                     <div class="d-flex justify-content-between">
                                                         <h5>Field #{{ $index }}</h5>
                                                         <button type="button"
@@ -140,7 +140,7 @@
                                                     <div class="row">
                                                         <div class="col-md-3 mb-2">
                                                             <div class="custom-control custom-switch mr-2 mb-1">
-                                                                <p class="mb-0">Required</p>
+                                                                <p class="mb-0">Обязательность</p>
                                                                 <input type="checkbox" class="custom-control-input"
                                                                        name="fields[{{ $index }}][required]"
                                                                        {{ $f->required?'checked':'' }} id="customSwitch2{{$index}}">
@@ -151,7 +151,7 @@
                                                         </div>
                                                         <div class="col-md-3 mb-2">
                                                             <div class="custom-control custom-switch mr-2 mb-1">
-                                                                <p class="mb-0">Translatable</p>
+                                                                <p class="mb-0">Переводимый</p>
                                                                 <input type="checkbox" class="custom-control-input"
                                                                        name="fields[{{ $index }}][is_translatable]"
                                                                        {{ $f->is_translatable?'checked':'' }} id="customSwitch{{$index}}">
@@ -181,15 +181,11 @@
                                                 </div>
                                             @endforeach
                                         </div>
-                                        <div class="row">
-                                            <div class="col">
+                                        <div class="d-flex justify-content-between align-items-center mt-3"> 
                                                 <button type="button" class="btn btn-primary rounded mb-3"
                                                         id="add-field"><i class="feather icon-plus  icon-white"></i>
-                                                </button>
-                                            </div>
-                                            <div class="col">
-                                                <button class="btn btn-success">Save Settings</button>
-                                            </div>
+                                                </button> 
+                                                <button class="btn btn-success">Сохранить</button> 
                                         </div>
 
 

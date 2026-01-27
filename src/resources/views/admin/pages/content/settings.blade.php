@@ -11,14 +11,14 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">Добавить / Редактирование</h2>
+                            <h2 class="content-header-title float-left mb-0">Qo'shish / O'zgartirish</h2>
                             <div class="breadcrumb-wrapper col-12">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Главная</a>
+                                    <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Uy</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="{{route('admin.content.index',['category' => request()->route('category')])}}">Контент</a>
+                                    <li class="breadcrumb-item"><a href="{{route('admin.content.index',['category' => request()->route('category')])}}">Kontent</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="#" onclick="history.go(-1)"> Назад</a>
+                                    <li class="breadcrumb-item"><a href="#" onclick="history.go(-1)"> Orqaga</a>
                                     </li>
                                 </ol>
                             </div>
@@ -38,7 +38,7 @@
                                         <a class="nav-link d-flex align-items-center active" id="account-tab"
                                            data-toggle="tab" href="#account" aria-controls="account" role="tab"
                                            aria-selected="true">
-                                            <i class="feather icon-user mr-25"></i><span class="d-none d-sm-block">Настройка меню</span>
+                                            <i class="feather icon-user mr-25"></i><span class="d-none d-sm-block">Menu Sozlamalari</span>
                                         </a>
                                     </li>
 

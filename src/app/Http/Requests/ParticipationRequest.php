@@ -39,7 +39,8 @@ class ParticipationRequest extends FormRequest
             'data.instagram' => 'nullable',
             'data.whatsapp' => 'nullable',
             'image' => 'required',
-            'image.*' => 'nullable|max:10240'
+            'image.*' => 'nullable|max:10240',
+            'chat_id'=>'nullable|string',
 
         ];
     }

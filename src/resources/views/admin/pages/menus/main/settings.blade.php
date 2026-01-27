@@ -11,12 +11,12 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-left mb-0">Добавить / Редактирование</h2>
+                        <h2 class="content-header-title float-left mb-0">Добавить / Изменить</h2>
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Главная</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{route('admin.menu_main.index')}}">Menu</a>
+                                <li class="breadcrumb-item"><a href="{{route('admin.menu_main.index')}}">Меню</a>
                                 </li>
                                 <li class="breadcrumb-item"><a href="#" onclick="history.go(-1)"> Назад</a>
                                 </li>
@@ -38,7 +38,7 @@
                                     <a class="nav-link d-flex align-items-center active" id="account-tab"
                                         data-toggle="tab" href="#account" aria-controls="account" role="tab"
                                         aria-selected="true">
-                                        <i class="feather icon-user mr-25"></i><span class="d-none d-sm-block">Настройка меню</span>
+                                        <i class="feather icon-user mr-25"></i><span class="d-none d-sm-block">Menu sozlamalari</span>
                                     </a>
                                 </li>
 
@@ -114,7 +114,7 @@
                                             <div class="row">
                                                 <div class="col-md-3 mb-2">
                                                     <div class="custom-control custom-switch mr-2 mb-1">
-                                                        <p class="mb-0">Required</p>
+                                                        <p class="mb-0">Обязательно</p>
                                                         <input type="checkbox" class="custom-control-input"
                                                             name="fields[{{ $index }}][required]"
                                                             {{ $f->required?'checked':'' }} id="customSwitch2{{$index}}">
@@ -125,7 +125,7 @@
                                                 </div>
                                                 <div class="col-md-3 mb-2">
                                                     <div class="custom-control custom-switch mr-2 mb-1">
-                                                        <p class="mb-0">Translatable</p>
+                                                        <p class="mb-0">Переводимый</p>
                                                         <input type="checkbox" class="custom-control-input"
                                                             name="fields[{{ $index }}][is_translatable]"
                                                             {{ $f->is_translatable?'checked':'' }} id="customSwitch{{$index}}">
@@ -161,7 +161,7 @@
                                             </button>
                                         </div>
                                         <div class="col">
-                                            <button class="btn btn-success">Save Settings</button>
+                                            <button class="btn btn-success">Сохранить настройки</button>
                                         </div>
                                     </div>
 

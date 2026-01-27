@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->morphs('viewable');
             $table->string('ip_address', 45);
             $table->text('user_agent');
+            $table->unsignedBigInteger('page_section_created_at');
             $table->timestamps();
         });
     }

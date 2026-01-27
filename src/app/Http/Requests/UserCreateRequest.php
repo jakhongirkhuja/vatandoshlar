@@ -29,10 +29,21 @@ class UserCreateRequest extends FormRequest
                 'required',
                 'string',
                 'min:8',
-                'regex:/[A-Z]/',        
-                'regex:/[\W_]/',      
+                'regex:/[A-Z]/',
+                'regex:/[\W_]/',
             ],
             'role_id' => 'required|exists:roles,id',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'username.unique' => 'Этот логин уже занят.',
+            'username.between' => 'Логин должен быть от 2 до 100 символов.',
+            'password.min' => 'Пароль должен быть не менее 8 символов.',
+            'password.regex' => 'Пароль должен содержать хотя бы одну заглавную букву и один специальный символ.',
+            'status.in' => 'Выбранный статус некорректен.',
+            'role_id.exists' => 'Выбранная роль не существует.',
         ];
     }
 }

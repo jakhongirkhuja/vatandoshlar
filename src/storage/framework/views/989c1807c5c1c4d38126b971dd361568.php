@@ -34,7 +34,7 @@
 
         </div>
         <a href="#"
-           class="btn btn-small btn-danger ml-2 delete-btn"
+           class="btn btn-danger ml-2 delete-btn"
            data-id="<?php echo e($menu->id); ?>"
            data-url="<?php echo e(route('admin.menu_main.delete',  $menu->id)); ?>">
             <i class="feather icon-trash icon-white"></i>

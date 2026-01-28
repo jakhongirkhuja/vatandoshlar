@@ -9,6 +9,13 @@
           </advancedOptions>
         </fileTransfer>
       </webServer>
+      <webServer id="de8640cf-9770-43c4-af7b-dd7ff51a9bd6" name="vatandoshlar" url="http://vatandoshlar.7z7.uz">
+        <fileTransfer host="vatandoshlar.7z7.uz" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>

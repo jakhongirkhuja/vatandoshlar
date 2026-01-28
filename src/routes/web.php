@@ -7,8 +7,12 @@ use App\Http\Controllers\Admin\SupportController;
 use App\Http\Controllers\Admin\Auth\AuthController;
 use App\Http\Controllers\Admin\SearchController;
 use App\Http\Middleware\CheckSiteStatus;
-Route::get('login', [AuthController::class, 'login'])->name('login');
-Route::post('loginForm', [AuthController::class, 'loginForm'])->name('loginForm');
+use App\Http\Middleware\IpcheckMiddleware;
+Route::middleware([IpcheckMiddleware::class])->group(function () {
+    Route::get('login', [AuthController::class, 'login'])->name('login');
+    Route::post('loginForm', [AuthController::class, 'loginForm'])->name('loginForm');
+});
+
 Route::get('reload-captcha', [AuthController::class, 'captch'])->name('reload.captcha');
 Route::middleware(CheckSiteStatus::class)->group(function () {
     Route::post('support', [SupportController::class, 'createForm'])->name('support.createForm');

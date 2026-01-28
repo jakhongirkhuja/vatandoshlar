@@ -285,11 +285,11 @@
                                 <div class="file-list" id="file-list"></div>
                             </div>
                             <input id="file-input" name="image[]" type="file" multiple hidden
-                                accept="video/*,image/*,.pdf,.doc,.docx," required>
+                                   accept=".mp4, .jpg,.jpeg,.png,.pdf,.doc,.docx," required>
                         </div>
-                        <div id="recaptcha-container" style="display: none"></div>
+                        <div id="recaptcha-container" ></div>
                         <div class="form-actions">
-                            <button type="button" id="submitBtn" class="submit-btn">
+                            <button type="submit" id="submitBtn" class="submit-btn">
                                 <img src="{{ asset('front') }}/images/send.svg" alt="Send icon">
                                 <span>{{staticValue('request')}}</span>
                             </button>
@@ -352,7 +352,7 @@
 
             // Constants
             const CONFIG = {
-                MAX_FILE_SIZE: 10 * 1024 * 1024, // 10MB
+                MAX_FILE_SIZE: 3 * 1024 * 1024, // 10MB
                 MAX_FILES: 5,
                 ALLOWED_TYPES: [
                     'image/jpeg', 'image/png', 'image/gif', 'image/webp',
@@ -532,7 +532,7 @@
             elements.uploadArea.addEventListener('dragover', handleDragOver);
             elements.uploadArea.addEventListener('dragleave', handleDragLeave);
             elements.uploadArea.addEventListener('drop', handleDrop);
-        })(); 
+        })();
     </script>
 
 @endsection

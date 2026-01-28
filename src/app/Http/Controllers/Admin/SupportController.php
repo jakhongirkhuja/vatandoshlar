@@ -121,7 +121,7 @@ class SupportController extends Controller
                 return redirect()->back()->with('success', 'Ваша заявка принята.');
             } catch (\Exception $e) {
                 Log::error('Error:' . $e->getMessage());
-                return redirect()->back()->withError('Error', 'Ваша заявка  не принята.');
+                return redirect()->back()->withError('error', 'Ваша заявка  не принята.');
             }
         });
 

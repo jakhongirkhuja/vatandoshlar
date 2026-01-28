@@ -51,7 +51,7 @@
                                                 @foreach($supports as $support)
                                                     <tr class="{{$support->user_id? '' : 'bold'}}">
                                                         <td >
-                                                            {{$support->created_at->format('Y-m-d H:i')}}</b>
+                                                            {{ $support->created_at->timezone('Asia/Tashkent')->format('Y-m-d H:i') }}</b>
                                                         </td>
                                                         <td>
                                                             @php

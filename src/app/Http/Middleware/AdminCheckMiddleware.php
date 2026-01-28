@@ -22,9 +22,9 @@ class AdminCheckMiddleware
 
       $expoledIp = array_map('trim', explode(',', $settings->admin_ips));
 
-        if(!in_array($requestIP, $expoledIp)) {
+        if($settings->admin_ips!=null && !in_array($requestIP, $expoledIp)) {
             auth()->logout();
-            return redirect()->route('login');
+            return redirect()->route('home',['locale'=>app()->getLocale()]);
         }
         $user = Auth::user();
         if ($user && $user->status) {

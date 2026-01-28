@@ -38,10 +38,44 @@ class ParticipationRequest extends FormRequest
             'data.telegram' => 'nullable',
             'data.instagram' => 'nullable',
             'data.whatsapp' => 'nullable',
-            'image' => 'required',
-            'image.*' => 'nullable|max:10240',
+            'image'   => 'required|array',
+            'image.*' => 'file|mimes:mp4,jpg,jpeg,png,pdf,doc,docx,excel|max:5000',
             'chat_id'=>'nullable|string',
+        ];
+    }
+    public function messages(): array
+    {
+        return [
 
+            'required' => ':attribute maydonini toʻldirish shart.',
+            'string'   => ':attribute maydoni qator (string) boʻlishi kerak.',
+            'array'    => ':attribute maydoni massiv boʻlishi kerak.',
+            'email'    => 'Haqiqiy elektron pochta manzilingizni kiriting.',
+            'in'       => 'Tanlangan :attribute notoʻgʻri.',
+
+            'image.required' => 'Hujjatlarni yuklash shart.',
+            'image.*.file'   => 'Yuklanayotgan obyekt fayl boʻlishi kerak.',
+            'image.*.mimes'  => 'Faqat quyidagi formatdagi fayllarni yuklash mumkin: Image, pdf, doc, docx, excel.',
+            'image.*.max'    => 'Fayl hajmi 3 MB dan oshmasligi kerak.',
+        ];
+    }
+    public function attributes(): array
+    {
+        return [
+            'type'                => 'Shakl turi',
+            'data.name'           => 'F.I.O.',
+            'data.birthdate'      => 'Tugʻilgan sana',
+            'data.gender'         => 'Jins',
+            'data.email'          => 'E-mail',
+            'data.phone'          => 'Telefon raqami',
+            'data.country'        => 'Mamlakat',
+            'data.city'           => 'Shahar',
+            'data.workplace'      => 'Ish joyi',
+            'data.position'       => 'Lavozim',
+            'data.education'      => 'Maʼlumoti',
+            'data.specialization' => 'Mutaxassisligi',
+            'image'               => 'Hujjatlar',
+            'image.*'             => 'Fayl',
         ];
     }
 }

@@ -39,7 +39,7 @@ class TelegramService
             'specialization' => 'Mutaxxasisligi'
         ];
 
-        $message = "*Enquire*\n";
+        $message = "*Ariza*\n";
         $message .= "ID: {$support->id}\n";
         foreach ($support->data as $key => $value) {
             $message .= "*" .((isset($labels[$key]) && $labels[$key])? $labels[$key] : ucfirst($key)) . "*: " . $value . "\n";

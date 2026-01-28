@@ -22,7 +22,7 @@
             </div>
         </div>
     </div>
-@elseif(session('error'))
+@elseif(session('error') || $errors->any())
     <div class="modal customModal fade" id="supportResponseModal" data-bs-backdrop="static" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">

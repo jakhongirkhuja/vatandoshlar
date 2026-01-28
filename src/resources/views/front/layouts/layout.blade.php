@@ -81,11 +81,14 @@
     @endif
     <style>
         .rht_icon_wrapper_element.gsp_ic_l.ss_rht_b_i_opened{
-            display: none;
+            /*display: none;*/
+        }
+        .gsp_content_wrapper_set{
+            /*display: none!important;*/
         }
     </style>
     <div class="gsp_button_player"></div>
-    <script async src="https://widget.gspeech.io/96ccb9c2672e19a787589eb1961ffd82?v=1"></script>
+{{--    <script async src="https://widget.gspeech.io/96ccb9c2672e19a787589eb1961ffd82?v=1"></script>--}}
     @include('front.components.footer')
     @yield('script')
 </body>

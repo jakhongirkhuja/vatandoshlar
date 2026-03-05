@@ -1,0 +1,118 @@
+<?php
+
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\LangController;
+use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ContentController;
+use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\SupportController;
+use App\Http\Controllers\Admin\MenuMainController;
+use App\Http\Controllers\Admin\Auth\AuthController;
+use App\Http\Controllers\Admin\SocialLinkController;
+use App\Http\Controllers\Admin\FileManagerController;
+use App\Http\Controllers\Admin\PageSectionController;
+use App\Http\Controllers\Admin\ContentSettingController;
+use App\Http\Controllers\Admin\MenuMainSettingsController;
+use App\Http\Controllers\Admin\TelegramController;
+
+Route::middleware('auth')->prefix('admin')->group(function () {
+//    Route::get('testbbb',[PageSectionController::class, 'test']);
+    Route::any('file-manager', [FileManagerController::class, 'handleRequest'])->name('admin.file-manager');
+
+    Route::middleware('admin')->group(function () {
+        Route::get('support/export', [SupportController::class, 'supportexport'])->name('admin.support.export');
+        Route::get('delete/pageSectionSettings/{id?}', [PageSectionController::class, 'settingsItemDelete'])->name('admindeleteSettings');
+        Route::get( 'relation-data/{type}', [PageSectionController::class, 'getRelationData'])->name('relation.data');
+        Route::post( 'pages/{menu}/toggle-global-block', [PageSectionController::class, 'toggleGlobalBlock'])->name('admin.pages.section.toggle-global-block');
+        Route::post('/admin/pages/section/bulk-delete', [PageSectionController::class, 'bulkDelete'])
+            ->name('admin.pages.section.bulkDelete');
+
+        Route::get('', [AdminController::class, 'index'])->name('admin.index');
+
+        Route::post('update-image-order', [PageSectionController::class, 'updateOrder'])
+            ->name('updateImageOrder');
+        Route::get('update-status/{section_id}', [PageSectionController::class, 'updateStatus'])->name('update-status');
+        Route::post('update-main-button', [PageSectionController::class, 'updateMainButton'])->name('updateMainButton');
+        Route::get('supports/index/{type}', [SupportController::class, 'index'])->name('admin.supports');
+        Route::get('supports/{id}', [SupportController::class, 'show'])->name('admin.supports.show');
+        Route::delete('supports/{id}', [SupportController::class, 'delete'])->name('admin.supports.delete');
+        Route::get('menu', [MenuController::class, 'index'])->name('admin.menu');
+        Route::get('settings', [SettingController::class, 'settings'])->name('admin.settings');
+        Route::post('settings/create', [SettingController::class, 'settingscreate'])->name('admin.settings.create');
+        Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+        Route::delete('delete/{section_id}', [PageSectionController::class, 'deleteSelection'])->name('pages.delete');
+        Route::prefix('menu-main')->name('admin.menu_main.')->group(function () {
+            Route::get('', [MenuMainController::class, 'index'])->name('index');
+            Route::get('create', [MenuMainController::class, 'create'])->name('create');
+            Route::get('edit/{id}', [MenuMainController::class, 'edit'])->name('edit');
+            Route::post('update-status/{id}', [MenuMainController::class, 'updateStatus'])->name('update-status');
+            Route::post('update-sort/{id}', [MenuMainController::class, 'updateSort'])->name('update-sort');
+            Route::post('update-sort', [MenuMainController::class, 'updateSortMenu'])->name('update-sort-menu');
+            Route::post('store', [MenuMainController::class, 'store'])->name('store');
+            Route::put('update/{id}', [MenuMainController::class, 'update'])->name('update');
+            Route::get('settings', [MenuMainSettingsController::class, 'index'])->name('settings');
+            Route::post('settings/create', [MenuMainSettingsController::class, 'create'])->name('settings.create');
+            Route::delete('delete/menu/{id}', [MenuMainController::class, 'delete'])->name('delete');
+        });
+
+
+        Route::prefix('users')->group(function () {
+            Route::get('', [UserController::class, 'users'])->name('admin.users');
+            Route::post('', [UserController::class, 'usersCreate'])->name('admin.users.create');
+            Route::get('create', [UserController::class, 'usersCreateView'])->name('admin.users.create.view');
+            Route::get('{user}', [UserController::class, 'usersEdit'])->name('admin.users.edit');
+            Route::post('user/status-update/{id}', [UserController::class, 'updateStatus'])->name('admin.user.status-update');
+            Route::put('{user}', [UserController::class, 'usersUpdate'])->name('admin.users.update');
+            Route::delete('{user}', [UserController::class, 'usersDelete'])->name('admin.users.delete');
+        });
+        Route::prefix('roles')->group(function () {
+            Route::get('', [RoleController::class, 'roles'])->name('admin.roles');
+            Route::post('', [RoleController::class, 'rolesCreate'])->name('admin.roles.create');
+            Route::get('create', [RoleController::class, 'rolesCreateView'])->name('admin.roles.create.view');
+            Route::post('update-status/{role_id}', [RoleController::class, 'updateStatus'])->name('admin.role.update-status');
+            Route::get('{role}', [RoleController::class, 'rolesEdit'])->name('admin.roles.edit');
+            Route::put('{role}', [RoleController::class, 'rolesUpdate'])->name('admin.roles.update');
+            Route::delete('{roles}', [RoleController::class, 'delete'])->name('admin.roles.delete');
+        });
+        Route::resource('langs', LangController::class);
+        Route::get('langs-status/{id}', [LangController::class, 'lang_status'])->name('admin.langs.status');
+
+
+        Route::prefix('pages/{slug}/section/{id}')->name('admin.pages.section.')->controller(PageSectionController::class)->group(function () {
+            Route::get('/items/{parent_id?}/{category_slug?}', 'index')->name('index');
+            Route::post('/update-sort/{section_id}', 'updateSort')->name('update-sort');
+            Route::post('/duplicate/{section_id}', 'duplicateSectionCategory')->name('duplicateSectionCategory');
+            Route::get('/create/{parent_id?}/{category_slug?}', 'createSection')->name('create');
+            Route::post('/store/{parent_id?}/{category_slug?}', 'storeSection')->name('store');
+            Route::get('/edit/{section_id}/{parent_id?}/{category_slug?}', 'editSection')->name('edit');
+            Route::put('/update/{section_id}', 'updateSection')->name('update');
+            Route::get('/settings/{parent_id?}/{category_slug?}', 'create')->name('settings.create');
+            Route::post('/settings-store/{parent_id?}/{category_slug?}', 'storeSettings')->name('settings.store');
+        });
+    });
+    Route::post('social-links/update-status/{id}', [SocialLinkController::class, 'updateStatus'])
+        ->name('social_links.update-status');
+    Route::resource('social_links', SocialLinkController::class);
+    Route::resource('social_links', SocialLinkController::class);
+    Route::prefix('content/{category}')->name('admin.content.')->group(function () {
+        Route::get('', [ContentController::class, 'index'])->name('index');
+        Route::get('create', [ContentController::class, 'create'])->name('create');
+        Route::get('edit/{id}', [ContentController::class, 'edit'])->name('edit');
+        Route::post('update-sort/{id}', [ContentController::class, 'updateSort'])->name('update-sort');
+        Route::post('store', [ContentController::class, 'store'])->name('store');
+        Route::put('update/{id}', [ContentController::class, 'update'])->name('update');
+        Route::get('settings', [ContentSettingController::class, 'index'])->name('settings');
+        Route::post('settings/create', [ContentSettingController::class, 'create'])->name('settings.create');
+        Route::delete('delete/{id}', [ContentController::class, 'delete'])->name('delete');
+    });
+    Route::post('update-status/{id}', [ContentController::class, 'updateStatus'])->name('content.update-status');
+    Route::post('image-delete', [MenuMainController::class, 'imageDelete'])->name('admin.menu_main.imageDelete');
+    Route::post('image-create/{id?}', [PageSectionController::class, 'addImage'])->name('createImage');
+
+    Route::post('/telegram/check-token', [TelegramController::class, 'checkToken'])->name('telegram.checkToken');
+    Route::post('/telegram/check-bot', [TelegramController::class, 'checkBot'])->name('telegram.checkBot');
+});
